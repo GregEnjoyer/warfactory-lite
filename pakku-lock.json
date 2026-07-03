@@ -4,7 +4,7 @@
         "1.20.1"
     ],
     "loaders": {
-        "forge": ""
+        "forge": "forge-47.4.10"
     },
     "projects": [
         {
@@ -2481,9 +2481,9 @@
             "files": [
                 {
                     "type": "github",
-                    "file_name": "warforge-remaintained-2.0.0.jar",
+                    "file_name": "warforge-remaintained-2.2.0.jar",
                     "release_type": "release",
-                    "url": "https://github.com/Warfactory-Official/WarForge-Remaintained/releases/download/v2.0.0/warforge-remaintained-2.0.0.jar",
+                    "url": "https://github.com/Warfactory-Official/WarForge-Remaintained/releases/download/snapshots/warforge-remaintained-2.2.0.jar",
                     "id": "452651080",
                     "parent_id": "824503430",
                     "hashes": {

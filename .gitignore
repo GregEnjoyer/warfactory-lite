@@ -1,1 +1,21 @@
 mods/
+build/
+.gradle/
+
+# Instance runtime pollution - never commit these to the pakku repo
+logs/
+crash-reports/
+local/
+.boxy/
+tacz_backup/
+tacz/tacz_default_gun/
+tacz/.export-state.json
+*.log
+hs_err_pid*
+usercache.json
+usernamecache.json
+servers.dat
+rhino.local.properties
+emi.json
+modlist.html
+manifest.json

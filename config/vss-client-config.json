@@ -4,8 +4,12 @@
   "offThreadSectionProcessing": true,
   "extendEntityRenderDistance": true,
   "renderedEntityTypes": [
-    "minecraft:player"
+    "minecraft:player",
+    "superbwarfare:*",
+    "ashvehicle:*",
+    "vvp:*",
+    "halovecs:*"
   ],
-  "entityRenderDistanceChunks": 32,
+  "entityRenderDistanceChunks": 64,
   "mipmapEntityTextures": false
 }

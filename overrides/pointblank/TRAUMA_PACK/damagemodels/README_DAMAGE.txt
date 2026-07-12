@@ -1,1 +1,0 @@
-Apply these into the "pointblank\TRAUMA_PACK\assets\pointblank\items"

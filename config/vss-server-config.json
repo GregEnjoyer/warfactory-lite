@@ -17,9 +17,13 @@
   "perDimensionTimestampCacheSizeMB": 32,
   "extendEntityTracking": true,
   "trackedEntityTypes": [
-    "minecraft:player"
+    "minecraft:player",
+    "superbwarfare:*",
+    "ashvehicle:*",
+    "vvp:*",
+    "halovecs:*"
   ],
-  "entityTrackingDistanceChunks": 32,
-  "forceLoadTrackedEntities": false,
+  "entityTrackingDistanceChunks": 64,
+  "forceLoadTrackedEntities": true,
   "forceLoadRadiusChunks": 2
 }

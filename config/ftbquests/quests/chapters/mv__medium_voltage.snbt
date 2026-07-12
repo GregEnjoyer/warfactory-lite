@@ -2081,47 +2081,6 @@
 			y: -1.875d
 		}
 		{
-			dependencies: ["1FFD2242B94A7378"]
-			dependency_requirement: "one_started"
-			description: [
-				"Regular &o&dGregTech&r Fluid Pipes can only transport one fluid type at a time."
-				""
-				"&3Quadruple Fluid Pipes&r can transfer four different types of fluids. &3Nonuple Fluid Pipes&r can transfer nine different types! Useful for compact setups."
-				""
-				"&3Nonuple Fluid Pipes&r will be useful in &5EV&r for handling the many outputs of the &3Distillation Tower&r."
-				""
-				"Get &eeither&r to finish this quest."
-			]
-			icon: "gtceu:tungsten_steel_quadruple_fluid_pipe"
-			id: "66041DE10C882382"
-			size: 0.66d
-			subtitle: "\"I thought channels were disabled!\""
-			tasks: [{
-				id: "2620FA131244B3DA"
-				item: {
-					Count: 1
-					id: "itemfilters:or"
-					tag: {
-						items: [
-							{
-								Count: 1b
-								id: "gtceu:potin_quadruple_fluid_pipe"
-							}
-							{
-								Count: 1b
-								id: "gtceu:potin_nonuple_fluid_pipe"
-							}
-						]
-					}
-				}
-				title: "Multiple Channel Potin Pipes, please"
-				type: "item"
-			}]
-			title: "Multiple Channel Pipes"
-			x: 2.25d
-			y: -1.875d
-		}
-		{
 			dependencies: ["315169840E06110F"]
 			description: [
 				"Using a Ruby Lens, engrave a Silicon Wafer into an ILC Wafer."

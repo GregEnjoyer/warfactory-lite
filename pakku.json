@@ -2,13 +2,24 @@
     "name": "Warfactory-lite",
     "version": "0.0.1",
     "overrides": [
-        "overrides/pointblank",
-        "overrides/config",
-        "overrides/kubejs"
+        "config",
+        "kubejs",
+        "tacz"
     ],
     "client_overrides": [
-        "overrides/fancymenu_data",
-        "overrides/datapacks",
-        "overrides/options.txt"
-    ]
+        "fancymenu_data",
+        "datapacks",
+        "options.txt"
+    ],
+    "projects": {
+        "timeless-and-classics-zero": {
+            "update_strategy": "NONE"
+        },
+        "superb-warfare": {
+            "update_strategy": "NONE"
+        },
+        "Ultimate-Weight": {
+            "update_strategy": "NONE"
+        }
+    }
 }

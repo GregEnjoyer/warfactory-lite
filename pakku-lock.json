@@ -199,6 +199,34 @@
             ]
         },
         {
+            "pakku_id": "v0tHTa0huwkNLE4a",
+            "type": "MOD",
+            "slug": {
+                "github": "Warfactory-Official/Boxy"
+            },
+            "name": {
+                "github": "Boxy"
+            },
+            "id": {
+                "github": "1282110506"
+            },
+            "files": [
+                {
+                    "type": "github",
+                    "file_name": "boxy-1.0.0.jar",
+                    "release_type": "release",
+                    "url": "https://github.com/Warfactory-Official/Boxy/releases/download/v1.0.0/boxy-1.0.0.jar",
+                    "id": "466662451",
+                    "parent_id": "1282110506",
+                    "hashes": {
+                        "sha256": "f3881918b76e3652da512a532260f624a410fae78520dc7720266833d3059018"
+                    },
+                    "size": 4904080,
+                    "date_published": "2026-07-04T22:36:45Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "Aoq7jWpL1IS7i4wI",
             "type": "MOD",
             "side": "BOTH",
@@ -842,49 +870,6 @@
             ]
         },
         {
-            "pakku_id": "67V8CQAkwrX2MqCk",
-            "pakku_links": [
-                "AsSMHai7q462WJa0"
-            ],
-            "type": "MOD",
-            "slug": {
-                "curseforge": "ftb-chunks-forge"
-            },
-            "name": {
-                "curseforge": "FTB Chunks (NeoForge)"
-            },
-            "id": {
-                "curseforge": "314906"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "ftb-chunks-forge-2001.3.7.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/7880/858/ftb-chunks-forge-2001.3.7.jar",
-                    "id": "7880858",
-                    "parent_id": "314906",
-                    "hashes": {
-                        "sha1": "ad905a6efcd0569bd8f4cc8e38889671b4bfc6a9",
-                        "md5": "d8487e3f9a53961adf7d23cb47e3e885"
-                    },
-                    "required_dependencies": [
-                        "404468",
-                        "419699",
-                        "404465"
-                    ],
-                    "size": 1159090,
-                    "date_published": "2026-04-05T18:09:04.663Z"
-                }
-            ]
-        },
-        {
             "pakku_id": "Mufk3JCNweoOQDVU",
             "type": "MOD",
             "slug": {
@@ -920,44 +905,6 @@
                     ],
                     "size": 197884,
                     "date_published": "2025-04-26T08:49:57.267Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "AsSMHai7q462WJa0",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "ftb-library-forge"
-            },
-            "name": {
-                "curseforge": "FTB Library (NeoForge)"
-            },
-            "id": {
-                "curseforge": "404465"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "ftb-library-forge-2001.2.12.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/7296/748/ftb-library-forge-2001.2.12.jar",
-                    "id": "7296748",
-                    "parent_id": "404465",
-                    "hashes": {
-                        "sha1": "7f36ec4af42ad1d69872c58022e93a9d1b9c82b7",
-                        "md5": "8bbd067159587d80f1c5286ea52e567b"
-                    },
-                    "required_dependencies": [
-                        "419699"
-                    ],
-                    "size": 780523,
-                    "date_published": "2025-12-05T12:02:22.023Z"
                 }
             ]
         },
@@ -1003,9 +950,6 @@
         },
         {
             "pakku_id": "1dHWyxd7pM776wZE",
-            "pakku_links": [
-                "AsSMHai7q462WJa0"
-            ],
             "type": "MOD",
             "slug": {
                 "curseforge": "ftb-ranks-forge"
@@ -1040,48 +984,6 @@
                     ],
                     "size": 87362,
                     "date_published": "2025-05-12T11:09:18.303Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "xdjq7AIfls9RneLb",
-            "pakku_links": [
-                "AsSMHai7q462WJa0"
-            ],
-            "type": "MOD",
-            "slug": {
-                "curseforge": "ftb-teams-forge"
-            },
-            "name": {
-                "curseforge": "FTB Teams (NeoForge)"
-            },
-            "id": {
-                "curseforge": "404468"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "ftb-teams-forge-2001.3.2.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/7499/810/ftb-teams-forge-2001.3.2.jar",
-                    "id": "7499810",
-                    "parent_id": "404468",
-                    "hashes": {
-                        "sha1": "c49023f5d471aa1ba7fc624d2565fe9e82b7117e",
-                        "md5": "1c547d6f1b22f461f84c5fb79067b0ec"
-                    },
-                    "required_dependencies": [
-                        "419699",
-                        "404465"
-                    ],
-                    "size": 252579,
-                    "date_published": "2026-01-21T10:11:35.007Z"
                 }
             ]
         },
@@ -1198,43 +1100,6 @@
                     "required_dependencies": [],
                     "size": 123034,
                     "date_published": "2023-10-22T13:35:16.597Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "aEECA9su781dGVml",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "first-aid"
-            },
-            "name": {
-                "curseforge": "First Aid"
-            },
-            "id": {
-                "curseforge": "276837"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "firstaid-1.20.1-1.1.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "neoforge",
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/5531/834/firstaid-1.20.1-1.1.jar",
-                    "id": "5531834",
-                    "parent_id": "276837",
-                    "hashes": {
-                        "sha1": "afebe3773bd8b3f902ef54c3c98864bfb0d1e00e",
-                        "md5": "bd7a29c1c684cf2fe3657731287c5f87"
-                    },
-                    "required_dependencies": [],
-                    "size": 450159,
-                    "date_published": "2024-07-14T13:51:27.363Z"
                 }
             ]
         },
@@ -1423,43 +1288,6 @@
             ]
         },
         {
-            "pakku_id": "RiSXUUpMWPHJkSm7",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "hematic-blood-mod"
-            },
-            "name": {
-                "curseforge": "Hematic"
-            },
-            "id": {
-                "curseforge": "1102048"
-            },
-            "redistributable": false,
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "hematic-1.1-forge-1.20.1.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/5719/826/hematic-1.1-forge-1.20.1.jar",
-                    "id": "5719826",
-                    "parent_id": "1102048",
-                    "hashes": {
-                        "sha1": "3c4a6b4dba789deab03fa75a1af90e9baac34da5",
-                        "md5": "7cee50ee268299a0c4016355e0002b6c"
-                    },
-                    "required_dependencies": [],
-                    "size": 76000,
-                    "date_published": "2024-09-13T16:50:39.793Z"
-                }
-            ]
-        },
-        {
             "pakku_id": "qUyRJs2hLVn31PQj",
             "type": "MOD",
             "slug": {
@@ -1496,44 +1324,6 @@
                     "required_dependencies": [],
                     "size": 538992,
                     "date_published": "2026-01-27T21:06:43.760Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "113JWTcsCJ4G0U0n",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "jjthunder-to-the-max"
-            },
-            "name": {
-                "curseforge": "JJThunder To The Max"
-            },
-            "id": {
-                "curseforge": "1002819"
-            },
-            "redistributable": false,
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "ZZ.JJThunder_To_The_Max_1.20.1_v0.2.0.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "fabric",
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/5393/334/ZZ.JJThunder_To_The_Max_1.20.1_v0.2.0.jar",
-                    "id": "5393334",
-                    "parent_id": "1002819",
-                    "hashes": {
-                        "sha1": "6d03410fa5ea72161868757cb3e09b60f868a80f",
-                        "md5": "6b8a2a5958377b65f9140243dfb458b1"
-                    },
-                    "required_dependencies": [],
-                    "size": 108390,
-                    "date_published": "2024-06-02T18:35:50.653Z"
                 }
             ]
         },
@@ -1723,6 +1513,34 @@
                     "required_dependencies": [],
                     "size": 3114158,
                     "date_published": "2026-03-25T05:13:03.787Z"
+                }
+            ]
+        },
+        {
+            "pakku_id": "UsxQP71c02M7Z8bD",
+            "type": "MOD",
+            "slug": {
+                "github": "Warfactory-Official/MCglTF"
+            },
+            "name": {
+                "github": "MCglTF"
+            },
+            "id": {
+                "github": "1280719680"
+            },
+            "files": [
+                {
+                    "type": "github",
+                    "file_name": "mcgltf-1.20.1.jar",
+                    "release_type": "release",
+                    "url": "https://github.com/Warfactory-Official/MCglTF/releases/download/snapshots/mcgltf-1.20.1.jar",
+                    "id": "463594358",
+                    "parent_id": "1280719680",
+                    "hashes": {
+                        "sha256": "9bfa5037f691971202945dbeb4ce73ba32d87fd48eb42f29ba4523fed47345fd"
+                    },
+                    "size": 569944,
+                    "date_published": "2026-07-01T20:27:29Z"
                 }
             ]
         },
@@ -2029,42 +1847,6 @@
             ]
         },
         {
-            "pakku_id": "zDuK3aRsKa0JFtUL",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "redirector"
-            },
-            "name": {
-                "curseforge": "Redirector [Modern]"
-            },
-            "id": {
-                "curseforge": "877289"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "redirector-5.0.0.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/5224/17/redirector-5.0.0.jar",
-                    "id": "5224017",
-                    "parent_id": "877289",
-                    "hashes": {
-                        "sha1": "0b246b2648a2e463f243852fdd1ef8c2931da19c",
-                        "md5": "3b58498de6bb6bf51082bc17e7f0718e"
-                    },
-                    "required_dependencies": [],
-                    "size": 5793,
-                    "date_published": "2024-03-31T06:20:11.550Z"
-                }
-            ]
-        },
-        {
             "pakku_id": "U1Dacy5MrPzM7llh",
             "type": "MOD",
             "slug": {
@@ -2351,6 +2133,35 @@
             ]
         },
         {
+            "pakku_id": "WfWeightGhPin01",
+            "type": "MOD",
+            "slug": {
+                "github": "Warfactory-Official/Ultimate-Weight"
+            },
+            "name": {
+                "github": "Ultimate-Weight"
+            },
+            "id": {
+                "github": "1213132556"
+            },
+            "update_strategy": "NONE",
+            "files": [
+                {
+                    "type": "github",
+                    "file_name": "wfweight-1.20.1-Forge-1.0.0-SNAPSHOT.jar",
+                    "release_type": "beta",
+                    "url": "https://github.com/Warfactory-Official/Ultimate-Weight/releases/download/snapshots/wfweight-1.20.1-Forge-1.0.0-SNAPSHOT.jar",
+                    "id": "462810886",
+                    "parent_id": "1213132556",
+                    "hashes": {
+                        "sha256": "ff9813dc9180fa5af49abee754158adaf059166f7d9ed59cbef5b66b76112f7d"
+                    },
+                    "size": 26659876,
+                    "date_published": "2026-07-01T04:06:11Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "VmLFdT7vnrcjC6DA",
             "type": "MOD",
             "slug": {
@@ -2519,43 +2330,6 @@
                     },
                     "size": 4678484,
                     "date_published": "2026-07-01T04:35:45Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "E8aoObFqxyoh90mk",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "zzoyn-hcompass"
-            },
-            "name": {
-                "curseforge": "Zzoyn HCompass"
-            },
-            "id": {
-                "curseforge": "1397933"
-            },
-            "redistributable": false,
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "zzoyn-hcompass-0.1.1.4 (1).jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/7294/097/zzoyn-hcompass-0.1.1.4 (1).jar",
-                    "id": "7294097",
-                    "parent_id": "1397933",
-                    "hashes": {
-                        "sha1": "bcad5e74b46746256bf263e7e2da763b8e191da4",
-                        "md5": "c5a5b5380006e87d5215031048d12d36"
-                    },
-                    "required_dependencies": [],
-                    "size": 1215463,
-                    "date_published": "2025-12-04T16:36:50.400Z"
                 }
             ]
         },
@@ -2976,35 +2750,6 @@
                     "required_dependencies": [],
                     "size": 3114590,
                     "date_published": "2023-09-05T08:02:20.050Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "WfWeightGhPin01",
-            "type": "MOD",
-            "slug": {
-                "github": "Warfactory-Official/Ultimate-Weight"
-            },
-            "name": {
-                "github": "Ultimate-Weight"
-            },
-            "id": {
-                "github": "1213132556"
-            },
-            "update_strategy": "NONE",
-            "files": [
-                {
-                    "type": "github",
-                    "file_name": "wfweight-1.20.1-Forge-1.0.0-SNAPSHOT.jar",
-                    "release_type": "beta",
-                    "url": "https://github.com/Warfactory-Official/Ultimate-Weight/releases/download/snapshots/wfweight-1.20.1-Forge-1.0.0-SNAPSHOT.jar",
-                    "id": "462810886",
-                    "parent_id": "1213132556",
-                    "hashes": {
-                        "sha256": "ff9813dc9180fa5af49abee754158adaf059166f7d9ed59cbef5b66b76112f7d"
-                    },
-                    "size": 26659876,
-                    "date_published": "2026-07-01T04:06:11Z"
                 }
             ]
         }

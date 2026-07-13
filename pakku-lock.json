@@ -2199,6 +2199,35 @@
             ]
         },
         {
+            "pakku_id": "lcN8wFBf0xqIUEcx",
+            "type": "MOD",
+            "slug": {
+                "github": "Warfactory-Official/WF-Ballistics"
+            },
+            "name": {
+                "github": "WF-Ballistics"
+            },
+            "id": {
+                "github": "1283626439"
+            },
+            "redistributable": false,
+            "files": [
+                {
+                    "type": "github",
+                    "file_name": "wfballistics-1.0.0-all.jar",
+                    "release_type": "release",
+                    "url": "https://github.com/Warfactory-Official/WF-Ballistics/releases/download/v1.0.0/wfballistics-1.0.0-all.jar",
+                    "id": "475281332",
+                    "parent_id": "1283626439",
+                    "hashes": {
+                        "sha256": "0870e0f1af4443eb24422546b6feab09b809e2cdd5a039aabf484d2ca8018bf4"
+                    },
+                    "size": 3286345,
+                    "date_published": "2026-07-13T08:49:20Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "FFI80bn340wVmgyI",
             "type": "MOD",
             "slug": {

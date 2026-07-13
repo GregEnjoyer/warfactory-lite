@@ -2942,6 +2942,34 @@
             ]
         },
         {
+            "pakku_id": "21adOiyKqmAHcvIk",
+            "type": "MOD",
+            "slug": {
+                "github": "Warfactory-Official/WFMedical"
+            },
+            "name": {
+                "github": "WFMedical"
+            },
+            "id": {
+                "github": "1289634608"
+            },
+            "files": [
+                {
+                    "type": "github",
+                    "file_name": "wfmedical-0.1.0.jar",
+                    "release_type": "release",
+                    "url": "https://github.com/Warfactory-Official/WFMedical/releases/download/v0.1.0/wfmedical-0.1.0.jar",
+                    "id": "475846230",
+                    "parent_id": "1289634608",
+                    "hashes": {
+                        "sha256": "0b0172bf6e489cbccbd3a3d35a81fe4f75dbe1722c8f54d0f3617565cfdc6b9b"
+                    },
+                    "size": 430116,
+                    "date_published": "2026-07-13T19:59:47Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "FFI80bn340wVmgyI",
             "type": "MOD",
             "slug": {

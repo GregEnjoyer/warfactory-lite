@@ -756,42 +756,6 @@
             ]
         },
         {
-            "pakku_id": "WVqMQEq5jCdvlZOA",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "emi"
-            },
-            "name": {
-                "curseforge": "EMI"
-            },
-            "id": {
-                "curseforge": "580555"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "emi-1.1.24+1.20.1+forge.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/8081/375/emi-1.1.24+1.20.1+forge.jar",
-                    "id": "8081375",
-                    "parent_id": "580555",
-                    "hashes": {
-                        "sha1": "ea320200878e4a49196760234a22da763671520a",
-                        "md5": "c86d5772fba9fbd4d612f2fe82397f72"
-                    },
-                    "required_dependencies": [],
-                    "size": 1121750,
-                    "date_published": "2026-05-13T06:18:18.303Z"
-                }
-            ]
-        },
-        {
             "pakku_id": "ru0JssBCRDKjONHD",
             "type": "MOD",
             "slug": {
@@ -2672,6 +2636,7 @@
             "id": {
                 "curseforge": "1193263"
             },
+            "update_strategy": "NONE",
             "files": [
                 {
                     "type": "curseforge",
@@ -3475,6 +3440,7 @@
             "id": {
                 "curseforge": "1346094"
             },
+            "update_strategy": "NONE",
             "files": [
                 {
                     "type": "curseforge",

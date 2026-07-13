@@ -1503,6 +1503,43 @@
             ]
         },
         {
+            "pakku_id": "SWldxwch8FUG6Jol",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "hunger-strike"
+            },
+            "name": {
+                "curseforge": "Hunger Strike"
+            },
+            "id": {
+                "curseforge": "75334"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "HungerStrike-1.20.1-8.0.0.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "neoforge",
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/5574/481/HungerStrike-1.20.1-8.0.0.jar",
+                    "id": "5574481",
+                    "parent_id": "75334",
+                    "hashes": {
+                        "sha1": "88bc48637001231d8b7e37c5ae6805c4190e39bf",
+                        "md5": "e045f46f90cbfbd60565fd451a4d92d5"
+                    },
+                    "required_dependencies": [],
+                    "size": 33579,
+                    "date_published": "2024-07-28T14:05:03.437Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "qUyRJs2hLVn31PQj",
             "type": "MOD",
             "slug": {

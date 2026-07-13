@@ -870,7 +870,51 @@
             ]
         },
         {
+            "pakku_id": "1OfXsTmlPAKXhHqC",
+            "pakku_links": [
+                "tWX4IxZsaoQjwm2f"
+            ],
+            "type": "MOD",
+            "slug": {
+                "curseforge": "ftb-library-forge"
+            },
+            "name": {
+                "curseforge": "FTB Library (NeoForge)"
+            },
+            "id": {
+                "curseforge": "404465"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "ftb-library-forge-2001.2.13.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/8226/927/ftb-library-forge-2001.2.13.jar",
+                    "id": "8226927",
+                    "parent_id": "404465",
+                    "hashes": {
+                        "sha1": "a5427d5ff07eb044144ed0b54308370d88bce17e",
+                        "md5": "9de2c76938392445e735a98b352da9d4"
+                    },
+                    "required_dependencies": [
+                        "419699"
+                    ],
+                    "size": 780558,
+                    "date_published": "2026-06-10T14:57:06.283Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "ygy4EiOjvrCzFMHT",
+            "pakku_links": [
+                "1OfXsTmlPAKXhHqC"
+            ],
             "type": "MOD",
             "slug": {
                 "curseforge": "ftb-quests-forge"
@@ -911,6 +955,9 @@
         },
         {
             "pakku_id": "1dHWyxd7pM776wZE",
+            "pakku_links": [
+                "1OfXsTmlPAKXhHqC"
+            ],
             "type": "MOD",
             "slug": {
                 "curseforge": "ftb-ranks-forge"
@@ -950,6 +997,9 @@
         },
         {
             "pakku_id": "FAwl6KhZ6Xqy8NG2",
+            "pakku_links": [
+                "1OfXsTmlPAKXhHqC"
+            ],
             "type": "MOD",
             "slug": {
                 "curseforge": "ftb-xmod-compat"

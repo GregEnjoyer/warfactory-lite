@@ -44,10 +44,20 @@
   "item.kubejs.launcher_early": "Early Launcher Internals",
   "item.kubejs.launcher_complicated": "Complex Launcher Internals",
   "item.kubejs.launcher_modern": "Modern Launcher Internals",
+"material.gtceu.clay_pipe_material": "Watertight Clay",
 
+"wfcore.research.guns1.name": "Early Cold War Weapons",
+"wfcore.research.guns1.desc": "Early Cold War weapons such as the legendary FAL and M700",
+"wfcore.research.guns2.name": "Early Cold War Pistols",
+"wfcore.research.guns2.desc": "Early Cold War pistols like the cz75",
+"wfcore.research.guns2heavy.name": "Early Cold War Shotguns",
+"wfcore.research.guns2havy.desc": "Early Cold War Shotguns like the Remington 870",
+"wfcore.research.guns3.name": "Late Cold War/Modern Weapons",
+"wfcore.research.guns3heavy.desc": "Late Cold War and Modern Weapons, such as the AUG, M4 and SCAR",
+"wfcore.research.guns4.name": "Late Cold War and Modern Pistols",
+"wfcore.research.guns4heavy.desc": "Modern handguns like the Glock 19 and M45",
+"wfcore.research.guns5.name": "Late Cold War and Modern Shotguns",
+"wfcore.research.guns5heavy.desc": "Modern Shotguns like the Benelli m4",
+"wfcore.research.guns6.name": "Ayran Weapons",
+"wfcore.research.guns6heavy.desc": "todo",
 
-"wfcore.research.my_research.name": "Test",
-
-"wfcore.research.my_research.desc": "Test desc"
-}
-`

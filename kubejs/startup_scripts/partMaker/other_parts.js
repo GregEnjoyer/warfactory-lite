@@ -3,5 +3,9 @@ event.create('solid_rocket_fuel').texture('kubejs:item/stock_plastic').maxStackS
 event.create('tank_icon').texture('kubejs:item/medium_tank_cropped').maxStackSize(64).displayName('Tank Icon')
 event.create('plane_icon').texture('kubejs:item/fighter').maxStackSize(64).displayName('Plane Icon')
 event.create('infantry_icon').texture('kubejs:item/techtree_infantry_tab').maxStackSize(64).displayName('Infantry Icon')
-
+event.create('infantry_icon_1').texture('kubejs:item/infantry_weapons').maxStackSize(64).displayName('Early Modern Weapons')
+event.create('infantry_icon_2').texture('kubejs:item/infantry_weapons2').maxStackSize(64).displayName('Early Cold War Pistols')
+event.create('infantry_icon_3').texture('kubejs:item/infantry_weapons3').maxStackSize(64).displayName('research icon')
+event.create('infantry_icon_4').texture('kubejs:item/support_weapons').maxStackSize(64).displayName('research icon')
+event.create('infantry_icon_5').texture('kubejs:item/support_weapons2').maxStackSize(64).displayName('research icon')
 })

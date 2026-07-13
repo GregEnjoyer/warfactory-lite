@@ -20,6 +20,12 @@
         },
         "Ultimate-Weight": {
             "update_strategy": "NONE"
+        },
+        "sbw-halovehicles": {
+            "update_strategy": "NONE"
+        },
+        "voxy": {
+            "update_strategy": "NONE"
         }
     }
 }

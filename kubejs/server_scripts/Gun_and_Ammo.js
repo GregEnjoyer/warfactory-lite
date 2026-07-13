@@ -59,6 +59,10 @@ ServerEvents.recipes(event => {
         { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:308"}', circuit: 16 },
         { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:68x51fury"}', circuit: 17 },
         { id: 'tacz:ammo', nbt: '{AmmoId:"ww:30c"}', circuit: 18 },
+        { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:12g"}', circuit: 19 },
+        { id: 'tacz:ammo', nbt: '{AmmoId:"ronmc:10mm"}', circuit: 20 },
+        { id: 'tacz:ammo', nbt: '{AmmoId:"ronmc:762x51"}', circuit: 21 },
+        { id: 'tacz:ammo', nbt: '{AmmoId:"ronmc:65x48"}', circuit: 22 },
     ];
 
     rifleAmmo.forEach(ammo => {
@@ -80,8 +84,14 @@ ServerEvents.recipes(event => {
     // PISTOL AMMO
     // =========================
     const pistolAmmo = [
-        // Add pistol ammo entries here, e.g.:
-        // { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:762x25"}', circuit: 1 },
+
+ { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:762x25"}', circuit: 1 },
+  { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:45acp"}', circuit: 2 },
+   { id: 'tacz:ammo', nbt: '{AmmoId:"ww8mm:8mm"}', circuit: 3 },
+   { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:9mm"}', circuit: 4 },
+   { id: 'tacz:ammo', nbt: '{AmmoId:"ww:765"}', circuit: 5 },
+{ id: 'tacz:ammo', nbt: '{AmmoId:"tacz:357mag"}', circuit: 6 },
+{ id: 'tacz:ammo', nbt: '{AmmoId:"ronmc:10mm"}', circuit: 7 },
     ];
 
     pistolAmmo.forEach(ammo => {

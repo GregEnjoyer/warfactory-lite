@@ -162,4 +162,75 @@ MM_ARMOR_FABRICS.forEach(fabric => {
     .circuit(fabric.circuit)
     .EUt(30)
 })
+//helmet
+event.recipes.gtceu.assembler('helmetbaselv_1')
+.itemInputs(Item.of('gtceu:steel_plate', 5))
+.itemOutputs(Item.of('mm_armor:helmetbaselv_1'))
+.duration(20)
+.circuit(1)
+.EUt(16);
+
+event.recipes.gtceu.assembler('helmetbaselv_2')
+.itemInputs(Item.of('gtceu:titanium_plate', 5), 'mm_armor:helmetbaselv_1')
+.itemOutputs(Item.of('mm_armor:helmetbaselv_2'))
+.duration(20)
+.circuit(1)
+.EUt(480);
+
+event.recipes.gtceu.assembler('helmetbaselv_3')
+.itemInputs(Item.of('gtceu:stainless_steel_plate', 5), 'mm_armor:helmetbaselv_2')
+.itemOutputs(Item.of('mm_armor:helmetbaselv_3'))
+.duration(300)
+.circuit(1)
+.EUt(200);
+
+// armor parts
+// LV1 - Vest Plate - MV tier
+event.recipes.gtceu.assembler('vestplatelv_1')
+.itemInputs(Item.of('gtceu:steel_plate', 6))
+.itemOutputs(Item.of('mm_armor:vestplatelv_1'))
+.duration(200)
+.circuit(1)
+.EUt(120); // MV
+
+// LV2 - Vest Plate - HV tier
+event.recipes.gtceu.assembler('vestplatelv_2')
+.itemInputs(Item.of('gtceu:titanium_plate', 6))
+.itemOutputs(Item.of('mm_armor:vestplatelv_2'))
+.duration(300)
+.circuit(1)
+.EUt(480); // HV
+
+// LV3 - Vest Plate - EV tier
+event.recipes.gtceu.assembler('vestplatelv_3')
+.itemInputs(Item.of('gtceu:stainless_steel_plate', 6))
+.itemOutputs(Item.of('mm_armor:vestplatelv_3'))
+.duration(400)
+.circuit(1)
+.EUt(1920); // EV
+
+// LV4 - Vest Plate - IV tier
+event.recipes.gtceu.assembler('vestplatelv_4')
+.itemInputs(Item.of('gtceu:tungsten_steel_plate', 6))
+.itemOutputs(Item.of('mm_armor:vestplatelv_4'))
+.duration(500)
+.circuit(1)
+.EUt(7680); // IV
+
+// LV5 - Vest Plate - LuV tier
+event.recipes.gtceu.assembler('vestplatelv_5')
+.itemInputs(Item.of('gtceu:hsse_plate', 6))
+.itemOutputs(Item.of('mm_armor:vestplatelv_5'))
+.duration(600)
+.circuit(1)
+.EUt(30000); // LuV
+
+// LV6 - Vest Plate - ZPM tier
+event.recipes.gtceu.assembler('vestplatelv_6')
+.itemInputs(Item.of('gtceu:naquadah_plate', 6))
+.itemOutputs(Item.of('mm_armor:vestplatelv_6'))
+.duration(700)
+.circuit(1)
+.EUt(120000); // ZPM
+
      });

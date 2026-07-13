@@ -4,19 +4,15 @@ GTCEuServerEvents.oreVeins(event => {
         vein.clusterSize(30)
         vein.density(0.2)
         vein.discardChanceOnAirExposure(0)
-
         vein.layer('stone')
         vein.dimensions('minecraft:overworld')
         vein.biomes('minecraft:swamp', 'minecraft:river')
-
         vein.heightRangeUniform(-32, 64)
-
         vein.dikeVeinGenerator(generator => generator
-        .withBlock(GTMaterials.ClayPipeMaterial, 1, 0, 100)
+        .withBlock(GTMaterials.get('clay_pipe_material'), 1, 0, 100)
         )
-
         vein.surfaceIndicatorGenerator(indicator => indicator
-        .surfaceRock(GTMaterials.ClayPipeMaterial)
+        .block(Block.getBlock('gtceu:clay_pipe_material_ore'))
         .placement('above')
         .density(0.4)
         .radius(5)

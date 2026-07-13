@@ -38,6 +38,7 @@ ServerEvents.recipes(event => {
                 { id: 'kubejs:tacz_m870', gear: 1, woodPlate: 2, steelPlate: 5, circuit: 9,  duration: 400, eut: 32, nbt: '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"tacz:m870",HasBulletInBarrel:1b}' },
     { id: 'kubejs:ww_m1897', gear: 1, woodPlate: 2, steelPlate: 5, circuit: 10, duration: 400, eut: 32, nbt: '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:m1897",HasBulletInBarrel:1b}'  },
     { id: 'kubejs:ww_m1912', gear: 1, woodPlate: 2, steelPlate: 5, circuit: 11, duration: 400, eut: 32, nbt: '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:m1912",HasBulletInBarrel:1b}'  },
+        { id: 'kubejs:ww_m1918a2', gear: 2, woodPlate: 2, steelPlate: 7, circuit: 12, duration: 400, eut: 32, nbt: '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:_m1918a2",HasBulletInBarrel:1b}'  },
         ];
 
         rifles.forEach(g => {
@@ -53,7 +54,7 @@ ServerEvents.recipes(event => {
                 .EUt(g.eut);
         });
 
-        // Anti tank
+        //LMG
 
 
         // MLRS

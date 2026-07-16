@@ -11,55 +11,6 @@
 		{
 			dependencies: ["40DE888E6025C646"]
 			description: [
-				"You may recall that regular Steam machines had a duration penalty, and were twice as slow. Not great."
-				""
-				"&5High Pressure&r Steam machines no longer bear a &bduration penalty &rfor recipes, making them objective upgrades."
-				""
-				"Make &eone&r of the proposed HP machines to complete this quest."
-			]
-			icon: "gtceu:hp_steam_compressor"
-			id: "5673089822BFCA70"
-			rewards: [{
-				count: 8
-				id: "24A6C74E123DDC99"
-				item: "gtceu:steel_plate"
-				type: "item"
-			}]
-			shape: "rsquare"
-			size: 0.66d
-			subtitle: "Pressure can be good sometimes"
-			tasks: [{
-				id: "77ECBBA179EC9B3F"
-				item: {
-					Count: 1
-					id: "itemfilters:or"
-					tag: {
-						items: [
-							{
-								Count: 1b
-								id: "gtceu:hp_steam_compressor"
-							}
-							{
-								Count: 1b
-								id: "gtceu:hp_steam_alloy_smelter"
-							}
-							{
-								Count: 1b
-								id: "gtceu:hp_steam_forge_hammer"
-							}
-						]
-					}
-				}
-				title: "Look at all these HP machines..."
-				type: "item"
-			}]
-			title: "No More Penalty"
-			x: 0.0d
-			y: -1.98d
-		}
-		{
-			dependencies: ["40DE888E6025C646"]
-			description: [
 				"&3High Pressure Boilers&r will be a better source of Steam for powering your Steam machines."
 				""
 				"Keep in mind that you will still be using Steam to power your Electric machines in &7LV&r via the miracles of energy conversion."
@@ -102,28 +53,8 @@
 			size: 0.75d
 			subtitle: "Pressure! Pushin' down on me..."
 			tasks: [{
-				id: "0DC74FB54995F3F1"
-				item: {
-					Count: 1
-					id: "itemfilters:or"
-					tag: {
-						items: [
-							{
-								Count: 1b
-								id: "gtceu:hp_steam_solid_boiler"
-							}
-							{
-								Count: 1b
-								id: "gtceu:hp_steam_liquid_boiler"
-							}
-							{
-								Count: 1b
-								id: "gtceu:hp_steam_solar_boiler"
-							}
-						]
-					}
-				}
-				title: "High Pressure Boilers"
+				id: "4764F554BBDC2649"
+				item: "gtceu:hp_steam_solid_boiler"
 				type: "item"
 			}]
 			title: "High Pressure"
@@ -1495,131 +1426,8 @@
 				}
 			]
 			title: "Fuel Pit"
-			x: 1.2d
-			y: -2.97d
-		}
-		{
-			dependencies: ["40DE888E6025C646"]
-			description: [
-				"You DO have access to some beefy &bfluid storage&r right now, but you'll need to make a &eMultiblock&r to access it!"
-				""
-				"The &3Wooden Multiblock Tank&r&r holds &a250,000 mB&r, but you won't be able to use it to store &chot Fluids&r such as Lava, or &cGases&r such as Steam or Oxygen."
-				""
-				"The &3Bronze Multiblock Tank&r holds &a500,000 mB&r, lifiting the maximum fluid tempreture and can now store &cGases&r. "
-				""
-				"The &3Steel Multiblock Tank&r holds &a1,000,000 mB&r, and lifts all the aforementioned fluid restrictions."
-				""
-				"Get &eany&r of the Tanks to complete this quest. The Steel version is &dway too expensive&r right now - so you should probably make the Wooden  or Bronze one instead."
-				"{@pagebreak}"
-				"Fluid transfer can either be facilitated through the Controller block, or through up to &atwo Valves&r."
-				""
-				"Valves can &9auto-output&r by placing them on the &dbottom layer&r and making them &dface down&r (as always, use a &5Wrench&r to adjust their facing)."
-				""
-				"Unlike &3Drums&r, these Tanks aren't portable... but you probably guessed that already."
-				""
-				"This Quest generously rewards an extra &6Coke Oven&r. Make the most of GTCEu's &bwallsharing&r mechanic, and place it next to an existing Coke Oven to save on casings."
-				"{@pagebreak}"
-				"&l&3Lore:&r&o Just like Drums, these multiblocks are ported from GregTech 6."
-			]
-			icon: "gtceu:steel_tank_valve"
-			id: "15923B47D23CCF34"
-			rewards: [
-				{
-					id: "59F4BC1D1C54FDFB"
-					item: "gtceu:coke_oven"
-					type: "item"
-				}
-				{
-					count: 16
-					id: "48D6923B31E53EC2"
-					item: "gtceu:coke_oven_bricks"
-					type: "item"
-				}
-			]
-			shape: "rsquare"
-			size: 0.66d
-			subtitle: "So long, and Tanks for all the fish!"
-			tasks: [
-				{
-					id: "19C34AAB329C7ABF"
-					item: {
-						Count: 1
-						id: "itemfilters:or"
-						tag: {
-							items: [
-								{
-									Count: 1b
-									id: "gtceu:wooden_multiblock_tank"
-								}
-								{
-									Count: 1b
-									id: "gtceu:bronze_multiblock_tank"
-								}
-								{
-									Count: 1
-									id: "gtceu:steel_multiblock_tank"
-								}
-							]
-						}
-					}
-					title: "Multiblock Tank"
-					type: "item"
-				}
-				{
-					id: "123DB283FB4EF13D"
-					item: {
-						Count: 1
-						id: "itemfilters:or"
-						tag: {
-							items: [
-								{
-									Count: 1b
-									id: "gtceu:wooden_tank_valve"
-								}
-								{
-									Count: 1b
-									id: "gtceu:bronze_tank_valve"
-								}
-								{
-									Count: 1b
-									id: "gtceu:steel_tank_valve"
-								}
-							]
-						}
-					}
-					title: "Tank Valves"
-					type: "item"
-				}
-				{
-					count: 24L
-					id: "72D3346BD7D0A57D"
-					item: {
-						Count: 24
-						id: "itemfilters:or"
-						tag: {
-							items: [
-								{
-									Count: 1b
-									id: "gtceu:solid_machine_casing"
-								}
-								{
-									Count: 1b
-									id: "gtceu:steam_machine_casing"
-								}
-								{
-									Count: 1b
-									id: "gtceu:wood_wall"
-								}
-							]
-						}
-					}
-					title: "24 Casings"
-					type: "item"
-				}
-			]
-			title: "Multiblock Tanks"
 			x: 0.33d
-			y: -2.64d
+			y: -1.98d
 		}
 		{
 			dependencies: [
@@ -1663,6 +1471,11 @@
 				}
 			}
 			id: "1E9E2473408ABCC7"
+			tasks: [{
+				id: "6011C6839DDC8F9C"
+				item: "gtceu:small_steel_gear"
+				type: "item"
+			}]
 			title: "WW1 Guns"
 			x: 2.5d
 			y: -2.5d

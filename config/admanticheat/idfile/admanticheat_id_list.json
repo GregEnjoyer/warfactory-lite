@@ -6,17 +6,18 @@
 [System Info]
   OS:   Linux                                   
   CPU:  amd64                                   
-  RAM:  Max: 26.22 GB, Total: 5.44 GB, Free: 1.07 GB
+  RAM:  Max: 26.22 GB, Total: 6.44 GB, Free: 3.53 GB
   GPU:  Unknown (MC API)                        
   Anticheat Version: 1.9.3
-  Last Updated:   1782869563255
-  Integrity Hash: adcad3ec5737b8bf8ce95b910096245fa11d88db0d3272eb155fb6be030e4f26
+  Last Updated:   1783825177177
+  Integrity Hash: 86919e1b105b7860be9b3a3dd9cc964dd7b31e0a25537e565fc79deabd959beb
 
 ------------------------------------------------------------
 [Mod IDs]
   - ae2                            @ 15.4.10         [fbfee05c6674cb6b00fe425e945ca4818d41eb34069b60dcb4a36221a0390fcc] {file}
   - architectury                   @ 9.2.14          [218b471d0b8a1f6cda14cfc1beb9eeb0df54304500acc6c5613d9b88ec65d9af] {file}
   - ashvehicle                     @ 1.20.1-4.5-8.8  [8bac2acc09cec8ebf43903e5c6a246e50dd003872ac31cf171b7a3a079dde7b4] {file}
+  - bloodybits                     @ 1.3.4-1.20.1    [cf993a8412d9c3e66f215ba8336ceb23694dc74960a962cd00651e7c580c3915] {file}
   - borderlesswindow               @ 1.20-1.6.0      [43a317d85e7e40cea296ad1fe2d32f433f0e735bdb81b136f6f07d379039c3a9] {file}
   - boxy                           @ 1.0.0           [f01e516acd7201c83c26e050620ee412c713adbd2ef494931fb7a11c8c23b545] {file}
   - chunky                         @ 1.3.146         [996a3c9b53e6c0e0850fb9e78d3546d2c37a1b789ddaf529b17e4fe62ab23141] {file}
@@ -25,14 +26,17 @@
   - configured                     @ 2.2.3           [05dceddd57825f911135c929504ef320b75953d05e7dc918dba58a0574e5315f] {file}
   - controlling                    @ 12.0.2          [cff8c3426a77f9e7412262b6d79e423979eff3831e010b3b1ea9677e1ecd74cd] {file}
   - craftingstation                @ 0               [8881f1de05ecaf70ef70284e1b898f77e5c1bc7fd7c8a6209b87f66a7ad0ac89] {file}
+  - creativecore                   @ 2.12.39         [3565ddea132785a044ddfca670610a870c976e52d47a957d0a5f1db78563d046] {file}
   - curios                         @ 5.14.1+1.20.1   [1e817919a35b37cf30524aaec73f0ca5130452f23f168f844854df282eb8e51f] {file}
+  - darkness                       @ 1.0.2           [96c2eb0cf89bb15ee4f3c9696d3917493f82c354414dfd3effa6286c7b4730e5] {file}
   - dragonrise_reforge             @ 1.3.0           [9276d45ba5c9ec1343953d0cee25290976bb28d51a79f974c4c3d0860e7a2bee] {file}
   - embeddium                      @ 0.3.31+mc1.20.1 [eed3d1325f2acc2fd4e69bb495e5ccb91d962126ac5330f0582ebc2a3daf47fb] {file}
+  - expatternprovider              @ 1.20-1.4.17-forge [44939484cb98d3b69c67605487b7f74c2d9697570c57b16c64a898917868cbe0] {file}
   - extralib                       @ 2.1.4           [c7898ef26609eb5f9dcad3cad7389b802cd4ab3d1c2a3080b6f18eed20132e43] {file}
   - extraquests                    @ 1.6.2           [b345b64ac3e2fe6c3aab2811ba2d81cc7439ddb3e6bc349b7f20f6735149d849] {file}
   - fancymenu                      @ 3.8.0           [9cf5c056e93d578a24c5db878155958b943eb9a4bd6b3d105e10d4bf4570b3ab] {file}
   - ferritecore                    @ 6.0.1           [9c2c9396a49e796d88497758caa4637d2bcbb433c318e2dd9cebcffbaf0f6c54] {file}
-  - firstaid                       @ 1.20.1-1.1      [c2021a688e301f7a44da0ae04163ec8b8f077154e02c48e89063027b0cf33e4a] {file}
+  - flywheel                       @ 1.0.4           [] {nofile}
   - ftbchunks                      @ 2001.3.7        [63515959a2413ad20320f04cdc780148fed7ce97dc7ec271e2cf03f9c88d2323] {file}
   - ftbfiltersystem                @ 20.0.1          [fcb7b312a010986a868a6645e4e395b2635383a2387297c7c134aa4250959e24] {file}
   - ftblibrary                     @ 2001.2.12       [f09335944fff8ca3ef37a40e0b125ffb6707759ede258c73f9ce9bac61bfbf96] {file}
@@ -42,50 +46,67 @@
   - ftbxmodcompat                  @ 2.1.2           [6bfa05acad9230bdbd9a6854ab92705585630455985904b550f94a387ff3ffca] {file}
   - geckolib                       @ 4.8.3           [8b90e11871a58b63816e99c529e6c932bc88e6beb3fec97ad618e22217df3250] {file}
   - globalpacks                    @ 19.3.7          [e5db3831c8479ed7008e60c8094c11abea9063bdbdf2e2749c326b11fd493662] {file}
+  - glodium                        @ 1.20-1.5-forge  [fc419cb5bf511750c0a2da498b925f5122ac4f78617aca6630fe80abf0b6f460] {file}
   - gtceu                          @ 7.5.3           [d6560d8b695828a763389d3f45e0210ef70c1892c7b1633ac458544905df1a0d] {file}
-  - guideme                        @ 20.1.14         [a0ba5a0288dab6e413f1456de8dd162f9479146ee681569837f6d6b17930a0e2] {file}
+  - guideme                        @ 20.1.15         [cf8052ab3da121012efc59a20e731c24bfe7488dfa556c9b88809f42dea3b24a] {file}
   - gunfireoverhaul                @ 0.1.5-a         [78295c41514e724fa5cf3b4f8e6ac63df467cffaf63fb57cb8c89a4603e47f44] {file}
   - halovecs                       @ 3.2.7           [a89cffe94660d919b3a590f312c3d3224b66e0ed68612dcc2951b2407d648226] {file}
   - hcompass                       @ 1.0.0           [9894da01ab6710a8f0bcbe8c897fc4e7a1699b674d093633710bb8430494aa60] {file}
-  - hematic                        @ 1.0.0           [faf693cba1d3d70808998d0ce96393002e6c8d3735ae5d77c7a99ead3fccb5fe] {file}
   - immediatelyfast                @ 1.5.4+1.20.4    [da781a31b2c8d8a845ed48c89b6463f1df3f2c655de10d8d4f5bed8123ff68a8] {file}
+  - immersive_ballistic            @ 1.3             [b1d037714bb106e02476b97976e5d8245b321b5541a97cc4c06f2d24b542539e] {file}
+  - invocore                       @ 4.3.2           [a19f65285d0835ccf9c5aa7b474e5a894d52939bc4bf3de3ff2ee3878de879fd] {file}
   - jei                            @ 15.20.0.132     [d9f60b5c16e778d7a27a3dddda0b8d3b693cfba6cf1b48ef4be3d8471b83fed9] {file}
-  - jjthunder_to_the_max           @ 0.2.0           [bcccc50b319db7c067488aac9e370fb272afa9a212d759f36e10bf486c60b36f] {file}
   - konkrete                       @ 1.8.0           [e78686b92c3761ec26eb9d3c53efdd3d6ca77981cbd3723995e1163b7103ae0b] {file}
   - kubejs                         @ 2001.6.5-build.16 [3de6b7267d3aab981848ed54d3afe7edf20532fa4060631fd6fffcd99ac5f3d5] {file}
   - ldlib                          @ 1.0.50          [559d2a0cf8f77d7d6487b2c1620a8ee09e6bed94268be6df77cba0f7d8ac5112] {file}
   - mcgltf                         @ 1.20.1          [7657bb4310d41afa1095a8966d0646e21c15fefea9cf389b0a712324a73d6e63] {file}
   - melody                         @ 1.0.2           [933e2a7e79c4594f965f7f7d00b1f28a98ec2a180ad8f9f90310a266fe5cf5d8] {file}
+  - mindfuldarkness                @ 8.0.3           [8d178729d8199b17d70d48561b3a37e4d3a1d867455b156379d55bccd806d62d] {file}
+  - minemenu                       @ 1.12.3          [884b09b25464a8056998c2da5fe058e56bb2a5b57b1eb96ac8c9333f1eec89f6] {file}
   - minetraps                      @ 2.3.0a          [817579abedd583e97fc6849520ac6999d57e30000a01e4d6ea649553e4e3b244] {file}
   - mm_armor                       @ 1.1.0           [593a8ec64879a60d01bd554be92d2a7eb37f80d67ada37d33ec0685e335e7290] {file}
   - modernfix                      @ 5.27.12+mc1.20.1 [982d2606286a027b37b6ae9ff3cde3821bbc7d1cee9178f43ce093c6b3e91b35] {file}
   - modularui                      @ 3.3.0           [a5b00682f6f926b44d544efb8c4011b74348c08db29cd426ed1b2544d193e6c3] {file}
+  - mr_lithosphere                 @ 1.7             [496c8c3ed532d4ec81f1e214e53737182c244586646757d67aecdcef896e9aaf] {file}
+  - notenoughanimations            @ 1.12.4          [510537a4149e3e838077750dd94906e582195eb55200344077218bddddd688c7] {file}
+  - oculus                         @ 1.8.0           [0945df0cba0f62b3901dd80c3268e5311b770ece78c78037a45db12ac0425fef] {file}
   - playeranimator                 @ 1.0.2-rc1+1.20  [90d9965cb9efdbda29fdc5610be3914cf7008bf5c392ff34f7ab25f96a852691] {file}
   - polymorph                      @ 0.49.10+1.20.1  [cbe63a0a1cb6ae8dbc0e29bb96d149a137cd4e714b295fa49d230994091d157f] {file}
+  - puzzlesaccessapi               @ 20.1.1          [] {nofile}
+  - puzzleslib                     @ 8.1.33          [f3077a9f817629b8e8929c1951042d1a1adc62d30b72adebd54d2b074a4faf4f] {file}
   - reforgedplaymod                @ 0.3.1           [00a1f31b05db4abee5e8523ccc00aff4ec8b96b02c982386d90014276fd4604b] {file}
   - replaymod                      @ 2.6.18          [00a1f31b05db4abee5e8523ccc00aff4ec8b96b02c982386d90014276fd4604b] {file}
   - rhino                          @ 2001.2.3-build.10 [fed2211429301bf043864183cab9ab8e92d4cc4dbb9e488ce6c75217c54584a6] {file}
+  - ronmc                          @ 0.3.2           [a665a5aa982476c38932f0264667d4f76cd309b954f0a45a4682cb832e597a1e] {file}
   - rubidium                       @ 0.7.1           [eed3d1325f2acc2fd4e69bb495e5ccb91d962126ac5330f0582ebc2a3daf47fb] {file}
+  - sbw_advanced_ciws              @ 1.0.7-sbw0.8.8-visualfix [aba843549c8bdda6689215d069a751e6c90c48f58a66eb2dd33ceb07f691a7b3] {file}
+  - sbwdroneconfig                 @ 1.0.2           [2073358fe38013fabe1adbe5e4f0d0f04b434de37e10dc428a3d11a63a91cc39] {file}
   - searchables                    @ 1.0.3           [461add180eb595004d3c9f5ac0ce337752e403077f96b38304800eadf01fb825] {file}
   - simplebedrockmodel             @ 2.3.3-forge-mc1.20.1 [e6ff76d2da5bb6077640e550f6f2605965df52b00e952bb703eb57acc4b042a5] {file}
+  - sound_physics_remastered       @ 1.20.1-1.5.1    [1d7a0d4cdbdee61532dd23ddbc2833292e945d8ec2d20f3271af86b02b0fc108] {file}
   - spectrelib                     @ 0.13.17+1.20.1  [] {nofile}
   - superbwarfare                  @ 0.8.8           [dd5d66221097de2da5be685f3b6200b5203cc2845fbde26cb815fc0fe4a13a81] {file}
+  - supressingtagz                 @ 1.0             [e9e8a6e783c4952b935b3c39a4e33992e8804f572401811b814976e660733193] {file}
   - tacmove                        @ 1.0.0           [a413f595843243b1cf54e250fa0422ba1466f34e8c330ead191b921ca124129c] {file}
-  - tacticaldustfx                 @ 0.0.1           [9ad8f831e0fa3eede760d59bae532b7a2c279da5c2e66d847f752cea1b60ecc3] {file}
   - tacz                           @ 1.1.7-hotfix2   [fc5f1dab09afd5399604db0f60845d41d46cf015c158cbc12e7ef716cf6bdb46] {file}
-  - tacz_firstaid_compat           @ 1.0.0           [05f2214bac181d27c4b104933df476caf5b66efbad7c20a84a9e127cd6705c1d] {file}
   - tacz_tactical_breaching        @ 1.0.2-Hotfix    [db51d4807160a5f392390b0013d0ec575db93084dbf4b6b1ac4dcfc764262374] {file}
+  - tacz_x_guns_lights_addon       @ 2.4.3           [c8d92bb0ae9a2871e59d096d499139cc72ce3122d218a0a2497dd5e461fc5a0a] {file}
   - taczadditions                  @ 1.0.0-hotfix    [032e170f594ea17d79c1e2411c8bce3de8596c479f937e4da44121e49cd0b80d] {file}
+  - taczpackreplacer               @ 1.0.0           [8f115e14fa68aa31a934c129e7a025cad329d176cc32e9a4728d3a208094594e] {file}
   - theoneprobe                    @ 1.20.1-10.0.3   [2a229ca4fd43c450873a09973680f97b2d24d01ab4295685921852eda722acd1] {file}
+  - transition                     @ 1.0.21          [] {nofile}
   - travelersbackpack              @ 9.1.53          [5ab2c94614be9178e07a38316689b3ab17eee6563a12f94b31f2d35fdf0d53ce] {file}
+  - trender                        @ 1.0.15          [] {nofile}
   - voicechat                      @ 1.20.1-2.6.16   [5e43dbd4db21a3f3c6d97182a342cc602f8f3c70669ed63cfc37e42bfd84c1c9] {file}
   - voicechat_api                  @ 2.6.13          [5e43dbd4db21a3f3c6d97182a342cc602f8f3c70669ed63cfc37e42bfd84c1c9] {file}
   - voltaic                        @ 1.20.1-1.0.2-0  [d7f9b035eefb15dad8f63f27008f63c8aa74dbc53f8493f28ea16c06a682f70f] {file}
-  - voxy                           @ 0.2.14-alpha    [864a5a07a6353b2bebabd82cc0cd0f510b215394205242473defe1d00c6b8d73] {file}
+  - voxy                           @ 0.2.14-alpha    [ef157a57f67eb5b6ddfb434844baefbcea227fd7fe7d2cf48a6173d7720855be] {file}
   - vvp                            @ 0.2.0           [a6ae198be71e970a5b28c3ed4336d4cf787ead65f39c9c8545a6951c90b799e6] {file}
   - walkietalkie                   @ 1.3.0           [4fdba55afc3b06eb7f646527437d1233a8f556ce3ad5712d8781f37525c7189b] {file}
   - warforge                       @ 2.1.0           [3a4e31fa07fbeb615cc5955f45886a3a7cacee447cfd6cc3fdac22afba6b477c] {file}
-  - wfcore                         @ 0.1.0           [d0b9cbc5f95427fa4bb8da58789a87b695f727f7a1e7bd03620bec0108cb2faf] {file}
+  - wfballistics                   @ 1.0.0           [b7cec35740083f614fe4a3caaefd405c9cee2732fc0e2744e8ca6dfa509dc4b5] {file}
+  - wfcore                         @ 0.1.0           [ef94d00e27b424296180e36cf39d208a3cd66ab2c4c016ef431f6e2a0eb3dbf5] {file}
+  - wfmedical                      @ 0.1.0           [f18cfd151b03faca033d58948d0cb558ef3c0675083725e637984f0d0b958258] {file}
   - wfweight                       @ 1.0.0-SNAPSHOT  [55de8a606f486a316db7b4fd6694f02db49aa380df2c588c3bbe333d429805f9] {file}
   - wwii_uniforms_mod              @ 1.0.0           [92455f41e1376b7c310480a4904b7c02f323c7985fedd984a97b45a19e38fdc0] {file}
   - admanticheat                   @ 1.9.3           [d5e86af7fe7554b464624ed5663de3b1047f4aea404ad32eb36f5686e5298ff6] {file}

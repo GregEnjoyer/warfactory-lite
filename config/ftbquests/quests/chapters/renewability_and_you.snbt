@@ -31,10 +31,7 @@
 			y: -0.6d
 		}
 		{
-			dependencies: [
-				"4D7A771B67DAFC6F"
-				"1F2359106FC95603"
-			]
+			dependencies: ["4D7A771B67DAFC6F"]
 			description: [
 				"Ah, the Rock Crusher - such an unassuming machine that initially appears to only really be a builder's best friend. Who could look past infinite Cobblestone, Deepslate, or Obsidian?"
 				""

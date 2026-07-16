@@ -1,0 +1,9 @@
+
+#Rendering options.
+[rendering]
+	#Render translucent terrain (water, ice, stained glass, ...) as opaque on Fancy and
+	#Fast graphics: cheaper than blended translucency, and it lets the instanced translucent
+	#effects (rocket exhaust) occlude against it correctly instead of showing through. Fabulous
+	#graphics is left untouched, keeping real (heavier) transparency there.
+	solidTranslucentTerrain = true
+

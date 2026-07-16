@@ -1,0 +1,74 @@
+
+#WarForge Factions integration (only has any effect when the 'warforge' mod is installed).
+[warforge]
+	#Treat missiles of the same / allied / truced WarForge faction as friendly (so a
+	#faction's defenses don't engage its own missiles across different launchers).
+	factionFriendOrFoe = true
+	#Missile explosions respect WarForge land claims (protected blocks survive, except in
+	#active siege zones). Individual blasts can still opt out (e.g. strategic nukes).
+	explosionsRespectClaims = true
+
+#Interceptor combat tuning.
+[interception]
+	#Default per-interceptor kill probability on a proper (timed) intercept.
+	#Range: 0.0 ~ 1.0
+	killChance = 0.9
+	#Multiplier applied to the kill chance for a 'crossing' shot (interceptor too slow to
+	#run the target down, only able to cross its path).
+	#Range: 0.0 ~ 1.0
+	crossingShotFactor = 0.35
+	#Separation (blocks) at which the interceptor's closest-approach test rolls for a kill.
+	#Range: 0.5 ~ 64.0
+	killRadius = 6.0
+	#How far a NEAREST-mode interceptor scans for a hostile missile each tick (blocks).
+	#Range: 16.0 ~ 1024.0
+	acquireRange = 200.0
+	#cruiseSpeed (blocks/tick) at or above which a missile is classed 'supersonic'.
+	#Range: 0.5 ~ 64.0
+	supersonicSpeed = 2.5
+	#If true, a proximity intercept damages the target's health pool (shared with CIWS)
+	#instead of a binary destroy/miss — interceptors + CIWS combine and missile toughness
+	#(health) matters. If false, a successful roll destroys the target outright.
+	chipMode = false
+	#Chip mode: health damage a successful intercept deals.
+	#Range: 0.0 ~ 100000.0
+	hitDamage = 60.0
+	#Chip mode: health damage a missed intercept deals.
+	#Range: 0.0 ~ 100000.0
+	grazeDamage = 8.0
+
+#Stealth missiles: reduced-observability, not invisible.
+[stealth]
+	#Range (blocks) within which automatic detection can see a stealth missile at all.
+	#Range: 0.0 ~ 512.0
+	detectRange = 32.0
+	#Per-scan probability a stealth missile within that range is detected.
+	#Range: 0.0 ~ 1.0
+	detectChance = 0.25
+
+#Evasion: higher-tier missiles shrug off interception more often.
+[evasion]
+	#Multiplier on a missile's evasion during its terminal dive (hardest to hit there).
+	#Range: 0.0 ~ 10.0
+	diveMultiplier = 1.5
+
+#Interceptor batteries.
+[batteries]
+	#Interceptors a battery can fire before it must reload; 0 = unlimited (no logistics).
+	#Range: 0 ~ 100000
+	magazine = 0
+	#Ticks a battery takes to regenerate one interceptor toward its magazine.
+	#Range: 1 ~ 1000000
+	reloadTicks = 200
+
+#Fuel.
+[fuel]
+	#Default ticks of powered flight for a missile with no explicit fuel configured.
+	#Range: 1 ~ 1000000
+	defaultFuelTicks = 1200
+
+#Incendiary submunitions.
+[incendiary]
+	#If true, the fire cluster warhead scatters flying fireballs instead of fire bomblets.
+	fireBombletsAsFireballs = false
+

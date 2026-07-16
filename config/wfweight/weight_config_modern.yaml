@@ -15,23 +15,10 @@ rules:
     minecraft:elytra: 6.0
   wildcards: {
   superbwarfare:armor_plate: 20
+  tacz:m1911
     }
   tags:
-    c:gems/diamond: 0.35
-    forge:gems/emerald: 0.32
-    minecraft:coals: 0.25
-    forge:ingots/iron: 0.9
-    forge:ingots/copper: 0.85
-    forge:ingots/gold: 1.3
-    c:ingots/iron: 0.9
-    minecraft:planks: 0.45
-    minecraft:logs: 2.4
-    c:gems/emerald: 0.32
-    forge:dusts/redstone: 0.05
-    c:ingots/gold: 1.3
-    c:dusts/redstone: 0.05
-    c:ingots/copper: 0.85
-    forge:gems/diamond: 0.35
+
 groupLimits: {
   }
 equipmentBonuses:

@@ -28,7 +28,7 @@
 				""
 				"The questbook you're reading is &ebrimming with information&r to guide you through the modpack, so check it out if you find yourself getting lost.  We wrote it with both &dold-school veterans&r and &bnewcomers&r in mind."
 			]
-			icon: "kubejs:greg_icon"
+			icon: "minecraft:crafting_table"
 			id: "25289F9E8AE01C29"
 			rewards: [
 				{
@@ -102,6 +102,11 @@
 					}
 					type: "item"
 				}
+				{
+					id: "3E38E253C278867F"
+					item: "walkietalkie:stone_walkietalkie"
+					type: "item"
+				}
 			]
 			shape: "rsquare"
 			size: 1.2d
@@ -127,27 +132,11 @@
 			shape: "square"
 			size: 0.75d
 			subtitle: "Begin your playthrough as before"
-			tasks: [
-				{
-					count: 6L
-					id: "34F2867EAF0914BF"
-					item: {
-						Count: 1
-						id: "itemfilters:tag"
-						tag: {
-							value: "minecraft:logs"
-						}
-					}
-					match_nbt: false
-					title: "Any Logs"
-					type: "item"
-				}
-				{
-					id: "22B6D3C1033D47DA"
-					item: "minecraft:crafting_table"
-					type: "item"
-				}
-			]
+			tasks: [{
+				id: "22B6D3C1033D47DA"
+				item: "minecraft:crafting_table"
+				type: "item"
+			}]
 			title: "The Beginning of it All"
 			x: -0.75d
 			y: -3.0d
@@ -291,45 +280,6 @@
 			title: "Lumbering On"
 			x: -2.25d
 			y: -4.5d
-		}
-		{
-			dependencies: ["36DD94945D5B4A80"]
-			dependency_requirement: "one_completed"
-			description: [
-				"Wrought Iron has a very low carbon content, but that's enough to make it &btougher&r than regular Iron."
-				""
-				"&aGregTech&r tools made of Wrought Iron are &650% more durable&r than their Iron cousins. You might want to consider using Wrought Iron until you unlock &2something better&r."
-				""
-				"To obtain Wrought Iron, you can &6smelt&r Iron Nuggets into Wrought Iron Nuggets, then recombine them into an ingot. Make sure you don't convert all of your Iron supply, as the two &4&laren't&r interchangeable."
-				""
-				"This may be time-consuming, but rest assured, you'll unlock a &ebetter way&r to produce Wrought Iron before long."
-			]
-			icon: "gtceu:wrought_iron_ingot"
-			id: "563C96885A227C9F"
-			rewards: [{
-				count: 5
-				id: "3CDB383AFEBDB519"
-				item: "gtceu:wrought_iron_ingot"
-				type: "item"
-			}]
-			shape: "rsquare"
-			size: 0.66d
-			subtitle: "Murder, she Wrought"
-			tasks: [{
-				id: "3DAB1D757B3B049D"
-				item: {
-					Count: 1
-					id: "itemfilters:tag"
-					tag: {
-						value: "forge:ingots/wrought_iron"
-					}
-				}
-				title: "Wrought Iron Ingot"
-				type: "item"
-			}]
-			title: "Better Than Iron"
-			x: 0.75d
-			y: 0.0d
 		}
 		{
 			dependencies: ["1ECBA1CBFFB9F625"]
@@ -568,115 +518,6 @@
 		{
 			dependencies: ["2001CB4968D3E0A2"]
 			description: [
-				"More tools - they're not critically important right now, but you'll need to make these at some point."
-				""
-				"&9&lScrewdriver:&r A crafting tool. It's used for special configuration of machines and covers."
-				""
-				"&9&lWire Cutter:&r A crafting tool. You'll need it if you want to configure wire connections. Right-clicking on wires will enable or disable connection to other blocks."
-				""
-				"&9&lMortar:&r A crafting tool, used to grind various things down into dust form."
-				""
-				"&9&lKnife:&r A pretty mediocre weapon, better suited as - &oyou guessed it&r - a crafting tool!"
-				""
-				"&9&lSoft Mallet:&r A tool to toggle machine operation with a simple right-click."
-				"{@pagebreak}"
-				"There are a couple of other tools that are quite niche, but deserve a mention."
-				""
-				"&9&lCrowbar:&r A helpful tool that can remove covers from &aGregTech&r machines by right-clicking the side."
-				""
-				"&9&lScythe:&r A powerful farming tool that can automatically replant your crops in a large area. It's also a surprisingly good weapon!"
-				""
-				"&9&lPlunger:&r A tool to clear stuck fluids from GregTech&a machines."
-				"{@pagebreak}"
-				"&e&lNote:&r This quest's reward is &3Damascus Steel&r - a rare material which can only be found as overworld loot. It far surpasses the materials you have now, so be sure to use it."
-			]
-			icon: {
-				Count: 1
-				id: "gtceu:iron_screwdriver"
-				tag: {
-					Damage: 0
-					GT.Tool: {
-						DefaultEnchantments: [ ]
-					}
-				}
-			}
-			id: "5C3501DD3B4788FA"
-			rewards: [{
-				count: 16
-				id: "433F0ED89B586383"
-				item: "gtceu:damascus_steel_ingot"
-				type: "item"
-			}]
-			size: 0.75d
-			tasks: [
-				{
-					id: "4055931FAD6A5087"
-					item: {
-						Count: 1
-						id: "itemfilters:tag"
-						tag: {
-							value: "forge:tools/screwdrivers"
-						}
-					}
-					title: "Any Screwdriver!"
-					type: "item"
-				}
-				{
-					id: "0CB546DCA11BB335"
-					item: {
-						Count: 1
-						id: "itemfilters:tag"
-						tag: {
-							value: "forge:tools/wire_cutters"
-						}
-					}
-					title: "Any Wire Cutter!"
-					type: "item"
-				}
-				{
-					id: "4DF1C23D7DD1FAD6"
-					item: {
-						Count: 1
-						id: "itemfilters:tag"
-						tag: {
-							value: "forge:tools/mortars"
-						}
-					}
-					title: "Any Mortar!"
-					type: "item"
-				}
-				{
-					id: "397DD831CA0665E7"
-					item: {
-						Count: 1
-						id: "itemfilters:tag"
-						tag: {
-							value: "forge:tools/knives"
-						}
-					}
-					title: "Any Knife!"
-					type: "item"
-				}
-				{
-					id: "1BFE642ED0595A93"
-					item: {
-						Count: 1
-						id: "itemfilters:tag"
-						tag: {
-							value: "forge:tools/mallets"
-						}
-					}
-					title: "Any Soft Mallet!"
-					type: "item"
-				}
-			]
-			title: "More Tools"
-			x: 5.25d
-			y: -3.0d
-		}
-		{
-			dependencies: ["2001CB4968D3E0A2"]
-			description: [
 				"The &e&lCoke Oven&r will likely be your first &aGregTech&r multiblock. Congratulations!"
 				""
 				"It is used to make &aCoke&r from &eCoal&r, or &aCharcoal&r from &eWood&r, in addition to &dliquid Creosote&r as a &3bonus&r output."
@@ -705,11 +546,19 @@
 			shape: "gear"
 			size: 1.2d
 			subtitle: "Your first big project... hopefully"
-			tasks: [{
-				id: "3545479A7C09CDFC"
-				item: "gtceu:coke_oven"
-				type: "item"
-			}]
+			tasks: [
+				{
+					id: "3545479A7C09CDFC"
+					item: "gtceu:coke_oven"
+					type: "item"
+				}
+				{
+					count: 26L
+					id: "3D4080E6D1A2BE64"
+					item: { Count: 26, id: "gtceu:coke_oven_bricks" }
+					type: "item"
+				}
+			]
 			title: "Coke Oven"
 			x: 5.25d
 			y: -4.5d
@@ -733,28 +582,20 @@
 			}]
 			size: 0.75d
 			subtitle: "Gather more resources!"
-			tasks: [{
-				count: 32L
-				id: "616556ECE4DB6103"
-				item: {
-					Count: 32
-					id: "itemfilters:or"
-					tag: {
-						items: [
-							{
-								Count: 1b
-								id: "minecraft:copper_ingot"
-							}
-							{
-								Count: 1b
-								id: "gtceu:tin_ingot"
-							}
-						]
-					}
+			tasks: [
+				{
+					count: 16L
+					id: "49FED2E7D878DEB0"
+					item: { Count: 16, id: "minecraft:copper_ingot" }
+					type: "item"
 				}
-				title: "32 Copper or Tin"
-				type: "item"
-			}]
+				{
+					count: 16L
+					id: "1B08F920B3007EF3"
+					item: { Count: 16, id: "gtceu:tin_ingot" }
+					type: "item"
+				}
+			]
 			title: "Onwards to the Age of Bronze!"
 			x: 3.75d
 			y: -1.5d
@@ -792,43 +633,6 @@
 			y: -1.5d
 		}
 		{
-			dependencies: ["7DEB73FD649BDFB6"]
-			description: [
-				"The bucket recipe has been &d&lchanged.&r It now requires plates - &owahoo&r."
-				""
-				"Plates are used absolutely &beverywhere&r in &aGregTech&r. Combining two ingots with your new &9hammer&r in a crafting table will make a plate. This ratio is kind of &cexpensive,&r but better recipes for plates will come later."
-				""
-				"Take this &6Wooden Barrel&r full of &bWater&r as a reward. Huh... isn't that an odd reward? We just wanted to show you that all &aGTCEu&r tanks are portable."
-			]
-			icon: "minecraft:bucket"
-			id: "592BD683A48C2AA2"
-			rewards: [{
-				id: "68D4ECFA9AD5349A"
-				item: {
-					Count: 1
-					id: "gtceu:wood_drum"
-					tag: {
-						Fluid: {
-							Amount: 16000L
-							FluidName: "minecraft:water"
-						}
-					}
-				}
-				type: "item"
-			}]
-			shape: "rsquare"
-			size: 0.66d
-			subtitle: "#realism"
-			tasks: [{
-				id: "5DD165E4EB34C022"
-				item: "minecraft:bucket"
-				type: "item"
-			}]
-			title: "Greg has struck"
-			x: 2.25d
-			y: -1.5d
-		}
-		{
 			dependencies: ["0EAF2C5B5EB755C5"]
 			description: [
 				"Okay, we were generous enough to leave Wood-to-Plank-ratios &cuntouched&r, but this is GregTech - charcoal smelting is &4&lnot possible&r in a Furnace. You'll need to make a &d&lCoke Oven&r to get your grubby hands on some &6charcoal&r."
@@ -849,21 +653,14 @@
 			size: 0.66d
 			subtitle: "Not here!"
 			tasks: [{
-				count: 48L
-				id: "3DF01E4FACBB1D53"
-				item: {
-					Count: 1
-					id: "itemfilters:tag"
-					tag: {
-						value: "minecraft:logs"
-					}
-				}
-				title: "We demand more logs."
+				count: 64L
+				id: "6DA74476B2186686"
+				item: { Count: 64, id: "minecraft:oak_log" }
 				type: "item"
 			}]
 			title: "Charcoal?"
-			x: 0.75d
-			y: -1.5d
+			x: 0.0d
+			y: -2.31d
 		}
 		{
 			dependencies: ["45969FFBF88F4FBB"]
@@ -896,18 +693,6 @@
 					type: "item"
 				}
 				{
-					id: "650805CC3324B1A2"
-					item: {
-						Count: 1
-						id: "gtceu:iron_shovel"
-						tag: {
-							Damage: 0
-							GT.Tool: { }
-						}
-					}
-					type: "item"
-				}
-				{
 					id: "2B1124C773D1E30F"
 					item: {
 						Count: 1
@@ -923,6 +708,33 @@
 								HarvestLevel: 2
 								MaxDamage: 255
 								ToolSpeed: 4.0f
+							}
+							HideFlags: 2
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "16680A37ACDEAAF9"
+					item: {
+						Count: 1
+						id: "gtceu:iron_spade"
+						tag: {
+							Damage: 0
+							DisallowContainerItem: 0b
+							GT.Behaviours: {
+								AoEColumn: 1
+								AoELayer: 0
+								AoERow: 1
+								MaxAoEColumn: 1
+								MaxAoELayer: 0
+								MaxAoERow: 1
+							}
+							GT.Tool: {
+								DefaultEnchantments: [ ]
+								HarvestLevel: 2
+								MaxDamage: 767
+								ToolSpeed: 4.8f
 							}
 							HideFlags: 2
 						}
@@ -1094,8 +906,8 @@
 				type: "item"
 			}]
 			title: "Crafting Station"
-			x: 3.75d
-			y: -4.5d
+			x: 3.63d
+			y: -4.29d
 		}
 		{
 			dependencies: ["25289F9E8AE01C29"]
@@ -1152,56 +964,6 @@
 			y: -4.5d
 		}
 		{
-			dependencies: ["25289F9E8AE01C29"]
-			description: [
-				"Think this pack is &atoo easy&r? Wanting some unique experiences to sink your teeth into?"
-				""
-				"We've gathered some GTCEu Modern-flavored recommendations in this quest."
-				"{@pagebreak}"
-				"&lMonifactory&r"
-				"&dMonifactory&r is a 1.20.1 modpack based on &eNomifactory CEu&r (which was on 1.12.2!). It aims to streamline and simplify the earlier parts of GregTech, while interweaving other tech mods into GTCEu Modern's progression. It also features a &2Hard&r and an &aExpert&r mode for the challenge-minded!"
-				""
-				"In its current state, the pack is on the cusp of a pack-changing update, 0.13. Any worlds at &cHigh Voltage&r or higher will likely need a fresh restart."
-				"{@pagebreak}"
-				"&lCosmic Frontiers&r"
-				"- &7Ghostipedia et al."
-				""
-				"&dCosmic Frontiers&r is a 1.20.1 modpack with gameplay &ba little more difficult&r than this pack, and a focus on interactions between many mods and GTCEu Modern. You'll explore the stars above and travel to the depths below, all whilst tackling &eintricately woven&r progression that ties together the &7mechanical&r and the &5arcane&r."
-				""
-				"In its current state, the pack is considered to be in &2early alpha&r. However, progress has been curated through &3LuV&r. It's an experience like no other!"
-				"{@pagebreak}"
-				"&lAll the Mods: Gravitas 2"
-				"- &7ATMTeam"
-				""
-				"Starting from &6primitive Stone Age technology&r, hand-knapping your tools and foraging for food, you'll need to progress through the ages covering many &bclassic and new&r mods. This is seamlessly complemented by mods such as TerraFirmaCraft, Create New Age, Stargate Journey and &8(obviously)&r GregTech."
-				""
-				"You'll find yourself transitioning from a &2primitive beginning&r, smashing rocks together, to smashing atoms together, soon &dpowering your voyages&r to the stars and beyond!"
-				"{@pagebreak}"
-				"&lStar Technology"
-				"- &7trulyno"
-				""
-				"&6Star Technology&r is more of a laid-back GregTech &dskyblock modpack&r where you play as a scientist stranded in an &balternate dimension&r after a dimensional travel experiment &4catastrophically fails&r."
-				""
-				"Progression in this pack will take you above and beyond &3UHV&r, with numerous unique &aStargates&r to craft, and even a remixed &o\"Gregified\"&r Mystical Agriculture."
-				""
-				"Once again, this pack features a Hard mode, and a Desert mod (called Abydos!)."
-				""
-				"Note that the pack is still under &eheavy development&r, but you should be able to achieve the &o\"Classic Stargate\"&r as of version Zeta!"
-			]
-			icon: "minecraft:netherite_upgrade_smithing_template"
-			id: "63DC162144871509"
-			shape: "circle"
-			size: 0.75d
-			tasks: [{
-				id: "3E3D67B53234AD1A"
-				title: "Whoah, these sound cool."
-				type: "checkmark"
-			}]
-			title: "What Else Can I Play?"
-			x: -2.25d
-			y: 0.0d
-		}
-		{
 			dependencies: ["0C690272ED4FB1C3"]
 			description: [
 				"Whilst frolicking about on the surface, you may have spotted a couple of &dSurface rocks&r."
@@ -1248,6 +1010,52 @@
 			}]
 			x: -1.0d
 			y: 0.0d
+		}
+		{
+			dependencies: ["1ECBA1CBFFB9F625"]
+			id: "364D86DACD5B9AFA"
+			subtitle: "Wrought Iron is not as good as steel, but is better than just regular iron."
+			tasks: [{
+				id: "51EF0450E4541066"
+				item: "gtceu:wrought_iron_ingot"
+				type: "item"
+			}]
+			title: "A Better Material"
+			x: 1.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["364D86DACD5B9AFA"]
+			id: "358D20AD474657F7"
+			rewards: [{
+				count: 64
+				id: "6308D2B627B96C5D"
+				item: {
+					Count: 1
+					id: "tacz:ammo"
+					tag: {
+						AmmoId: "tacz:45_70"
+					}
+				}
+				type: "item"
+			}]
+			subtitle: "Why would you make this? its a fucking musket."
+			tasks: [{
+				id: "11812024124F4BE6"
+				item: {
+					Count: 1
+					id: "tacz:modern_kinetic_gun"
+					tag: {
+						GunCurrentAmmoCount: 1
+						GunFireMode: "SEMI"
+						GunId: "tacz:springfield1873"
+						HasBulletInBarrel: 1b
+					}
+				}
+				type: "item"
+			}]
+			x: 2.0d
+			y: -0.5d
 		}
 	]
 	subtitle: ["Welcome to &6GTCP&r! Glad to have you here."]

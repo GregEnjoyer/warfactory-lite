@@ -12,7 +12,7 @@
 		shape: "gear"
 		size: 1.2d
 		x: 0.0d
-		y: 0.375d
+		y: 0.6d
 	}]
 	quests: [
 		{
@@ -522,71 +522,8 @@
 				}
 			]
 			title: "A Balanced Quest"
-			x: -2.25d
-			y: 1.5d
-		}
-		{
-			dependencies: ["0DBC148D92A9F69F"]
-			description: [
-				"This kind soul&r will mine ores for you when placed above a vein."
-				""
-				"Vertical range is unlimited below the miner. Horizontal range is displayed in the tooltip."
-				""
-				"The &bMV&r variant may not have the range to mine a full vein, but the &6HV&r variant does, so you may wish hold off for now. Get &eeither&r to complete this Quest."
-				"{@pagebreak}"
-				"You will need &9Power&r. &aCharged Batteries&r may work, but they tend to run out of power, which is a bit inconvenient."
-				""
-				"Our top suggestion is to use a filled &3Drum&r of some kind of fuel &7(if you're using Steam, no dice!)&r and a &3Generator&r. "
-				""
-				"Place the Drum above your Generator and right-click it with a &5Screwdriver&r to auto-output into the Generator."
-				"{@pagebreak}"
-				"&cNote:&r Do not forget to &dchunkload&r all 9 chunks of the ore vein with FTB Utilities &7(open the map in the top left corner, claim the chunks with left-click, and enable force loading with shift-left-click)&r."
-				""
-				"&9Tip:&r You can either use an &3ME Chest&r or a &32x2 Drawer&r as the output inventory to make transporting the ores back home a simple task. The &3ME Chest&r can be powered with EU directly."
-			]
-			icon: "gtceu:mv_miner"
-			id: "5C94CF50090D7DA0"
-			rewards: [{
-				id: "2C877DA425BBFC5D"
-				item: {
-					Count: 1
-					id: "minecraft:wooden_pickaxe"
-					tag: {
-						Damage: 58
-					}
-				}
-				type: "item"
-			}]
-			shape: "square"
-			size: 0.75d
-			tasks: [{
-				id: "431D533510584687"
-				item: {
-					Count: 1
-					id: "itemfilters:or"
-					tag: {
-						items: [
-							{
-								Count: 1b
-								id: "gtceu:lv_miner"
-							}
-							{
-								Count: 1b
-								id: "gtceu:mv_miner"
-							}
-							{
-								Count: 1b
-								id: "gtceu:hv_miner"
-							}
-						]
-					}
-				}
-				title: "Any of the listed Miners"
-				type: "item"
-			}]
-			title: "Digital Miner"
-			x: -3.375d
-			y: 1.5d
+			x: -1.65d
+			y: 1.98d
 		}
 		{
 			dependencies: ["4A92AFD2532EED26"]
@@ -799,48 +736,6 @@
 			title: "Advanced Assembler"
 			x: 1.125d
 			y: -0.75d
-		}
-		{
-			dependencies: [
-				"7567E885B7166603"
-				"0DBC148D92A9F69F"
-			]
-			description: [
-				"GregTech doesn't provide ways to farm plants or trees, so we made a custom multiblock for the modpack!"
-				""
-				"The multiblock &3Greenhouse&r will be your source of &aWood&r and other plants if you wish."
-				""
-				"Its &aWood&r production should be enough to run &32 Pyrolyse Ovens&r at their lowest Power."
-				""
-				"You can also use this for automated &aResin&r. The yields are kept low to incentivize other rubber sources later in the game."
-				"{@pagebreak}"
-				"&9Note: &rWith &d40 EU/t&r recipes, it needs either 1 &bMV&r energy hatch or 2 &7LV&r energy hatches. Multiblocks will &cnot&r use 2A of one tier to reach the next one for recipe voltage minimums. "
-				""
-				"In other words, the controller needs to say at least \"&bMV&r\" in the GUI to run recipes which say \"&bMV&r\" in EMI, even if they can draw enough EU/t with a lower tier hatch configuration."
-				""
-				"&9Note:&r The structure requires a lot of &9Wrought Iron&r. Make sure you have an &3Arc Furnace&r for that."
-				"{@pagebreak}"
-				"&l&3Lore:&r&o We originally implemented a Chemical Reactor recipe for wood in the modpack to solve the tree problem. Our implementation turned out to be completely busted, so we decided that a rebalance was due. Hopefully, the Greenhouse is a happy middle ground."
-			]
-			icon: "minecraft:oak_sapling"
-			id: "2655B72C9FF3B372"
-			rewards: [{
-				count: 10
-				id: "7DCCFC3ADD071D57"
-				item: "gtceu:ulv_machine_casing"
-				type: "item"
-			}]
-			shape: "square"
-			size: 0.75d
-			subtitle: "The power of KubeJS"
-			tasks: [{
-				id: "35CFA225ADAD5D06"
-				item: "gtceu:greenhouse"
-				type: "item"
-			}]
-			title: "Greenhouse"
-			x: -1.125d
-			y: 0.375d
 		}
 		{
 			dependencies: [
@@ -1845,26 +1740,11 @@
 			shape: "square"
 			size: 0.75d
 			subtitle: "This quest was sponsored by the US Military"
-			tasks: [
-				{
-					id: "7B6C7E6C11D68E06"
-					item: {
-						Count: 1
-						id: "itemfilters:tag"
-						tag: {
-							value: "forge:ores/oilsands"
-						}
-					}
-					optional_task: true
-					title: "Oilsands Ore"
-					type: "item"
-				}
-				{
-					id: "1838F842C9D12880"
-					item: "gtceu:oilsands_dust"
-					type: "item"
-				}
-			]
+			tasks: [{
+				id: "1838F842C9D12880"
+				item: "gtceu:oilsands_dust"
+				type: "item"
+			}]
 			title: "America Simulator"
 			x: -4.5d
 			y: -0.75d
@@ -2150,7 +2030,7 @@
 			y: 0.375d
 		}
 		{
-			dependencies: ["5C94CF50090D7DA0"]
+			dependencies: ["5480AF2EDEDB6A36"]
 			description: [
 				"&3Long-Distance Item Pipes&r can be used to send items across great distances. Place one endpoint at each end, and connect them with pipeline blocks."
 				""
@@ -2242,34 +2122,6 @@
 			title: "I Believe I Can Fly"
 			x: -3.37d
 			y: -3.56d
-		}
-		{
-			dependencies: ["75F38905DEA60F15"]
-			dependency_requirement: "one_completed"
-			description: [
-				"This jetpack enables flight, and requires energy."
-				""
-				"Charge it like you would charge a Battery."
-				""
-				"Press &4H&r (default) to enable Hover Mode."
-				""
-				"&o&8(Yeah, yeah, a jetpack is supposed to work off \"propellants\". Y'all are always here to nitpick.)&r"
-			]
-			id: "21F70EACF6D81E6A"
-			size: 0.5d
-			subtitle: "...still not quite there."
-			tasks: [{
-				id: "1940421A45E45E25"
-				item: {
-					Count: 1
-					id: "gtceu:electric_jetpack"
-					tag: { }
-				}
-				type: "item"
-			}]
-			title: "I Believe I Can Fly II"
-			x: 1.7784863945578095d
-			y: -0.20216836734694255d
 		}
 		{
 			dependencies: ["26394C1290D70AB6"]
@@ -2420,6 +2272,31 @@
 			title: "Wood Tar"
 			x: -2.25d
 			y: -1.875d
+		}
+		{
+			dependencies: ["1BFA1378C55E4B5E"]
+			id: "14C6C5179E434577"
+			shape: "gear"
+			subtitle: "Research is a new system added to gregtech via the WFcore mod. Several crafting recipes for weapons and vehicles are locked behind research. Research units require Computation. This is from a computer multiblock."
+			tasks: [{
+				id: "3975A053F1417A7B"
+				item: "wfcore:research_unit"
+				type: "item"
+			}]
+			title: "RESEARCH"
+			x: -3.5d
+			y: 4.0d
+		}
+		{
+			dependencies: ["7567E885B7166603"]
+			id: "1BFA1378C55E4B5E"
+			tasks: [{
+				id: "4D73DFB5C6E157A5"
+				item: "wfcore:mainframe"
+				type: "item"
+			}]
+			x: -3.5d
+			y: 1.5d
 		}
 	]
 	subtitle: ["Venture into petrochemistry and refine electronics"]

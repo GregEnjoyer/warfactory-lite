@@ -1887,6 +1887,7 @@
         {
             "pakku_id": "UsxQP71c02M7Z8bD",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "github": "Warfactory-Official/MCglTF"
             },
@@ -2949,9 +2950,6 @@
                     "url": "https://github.com/Warfactory-Official/Ultimate-Weight/releases/download/snapshots/wfweight-1.20.1-Forge-1.0.0-SNAPSHOT.jar",
                     "id": "462810886",
                     "parent_id": "1213132556",
-                    "hashes": {
-                        "sha256": "9eca0b8e781956e3a81371abaeef0b5c2ab24a5bb8e6080b7e78f1027e6c0d22"
-                    },
                     "size": 26659876,
                     "date_published": "2026-07-01T04:06:11Z"
                 }
@@ -3149,9 +3147,6 @@
                     "url": "https://github.com/Warfactory-Official/WarForge-Remaintained/releases/download/snapshots/warforge-remaintained-2.4.0.jar",
                     "id": "474454349",
                     "parent_id": "824503430",
-                    "hashes": {
-                        "sha256": "b0dc52a6b20b019bba86e586c42aebf09624053701e9ed75904faa5760e74f81"
-                    },
                     "size": 1026894,
                     "date_published": "2026-07-12T14:22:39Z"
                 }
@@ -3175,13 +3170,10 @@
                     "file_name": "wfcore-0.1.0.jar",
                     "release_type": "release",
                     "url": "https://github.com/Warfactory-Official/Warfctory-Modern-Core/releases/download/latest/wfcore-0.1.0.jar",
-                    "id": "471000758",
+                    "id": "475929783",
                     "parent_id": "1205218751",
-                    "hashes": {
-                        "sha256": "ef94d00e27b424296180e36cf39d208a3cd66ab2c4c016ef431f6e2a0eb3dbf5"
-                    },
-                    "size": 4928644,
-                    "date_published": "2026-07-09T04:33:22Z"
+                    "size": 4717722,
+                    "date_published": "2026-07-13T21:39:53Z"
                 }
             ]
         },

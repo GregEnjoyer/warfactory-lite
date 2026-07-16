@@ -1,0 +1,56 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "warfactory_medical"
+	group: "539A285D299C0F64"
+	id: "2B23B6D624A525C9"
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			id: "05CC5C8BB6340BEF"
+			subtitle: "Warfactory has its own in house medical system, with limb damage, blood loss, and other cool features. "
+			tasks: [{
+				id: "41F5AF0FC7239E4A"
+				title: "Medical system"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["05CC5C8BB6340BEF"]
+			id: "571FB1D72E5C9000"
+			tasks: [{
+				id: "35A54E94D7EA320E"
+				title: "Blood loss"
+				type: "checkmark"
+			}]
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["05CC5C8BB6340BEF"]
+			id: "460942E4C3055A92"
+			tasks: [{
+				id: "2278AE5233D95178"
+				title: "Limbs"
+				type: "checkmark"
+			}]
+			x: -2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["05CC5C8BB6340BEF"]
+			id: "73EDE987733748F5"
+			tasks: [{
+				id: "3C2093BA7DD18652"
+				title: "Pain"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 1.5d
+		}
+	]
+	title: "WarFactory Medical"
+}

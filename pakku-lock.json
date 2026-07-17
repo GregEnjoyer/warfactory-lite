@@ -2941,7 +2941,7 @@
             "id": {
                 "github": "1213132556"
             },
-            "update_strategy": "NONE",
+            "update_strategy": null,
             "files": [
                 {
                     "type": "github",

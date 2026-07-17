@@ -17,14 +17,12 @@ on:
         default: false
   push:
     branches: [main]
-    paths:
-      - pakku.json
-      - pakku-lock.json
-      - overrides/**
 
+# A fresh push supersedes any rebuild already running for this pack: the newest
+# commit is the only one worth building, so cancel the in-flight run.
 concurrency:
   group: rebuild-modpack
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -68,16 +66,19 @@ jobs:
 
       - name: Refresh WF-suite GitHub mods
         run: |
-          # Frozen projects (update_strategy: NONE) are skipped by pakku automatically:
-          #   superb-warfare, timeless-and-classics-zero, Ultimate-Weight (wfweight).
-          pakku -y update Warfctory-Modern-Core WarForge-Remaintained SimpleBedrockModel || true
-          # Wire mcgltf the moment MCglTF has published its first release (idempotent).
-          if ! grep -q 'Warfactory-Official/MCglTF' pakku-lock.json; then
-            pakku -y add prj --type mod --gh Warfactory-Official/MCglTF || echo "MCglTF has no release yet - skipping"
-          fi
-
-      - name: Re-pin wfweight (multi-platform release; --gh can't auto-select the 1.20.1-Forge jar)
-        run: python3 ci/repin-wfweight.py
+          # Every Warfactory-owned mod tracks its rolling snapshot release, so bump
+          # each to its newest GitHub build. Frozen third-party projects
+          # (superb-warfare, timeless-and-classics-zero, voxy) carry
+          # update_strategy: NONE in pakku.json and are skipped automatically.
+          # `|| true`: a mod with no newer release just no-ops.
+          pakku -y update \
+            Warfctory-Modern-Core \
+            WarForge-Remaintained \
+            SimpleBedrockModel \
+            Ultimate-Weight \
+            WF-Ballistics \
+            WFMedical \
+            MCglTF || true
 
       - name: Optional full update
         if: ${{ github.event.inputs.update_all == 'true' }}
@@ -98,15 +99,27 @@ jobs:
             git push origin main
           fi
 
+      - name: Stage build artifacts with distinct names
+        run: |
+          # pakku names the curseforge and serverpack zips identically
+          # (<name>-<version>.zip), which collides as GitHub release assets and
+          # is ambiguous for the deploy job. Re-stage each with a role suffix.
+          shopt -s nullglob
+          name=$(jq -r '.name' pakku.json)
+          ver=$(jq -r '.version' pakku.json)
+          mkdir -p dist
+          for f in build/serverpack/*.zip;  do cp "$f" "dist/${name}-${ver}-serverpack.zip"; done
+          for f in build/curseforge/*.zip;  do cp "$f" "dist/${name}-${ver}-curseforge.zip"; done
+          for f in build/modrinth/*.mrpack; do cp "$f" "dist/${name}-${ver}.mrpack";          done
+          if [ -z "$(ls -A dist 2>/dev/null)" ]; then echo "::error::no build artifacts produced"; exit 1; fi
+          ls -la dist
+
       - name: Publish rolling pack-latest release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          shopt -s nullglob
-          zips=(build/curseforge/*.zip build/modrinth/*.mrpack build/serverpack/*.zip)
-          if [ ${#zips[@]} -eq 0 ]; then echo "::error::no build artifacts produced"; exit 1; fi
           gh release delete pack-latest --yes --cleanup-tag || true
-          gh release create pack-latest "${zips[@]}" \
+          gh release create pack-latest dist/* \
             --title "Latest pack build (${GITHUB_SHA::7})" \
             --notes "Automated rebuild triggered by ${{ github.event_name }}." \
             --prerelease
@@ -116,7 +129,4 @@ jobs:
         with:
           name: warfactory-lite-pack
           if-no-files-found: error
-          path: |
-            build/curseforge/*.zip
-            build/modrinth/*.mrpack
-            build/serverpack/*.zip
+          path: dist/*

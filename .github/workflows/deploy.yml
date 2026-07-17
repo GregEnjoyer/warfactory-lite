@@ -1,0 +1,147 @@
+name: Deploy to Pterodactyl
+
+# Hand-triggered partial deploy. Pulls the serverpack from the rolling
+# `pack-latest` release, then uploads ONLY the files listed in
+# `ci/deploy-manifest.txt` (config/kubejs + the Warfactory mod jars) to the
+# Pterodactyl server over SFTP. lftp `--only-newer` skips anything unchanged, so
+# a redeploy after a small tweak transfers only the handful of files that moved.
+# Optionally restarts the server afterwards via the Pterodactyl client API.
+
+on:
+  workflow_dispatch:
+    inputs:
+      restart:
+        description: "Power action after upload"
+        type: choice
+        default: restart
+        options: [restart, stop_start, none]
+      full_sync:
+        description: "Force re-upload (ignore --only-newer)"
+        type: boolean
+        default: false
+      sync_mods:
+        description: "Push the Warfactory mod jars (uncheck for a config-only deploy)"
+        type: boolean
+        default: true
+      mod_globs:
+        description: "Override the manifest's mod globs (space-separated, e.g. 'wf*.jar warforge*.jar')"
+        type: string
+        default: ""
+
+concurrency:
+  group: deploy-pterodactyl
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out (manifest only)
+        uses: actions/checkout@v4
+
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Download serverpack from pack-latest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release download pack-latest --pattern '*-serverpack.zip' --dir . --clobber
+          zip=$(ls -1 *-serverpack.zip | head -n1)
+          if [ -z "$zip" ]; then echo "::error::no serverpack asset on pack-latest release"; exit 1; fi
+          echo "Extracting $zip"
+          mkdir -p pack
+          unzip -q "$zip" -d pack
+          echo "Top-level of extracted pack:"; ls -1 pack
+
+      - name: Upload changed files over SFTP
+        env:
+          SFTP_HOST: ${{ secrets.PTERO_SFTP_HOST }}
+          SFTP_PORT: ${{ secrets.PTERO_SFTP_PORT }}
+          SFTP_USER: ${{ secrets.PTERO_SFTP_USER }}
+          SFTP_PASS: ${{ secrets.PTERO_SFTP_PASS }}
+          FULL_SYNC: ${{ inputs.full_sync }}
+          SYNC_MODS: ${{ inputs.sync_mods }}
+          MOD_GLOBS_INPUT: ${{ inputs.mod_globs }}
+        run: |
+          set -euo pipefail
+          for v in SFTP_HOST SFTP_PORT SFTP_USER SFTP_PASS; do
+            if [ -z "${!v:-}" ]; then echo "::error::secret $v (PTERO_$v) is not set"; exit 1; fi
+          done
+
+          # Parse the deploy manifest into directory + mod-glob lists.
+          dirs=(); globs=()
+          while read -r kind val _; do
+            case "${kind:-}" in
+              '#'*|'') continue ;;
+              dir) dirs+=("$val") ;;
+              mod) globs+=("$val") ;;
+            esac
+          done < ci/deploy-manifest.txt
+
+          # Optional per-run override of the mod globs.
+          if [ -n "$MOD_GLOBS_INPUT" ]; then
+            globs=(); for g in $MOD_GLOBS_INPUT; do globs+=("$g"); done
+          fi
+
+          only_newer="--only-newer"
+          [ "$FULL_SYNC" = "true" ] && only_newer=""
+
+          # Build the lftp job. `user <name> <pass>` avoids the comma-splitting
+          # of `-u name,pass`, so passwords with commas are fine.
+          {
+            echo "set sftp:auto-confirm yes"
+            echo "set net:max-retries 2"
+            echo "set net:timeout 25"
+            echo 'open -p "'"$SFTP_PORT"'" "sftp://'"$SFTP_HOST"'"'
+            echo 'user "'"$SFTP_USER"'" "'"$SFTP_PASS"'"'
+            for d in "${dirs[@]}"; do
+              if [ -d "pack/$d" ]; then
+                echo "mirror -R $only_newer --parallel=4 --verbose \"pack/$d\" \"/$d\""
+              else
+                echo "!echo skipping '$d' — not in serverpack"
+              fi
+            done
+            if [ "$SYNC_MODS" = "true" ] && [ "${#globs[@]}" -gt 0 ]; then
+              inc=""
+              for g in "${globs[@]}"; do inc="$inc --include-glob '$g'"; done
+              # --no-recursion: only top-level jars, never the big mod subfolders.
+              echo "mirror -R $only_newer --no-recursion $inc --parallel=4 --verbose \"pack/mods\" \"/mods\""
+            fi
+            echo "bye"
+          } > lftp.job
+
+          echo "=== lftp job (credentials redacted) ==="
+          grep -v '^user ' lftp.job
+          echo "======================================="
+          lftp -f lftp.job
+
+      - name: Power action via Pterodactyl client API
+        if: ${{ inputs.restart != 'none' }}
+        env:
+          PANEL: ${{ secrets.PTERO_PANEL_URL }}
+          SERVER: ${{ secrets.PTERO_SERVER_ID }}
+          KEY: ${{ secrets.PTERO_CLIENT_KEY }}
+          MODE: ${{ inputs.restart }}
+        run: |
+          set -euo pipefail
+          if [ -z "${PANEL:-}" ] || [ -z "${SERVER:-}" ] || [ -z "${KEY:-}" ]; then
+            echo "::warning::Pterodactyl client-API secrets (PTERO_PANEL_URL / PTERO_SERVER_ID / PTERO_CLIENT_KEY) not set — skipping $MODE."
+            exit 0
+          fi
+          send() {
+            echo "Sending power signal: $1"
+            curl -fsS -X POST "${PANEL%/}/api/client/servers/$SERVER/power" \
+              -H "Authorization: Bearer $KEY" \
+              -H "Content-Type: application/json" \
+              -H "Accept: application/json" \
+              -d "{\"signal\":\"$1\"}"
+          }
+          case "$MODE" in
+            restart)    send restart ;;
+            stop_start) send stop; sleep 20; send start ;;
+          esac
+          echo "Power action '$MODE' sent."

@@ -1,0 +1,25 @@
+# Deploy manifest — what `deploy.yml` pushes to the Pterodactyl server.
+#
+# The deploy is a *partial* sync: instead of re-uploading the whole ~530 MB
+# serverpack, it only pushes the files listed here, which is almost always just
+# the hand-authored config plus the fast-moving Warfactory mods. Everything is
+# uploaded with lftp `--only-newer`, so unchanged files are skipped anyway.
+#
+# Two directives, one per line. Blank lines and `#` comments are ignored.
+#
+#   dir <path>    Mirror this whole directory (relative to the serverpack root)
+#                 into /<path> on the server.
+#   mod <glob>    Push mods/<glob> (top-level jars only). Repeat for more globs.
+#                 This is the "mods I can always update" list — add a line here
+#                 to have a mod refreshed on every deploy.
+
+# --- directories synced in full ---
+dir config
+dir kubejs
+# dir tacz      # large gun-model overrides; uncomment only if you change them
+
+# --- Warfactory mods refreshed on every deploy ---
+mod wf*.jar             # wfcore, wfballistics, wfweight, wfmedical, ...
+mod warforge*.jar
+mod simplebedrockmodel*.jar
+# mod superbwarfare*.jar   # frozen in pakku.json; uncomment to force-push it

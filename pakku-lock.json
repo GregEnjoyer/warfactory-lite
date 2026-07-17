@@ -2370,6 +2370,7 @@
         {
             "pakku_id": "bOkEbIO7THe1Ffo3",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "reforgedplay-mod"
             },
@@ -2897,6 +2898,7 @@
         {
             "pakku_id": "N1juaQ2Q5mqZAyzq",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "true-darkness-forge-updated-fork"
             },

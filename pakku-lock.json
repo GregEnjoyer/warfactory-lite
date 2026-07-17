@@ -2260,6 +2260,7 @@
         {
             "pakku_id": "RToxIhz60XAVIx4T",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "oculus"
             },
@@ -3225,43 +3226,6 @@
                     "required_dependencies": [],
                     "size": 1105891,
                     "date_published": "2025-03-23T19:12:56.087Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "voCiNGXoRNTVQIIS",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "sbw-tacz-tacticaldustfx"
-            },
-            "name": {
-                "curseforge": "[SBW/TACZ]TacticalDustFX"
-            },
-            "id": {
-                "curseforge": "1400482"
-            },
-            "redistributable": false,
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "tacticaldustfx-alpha-0.0.1.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/7308/302/tacticaldustfx-alpha-0.0.1.jar",
-                    "id": "7308302",
-                    "parent_id": "1400482",
-                    "hashes": {
-                        "sha1": "7da3b341b66f177abe812faedb9bb26ecd9526ba",
-                        "md5": "2bd4b131f2fa1773f134bcb6ef7e1989"
-                    },
-                    "required_dependencies": [],
-                    "size": 156070,
-                    "date_published": "2025-12-08T15:36:24.140Z"
                 }
             ]
         },

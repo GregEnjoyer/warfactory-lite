@@ -9,7 +9,8 @@
     "client_overrides": [
         "fancymenu_data",
         "datapacks",
-        "options.txt"
+        "options.txt",
+        "resourcepacks"
     ],
     "projects": {
         "tacz-tweaks": {
@@ -28,6 +29,9 @@
             "update_strategy": "NONE"
         },
         "voxy": {
+            "update_strategy": "NONE"
+        },
+        "Ultimate-Weight": {
             "update_strategy": "NONE"
         }
     }

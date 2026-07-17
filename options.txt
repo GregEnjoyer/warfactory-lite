@@ -42,7 +42,7 @@ ao:true
 prioritizeChunkUpdates:0
 biomeBlendRadius:2
 renderClouds:"true"
-resourcePacks:["tacz_resources","mod_resources","vanilla","file/Gregtech_CEu_Modern_Programmer_Art.zip"]
+resourcePacks:["tacz_resources","mod_resources","vanilla","file/Gregtech_CEu_Modern_Programmer_Art.zip","file/no_menu_music"]
 incompatibleResourcePacks:[]
 lastServer:192.168.35.100:8000
 lang:en_us
@@ -280,8 +280,8 @@ key_gtceu.key.armor_charging:key.keyboard.n
 key_gtceu.key.armor_hover:key.keyboard.h
 key_dragonrise_reforge.keyinfo.nightvisionkey:key.keyboard.x
 key_dragonrise_reforge.keyinfo.enginechangekey:key.keyboard.v
-soundCategory_master:0.0
-soundCategory_music:0.0
+soundCategory_master:1.0
+soundCategory_music:1.0
 soundCategory_record:1.0
 soundCategory_weather:0.0
 soundCategory_block:1.0

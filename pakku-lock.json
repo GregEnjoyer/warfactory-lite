@@ -2941,19 +2941,20 @@
             "id": {
                 "github": "1213132556"
             },
+            "update_strategy": "NONE",
             "files": [
                 {
                     "type": "github",
-                    "file_name": "wfweight-1.21.1-NeoForge-1.0.0-SNAPSHOT.jar",
+                    "file_name": "wfweight-1.20.1-Forge-1.0.0-SNAPSHOT.jar",
                     "release_type": "release",
-                    "url": "https://github.com/Warfactory-Official/Ultimate-Weight/releases/download/snapshots/wfweight-1.21.1-NeoForge-1.0.0-SNAPSHOT.jar",
-                    "id": "475805023",
+                    "url": "https://github.com/Warfactory-Official/Ultimate-Weight/releases/download/snapshots/wfweight-1.20.1-Forge-1.0.0-SNAPSHOT.jar",
+                    "id": "475805000",
                     "parent_id": "1213132556",
                     "hashes": {
-                        "sha256": "7d526ce5e1cde59db327df2988d15ba833d55851006534e62ca2ff588d1da7cb"
+                        "sha256": "4d0e058f1180d3a7f9a21e079bfe5db2cfc5786832de5fb3a8dd4ff872c89fb7"
                     },
-                    "size": 26691887,
-                    "date_published": "2026-07-13T19:11:34Z"
+                    "size": 26662130,
+                    "date_published": "2026-07-13T19:11:32Z"
                 }
             ]
         },
@@ -3006,7 +3007,7 @@
             "id": {
                 "github": "1283626439"
             },
-            "redistributable": false,
+            "redistributable": true,
             "files": [
                 {
                     "type": "github",

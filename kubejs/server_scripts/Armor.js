@@ -162,6 +162,9 @@ MM_ARMOR_FABRICS.forEach(fabric => {
     .circuit(fabric.circuit)
     .EUt(30)
 })
+/* DISABLED (WIP): the mm_armor helmetbaselv and vestplatelv items are not registered,
+   so these assembler outputs resolved to empty and threw "Invalid or empty output item",
+   which aborted the rest of Armor.js. Re-enable this block once those items exist.
 //helmet
 event.recipes.gtceu.assembler('helmetbaselv_1')
 .itemInputs(Item.of('gtceu:steel_plate', 5))
@@ -232,5 +235,6 @@ event.recipes.gtceu.assembler('vestplatelv_6')
 .duration(700)
 .circuit(1)
 .EUt(120000); // ZPM
+*/
 
      });

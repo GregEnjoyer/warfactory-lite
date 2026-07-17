@@ -1,18 +1,8 @@
 ServerEvents.recipes((event) => {
   // Portable Cells
+  // Portable Item Cell 1k: crafting removed. Default AE2 recipe is removed and no custom recipe is added,
+  // so the 1k portable cell has no crafting recipe.
   event.remove({ id: "ae2:tools/portable_item_cell_1k" });
-  event.shaped(
-    Item.of("ae2:portable_item_cell_1k", "{internalCurrentPower:200000.0d}"),
-    ["BGB", "CHC", "PWP"],
-    {
-      B: "#forge:bolts/red_alloy",
-      G: "minecraft:glass",
-      C: "#gtceu:circuits/ulv",
-      H: "#forge:chests/wooden",
-      P: "#forge:plates/wrought_iron",
-      W: "gtceu:red_alloy_single_cable",
-    }
-  );
   event.remove({ id: "ae2:tools/portable_item_cell_4k" });
   event.shaped("ae2:portable_item_cell_4k", ["BGB", "CHC", "PWP"], {
     B: "#forge:bolts/invar",

@@ -1,0 +1,278 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "warforge_draft"
+	group: "539A285D299C0F64"
+	icon: "warforge:citadelblock"
+	id: "5C0FE2A1B7D34E90"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"The Citadel is the heart of your faction. Craft yourself one and place it on unclaimed ground to found your faction."
+				""
+				"Open it any time to reach the faction menu."
+				"{open_url:https://github.com/Warfactory-Official/WarForge-Remaintained/blob/port/1.20.1/docs/factions.md text:&9&nWiki}"
+			]
+			id: "1A2F3B4C5D6E7001"
+			subtitle: "Found your faction"
+			tasks: [{
+				id: "1A2F3B4C5D6E7101"
+				item: "warforge:citadelblock"
+				type: "item"
+			}]
+			title: "The Citadel"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1A2F3B4C5D6E7001"]
+			description: [
+				"A faction runs on people. Invite players with /f invite, then promote them."
+				""
+				"Ranks climb Guest, Member, Officer, Leader. Higher ranks unlock claiming, sieges and diplomacy."
+				"{open_url:https://github.com/Warfactory-Official/WarForge-Remaintained/blob/port/1.20.1/docs/factions.md text:&9&nWiki}"
+			]
+			id: "1A2F3B4C5D6E7002"
+			subtitle: "Build your roster"
+			tasks: [{
+				id: "1A2F3B4C5D6E7102"
+				title: "Recruit and Ranks"
+				type: "checkmark"
+			}]
+			title: "Recruit and Ranks"
+			x: -1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["1A2F3B4C5D6E7001"]
+			description: [
+				"Manage everything from the citadel menu or the /f commands."
+				""
+				"Start with /f info, /f home and /f borders."
+				"{open_url:https://github.com/Warfactory-Official/WarForge-Remaintained/blob/port/1.20.1/docs/commands.md text:&9&nCommands}"
+			]
+			id: "1A2F3B4C5D6E7003"
+			subtitle: "Your command center"
+			tasks: [{
+				id: "1A2F3B4C5D6E7103"
+				title: "Faction Manager"
+				type: "checkmark"
+			}]
+			title: "Faction Manager"
+			x: -3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1A2F3B4C5D6E7002"]
+			description: [
+				"Ally another faction and neither of you can siege the other."
+				""
+				"Allies can share claim access. Breaking an alliance starts a truce timer before war can resume."
+				"{open_url:https://github.com/Warfactory-Official/WarForge-Remaintained/blob/port/1.20.1/docs/alliances.md text:&9&nWiki}"
+			]
+			id: "1A2F3B4C5D6E7004"
+			subtitle: "Friends in high places"
+			tasks: [{
+				id: "1A2F3B4C5D6E7104"
+				title: "Alliances"
+				type: "checkmark"
+			}]
+			title: "Alliances"
+			x: -3.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["1A2F3B4C5D6E7002"]
+			description: [
+				"Officers can pick a banner flag from the citadel menu."
+				""
+				"It flies on every claim, citadel and FOB pole you own. The choice is permanent, so choose well."
+				"{open_url:https://github.com/Warfactory-Official/WarForge-Remaintained/blob/port/1.20.1/docs/flags.md text:&9&nWiki}"
+			]
+			id: "1A2F3B4C5D6E7005"
+			subtitle: "Fly your colors"
+			tasks: [{
+				id: "1A2F3B4C5D6E7105"
+				title: "Faction Flags"
+				type: "checkmark"
+			}]
+			title: "Faction Flags"
+			x: -1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["1A2F3B4C5D6E7001"]
+			description: [
+				"Claim chunks to protect your builds. Place claim blocks out from your citadel, or use the territory map."
+				""
+				"Toggle /f borders to see chunk edges."
+			]
+			id: "1A2F3B4C5D6E7006"
+			subtitle: "Own the land"
+			tasks: [{
+				id: "1A2F3B4C5D6E7106"
+				title: "Claiming Territory"
+				type: "checkmark"
+			}]
+			title: "Claiming Territory"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["1A2F3B4C5D6E7006"]
+			description: ["The basic claim block adds one chunk to your faction. Chain them outward from the citadel to grow your borders."]
+			id: "1A2F3B4C5D6E7007"
+			subtitle: "Expand your borders"
+			tasks: [{
+				id: "1A2F3B4C5D6E7107"
+				item: "warforge:basicclaimblock"
+				type: "item"
+			}]
+			title: "Basic Claim"
+			x: 1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["1A2F3B4C5D6E7007"]
+			description: ["Reinforced claims have far higher defense, making them harder to siege. Line your borders with them."]
+			id: "1A2F3B4C5D6E7008"
+			subtitle: "Reinforce"
+			tasks: [{
+				id: "1A2F3B4C5D6E7108"
+				item: "warforge:reinforcedclaimblock"
+				type: "item"
+			}]
+			title: "Reinforced Claim"
+			x: 1.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["1A2F3B4C5D6E7008"]
+			description: [
+				"With no need to eat, food is freed up for what matters, &l&4defending.&r"
+				""
+				"Chunk reinforcers turn food and energy into extra chunk defense. Keep the supply stable so it never runs dry mid siege."
+			]
+			id: "1A2F3B4C5D6E7009"
+			rewards: [{
+				count: 32
+				id: "1A2F3B4C5D6E7209"
+				item: "minecraft:bread"
+				type: "item"
+			}]
+			subtitle: "Turn food into defense"
+			tasks: [{
+				id: "1A2F3B4C5D6E7109"
+				item: "wfcore:chunk_reinforcer_lv"
+				type: "item"
+			}]
+			title: "Chunk Reinforcers"
+			x: 1.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["1A2F3B4C5D6E7007"]
+			description: [
+				"An officer can upgrade the citadel from its menu."
+				""
+				"Each level raises your claim limit, insurance slots and force loaded chunks."
+				"{open_url:https://github.com/Warfactory-Official/WarForge-Remaintained/blob/port/1.20.1/docs/factions.md text:&9&nWiki}"
+			]
+			id: "1A2F3B4C5D6E700A"
+			subtitle: "More chunks, more slots"
+			tasks: [{
+				icon: "minecraft:experience_bottle"
+				id: "1A2F3B4C5D6E710A"
+				title: "Citadel Upgrades"
+				type: "checkmark"
+			}]
+			title: "Citadel Upgrades"
+			x: 3.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["1A2F3B4C5D6E700A"]
+			description: [
+				"Deposit gear into faction insurance. You cannot pull it back out."
+				""
+				"If your faction falls in a siege you recover the insured items. Disbanding voids them, so never rage quit."
+			]
+			id: "1A2F3B4C5D6E700B"
+			subtitle: "Keep your gear safe"
+			tasks: [{
+				id: "1A2F3B4C5D6E710B"
+				title: "Insurance"
+				type: "checkmark"
+			}]
+			title: "Insurance"
+			x: 3.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["1A2F3B4C5D6E7007"]
+			description: [
+				"Every chunk can hide an ore vein. Claim it and your faction earns a passive trickle of ore each yield day."
+				""
+				"Press O over a chunk to check its vein."
+				"{open_url:https://github.com/Warfactory-Official/WarForge-Remaintained/blob/port/1.20.1/docs/veins.md text:&9&nWiki}"
+			]
+			id: "1A2F3B4C5D6E700C"
+			rewards: [{
+				count: 8
+				id: "1A2F3B4C5D6E720C"
+				item: "minecraft:iron_ingot"
+				type: "item"
+			}]
+			subtitle: "Passive income from the ground"
+			tasks: [{
+				id: "1A2F3B4C5D6E710C"
+				title: "Ore Veins"
+				type: "checkmark"
+			}]
+			title: "Ore Veins"
+			x: 0.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["1A2F3B4C5D6E7006"]
+			description: [
+				"Sieges are how you take enemy land. Place a siege camp next to their claim, then win the PVP timer to capture it."
+				""
+				"Needs Officer rank, and there is a lot to it, so read the guide before you march."
+				"{open_url:https://github.com/Warfactory-Official/WarForge-Remaintained/blob/port/1.20.1/docs/sieges.md text:&9&nWiki}"
+			]
+			id: "1A2F3B4C5D6E700D"
+			subtitle: "Bring down enemy claims"
+			tasks: [{
+				id: "1A2F3B4C5D6E710D"
+				item: "warforge:siegecampblock"
+				type: "item"
+			}]
+			title: "Sieges"
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["1A2F3B4C5D6E700D"]
+			description: [
+				"During a siege, deploy a Forward Operating Base in neutral land as a warp point for your faction."
+				""
+				"It does not claim territory, and enemies can destroy it by holding it."
+				"{open_url:https://github.com/Warfactory-Official/WarForge-Remaintained/blob/port/1.20.1/docs/fob-system.md text:&9&nWiki}"
+			]
+			id: "1A2F3B4C5D6E700E"
+			subtitle: "A foothold in enemy land"
+			tasks: [{
+				id: "1A2F3B4C5D6E710E"
+				item: "warforge:fobblock"
+				type: "item"
+			}]
+			title: "Forward Operating Base"
+			x: 4.5d
+			y: 3.0d
+		}
+	]
+	title: "WarForge"
+}

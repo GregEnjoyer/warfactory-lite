@@ -1,0 +1,1526 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "steam_age_warfactory"
+	group: "693226878D58638A"
+	icon: "gtceu:bronze_brick_casing"
+	id: "2D020CCF21E9C120"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["2B7C4D9E1F3A8006"]
+			description: [
+				"&3High Pressure Boilers&r will be a better source of Steam for powering your Steam machines."
+				""
+				"Keep in mind that you will still be using Steam to power your Electric machines in &7LV&r via the miracles of energy conversion."
+				""
+				"&cNote:&r You will need more than a handful of &3HP Boilers&r. The more you make, the less you'll need to worry about running out of power."
+				"{@pagebreak}"
+				"The &3Solid Boiler&r burns solid Fuel. It's self explanatory - better fuels last longer."
+				""
+				"The &3Liquid Boiler&r burns either &dLava&r or &dCreosote&r."
+				""
+				"The &3Solar Boiler&r burns nothing - it's fueled by the sun."
+				""
+				"Looking for a recommendation? Honestly, either goes, as all three boilers are equivalent in generation. Craft the boiler that best suits your preferred resource."
+				""
+				"Get &eany&r of the proposed boilers to complete this quest."
+			]
+			icon: "gtceu:hp_steam_solid_boiler"
+			id: "526E7341A40F3919"
+			rewards: [
+				{
+					count: 12
+					id: "29EA602FB911BCCC"
+					item: "minecraft:iron_ingot"
+					type: "item"
+				}
+				{
+					count: 12
+					id: "2DE987855F0B315A"
+					item: "gtceu:wrought_iron_ingot"
+					type: "item"
+				}
+				{
+					count: 12
+					id: "0BB7F5EBC35BAF1B"
+					item: "gtceu:steel_ingot"
+					type: "item"
+				}
+			]
+			shape: "square"
+			size: 0.75d
+			subtitle: "Pressure! Pushin' down on me..."
+			tasks: [{
+				id: "4768C7E09A1F8272"
+				item: "gtceu:hp_steam_solid_boiler"
+				type: "item"
+			}]
+			title: "High Pressure"
+			x: 0.0d
+			y: -1.2d
+		}
+		{
+			description: [
+				"Mine some &dSulfur&r. Its vein now sits &6high up&r in the Overworld, easy to reach."
+				""
+				"You will want it for &9Rubber&r, which insulates every cable and circuit on the road to &7LV&r."
+				""
+				"If Lava is \"too hot to handle\", we've included a &6direct crafting recipe&r for &aPotions of Fire Resistance&r using &bWater Bottles&r."
+			]
+			id: "3989D06AFD382B0D"
+			rewards: [
+				{
+					id: "12AB81447DEBCC7C"
+					item: {
+						Count: 1
+						id: "minecraft:potion"
+						tag: {
+							Potion: "minecraft:long_fire_resistance"
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0C218346213A7BBC"
+					item: {
+						Count: 1
+						id: "minecraft:potion"
+						tag: {
+							Potion: "minecraft:long_fire_resistance"
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "square"
+			size: 0.75d
+			subtitle: "A little bit of exploring never hurt anyone"
+			tasks: [{
+				count: 16L
+				id: "5C390D106A13FCF4"
+				item: "gtceu:sulfur_dust"
+				type: "item"
+			}]
+			title: "S is for Sulfur"
+			x: 5.625d
+			y: -1.5d
+		}
+		{
+			description: [
+				"Good news - we're going to start to cut down on the amount of components you'll need to submit for quests as you progress further into the modpack. Remember that &2EMI is your true mentor&r if recipes are getting overwhelming."
+				""
+				"Getting back on topic, set yourself up for &7LV&r by crafting six &aLV Electric Motors&r! This may seem like a lot, but that's the bare minimum required to get to the good stuff in &7LV&r."
+				""
+				"&6Once you complete this Quest and the Electronic Circuit Quest, you are ready to move on to the LV Age.&r"
+			]
+			icon: "gtceu:lv_electric_motor"
+			id: "0C3BA4A57E2D3ED4"
+			rewards: [{
+				id: "4B85CDF31878918A"
+				item: "gtceu:steel_block"
+				type: "item"
+			}]
+			shape: "gear"
+			size: 1.2d
+			subtitle: "Low Voltage beckons..."
+			tasks: [{
+				count: 6L
+				icon: "gtceu:lv_electric_motor"
+				id: "338DF32A6049F6BD"
+				item: "gtceu:lv_electric_motor"
+				type: "item"
+			}]
+			title: "The First of Many Motors"
+			x: 7.875d
+			y: -1.5d
+		}
+		{
+			dependencies: ["0EAF2C5B5EB755C5"]
+			description: [
+				"Obtaining paper is both more difficult and less efficient than in vanilla. Thanks, Greg."
+				""
+				"You'll need to grind &aSugar Canes&r into &aChad&r, and then smush the dust with a mallet and water."
+				"{@pagebreak}"
+				"&9Note 1:&r Don't worry, we're not cruel enough to have the recipe consume the bucket."
+				"{@pagebreak}"
+				"&9Note 2:&r Make a manual Sugar Cane farm. You could also automate one with Observers and Pistons. Shoutout to any &aNomifactory&r veterans."
+				"{@pagebreak}"
+				"&9Note 3:&r When you reach &7LV&r, you'll be able to make Paper from Wood."
+				"{@pagebreak}"
+				"&9Note 4:&r The Crafting Station makes this microcrafting absolutely &2trivial&r - use it!"
+				"{@pagebreak}"
+				"&9Note 5:&r Paper will be used as a poor-quality wrapping material for the upcoming resistors."
+				"{@pagebreak}"
+				"&9Note 6:&r It is truly a pleasure to share this moment with you, our fellow Greg enjoyer."
+				"{@pagebreak}"
+				"&9Note 7:&r Yes, Paper Dust is really called that. Let's get the giggles out of the way now, shall we?"
+			]
+			id: "30F15903DD589FA5"
+			rewards: [{
+				count: 32
+				id: "25F52CA222B902A5"
+				item: "minecraft:sugar_cane"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 0.66d
+			subtitle: "#realism"
+			tasks: [{
+				count: 4L
+				id: "3FE52176A879922D"
+				item: "minecraft:paper"
+				type: "item"
+			}]
+			title: "Greg has struck again"
+			x: 9.0d
+			y: 0.75d
+		}
+		{
+			description: [
+				"&6GregTech&r can quickly get &4overwhelming&r with the plethora of fluids it introduces, so you may be looking for a way to store them. "
+				""
+				"Introducing... &aDrums&r! They have large internal buffers, and any &aDrum&r can be broken and picked up and will &dkeep the fluid&r inside."
+				"{@pagebreak}"
+				"Additionally, &binternal tanks&r from machines will interact with items containing fluid. This is great for manual crafting - this means you can use fluid drums instead of multiple buckets in crafting. To &5void fluid&r contained in a Drum, place it alone in any crafting grid."
+				""
+				"&o&7Pssst:&8 &oA right-click with a Screwdriver allows a Drum to drain its content into another container placed under it. This is great if you want to keep your Liquid Boilers fueled for longer."
+				"{@pagebreak}"
+				"&l&3Lore:&r&o These drums are actually ported from GregTech 6."
+			]
+			id: "717178DA47981CFE"
+			rewards: [{
+				id: "4FFBBD4827C389D6"
+				item: "gtceu:bronze_drum"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 0.66d
+			subtitle: "Just kidding, tanks for fluids"
+			tasks: [{
+				id: "26594AFE3B54FA7C"
+				item: "gtceu:bronze_drum"
+				type: "item"
+			}]
+			title: "Armoured Tanks"
+			x: -1.125d
+			y: -0.375d
+		}
+		{
+			description: [
+				"The &bPrimitive Water Pump&r is an easy way to automatically generate water for your boilers. It doesn't physically pump water from the world, instead generating it &einternally&r. Therefore, you don't need access to a &3body of water&r to make use of it. However, the humidity of the biome does apply a negligible bonus to its water production."
+				""
+				"It's a multiblock, so &5consult EMI&r for the structure. Multiblocks can be previewed in-world if you sneak right-click the \"&a&ocontroller&r\" block with an empty hand (in this case, the controller block is the &bPrimitive Water Pump&r itself)."
+				""
+				"&6Small tip for you:&r no need to worry about your base's biome for now, as your boilers will need very little water to keep up."
+				"{@pagebreak}"
+				"The &cOutput Hatch&r is where water will be generated. You can make it face up or down to auto-output water into your pipes, which can go &ethrough&r the Treated Wood Frames - just place the pipe before you encase it in the frames. "
+				""
+				"Later you can use a &8ULV&r or &7LV&r Output Hatch to further boost the Pump's output."
+				""
+				"&2Reminder:&r Use a Wrench to rotate GregTech blocks (sneak right-click)."
+				""
+				"&l&3Lore:&r&o This Multiblock was ported from GT IMPACT, a classic 1.7.10 GregTech modpack."
+			]
+			id: "11512059D70C3A62"
+			rewards: [{
+				count: 18
+				id: "1C6BAC992D05536A"
+				item: "gtceu:wood_normal_fluid_pipe"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "There's no such thing as \"free\" water"
+			tasks: [{
+				id: "5774BE3915C54D10"
+				item: "gtceu:primitive_pump"
+				type: "item"
+			}]
+			title: "Primitive Water Pump"
+			x: 0.0d
+			y: -0.375d
+		}
+		{
+			dependencies: ["2B7C4D9E1F3A8006"]
+			description: [
+				"Make the listed molds for future alloy smelting. Be sure to make &aMolds&r - don't make &cExtruder Shapes&r, as they're used in a different machine."
+				""
+				"The reward for this quest will alleviate &da lot of pain&r when it comes to crafting &bGears&r."
+			]
+			icon: "gtceu:ball_casting_mold"
+			id: "47484C9CF6F139A4"
+			rewards: [
+				{
+					id: "67C601FF5AD8FA99"
+					item: "gtceu:small_gear_casting_mold"
+					type: "item"
+				}
+				{
+					id: "457648663D746EF9"
+					item: "gtceu:gear_casting_mold"
+					type: "item"
+				}
+			]
+			shape: "square"
+			size: 0.75d
+			subtitle: "Reduce the amount of malding by molding"
+			tasks: [
+				{
+					id: "1FC558DC0DE1985D"
+					item: "gtceu:plate_casting_mold"
+					type: "item"
+				}
+				{
+					id: "207B5AF134C6A7A5"
+					item: "gtceu:ball_casting_mold"
+					type: "item"
+				}
+				{
+					id: "59CA5DB656A49E59"
+					item: "gtceu:block_casting_mold"
+					type: "item"
+				}
+			]
+			title: "Malding"
+			x: 2.25d
+			y: -0.375d
+		}
+		{
+			description: [
+				"Not many items are made in the &3Extractor&r during the &6Steam Age&r, but it's used to make &9Rubber&r, which you'll need after Steel."
+				""
+				"You can also process Dirt in the Extractor for &aBones&r, which makes getting &aBone Meal&r a lot easier for Peaceful players."
+			]
+			id: "3F56AC376AA4F923"
+			rewards: [{
+				count: 16
+				id: "4A7C58B44C9A6997"
+				item: "gtceu:sticky_resin"
+				random_bonus: 48
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "The Steam Extractor extracts..."
+			tasks: [{
+				id: "34A7BA06058C21A2"
+				item: "gtceu:hp_steam_extractor"
+				type: "item"
+			}]
+			title: "Steam Extractor"
+			x: 5.625d
+			y: -0.375d
+		}
+		{
+			dependencies: ["5193DD03C0742548"]
+			description: [
+				"Grow &dRubber Trees&r and cut them down to get &aSticky Resin&r."
+				""
+				"If you're playing on a difficulty other than &bPeaceful&r, Sticky Resin can be obtained from Slimeballs."
+			]
+			id: "693829C792BF91B3"
+			rewards: [{
+				count: 24
+				id: "7D021C423DE92E75"
+				item: "minecraft:redstone"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "Did you think we would force you to use treetaps...?"
+			tasks: [{
+				count: 32L
+				id: "35BD305442B54A19"
+				item: "gtceu:sticky_resin"
+				type: "item"
+			}]
+			title: "Sticky Resin"
+			x: 7.875d
+			y: 1.875d
+		}
+		{
+			dependencies: [
+				"693829C792BF91B3"
+				"3F56AC376AA4F923"
+			]
+			description: [
+				"Rubber is an excellent insulation material, and that's exactly what it's used for in GTCEu."
+				""
+				"You'll want to use the &3Alloy Smelter&r to make &aRubber Bars&r. These ratios aren't particularly great, but we promise that making Rubber Bars will be much more efficient at &7LV&r."
+				"{@pagebreak}"
+				"&l&3Lore:&r&o In base GregTech 5 &7(and in base GTCE)&f, you needed to get string and black wool carpets as your first insulation material. &8&mThat was obviously far, far more fun.&r"
+			]
+			icon: "gtceu:rubber_ingot"
+			id: "5AB98FC6145B4C14"
+			rewards: [{
+				count: 8
+				id: "23C77FE7527B1422"
+				item: "gtceu:rubber_plate"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "Put that resin to use!"
+			tasks: [
+				{
+					id: "426BE486607268FE"
+					item: "gtceu:rubber_ingot"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "76478E2456AD07D8"
+					item: "gtceu:rubber_plate"
+					type: "item"
+				}
+			]
+			title: "Rubbering up"
+			x: 7.875d
+			y: -0.375d
+		}
+		{
+			dependencies: [
+				"693829C792BF91B3"
+				"30F15903DD589FA5"
+			]
+			description: [
+				"Resistors are components that will be used to make your first Circuit."
+				""
+				"It wouldn't be unwise to prioritise the recipes that use &aFine Wires&r, as they'll save you more materials in the long run."
+				""
+				"Wires may be expensive right now, but they'll get a lot cheaper in &7LV&r."
+			]
+			id: "675A34D9F2589E6F"
+			rewards: [{
+				count: 4
+				id: "5D304CC05D6D28EE"
+				item: "minecraft:charcoal"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "The easier component for circuits"
+			tasks: [{
+				id: "1314C686B02E21DD"
+				item: "gtceu:resistor"
+				type: "item"
+			}]
+			title: "Electronics #1: Resistors"
+			x: 7.875d
+			y: 0.75d
+		}
+		{
+			description: [
+				"&bFluid Pipes&r will transport &7Steam&r between machines for you."
+				""
+				"Each Pipe has a certain throughput in mB/t, and a &6Temperature Limit&r. This is relevant right now, as Steam will burn Wooden Pipes. Some pipes have &bspecial&r attributes you don't need to worry about for now."
+				""
+				"Each material has several sizes for Pipes. The bigger the Pipe, the &ahigher&r the throughput, but the more &dexpensive&r the craft. For example, a normal &6Bronze Fluid Pipe&r transfers 120 mB/t. (It also has a 1,200 mB internal buffer!)"
+				""
+				"Get any &6Bronze Fluid Pipe&r to complete this quest. The &6small&r and &enormal&r ones in particular are used in other recipes as well."
+				"{@pagebreak}"
+				"&aReminder:&r 1 second = 20 ticks... assuming the server isn't lagging."
+				""
+				"&dNote:&r GT6-style Pipes are enabled. It means that placing Pipes connects them only to the block they were placed against. To open more connections, use your Wrench on the pipe."
+				""
+				"You can also shift-right click with your Wrench to disable input from a side. This can help counteract sloshing &7(liquids travelling in an undesired direction)&r."
+			]
+			icon: "gtceu:bronze_normal_fluid_pipe"
+			id: "18B6C399623E9B48"
+			rewards: [{
+				count: 2
+				id: "2CA49B596C318ED2"
+				item: "minecraft:golden_apple"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 0.66d
+			subtitle: "Liquids, gases... we don't discriminate"
+			tasks: [{
+				id: "6B9E1FA58AC5ECAB"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						RepairCost: 0
+						display: {
+							Name: "{\"text\":\"Bronze Pipes!\"}"
+						}
+						items: [
+							{
+								Count: 1b
+								id: "gtceu:bronze_tiny_fluid_pipe"
+							}
+							{
+								Count: 1b
+								id: "gtceu:bronze_small_fluid_pipe"
+							}
+							{
+								Count: 1b
+								id: "gtceu:bronze_normal_fluid_pipe"
+							}
+							{
+								Count: 1b
+								id: "gtceu:bronze_large_fluid_pipe"
+							}
+							{
+								Count: 1b
+								id: "gtceu:bronze_huge_fluid_pipe"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "Fluid Pipes"
+			x: -1.125d
+			y: 0.75d
+		}
+		{
+			dependencies: ["315DBB3B23F95E0D"]
+			description: [
+				"The &dSolid Boiler&r is the only available Boiler for now, as the &aGlass&r needed for the others is not available just yet. You can get by with only one, but we would recommend making at least two."
+				""
+				"Important: Boilers can explode! This still catches out &eexperienced GT players&r, so keep this warning in mind when setting your Boiler up."
+				"{@pagebreak}"
+				"Water does not gel well with &6high temperatures&r, and a &cSteam Explosion&r &7(Launch!)&r may occur under the following conditions:"
+				""
+				"- The Boiler is &4overheating.&r Its temperature is indicated by the &cred bar&r in the GUI."
+				"...and..."
+				"- The Boiler does not have any &bwater&r. This is signified by the absence of a &bblue bar&r in the GUI."
+				"...AND..."
+				"- The Boiler receives water whilst &6both&r conditions are &2true&r."
+				"{@pagebreak}"
+				"You can avert catastrophe by filling the boiler with water before heating it up, and making sure the water supply is constant. The drain is slow - &b1 mB&r of Water boils into &7160 mB&r of Steam - so you shouldn't have to worry about running out."
+				""
+				"The Boiler can auto eject steam on all its faces except the bottom. For automated Water input, use the bottom face."
+				""
+				"&3Note:&r In this modpack, explosions are configured to &cnot&r damage any block or entity, but you'll &dstill lose&r your machine."
+			]
+			id: "418D2E2E35F9CDF2"
+			shape: "gear"
+			size: 1.2d
+			subtitle: "Putting the Steam in Steam Age"
+			tasks: [{
+				id: "2AF573CECA774F54"
+				item: "gtceu:lp_steam_solid_boiler"
+				type: "item"
+			}]
+			title: "Pressure Cookin'"
+			x: 0.0d
+			y: 0.75d
+		}
+		{
+			description: [
+				"&dSteam Machines&r accept any Steam that is pumped from nearby Boilers into their internal storage tank. They will run recipes from EMI up to 32 EU/t (&7LV&r-tier)."
+				""
+				"&6This quest unlocks a new tutorial on Steam in the &lTips and Tricks&r&6 tab - check it out to learn more!&r"
+			]
+			id: "67EE36A29E81E96A"
+			rewards: [{
+				count: 4
+				id: "06A1F56D944E6A0C"
+				item: "gtceu:bronze_dust"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "Surprisingly Steamy"
+			tasks: [{
+				id: "10314382FF7E899D"
+				item: "gtceu:bronze_machine_casing"
+				type: "item"
+			}]
+			title: "Steam Machine Behaviour"
+			x: 1.125d
+			y: 0.75d
+		}
+		{
+			dependencies: ["67EE36A29E81E96A"]
+			description: [
+				"The &bAlloy Smelter&r is used for, well, alloys. You'll want it for the efficient &6Bronze&r recipe, and for &4Red Alloy&r in the near future."
+				""
+				"Out of all the &6Steam Age&r machines, this is the most steam-hungry. If you ever find yourself running out of steam, give your machine a &alove-tap&r with &dany Soft Mallet&r to momentarily pause it."
+			]
+			id: "1465C345D616435A"
+			rewards: [{
+				count: 8
+				id: "470947B7466A4CC4"
+				item: "gtceu:bronze_plate"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "The Alloy Smelter makes alloys..."
+			tasks: [{
+				id: "75A63C9B8CA09BA0"
+				item: "gtceu:lp_steam_alloy_smelter"
+				type: "item"
+			}]
+			title: "Steam Alloy Smelter"
+			x: 2.25d
+			y: 0.75d
+		}
+		{
+			description: [
+				"Crafting Vacuum Tubes might make you question your existence. Sorry about that."
+				""
+				"This is mostly due to the fact that Wires and Rods are &7(sadly)&r very expensive right now, but they'll get cheaper in &7LV&r."
+				""
+				"Vacuum Tubes are also technically your first Ultra Low Voltage (&8ULV&r) Circuit! Congratulations! You won't find very much use for these by themselves, though."
+			]
+			id: "109DCDE2EB0AF02A"
+			rewards: [{
+				count: 16
+				id: "48DB8C8F17E04E23"
+				item: "minecraft:glass_pane"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "The harder component for circuits"
+			tasks: [{
+				count: 2L
+				id: "392C86EEB4C198D9"
+				item: "gtceu:vacuum_tube"
+				type: "item"
+			}]
+			title: "Electronics #3: Vacuum Tubes"
+			x: 5.625d
+			y: 0.75d
+		}
+		{
+			dependencies: ["1465C345D616435A"]
+			description: [
+				"Use Mortars or a Macerator (your choice) to microcraft your way to Glass Dust, which you can then turn into a &aGlass Block&r."
+				""
+				"If you are lost, a more detailed guide for this process is on the next page, but &dwe urge you to nose around EMI&r and figure out the recipe on your own. Being able to navigate EMI and parse recipes is an &6essential skill&r for completing this pack."
+				""
+				"Glass will be easier later on. You've probably already noticed that juicy &3Arc Furnace&r recipe - don't worry, we'll get there soon."
+				""
+				"Glass tubes will be required for your first Electronic Circuit."
+				"{@pagebreak}"
+				"Lost? Worry not!"
+				""
+				"First, use a &3method of pulverisation&r to turn Sand into &9Quartz Sand Dust&r."
+				""
+				"Next, crush down some Flint into &9Flint Dust&r, and split this dust into tiny piles in a crafting grid."
+				""
+				"Combine the two into &9Glass Dust&r, which can be molded into Glass in an Alloy Smelter with a &9Block Mold&r."
+				""
+				"Finally, Glass!"
+			]
+			icon: "minecraft:glass"
+			id: "1655CAEE883574FD"
+			rewards: [{
+				count: 2
+				id: "6C2130B691683042"
+				item: "minecraft:glass"
+				random_bonus: 14
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 0.66d
+			subtitle: "Must be satisfying, right?"
+			tasks: [
+				{
+					id: "6E28FA8ECB9F1D2D"
+					item: "minecraft:glass"
+					type: "item"
+				}
+				{
+					id: "613401C56FBCC6A7"
+					item: "gtceu:glass_tube"
+					type: "item"
+				}
+			]
+			title: "Glass, at last!"
+			x: 4.125d
+			y: -0.375d
+		}
+		{
+			dependencies: ["1465C345D616435A"]
+			description: [
+				"&4Red Alloy&r is an alloy of Copper and Redstone, prized in the GregTech universe for its conductivity."
+				""
+				"You will need some for &9Electronic Circuits&r."
+				""
+				"&l&3Lore:&r&o This material originally comes from RedPower - what a throwback!"
+			]
+			id: "2A719B1FEF1D07A9"
+			rewards: [{
+				count: 16
+				id: "3EFF99A976DEC7F3"
+				item: "minecraft:copper_ingot"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "A completely fictional alloy"
+			tasks: [{
+				id: "4321BF6437F6321B"
+				item: "gtceu:red_alloy_ingot"
+				type: "item"
+			}]
+			title: "Red Alloy"
+			x: 4.125d
+			y: 0.75d
+		}
+		{
+			dependencies: [
+				"109DCDE2EB0AF02A"
+				"675A34D9F2589E6F"
+				"45D4C64F0027DE92"
+				"2A719B1FEF1D07A9"
+			]
+			description: [
+				"We made it to &7LV&r! Give yourself a pat on the back!"
+				""
+				"Just kidding &7(lol)&r, you actually need three Circuits to get started anywhere relevant in &7LV&r. Thankfully for you, someone left this spare circuit laying around."
+				""
+				"We also want you to make an &aLV Machine Hull&r for this quest. You'll need one if you're to make any &7LV&r machine. We're feeling generous enough that this quest will grant you a second Hull, free of charge!"
+				""
+				"Circuits are an integral part of progression in GregTech, so keep climbing."
+				""
+				"&6Once you complete this Quest and the LV Motor Quest, you are ready to move on to the LV Age.&r"
+			]
+			icon: "gtceu:basic_electronic_circuit"
+			id: "38F8774B502B7673"
+			rewards: [
+				{
+					id: "363CF102F7E98B0D"
+					item: "gtceu:basic_electronic_circuit"
+					type: "item"
+				}
+				{
+					id: "2523A604DDB59458"
+					item: "gtceu:lv_machine_hull"
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 1.2d
+			subtitle: "Your first &aElectronic Circuit&r!"
+			tasks: [
+				{
+					count: 2L
+					id: "288639DEF2A718C5"
+					item: "gtceu:basic_electronic_circuit"
+					type: "item"
+				}
+				{
+					id: "5431E2593C11BBEB"
+					item: "gtceu:lv_machine_hull"
+					type: "item"
+				}
+			]
+			title: "Electronics #4: The Circuit"
+			x: 6.75d
+			y: 0.75d
+		}
+		{
+			dependencies: ["18B6C399623E9B48"]
+			description: [
+				"&dPotin Fluid Pipes&r have a &avery high throughput&r for the material tier and cost. You may want to look into making some of these to aid with fluid logistics."
+				""
+				"To get &dPotin&r, you should start by crafting its &eDust&r form."
+				""
+				"Get a &dPotin&r pipe of any size to complete this quest."
+				"{@pagebreak}"
+				"&l&3Lore:&r&o &dPotin Fluid Pipes&f were first seen in &9GT++&f, an addon to GT5, and are a considerable power spike for players in a relatively unknown pack called &4GT:NH&f. We wanted to spread some of that joy."
+				""
+				"&oIn the real world, &dPotin&f is an alloy used in coins, not pipes. GTCEu just gets more unrealistic by the day..."
+			]
+			icon: "gtceu:potin_normal_fluid_pipe"
+			id: "3D83593D0DBBC738"
+			rewards: [{
+				count: 6
+				id: "1777671079C4EC70"
+				item: "gtceu:potin_plate"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 0.66d
+			subtitle: "...I'm going into battle, and I need only your finest Potin."
+			tasks: [{
+				id: "1B61CA5F9649868C"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						RepairCost: 0
+						display: {
+							Name: "{\"text\":\"Potin Pipes!\"}"
+						}
+						items: [
+							{
+								Count: 1b
+								id: "gtceu:potin_tiny_fluid_pipe"
+							}
+							{
+								Count: 1b
+								id: "gtceu:potin_small_fluid_pipe"
+							}
+							{
+								Count: 1b
+								id: "gtceu:potin_normal_fluid_pipe"
+							}
+							{
+								Count: 1b
+								id: "gtceu:potin_large_fluid_pipe"
+							}
+							{
+								Count: 1b
+								id: "gtceu:potin_huge_fluid_pipe"
+							}
+						]
+					}
+				}
+				type: "item"
+			}]
+			title: "Potin Seller..."
+			x: -2.25d
+			y: 0.75d
+		}
+		{
+			dependencies: ["67EE36A29E81E96A"]
+			description: [
+				"With the creation of this machine, many recipes that once required you to use a hammer can instead be made here!"
+				""
+				"It can process &bCobblestone into Gravel&r, and &dGravel into Sand&r - and it's zippy at that to boot."
+				""
+				"Last but not least, it makes &aPlates&r at a better ratio: &6three Ingots for two Plates&r. A worthwhile investment!"
+				""
+				"You know what? &aBonus&r! We'll give you the &8Anvil&r back if you craft the Forge Hammer. This is a gentle reminder that you can repair GregTech tools in an Anvil."
+			]
+			id: "1D419DD0DBC6848D"
+			rewards: [{
+				id: "0F2168DF6BADD4F3"
+				item: "minecraft:anvil"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "The Forge Hammer hammers..."
+			tasks: [{
+				id: "54373869DA0F715E"
+				item: "gtceu:lp_steam_forge_hammer"
+				type: "item"
+			}]
+			title: "Steam Forge Hammer"
+			x: 0.0d
+			y: 1.875d
+		}
+		{
+			dependencies: ["67EE36A29E81E96A"]
+			description: [
+				"The &bMacerator&r frees you from the painful process of &egrinding stuff into dust&r with a &3Mortar&r, but at the steep cost of time. Processing a single piece of Iron Ore in this machine will take &ctwenty seconds&r - twice the time it takes to smelt an ingot in a furnace!"
+				""
+				"The Macerator also marks the advent of &eOre Processing&r, but that's a scary topic that we'll dip our toes into in the next quest."
+				"{@pagebreak}"
+				"The macerator will output only the first item shown in recipes from EMI. The other slots are locked until you make a &6HV&r Macerator. How unfortunate..."
+				""
+				"Our (&oimportant!&r) advice: it's actually better to keep directly smelting for now! The efficiency loss is made up with faster mining. Use the Macerator to make things like &aClay Dust&r instead!"
+			]
+			id: "16E81AAEE6ED4CBC"
+			rewards: [{
+				count: 32
+				id: "250BF405A0A226C7"
+				item: "gtceu:clay_dust"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "The Macerator macerates..."
+			tasks: [{
+				id: "0057CB9D320CA831"
+				item: "gtceu:lp_steam_macerator"
+				type: "item"
+			}]
+			title: "Steam Macerator"
+			x: 1.125d
+			y: 1.875d
+		}
+		{
+			dependencies: ["1465C345D616435A"]
+			description: ["Invar has &650% more durability&r when used in GregTech tools compared to Iron (yes, that is the same as &aWrought Iron&r). Great for mining - you might want to consider using this in your tools if you &5haven't unlocked&r Steel."]
+			id: "5E51D02CCD5262A3"
+			rewards: [{
+				id: "744DF0081722C210"
+				item: {
+					Count: 1
+					id: "gtceu:invar_mining_hammer"
+					tag: {
+						Damage: 0
+						DisallowContainerItem: 0b
+						GT.Behaviours: {
+							AoEColumn: 1
+							AoELayer: 0
+							AoERow: 1
+							MaxAoEColumn: 1
+							MaxAoELayer: 0
+							MaxAoERow: 1
+							TorchPlacing: 1b
+						}
+						GT.Tool: {
+							AttackDamage: 4.5f
+							AttackSpeed: -3.2f
+							DefaultEnchantments: [ ]
+							HarvestLevel: 2
+							MaxDamage: 1151
+							ToolSpeed: 5.6f
+						}
+						HideFlags: 2
+					}
+				}
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 0.66d
+			subtitle: "An Iron-Nickel alloy"
+			tasks: [{
+				count: 3L
+				id: "7B3BD43C8DDEFD08"
+				item: { Count: 3, id: "gtceu:invar_ingot" }
+				type: "item"
+			}]
+			title: "Invar"
+			x: 2.25d
+			y: 1.875d
+		}
+		{
+			dependencies: ["693829C792BF91B3"]
+			description: [
+				"Macerate Wood into Wood Pulp, then compress it into Wood Plates. Combine it with Resin to make an empty board."
+				""
+				"Stick in some expensive Copper Wires (these'll get cheaper in &7LV&r) and you've got the base for your first &aCircuit&r."
+				""
+				"Almost there!"
+			]
+			icon: "gtceu:resin_printed_circuit_board"
+			id: "45D4C64F0027DE92"
+			rewards: [{
+				count: 4
+				id: "4CB556611385C1B6"
+				item: "gtceu:wood_plate"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "The circuit-er part of circuits..."
+			tasks: [
+				{
+					id: "48D18DFA6B0190CF"
+					item: {
+						Count: 1
+						id: "itemfilters:tag"
+						tag: {
+							value: "forge:plates/wood"
+						}
+					}
+					optional_task: true
+					title: "Wood Plates"
+					type: "item"
+				}
+				{
+					id: "7C66059E3F226389"
+					item: "gtceu:resin_printed_circuit_board"
+					type: "item"
+				}
+			]
+			title: "Electronics #2: Circuit Boards"
+			x: 6.75d
+			y: 1.875d
+		}
+		{
+			description: [
+				"In its simplest form, Ore Processing in GregTech boils down to &aconverting one Ore Block into two Ingots through two Dusts&r, like several other tech mods. "
+				""
+				"The added spice is the amount of steps, either optional or required."
+				""
+				"Ore Processing will be explained further once you get into &7LV&r."
+				""
+				"&6This quest unlocks a new tutorial on rudimentary Ore Processing in the &lTips and Tricks&r&6 tab - check it out to learn more!&r"
+			]
+			icon: "gtceu:crushed_gold_ore"
+			id: "73EFEBF4DA57E947"
+			shape: "circle"
+			size: 0.66d
+			subtitle: "...and how do I get rid of it?"
+			tasks: [{
+				id: "71BE0EFCE77526FD"
+				title: "Oh god, what have I gotten myself into!?"
+				type: "checkmark"
+			}]
+			title: "What is this Mess?!"
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			description: [
+				"&o...or perhaps it was the opposite?&r"
+				""
+				"The &3Steam Grinder&r can pulverize &6large batches of items quickly&r and effortlessly&r, sort of like a parallel Macerator."
+				""
+				"This thing is incredibly good for its tier. It's actually as strong as 5.3 &6HV&r Macerators, and only requires a trickle of Steam to power."
+				"{@pagebreak}"
+				"&l&3Lore:&r&o This Multiblock originally comes from GT++. It required Tumbaga to craft, an alloy with a mix of Gold and Bronze."
+			]
+			icon: "gtceu:steam_grinder"
+			id: "2F03180F8DCEE78D"
+			rewards: [{
+				count: 8
+				id: "090174D003E7E157"
+				item: "gtceu:bronze_ingot"
+				random_bonus: 16
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "The Steam Oven's elder brother"
+			tasks: [
+				{
+					id: "7452F8B70704FAD2"
+					item: "gtceu:steam_grinder"
+					type: "item"
+				}
+				{
+					id: "4720AD798C52FD67"
+					item: "gtceu:steam_input_hatch"
+					type: "item"
+				}
+				{
+					id: "0B3A85E8F5D78F19"
+					item: "gtceu:steam_input_bus"
+					type: "item"
+				}
+				{
+					id: "207294565B4F20C3"
+					item: "gtceu:steam_output_bus"
+					type: "item"
+				}
+				{
+					count: 22L
+					id: "616F998699801C57"
+					item: "gtceu:steam_machine_casing"
+					type: "item"
+				}
+			]
+			title: "Steam Grinder"
+			x: 1.125d
+			y: 3.0d
+		}
+		{
+			dependencies: ["5E51D02CCD5262A3"]
+			description: [
+				"&o...or little brother. Don't let him know!&r"
+				""
+				"The &3Steam Oven&r is a great multiblock option if you need &6effortlessly smelt large quantities of items.&r No more lines of furnaces that you have to manually empty and refuel!"
+				""
+				"It effectively behaves as a parallel furnace, smelting up to 8 items at a time for a low cost of Steam."
+				"{@pagebreak}"
+				""
+				"&l&3Lore:&r&o This Multiblock - despite being very similar to its brother, the Steam Grinder - isn't ported from a GregTech version or addon. Its actual progenitor is the Steam Oven from Railcraft, which dates back to 1.4.7!"
+			]
+			icon: "gtceu:steam_oven"
+			id: "33873CB327A14CB9"
+			rewards: [{
+				count: 8
+				id: "0C1619A4975C6A39"
+				item: "gtceu:bronze_ingot"
+				random_bonus: 16
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "The Steam Grinder's big brother"
+			tasks: [
+				{
+					id: "51ECE9534F36D8B1"
+					item: "gtceu:steam_oven"
+					type: "item"
+				}
+				{
+					id: "0814CC0A4001CF9D"
+					item: "gtceu:steam_input_hatch"
+					type: "item"
+				}
+				{
+					id: "11C10D7E3B280C81"
+					item: "gtceu:steam_input_bus"
+					type: "item"
+				}
+				{
+					id: "1DECC08C6840F22A"
+					item: "gtceu:steam_output_bus"
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "54BFF231D44FCD65"
+					item: "gtceu:steam_machine_casing"
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "2ECEF4CCD802F578"
+					item: "gtceu:bronze_firebox_casing"
+					type: "item"
+				}
+			]
+			title: "Steam Oven"
+			x: 2.25d
+			y: 3.0d
+		}
+		{
+			dependencies: ["67EE36A29E81E96A"]
+			description: ["The Steam Compressor unlocks some tantalising new recipes that will help you to progress towards Steel."]
+			id: "3276AB734F642B52"
+			rewards: [{
+				id: "20379D1B2EAE7DE2"
+				item: "gtceu:wrought_iron_block"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 0.66d
+			subtitle: "The Steam Compressor compresses..."
+			tasks: [{
+				id: "555CB5B6897F3D98"
+				item: "gtceu:lp_steam_compressor"
+				type: "item"
+			}]
+			title: "Steam Compressor"
+			x: 1.125d
+			y: -0.375d
+		}
+		{
+			description: [
+				"&3Item Pipes&r are a simple yet effective way to move items around &dinstantly&r, but with throughput limitations."
+				""
+				"Higher tier pipes provide ridiculously large throughput - a rare sight in modded Minecraft!"
+				""
+				"Item Pipes &9do not pull&r, but they will push any item inserted into them to other connected inventories, prioritizing &9the closest inventory&r first."
+				"{@pagebreak}"
+				"The priority mechanics are &osomewhat complicated&r, so skip ahead if you aren't interested:"
+				""
+				"A &eDestination&r will have a &dRouting Value&r calculated, which is the sum of all \"Routing Values\" of the individual Pipes to that Destination. Whichever Destination has the &clowest &dRouting Value&r will be the one selected for Insertion."
+				""
+				"&3Restrictive Pipes&r typically have the lowest Priority for insertion due to their higher Routing Value."
+				"{@pagebreak}"
+				"Right now, you can use them in combination with &6Hoppers&r, but you will also be able to use them with Conveyor Modules, Output Buses, and machine Auto-Outputs all in the LV age."
+				""
+				"&9Note:&r GT6-style Pipes are &denabled&r. It means that placing Pipes connect them only to the block they were placed against. To open more connections, use your &5Wrench&r on the grid."
+				""
+				"You can also shift-right click with your Wrench to force items to flow in a certain direction. This can help counteract backflow (items being transported in an undesirable direction.) It also prevents the common issue of your &eCoke Oven Hatches&r trying to export charcoal/coke into your hoppers!"
+				""
+				"Get &eany&r of the suggested Item Pipes to complete this quest."
+				"{@pagebreak}"
+				"&l&3Lore:&r&o Oooooh, YEAH! Item Pipes were in GregTech 5, and for whatever reason they weren't kept for GTCE, so you had to use other mods to transport items. Who does that!? Jokes aside, we hope you enjoy Item Pipes being back in GregTech!"
+			]
+			icon: "gtceu:tin_small_item_pipe"
+			id: "48A4EFA36195F754"
+			shape: "rsquare"
+			size: 0.66d
+			subtitle: "All your logistics woes are solved"
+			tasks: [{
+				id: "3E317708FD498B8C"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "gtceu:tin_small_item_pipe"
+							}
+							{
+								Count: 1b
+								id: "gtceu:nickel_small_item_pipe"
+							}
+							{
+								Count: 1b
+								id: "gtceu:cobalt_small_item_pipe"
+							}
+						]
+					}
+				}
+				title: "Earlygame Item Pipes"
+				type: "item"
+			}]
+			title: "Item Pipes"
+			x: -1.125d
+			y: 1.875d
+		}
+		{
+			dependencies: ["2B7C4D9E1F3A8006"]
+			description: [
+				"The &3Charcoal Pile Igniter&r is a particularly unique multiblock. You can use it to produce &aCharcoal&r faster than &3Coke Ovens&r, but this comes with the trade-off of &amanual labor&r."
+				"{@pagebreak}"
+				"To operate the Igniter, dig a big pit into the ground - up to &e9x9x5&r blocks in size. Line the floor of the pit with vanilla &aBrick blocks&r, then fill the remaining space entirely with &aLogs&r. After that, &esurround the filled pit&r with Grass, Dirt, or other natural groundcover. In the layer with the roof, place the Igniter! To start it, light it with &aFlint and Steel&r."
+				""
+				"Once the process completes, open up the pit for your reward - &aBrittle Charcoal&r. This can be mined with a Shovel (or Spade!), and each block drops 1.4 Charcoal on average. Assuming 1 Log converts into 1 Brittle Charcoal, we're sure you can see the efficiency boost!"
+				"{@pagebreak}"
+				"&eNote&r: The pit must be &cfull to the brim&r with Logs - Air blocks will prevent this Multiblock from forming."
+				""
+				"&eNote&r: This quest is &boptional&r. If you would like to skip this quest, hit the checkmark instead."
+				""
+				"&l&3Lore:&r&o This multiblock originated in GT5u, but did not require a fire-starting item to start."
+			]
+			icon: "gtceu:charcoal_pile_igniter"
+			id: "2C5B4C96E01561CB"
+			rewards: [{
+				id: "5F6532E0674E0814"
+				item: "gtceu:brittle_charcoal"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 0.66d
+			subtitle: "I'm the trouble starter, punkin' instigator..."
+			tasks: [
+				{
+					id: "16E978CCC85CF216"
+					item: "gtceu:charcoal_pile_igniter"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "54113D30A71BE249"
+					title: "No, I hate extra Charcoal yields..."
+					type: "checkmark"
+				}
+			]
+			title: "Fuel Pit"
+			x: 0.33d
+			y: -1.98d
+		}
+		{
+			dependencies: [
+				"18B6C399623E9B48"
+				"48A4EFA36195F754"
+			]
+			dependency_requirement: "one_completed"
+			description: [
+				"Ever wanted your pipes to look &leven&r cooler? Now you can!"
+				""
+				"Fluid and Item Pipes can be placed inside of Frameboxes, giving your base an &6unparalleled level of beauty&r!"
+				""
+				"All you - dear player - need to do is right-click a frame onto a pipe &7(or a pipe onto a frame)&r, and you're done."
+				""
+				"&l&3Lore:&r&o This is a GTCEu-original mechanic."
+			]
+			icon: "gtceu:steel_frame"
+			id: "195B73F24F5A9EEF"
+			shape: "rsquare"
+			size: 0.66d
+			subtitle: "Spaghetti has never looked so swanky!"
+			tasks: [{
+				id: "00B7B34F2D9E397B"
+				item: "gtceu:steel_frame"
+				type: "item"
+			}]
+			title: "Aesthetic Ultra"
+			x: -2.25d
+			y: 1.875d
+		}
+		{
+			dependencies: ["2B7C4D9E1F3A8006"]
+			icon: {
+				Count: 1
+				id: "tacz:modern_kinetic_gun"
+				tag: {
+					GunCurrentAmmoCount: 5
+					GunFireMode: "SEMI"
+					GunId: "ww:kar98k"
+					HasBulletInBarrel: 1b
+				}
+			}
+			id: "423B1F8AD6DE0AFE"
+			tasks: [{
+				id: "71E9200D5E2FC729"
+				item: "gtceu:small_steel_gear"
+				type: "item"
+			}]
+			title: "WW1 Guns"
+			x: 2.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["3276AB734F642B52"]
+			description: [
+				"The &3Large Blast Furnace&r replaces the old Primitive Blast Furnace as your steel engine. It runs &etwo&r recipes at once, and up to &esix&r once you add its optional side chimneys, so one of these does the work of a whole wall of furnaces."
+				""
+				"It melts &7Iron&r and &8Coal&r into &cliquid Steel&r, which you then cast into ingots with the &3Strandcaster&r or a &3Foundry&r ingot mold."
+				""
+				"Structure: a tall &aPrimitive Bricks&r furnace with &6Bronze Firebox&r chimneys. &7Counts below are approximate; use EMI's multiblock preview.&r"
+			]
+			icon: "wfcore:large_blast_furnace"
+			id: "2B7C4D9E1F3A8006"
+			rewards: [{
+				count: 16
+				id: "2B7C4D9E1F3A8201"
+				item: "gtceu:steel_ingot"
+				type: "item"
+			}]
+			shape: "gear"
+			size: 1.3d
+			subtitle: "Steel Yourself for Greater Things"
+			tasks: [
+				{
+					id: "2B7C4D9E1F3A810B"
+					item: "wfcore:large_blast_furnace"
+					type: "item"
+				}
+				{
+					count: 32L
+					id: "2B7C4D9E1F3A810C"
+					item: "gtceu:firebricks"
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "2B7C4D9E1F3A810D"
+					item: "gtceu:bronze_firebox_casing"
+					type: "item"
+				}
+			]
+			title: "Large Blast Furnace"
+			x: 1.125d
+			y: -1.5d
+		}
+		{
+			dependencies: ["2B7C4D9E1F3A8006"]
+			description: [
+				"The &3Large Blast Furnace&r pours out &cliquid Steel&r. The &3Strandcaster&r freezes 144 mB of molten metal back into &e1 ingot&r."
+				""
+				"Pipe &bWater&r into it as coolant and it casts &atwice as fast&r. It also handles Bronze, Brass and Red Alloy from the Primitive Alloyer."
+				""
+				"Structure: a &6Bronze Hull&r tower with &6Bronze Brick&r walls and &6Bronze frames&r. &7Counts approximate.&r"
+			]
+			icon: "wfcore:strandcaster"
+			id: "2B7C4D9E1F3A8007"
+			subtitle: "Molten metal into ingots"
+			tasks: [
+				{
+					id: "2B7C4D9E1F3A810E"
+					item: "wfcore:strandcaster"
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "2B7C4D9E1F3A810F"
+					item: "gtceu:bronze_machine_casing"
+					type: "item"
+				}
+			]
+			title: "Strandcaster"
+			x: 1.125d
+			y: -2.7d
+		}
+		{
+			dependencies: ["2B7C4D9E1F3A8006"]
+			description: [
+				"One furnace is a fine start, but an &7LV&r base is hungry for &9Steel&r. Scale up."
+				""
+				"Each &6side chimney&r you add to the &3Large Blast Furnace&r raises it by two parallel slots, up to &esix&r. Every chimney is based on a &6Bronze Firebox&r. Or just build a second furnace and share a wall."
+				""
+				"Feed it &eIron&r and &8Coke&r and keep that &cliquid Steel&r flowing into your Strandcaster."
+			]
+			icon: "gtceu:steel_ingot"
+			id: "677A036EC2B0A4C5"
+			rewards: [{
+				count: 64
+				id: "2B7C4D9E1F3A8202"
+				item: "gtceu:coke_gem"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "More chimneys, more steel"
+			tasks: [
+				{
+					count: 16L
+					id: "2B7C4D9E1F3A8203"
+					item: "gtceu:bronze_firebox_casing"
+					type: "item"
+				}
+				{
+					count: 32L
+					id: "2B7C4D9E1F3A8204"
+					item: "gtceu:steel_ingot"
+					type: "item"
+				}
+			]
+			title: "We Need More Steel!"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["1465C345D616435A"]
+			description: [
+				"The &3Primitive Alloyer&r is a &6no power&r alloy multiblock. Feed it &dLava&r or any solid fuel (not logs or planks) and it melts metals into molten alloy."
+				""
+				"It makes molten &6Bronze&r (3 Tin + 1 Copper), &eBrass&r (3 Copper + 1 Zinc) and &4Red Alloy&r (1 Copper + 4 Redstone). Pour the result through &6Fire Clay&r pipes into a Foundry or Strandcaster to get ingots."
+				""
+				"Structure: roughly a 5x5x5 shell of &aPrimitive Bricks&r and &6Bronze Firebox&r casing with &6Bronze Brick&r casing walls. &7Counts approximate.&r"
+			]
+			icon: "wfcore:primitive_alloyer"
+			id: "2B7C4D9E1F3A8005"
+			subtitle: "Alloys without electricity"
+			tasks: [
+				{
+					id: "2B7C4D9E1F3A8108"
+					item: "wfcore:primitive_alloyer"
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "2B7C4D9E1F3A8109"
+					item: "gtceu:firebricks"
+					type: "item"
+				}
+				{
+					count: 12L
+					id: "2B7C4D9E1F3A810A"
+					item: "gtceu:bronze_firebox_casing"
+					type: "item"
+				}
+			]
+			title: "Primitive Alloyer"
+			x: 3.375d
+			y: 1.5d
+		}
+		{
+			description: [
+				"Casting lets you pour molten metal straight into a shape instead of hammering it out by hand."
+				""
+				"Craft the unfired clay molds from &aClay Balls&r and a &dSoft Mallet&r, then smelt them into reusable &6Fire Clay&r molds."
+				""
+				"The &eIngot&r, &ePlate&r and &ePipe&r molds are the ones you will lean on most."
+			]
+			icon: "wfcore:fireclay_plate_mold"
+			id: "2B7C4D9E1F3A8002"
+			subtitle: "Reusable casting shapes"
+			tasks: [
+				{
+					id: "2B7C4D9E1F3A8102"
+					item: "wfcore:fireclay_ingot_mold"
+					type: "item"
+				}
+				{
+					id: "2B7C4D9E1F3A8103"
+					item: "wfcore:fireclay_plate_mold"
+					type: "item"
+				}
+				{
+					id: "2B7C4D9E1F3A8104"
+					item: "wfcore:fireclay_pipe_normal_mold"
+					type: "item"
+				}
+			]
+			title: "Fire Clay Molds"
+			x: 4.5d
+			y: -2.6d
+		}
+		{
+			dependencies: ["2B7C4D9E1F3A8002"]
+			description: [
+				"A &3Foundry&r block holds one mold and a tank of molten metal. When the tank fills to the mold amount, it cools into the cast part."
+				""
+				"The &3Mold Caster&r takes small molds (ingot, plate, pipe, small gear); the &3Basin&r takes large molds (gear, block, large pipe). Both are built from plain &aBricks&r."
+				""
+				"This is your cheap alternative to hand hammering every &ePlate&r and &ePipe&r."
+			]
+			icon: "wfcore:foundry_mold_caster"
+			id: "2B7C4D9E1F3A8003"
+			subtitle: "Pour, cool, collect"
+			tasks: [
+				{
+					id: "2B7C4D9E1F3A8105"
+					item: "wfcore:foundry_mold_caster"
+					type: "item"
+				}
+				{
+					id: "2B7C4D9E1F3A8106"
+					item: "wfcore:foundry_basin"
+					type: "item"
+				}
+			]
+			title: "The Foundry"
+			x: 5.625d
+			y: -2.6d
+		}
+		{
+			dependencies: ["2B7C4D9E1F3A8003"]
+			description: [
+				"Molten metal is too hot for normal pipes. Only &6Fire Clay&r pipes can carry it from a furnace or alloyer into a &3Foundry&r tank."
+				""
+				"Three &aClay Balls&r give you four &6Fire Clay&r pipes."
+			]
+			icon: "gtceu:bronze_normal_fluid_pipe"
+			id: "2B7C4D9E1F3A8004"
+			subtitle: "Plumbing for molten metal"
+			tasks: [{
+				id: "2B7C4D9E1F3A8107"
+				item: {
+					Count: 1
+					id: "itemfilters:or"
+					tag: {
+						items: [
+							{
+								Count: 1b
+								id: "gtceu:fire_clay_normal_fluid_pipe"
+							}
+							{
+								Count: 1b
+								id: "wfcore:fire_clay_normal_fluid_pipe"
+							}
+						]
+					}
+				}
+				title: "Fire Clay Fluid Pipe"
+				type: "item"
+			}]
+			title: "Fire Clay Pipes"
+			x: 6.75d
+			y: -2.6d
+		}
+		{
+			dependencies: ["67EE36A29E81E96A"]
+			description: [
+				"Circuits eat an &cenormous&r amount of &6Copper wire&r, and hand cutting all of it wears out cutter after cutter."
+				""
+				"The &3Steam Wiremill&r turns ingots into wire on &7steam&r power with &azero tool wear&r, using the standard wiremill recipes. Build it before the circuit grind really starts."
+				""
+				"Structure: &6Bronze Hull&r and &6Bronze Brick&r casing around a &7Steel Gearbox&r core, with a &3Steam Input Hatch&r. &7Counts approximate.&r"
+			]
+			icon: "wfcore:steam_wiremill"
+			id: "2B7C4D9E1F3A8008"
+			subtitle: "Wire without the wear"
+			tasks: [
+				{
+					id: "2B7C4D9E1F3A8110"
+					item: "wfcore:steam_wiremill"
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "2B7C4D9E1F3A8111"
+					item: "gtceu:bronze_machine_casing"
+					type: "item"
+				}
+				{
+					id: "2B7C4D9E1F3A8112"
+					item: "gtceu:steam_input_hatch"
+					type: "item"
+				}
+			]
+			title: "Steam Wiremill"
+			x: 5.0d
+			y: 2.0d
+		}
+	]
+	subtitle: ["Harness the power of Steam and learn the basics"]
+	title: "Steam Age (Warfactory)"
+}

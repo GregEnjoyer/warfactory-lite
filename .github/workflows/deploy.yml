@@ -23,6 +23,10 @@ on:
         description: "Push the Warfactory mod jars (uncheck for a config-only deploy)"
         type: boolean
         default: true
+      all_mods:
+        description: "Force re-upload EVERY top-level mod jar (ignores the manifest globs AND --only-newer)"
+        type: boolean
+        default: false
       mod_globs:
         description: "Override the manifest's mod globs (space-separated, e.g. 'wf*.jar warforge*.jar')"
         type: string
@@ -65,6 +69,7 @@ jobs:
           SFTP_PASS: ${{ secrets.PTERO_SFTP_PASS }}
           FULL_SYNC: ${{ inputs.full_sync }}
           SYNC_MODS: ${{ inputs.sync_mods }}
+          ALL_MODS: ${{ inputs.all_mods }}
           MOD_GLOBS_INPUT: ${{ inputs.mod_globs }}
         run: |
           set -euo pipefail
@@ -105,11 +110,18 @@ jobs:
                 echo "!echo skipping '$d' — not in serverpack"
               fi
             done
-            if [ "$SYNC_MODS" = "true" ] && [ "${#globs[@]}" -gt 0 ]; then
+            if [ "$SYNC_MODS" = "true" ] && { [ "$ALL_MODS" = "true" ] || [ "${#globs[@]}" -gt 0 ]; }; then
               inc=""
-              for g in "${globs[@]}"; do inc="$inc --include-glob '$g'"; done
+              mod_only_newer="$only_newer"
+              if [ "$ALL_MODS" = "true" ]; then
+                # No --include-glob → every top-level jar, not just the wf* ones.
+                # Force a full re-upload so jars already on the server are replaced.
+                mod_only_newer=""
+              else
+                for g in "${globs[@]}"; do inc="$inc --include-glob '$g'"; done
+              fi
               # --no-recursion: only top-level jars, never the big mod subfolders.
-              echo "mirror -R $only_newer --no-recursion $inc --parallel=4 --verbose \"pack/mods\" \"/mods\""
+              echo "mirror -R $mod_only_newer --no-recursion $inc --parallel=4 --verbose \"pack/mods\" \"/mods\""
             fi
             echo "bye"
           } > lftp.job

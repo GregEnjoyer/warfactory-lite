@@ -3007,7 +3007,7 @@
             "id": {
                 "github": "1283626439"
             },
-            "redistributable": true,
+            "redistributable": false,
             "files": [
                 {
                     "type": "github",

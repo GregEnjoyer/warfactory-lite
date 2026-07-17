@@ -1771,6 +1771,7 @@
         {
             "pakku_id": "8vmmrFRVrXiYZgRe",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "ldlib"
             },
@@ -2514,6 +2515,7 @@
         {
             "pakku_id": "6Euosp8DCIQuII4o",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "github": "Warfactory-Official/SimpleBedrockModel"
             },
@@ -3776,7 +3778,6 @@
         {
             "pakku_id": "voxyBoxyCompat01",
             "type": "MOD",
-            "side": "CLIENT",
             "slug": {
                 "github": "TheVirtualizedG/voxy"
             },

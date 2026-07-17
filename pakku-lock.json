@@ -2944,13 +2944,16 @@
             "files": [
                 {
                     "type": "github",
-                    "file_name": "wfweight-1.20.1-Forge-1.0.0-SNAPSHOT.jar",
-                    "release_type": "beta",
-                    "url": "https://github.com/Warfactory-Official/Ultimate-Weight/releases/download/snapshots/wfweight-1.20.1-Forge-1.0.0-SNAPSHOT.jar",
-                    "id": "462810886",
+                    "file_name": "wfweight-1.21.1-NeoForge-1.0.0-SNAPSHOT.jar",
+                    "release_type": "release",
+                    "url": "https://github.com/Warfactory-Official/Ultimate-Weight/releases/download/snapshots/wfweight-1.21.1-NeoForge-1.0.0-SNAPSHOT.jar",
+                    "id": "475805023",
                     "parent_id": "1213132556",
-                    "size": 26659876,
-                    "date_published": "2026-07-01T04:06:11Z"
+                    "hashes": {
+                        "sha256": "7d526ce5e1cde59db327df2988d15ba833d55851006534e62ca2ff588d1da7cb"
+                    },
+                    "size": 26691887,
+                    "date_published": "2026-07-13T19:11:34Z"
                 }
             ]
         },
@@ -3003,6 +3006,7 @@
             "id": {
                 "github": "1283626439"
             },
+            "redistributable": false,
             "files": [
                 {
                     "type": "github",
@@ -3144,10 +3148,13 @@
                     "file_name": "warforge-remaintained-2.4.0.jar",
                     "release_type": "release",
                     "url": "https://github.com/Warfactory-Official/WarForge-Remaintained/releases/download/snapshots/warforge-remaintained-2.4.0.jar",
-                    "id": "474454349",
+                    "id": "475924881",
                     "parent_id": "824503430",
-                    "size": 1026894,
-                    "date_published": "2026-07-12T14:22:39Z"
+                    "hashes": {
+                        "sha256": "e97361fac3b73f94954630fc536fc73d69e0aa9af84893b1ca9aeffa6ba89f28"
+                    },
+                    "size": 1026866,
+                    "date_published": "2026-07-13T21:33:22Z"
                 }
             ]
         },
@@ -3169,10 +3176,13 @@
                     "file_name": "wfcore-0.1.0.jar",
                     "release_type": "release",
                     "url": "https://github.com/Warfactory-Official/Warfctory-Modern-Core/releases/download/latest/wfcore-0.1.0.jar",
-                    "id": "475929783",
+                    "id": "479831230",
                     "parent_id": "1205218751",
-                    "size": 4717722,
-                    "date_published": "2026-07-13T21:39:53Z"
+                    "hashes": {
+                        "sha256": "9c9e1e19f6f789e8363771bee2822d58a55b0c81db5133400a26c99f768b657c"
+                    },
+                    "size": 4879614,
+                    "date_published": "2026-07-17T01:48:33Z"
                 }
             ]
         },

@@ -30,6 +30,15 @@
         },
         "sbw-drr": {
             "update_strategy": "LATEST"
+        },
+        "emi": {
+            "side": "CLIENT"
+        },
+        "modern-ui": {
+            "side": "CLIENT"
+        },
+        "accelerated-rendering": {
+            "side": "CLIENT"
         }
     }
 }

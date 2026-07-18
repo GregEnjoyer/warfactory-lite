@@ -46,6 +46,7 @@
         {
             "pakku_id": "AAcjLQBYAFKUP5tz",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "accelerated-rendering"
             },
@@ -789,6 +790,7 @@
         {
             "pakku_id": "PVzAbDz58S2DXsv7",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "emi"
             },
@@ -2182,6 +2184,7 @@
         {
             "pakku_id": "r7DKMlwFpLPJ83WH",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "modern-ui"
             },

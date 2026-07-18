@@ -16,16 +16,7 @@
         "tacz-tweaks": {
             "update_strategy": "NONE"
         },
-        "sbw-drr": {
-            "update_strategy": "NONE"
-        },
         "timeless-and-classics-zero": {
-            "update_strategy": "NONE"
-        },
-        "superb-warfare": {
-            "update_strategy": "NONE"
-        },
-        "sbw-halovehicles": {
             "update_strategy": "NONE"
         },
         "voxy": {
@@ -33,6 +24,12 @@
         },
         "Ultimate-Weight": {
             "update_strategy": "NONE"
+        },
+        "superb-warfare": {
+            "update_strategy": "LATEST"
+        },
+        "sbw-drr": {
+            "update_strategy": "LATEST"
         }
     }
 }

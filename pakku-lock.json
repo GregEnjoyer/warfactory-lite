@@ -162,6 +162,34 @@
             ]
         },
         {
+            "pakku_id": "X2kgajj5lrLudT8K",
+            "type": "MOD",
+            "slug": {
+                "github": "Warfactory-Official/AshVehicle"
+            },
+            "name": {
+                "github": "AshVehicle"
+            },
+            "id": {
+                "github": "1304506862"
+            },
+            "files": [
+                {
+                    "type": "github",
+                    "file_name": "ashvehicle-1.20.1-4.5.3-8.9-div.jar",
+                    "release_type": "release",
+                    "url": "https://github.com/Warfactory-Official/AshVehicle/releases/download/1.20.1-4.5.3-8.9/ashvehicle-1.20.1-4.5.3-8.9-div.jar",
+                    "id": "481011293",
+                    "parent_id": "1304506862",
+                    "hashes": {
+                        "sha256": "39fc4fdc7c2b6f3111c5a6f562e4c72b7ae0762067fecd8080e8197a157aa4e0"
+                    },
+                    "size": 18691596,
+                    "date_published": "2026-07-18T01:37:07Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "NeB9ZR2SpnUOjOmT",
             "type": "MOD",
             "slug": {
@@ -416,6 +444,45 @@
                     "required_dependencies": [],
                     "size": 10052,
                     "date_published": "2023-06-24T16:15:56.900Z"
+                }
+            ]
+        },
+        {
+            "pakku_id": "hdvNReHQZTL7yh4E",
+            "type": "MOD",
+            "side": "CLIENT",
+            "slug": {
+                "modrinth": "controlling"
+            },
+            "name": {
+                "modrinth": "Controlling"
+            },
+            "id": {
+                "modrinth": "xv94TkTM"
+            },
+            "files": [
+                {
+                    "type": "modrinth",
+                    "file_name": "Controlling-forge-1.20.1-12.0.2.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://cdn.modrinth.com/data/xv94TkTM/versions/LH6Bi6Am/Controlling-forge-1.20.1-12.0.2.jar",
+                    "id": "LH6Bi6Am",
+                    "parent_id": "xv94TkTM",
+                    "hashes": {
+                        "sha512": "3945bf3f6d843957f13584dfc70bede253d1e48f0dcb96f647fbcc6fcd3d1748a0dd9c6ca5c882e07a41f98eb84057934f51e43ab6023ed0a19695de2e6fe9f5",
+                        "sha1": "6195a3d1464f8fb641d7e165163aea1a857ce08e"
+                    },
+                    "required_dependencies": [
+                        "fuuu3xnx"
+                    ],
+                    "size": 115280,
+                    "date_published": "2023-07-16T04:39:30.644589Z"
                 }
             ]
         },
@@ -2786,7 +2853,6 @@
             "id": {
                 "github": "1283626439"
             },
-            "redistributable": true,
             "files": [
                 {
                     "type": "github",
@@ -2956,10 +3022,13 @@
                     "file_name": "wfcore-1.0.0.jar",
                     "release_type": "release",
                     "url": "https://github.com/Warfactory-Official/Warfctory-Modern-Core/releases/download/latest/wfcore-1.0.0.jar",
-                    "id": "479915309",
+                    "id": "481042762",
                     "parent_id": "1205218751",
-                    "size": 4880959,
-                    "date_published": "2026-07-17T03:27:35Z"
+                    "hashes": {
+                        "sha256": "7f2dd96bd1b5b4e65b029b21e950d8e1f59a8b271e984576af414fc4482890d7"
+                    },
+                    "size": 4877728,
+                    "date_published": "2026-07-18T02:17:59Z"
                 }
             ]
         },
@@ -3003,7 +3072,7 @@
         {
             "pakku_id": "rmn9WuDy8arV3hBt",
             "pakku_links": [
-                "kIDWTkw0FWvAoMbu"
+                "Tjr9kFwS6a4UAYGL"
             ],
             "type": "MOD",
             "slug": {
@@ -3043,52 +3112,10 @@
             ]
         },
         {
-            "pakku_id": "WhspnKmansheIfuL",
-            "pakku_links": [
-                "K4DCB8G3kmjwMV6v",
-                "kIDWTkw0FWvAoMbu"
-            ],
-            "type": "MOD",
-            "slug": {
-                "curseforge": "ashvehicle"
-            },
-            "name": {
-                "curseforge": "[SBW] AshVehicle"
-            },
-            "id": {
-                "curseforge": "1291715"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "ashvehicle-1.20.1-4.5-8.8.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/7948/580/ashvehicle-1.20.1-4.5-8.8.jar",
-                    "id": "7948580",
-                    "parent_id": "1291715",
-                    "hashes": {
-                        "sha1": "1124537fbe79f856d104e8d3c8280b978cdfe18a",
-                        "md5": "4574fd9db866a555e8c9733ca3e27788"
-                    },
-                    "required_dependencies": [
-                        "1218165"
-                    ],
-                    "size": 18152787,
-                    "date_published": "2026-04-19T05:15:19.500Z"
-                }
-            ]
-        },
-        {
             "pakku_id": "uj5WnABpMHbkneSV",
             "pakku_links": [
-                "kIDWTkw0FWvAoMbu",
-                "K4aQ8Ew3R3LgRaN5"
+                "K4aQ8Ew3R3LgRaN5",
+                "Tjr9kFwS6a4UAYGL"
             ],
             "type": "MOD",
             "slug": {
@@ -3129,7 +3156,12 @@
             ]
         },
         {
-            "pakku_id": "kIDWTkw0FWvAoMbu",
+            "pakku_id": "Tjr9kFwS6a4UAYGL",
+            "pakku_links": [
+                "yFbjNSI0aOUwmjRH",
+                "K4aQ8Ew3R3LgRaN5",
+                "FeDSKrDKzUaT602C"
+            ],
             "type": "MOD",
             "slug": {
                 "curseforge": "superb-warfare"
@@ -3140,11 +3172,10 @@
             "id": {
                 "curseforge": "1218165"
             },
-            "update_strategy": "NONE",
             "files": [
                 {
                     "type": "curseforge",
-                    "file_name": "superbwarfare-1.20.1-0.8.8-final-6a6b54795.jar",
+                    "file_name": "superbwarfare-0.8.9-final-mc1.20.1-6effe4385-all.jar",
                     "mc_versions": [
                         "1.20.1"
                     ],
@@ -3152,19 +3183,20 @@
                         "forge"
                     ],
                     "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/7292/685/superbwarfare-1.20.1-0.8.8-final-6a6b54795.jar",
-                    "id": "7292685",
+                    "url": "https://edge.forgecdn.net/files/8104/849/superbwarfare-0.8.9-final-mc1.20.1-6effe4385-all.jar",
+                    "id": "8104849",
                     "parent_id": "1218165",
                     "hashes": {
-                        "sha1": "93e14d39c3328b88eb54e6018e5f2f88f32cdb73",
-                        "md5": "b6726823c0e411c177e4702d1f725212"
+                        "sha1": "3869bd1b156a8eb4db3e1b655ca4705f77be2558",
+                        "md5": "70c62bf783b79270ace5c32e6fb344cb"
                     },
                     "required_dependencies": [
                         "309927",
-                        "388172"
+                        "388172",
+                        "351264"
                     ],
-                    "size": 25670356,
-                    "date_published": "2025-12-04T06:32:44.590Z"
+                    "size": 31691008,
+                    "date_published": "2026-05-17T17:25:13.197Z"
                 }
             ]
         },
@@ -3216,11 +3248,10 @@
             "id": {
                 "curseforge": "1346094"
             },
-            "update_strategy": "NONE",
             "files": [
                 {
                     "type": "curseforge",
-                    "file_name": "dragonrise_reforge-1.3.0.jar",
+                    "file_name": "[SBW089]dragonrise_reforge-1.4.1.01-hotfix1.jar",
                     "mc_versions": [
                         "1.20.1"
                     ],
@@ -3228,58 +3259,16 @@
                         "forge"
                     ],
                     "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/7872/131/dragonrise_reforge-1.3.0.jar",
-                    "id": "7872131",
+                    "url": "https://edge.forgecdn.net/files/8131/704/[SBW089]dragonrise_reforge-1.4.1.01-hotfix1.jar",
+                    "id": "8131704",
                     "parent_id": "1346094",
                     "hashes": {
-                        "sha1": "e4be34a301d8476df97481121afadacead0a70f1",
-                        "md5": "13c82bc2f5fb741e6e3674e0ccb2dc13"
+                        "sha1": "e01a566e71b7fe08b11aed63c6fa4d4a6bde090d",
+                        "md5": "432980384f478cbd7e97945678b57aae"
                     },
                     "required_dependencies": [],
-                    "size": 64397345,
-                    "date_published": "2026-04-04T09:49:58.577Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "MSqEteszYj5AWz5e",
-            "pakku_links": [
-                "kIDWTkw0FWvAoMbu"
-            ],
-            "type": "MOD",
-            "slug": {
-                "curseforge": "sbw-halovehicles"
-            },
-            "name": {
-                "curseforge": "[SBW]HaloVehicles"
-            },
-            "id": {
-                "curseforge": "1460326"
-            },
-            "update_strategy": "NONE",
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "halovecs-1.20.1-3.2.7.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/7750/568/halovecs-1.20.1-3.2.7.jar",
-                    "id": "7750568",
-                    "parent_id": "1460326",
-                    "hashes": {
-                        "sha1": "8292e9adeeada735d64e34e7d637a3fa5fec5a12",
-                        "md5": "37a98111e22cb32642de8f205915eda5"
-                    },
-                    "required_dependencies": [
-                        "1218165"
-                    ],
-                    "size": 683393,
-                    "date_published": "2026-03-13T10:09:03.110Z"
+                    "size": 35287787,
+                    "date_published": "2026-05-23T07:37:18.157Z"
                 }
             ]
         },

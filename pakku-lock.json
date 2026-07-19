@@ -410,6 +410,43 @@
             ]
         },
         {
+            "pakku_id": "iyS7n3Nhc35HUSU4",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "brimm-armors-tactical-military-armors"
+            },
+            "name": {
+                "curseforge": "Brimm Armors | Tactical Military Armors"
+            },
+            "id": {
+                "curseforge": "1281654"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "brimm-2.0.3.jar",
+                    "mc_versions": [
+                        "1.20.1",
+                        "1.20"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/7476/385/brimm-2.0.3.jar",
+                    "id": "7476385",
+                    "parent_id": "1281654",
+                    "hashes": {
+                        "sha1": "1b598c180de3327a8bf8cfd4e7355fe2724fc214",
+                        "md5": "2f855b1dbbd4517bf043b57412dae2d5"
+                    },
+                    "required_dependencies": [],
+                    "size": 4503392,
+                    "date_published": "2026-01-17T17:32:43.487Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "Aoq7jWpL1IS7i4wI",
             "type": "MOD",
             "side": "BOTH",
@@ -604,7 +641,7 @@
             ]
         },
         {
-            "pakku_id": "aYUJYccQR3HI3pSu",
+            "pakku_id": "cNEpjcrQNr1Yvrd9",
             "type": "MOD",
             "side": "CLIENT",
             "slug": {
@@ -3196,43 +3233,6 @@
             ]
         },
         {
-            "pakku_id": "FFI80bn340wVmgyI",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "ww2-uniforms-renewed"
-            },
-            "name": {
-                "curseforge": "WW2 Uniforms | Renewed"
-            },
-            "id": {
-                "curseforge": "1492111"
-            },
-            "redistributable": false,
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "wwii_uniforms_mod-1.3.0-forge-1.20.1.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/8104/423/wwii_uniforms_mod-1.3.0-forge-1.20.1.jar",
-                    "id": "8104423",
-                    "parent_id": "1492111",
-                    "hashes": {
-                        "sha1": "6ec3f94371820d226808338097b4900f5197400a",
-                        "md5": "da0fee7234a24b743e1c35397112eaee"
-                    },
-                    "required_dependencies": [],
-                    "size": 1806381,
-                    "date_published": "2026-05-17T16:09:41.603Z"
-                }
-            ]
-        },
-        {
             "pakku_id": "bpp9Nlkf0wr7DsH9",
             "pakku_links": [
                 "lDL7VyNmSPLYGhl6"
@@ -3441,6 +3441,47 @@
                     ],
                     "size": 18695193,
                     "date_published": "2026-07-18T07:02:02.187Z"
+                }
+            ]
+        },
+        {
+            "pakku_id": "UH4QP70Hij6w3V1F",
+            "pakku_links": [
+                "Tjr9kFwS6a4UAYGL",
+                "iyS7n3Nhc35HUSU4"
+            ],
+            "type": "DATA_PACK",
+            "slug": {
+                "curseforge": "sbw-brimm-armors-compatibility"
+            },
+            "name": {
+                "curseforge": "[SBW] Brimm Armors  compatibility"
+            },
+            "id": {
+                "curseforge": "1365972"
+            },
+            "redistributable": false,
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "SBW Brimm Armors V1.zip",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/7111/144/SBW Brimm Armors V1.zip",
+                    "id": "7111144",
+                    "parent_id": "1365972",
+                    "hashes": {
+                        "sha1": "f82a745dc44332cd8e118eede3bc462ae74c4e66",
+                        "md5": "5650b4536c12c18443f993dcb57e3f58"
+                    },
+                    "required_dependencies": [
+                        "1218165",
+                        "1281654"
+                    ],
+                    "size": 26786,
+                    "date_published": "2025-10-15T20:47:46.320Z"
                 }
             ]
         },

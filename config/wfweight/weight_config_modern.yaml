@@ -358,6 +358,60 @@ rules:
     wfmedical:antirad_shot: 0.1
     wfmedical:morphine_syringe: 0.1
     wfmedical:naloxone_syringe: 0.1
+    # --- Brimm Armors: helmets (baseline 1.5kg, adjusted where the item's own
+    # flavor text or real-world equipment type gives a clear signal) ---
+    brimm:base_h: 1.5
+    brimm:assault_h: 1.5
+    brimm:gasmask_h: 2.0
+    brimm:medic_h: 1.5
+    brimm:concord_h: 1.8
+    brimm:infantry_h: 1.5
+    brimm:gpnvg_h: 2.0
+    brimm:ghost_h: 1.5
+    brimm:zch_h: 1.5
+    brimm:zabralo_h: 1.7
+    brimm:killa_h: 2.2
+    brimm:mk_ii_h: 1.5
+    brimm:saper_h: 1.5
+    brimm:veteran_h: 1.5
+    brimm:pmc_h: 1.5
+    brimm:nato_h: 1.5
+    brimm:six_b_four_seven_h: 1.5
+    brimm:six_b_four_seven_dark_h: 1.5
+    brimm:ratnik_h: 1.5
+    brimm:airframe_h: 1.0
+    brimm:tshfour_h: 0.8
+    brimm:tshfour_green_h: 0.8
+    brimm:press_h: 1.5
+    # --- Brimm Armors: plate carriers / body armor (baseline 10kg, adjusted
+    # for the same reason as helmets above) ---
+    brimm:nato: 10.0
+    brimm:nato_ii: 10.5
+    brimm:marine: 10.0
+    brimm:guard: 10.0
+    brimm:saper: 12.0
+    brimm:vanderer: 10.0
+    brimm:defender: 10.0
+    brimm:defender_ii: 10.5
+    brimm:defender_iii: 11.0
+    brimm:concord: 10.5
+    brimm:medic: 8.5
+    brimm:pmc: 11.0
+    brimm:assault: 10.5
+    brimm:horse: 13.0
+    brimm:spn: 10.0
+    brimm:atleti: 7.0
+    brimm:ratnik: 10.0
+    brimm:ratnik_advance: 10.5
+    brimm:veteran: 11.0
+    brimm:ghost: 9.0
+    brimm:nyyyaaaa: 5.0
+    brimm:press: 6.0
+    # --- Brimm Armors: insertable plates (not asked for explicitly, added
+    # since they're real carried inventory items too) ---
+    brimm:iron_plate: 3.0
+    brimm:diamond_plate: 3.5
+    brimm:nether_plate: 4.0
   wildcards: {
   superbwarfare:armor_plate: 20
     }

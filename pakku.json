@@ -20,6 +20,7 @@
             "update_strategy": "NONE"
         },
         "voxy": {
+            "side": "CLIENT",
             "update_strategy": "NONE"
         },
         "Ultimate-Weight": {
@@ -39,6 +40,54 @@
         },
         "accelerated-rendering": {
             "side": "CLIENT"
+        },
+        "cyanide": {
+            "side": "CLIENT"
+        },
+        "melody": {
+            "side": "CLIENT"
+        },
+        "mindful-darkness": {
+            "side": "CLIENT"
+        },
+        "configured": {
+            "side": "CLIENT"
+        },
+        "tacz-sound-overhaul": {
+            "side": "CLIENT"
+        },
+        "particle-core": {
+            "side": "CLIENT"
+        },
+        "searchables": {
+            "side": "CLIENT"
+        },
+        "borderless": {
+            "side": "CLIENT"
+        },
+        "sound-physics-remastered": {
+            "side": "CLIENT"
+        },
+        "fancymenu": {
+            "side": "CLIENT"
+        },
+        "minemenu": {
+            "side": "CLIENT"
+        },
+        "jei": {
+            "side": "CLIENT"
+        },
+        "embeddium": {
+            "side": "CLIENT"
+        },
+        "immediatelyfast": {
+            "side": "CLIENT"
+        },
+        "observable": {
+            "side": "SERVER"
+        },
+        "ldlib": {
+            "side": "BOTH"
         }
     }
 }

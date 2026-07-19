@@ -95,7 +95,7 @@ category = "LACERATION"
 major = true
 severityContribution = 0.8
 painPerSeverity = 0.6
-bleedingPerSeverity = 1.2
+bleedingPerSeverity = 0.8
 healSpeedPerTick = 0.0001
 canReopen = true
 permanent = false
@@ -148,7 +148,7 @@ category = "INTERNAL_BLEEDING"
 major = true
 severityContribution = 0.9
 painPerSeverity = 0.4
-bleedingPerSeverity = 2.0
+bleedingPerSeverity = 1.3
 healSpeedPerTick = 0.0
 canReopen = false
 permanent = true
@@ -165,7 +165,7 @@ category = "PUNCTURE"
 major = true
 severityContribution = 0.7
 painPerSeverity = 0.5
-bleedingPerSeverity = 0.9
+bleedingPerSeverity = 0.6
 healSpeedPerTick = 0.0002
 canReopen = true
 permanent = false
@@ -233,8 +233,8 @@ treatmentActions = ["TREAT_BURN", "HEAL_TRAUMA"]
 [[treatment]]
 item = "wfmedical:bandage"
 action = "REDUCE_BLEEDING"
-categories = ["LACERATION", "PUNCTURE"]
-magnitude = 0.5
+categories = ["LACERATION", "PUNCTURE", "INTERNAL_BLEEDING"]
+magnitude = 0.6
 bloodRestoreMl = 0.0
 useDurationTicks = 40
 removesTrauma = false
@@ -255,6 +255,19 @@ item = "wfmedical:suture_kit"
 action = "SUTURE_WOUND"
 categories = ["LACERATION", "PUNCTURE"]
 magnitude = 1.0
+bloodRestoreMl = 0.0
+useDurationTicks = 100
+removesTrauma = false
+
+# Suture kit (bleeding-reduction half of the same item): sutures were "closing" the wound but
+# doing nothing to actual blood loss, which read in-game as suturing not working at all. This
+# gives it a real REDUCE_BLEEDING effect, sitting between bandage (first response) and
+# tourniquet (strongest, limb-only) in the treatment progression.
+[[treatment]]
+item = "wfmedical:suture_kit"
+action = "REDUCE_BLEEDING"
+categories = ["LACERATION", "PUNCTURE", "INTERNAL_BLEEDING"]
+magnitude = 0.75
 bloodRestoreMl = 0.0
 useDurationTicks = 100
 removesTrauma = false

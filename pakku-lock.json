@@ -8,6 +8,42 @@
     },
     "projects": [
         {
+            "pakku_id": "ypJYHHFsq1fBtFR0",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "adm-anticheat"
+            },
+            "name": {
+                "curseforge": "ADM Anticheat"
+            },
+            "id": {
+                "curseforge": "1272330"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "admanticheat-1.9.3-RELEASE.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/7185/307/admanticheat-1.9.3-RELEASE.jar",
+                    "id": "7185307",
+                    "parent_id": "1272330",
+                    "hashes": {
+                        "sha1": "a4767c788ae270f2641d33568c3ff0bd614e7f88",
+                        "md5": "fd2c97b06f7e9b554cacd6cd50d94308"
+                    },
+                    "required_dependencies": [],
+                    "size": 484230,
+                    "date_published": "2025-11-04T12:23:36.473Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "lJTZEtyLQH7SYsv0",
             "type": "MOD",
             "slug": {
@@ -310,6 +346,7 @@
         {
             "pakku_id": "NeB9ZR2SpnUOjOmT",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "borderless"
             },
@@ -454,6 +491,7 @@
         {
             "pakku_id": "eu6UD6050YIsNgWS",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "configured"
             },
@@ -562,6 +600,45 @@
                     "required_dependencies": [],
                     "size": 10052,
                     "date_published": "2023-06-24T16:15:56.900Z"
+                }
+            ]
+        },
+        {
+            "pakku_id": "aYUJYccQR3HI3pSu",
+            "type": "MOD",
+            "side": "CLIENT",
+            "slug": {
+                "modrinth": "controlling"
+            },
+            "name": {
+                "modrinth": "Controlling"
+            },
+            "id": {
+                "modrinth": "xv94TkTM"
+            },
+            "files": [
+                {
+                    "type": "modrinth",
+                    "file_name": "Controlling-forge-1.20.1-12.0.2.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://cdn.modrinth.com/data/xv94TkTM/versions/LH6Bi6Am/Controlling-forge-1.20.1-12.0.2.jar",
+                    "id": "LH6Bi6Am",
+                    "parent_id": "xv94TkTM",
+                    "hashes": {
+                        "sha512": "3945bf3f6d843957f13584dfc70bede253d1e48f0dcb96f647fbcc6fcd3d1748a0dd9c6ca5c882e07a41f98eb84057934f51e43ab6023ed0a19695de2e6fe9f5",
+                        "sha1": "6195a3d1464f8fb641d7e165163aea1a857ce08e"
+                    },
+                    "required_dependencies": [
+                        "fuuu3xnx"
+                    ],
+                    "size": 115280,
+                    "date_published": "2023-07-16T04:39:30.644589Z"
                 }
             ]
         },
@@ -716,6 +793,7 @@
         {
             "pakku_id": "BQKkJnOiAqNVvYwH",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "cyanide"
             },
@@ -753,6 +831,7 @@
         {
             "pakku_id": "ru0JssBCRDKjONHD",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "embeddium"
             },
@@ -1207,6 +1286,7 @@
         {
             "pakku_id": "5bMPBk5tcDOCIiEQ",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "fancymenu"
             },
@@ -1581,6 +1661,7 @@
         {
             "pakku_id": "qUyRJs2hLVn31PQj",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "immediatelyfast"
             },
@@ -1695,6 +1776,7 @@
         {
             "pakku_id": "m7RYDZlBDObtvyVr",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "jei"
             },
@@ -1848,7 +1930,7 @@
         {
             "pakku_id": "8vmmrFRVrXiYZgRe",
             "type": "MOD",
-            "side": "CLIENT",
+            "side": "BOTH",
             "slug": {
                 "curseforge": "ldlib"
             },
@@ -1994,6 +2076,7 @@
         {
             "pakku_id": "0fspdPbfqkjTuSO5",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "melody"
             },
@@ -2036,6 +2119,7 @@
                 "fOHxlXfHijzTqOnX"
             ],
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "mindful-darkness"
             },
@@ -2074,6 +2158,7 @@
         {
             "pakku_id": "WJ6lnCeK4lzAj8m4",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "minemenu"
             },
@@ -2225,6 +2310,7 @@
                 "tWX4IxZsaoQjwm2f"
             ],
             "type": "MOD",
+            "side": "SERVER",
             "slug": {
                 "curseforge": "observable"
             },
@@ -2305,6 +2391,7 @@
                 "8FKIacURzh25i6RC"
             ],
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "particle-core"
             },
@@ -2570,6 +2657,7 @@
         {
             "pakku_id": "88f0nbmV1fcM6fY0",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "searchables"
             },
@@ -2747,6 +2835,7 @@
         {
             "pakku_id": "1XJoydNnNrV3W8Md",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "sound-physics-remastered"
             },
@@ -2823,6 +2912,7 @@
                 "tCGWZOFM1bXN8Z6z"
             ],
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "tacz-sound-overhaul"
             },
@@ -3713,6 +3803,7 @@
         {
             "pakku_id": "voxyBoxyCompat01",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "github": "TheVirtualizedG/voxy"
             },

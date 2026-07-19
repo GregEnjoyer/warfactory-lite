@@ -20,7 +20,7 @@
 	painShockThreshold = 0.6
 	#Fraction of total blood volume that, once LOST, kills the player outright (bleeding out totally). Default 0.40 = losing more than 40% of your blood is instantly fatal.
 	#Range: 0.05 ~ 1.0
-	bloodDeathLossFraction = 0.4
+	bloodDeathLossFraction = 0.55
 	#Fraction of total blood volume LOST at which blood loss starts contributing to the unconsciousness score. Between this and bloodDeathLossFraction (default 30%-40% loss) blood loss ramps that score from 0 to 1; combined with pain it can knock the player out.
 	#Range: 0.0 ~ 1.0
 	bloodUnconsciousLossFraction = 0.3
@@ -144,7 +144,7 @@
 		majorTraumaFractionDefault = 1.0
 		#Firearms/bullets -- a full healthy bar's worth of bullet in one hit kills outright.
 		#Range: 0.1 ~ 100.0
-		majorTraumaFractionBallistic = 0.9
+		majorTraumaFractionBallistic = 1.5
 		#Blasts.
 		#Range: 0.1 ~ 100.0
 		majorTraumaFractionExplosion = 0.9
@@ -203,6 +203,9 @@
 	#Ticks a pain-driven knockout is delayed by adrenaline once pain reaches knockout level (20 ticks = 1 second). If pain drops below that level within the window, adrenaline recharges and the timer resets. Default 120 (6 seconds).
 	#Range: 0 ~ 12000
 	adrenalinePainKoDelayTicks = 120
+	#Chance (0..1) that removing a tourniquet recovers it back into the remover's inventory. On success the tourniquet item is returned (dropped at their feet if there is no room); on failure it is lost. Default 0.60.
+	#Range: 0.0 ~ 1.0
+	tourniquetRecoveryChance = 0.6
 
 [hitlocation]
 	#Master switch. If true, incoming hits are mapped to a limb by projecting the reconstructed hit position onto the victim's body geometry (deterministic). Off -> legacy weighted random sampler everywhere.
@@ -338,4 +341,30 @@
 	#Penetration resistance of a LEG.
 	#Range: 0.0 ~ 10.0
 	penetrationResistLeg = 0.4
+
+[unconsciousness]
+	#Short 'adrenaline-style' grace (ticks) the player stays conscious, resisting, before a DRUG blackout takes hold (20 ticks = 1 second); also ADDED on top of the asphyxia struggle window before passing out. Much shorter than the pain adrenaline delay. Once this grace is running the temporary blackout is SEALED – an antidote no longer PREVENTS it (it only strips the drug/buffs, prevents death, and speeds the wake-up roll). Surfacing still ends a drowning episode during the conscious struggle. 0 = black out immediately. Default 30 (1.5 seconds).
+	#Range: 0 ~ 12000
+	blackoutGraceTicks = 30
+	#Probability (0..1) PER physiology recompute that an unconscious player WAKES UP, rolled only once their wakeup score has dropped to wakeupScoreThreshold or below. Higher = they come to sooner (at the default 10-tick update interval, 0.15 averages ~3-4 seconds once eligible). Default 0.15.
+	#Range: 0.0 ~ 1.0
+	wakeChance = 0.15
+	#An unconscious player may only START rolling wakeChance once their WAKEUP SCORE is at or below this. The score is a weighted sum of how bad their blood loss, pain, drug load and active bleeding still are (each normalised 0..1, then multiplied by its weight below); low = stabilised. Injuries need not fully stop, just be low. A single fully-KO-grade factor (weight 1) sits at 1.0, so the default 0.5 requires the causes to be well eased. Default 0.5.
+	#Range: 0.0 ~ 40.0
+	wakeupScoreThreshold = 0.5
+	#Weight of BLOOD LOSS in the wakeup score (blood lost / bloodUnconsciousLossFraction, clamped 0..1 -> 1.0 at the pass-out loss). Higher = heavy blood loss keeps the player down longer; this is what stops a still-bleeding-out player from waking. Default 1.0.
+	#Range: 0.0 ~ 20.0
+	wakeupBloodWeight = 1.0
+	#Weight of systemic PAIN in the wakeup score (0 below painShockThreshold, 1.0 at painUnconsciousThreshold). Default 1.0.
+	#Range: 0.0 ~ 20.0
+	wakeupPainWeight = 1.0
+	#Weight of DRUG LOAD in the wakeup score (load / overdoseLethalThreshold, clamped 0..1). Keeps an overdosed player under until the drug wears down. Default 1.0.
+	#Range: 0.0 ~ 20.0
+	wakeupDrugWeight = 1.0
+	#Weight of ACTIVE BLEEDING RATE in the wakeup score (rate / wakeupBleedReference, clamped 0..1). Distinct from blood-loss: a player barely bled yet but haemorrhaging fast should not wake. Default 1.0.
+	#Range: 0.0 ~ 20.0
+	wakeupBleedWeight = 1.0
+	#Bleeding rate (ml/tick) treated as a 'full' (1.0) bleed contribution to the wakeup score; the actual aggregate bleeding is divided by this and clamped to 1. Lower = even light bleeding keeps the player down. Default 2.0.
+	#Range: 0.01 ~ 1000.0
+	wakeupBleedReference = 2.0
 

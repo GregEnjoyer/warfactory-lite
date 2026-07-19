@@ -2,7 +2,6 @@
  
 WorldgenEvents.remove(event => {
     event.removeFeatureById('underground_ores', [
-        'mm_armor:ilmenite_ore',
     'superbwarfare:deepslate_galena_ore',
     'superbwarfare:galena_ore',
     'superbwarfare:deepslate_scheelite_ore',

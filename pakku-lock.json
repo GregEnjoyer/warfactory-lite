@@ -344,6 +344,43 @@
             ]
         },
         {
+            "pakku_id": "QQUYHYhIHPqijiM4",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "asyncparticles"
+            },
+            "name": {
+                "curseforge": "AsyncParticles"
+            },
+            "id": {
+                "curseforge": "1215753"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "AsyncParticles-20.1.2.0+1.20.1.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "fabric",
+                        "forge"
+                    ],
+                    "release_type": "beta",
+                    "url": "https://edge.forgecdn.net/files/8426/84/AsyncParticles-20.1.2.0+1.20.1.jar",
+                    "id": "8426084",
+                    "parent_id": "1215753",
+                    "hashes": {
+                        "sha1": "f604ab62b29552c90e0d9758593582efcf01c5c8",
+                        "md5": "14fc3357634bb176dcbc318117111671"
+                    },
+                    "required_dependencies": [],
+                    "size": 1933915,
+                    "date_published": "2026-07-13T17:42:15.587Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "NeB9ZR2SpnUOjOmT",
             "type": "MOD",
             "side": "CLIENT",
@@ -3805,43 +3842,6 @@
                     ],
                     "size": 11711774,
                     "date_published": "2026-06-08T12:49:53.660Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "gUNC8As4ZdvNefG2",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "playeranimator"
-            },
-            "name": {
-                "curseforge": "playerAnimator"
-            },
-            "id": {
-                "curseforge": "658587"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "player-animation-lib-forge-1.0.2-rc1+1.20.jar",
-                    "mc_versions": [
-                        "1.20.1",
-                        "1.20"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "beta",
-                    "url": "https://edge.forgecdn.net/files/4587/214/player-animation-lib-forge-1.0.2-rc1+1.20.jar",
-                    "id": "4587214",
-                    "parent_id": "658587",
-                    "hashes": {
-                        "sha1": "16808f94a41d45d8e986b4e4ea6b02ba57fa058a",
-                        "md5": "46f8554181d4d240075ea4919d01fd01"
-                    },
-                    "required_dependencies": [],
-                    "size": 181437,
-                    "date_published": "2023-06-14T20:01:58.627Z"
                 }
             ]
         },

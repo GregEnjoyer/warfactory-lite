@@ -3322,9 +3322,6 @@
                     "url": "https://github.com/Warfactory-Official/Warfctory-Modern-Core/releases/download/latest/wfcore-1.0.0.jar",
                     "id": "481042762",
                     "parent_id": "1205218751",
-                    "hashes": {
-                        "sha256": "7f2dd96bd1b5b4e65b029b21e950d8e1f59a8b271e984576af414fc4482890d7"
-                    },
                     "size": 4877728,
                     "date_published": "2026-07-18T02:17:59Z"
                 }
@@ -3526,6 +3523,47 @@
                     ],
                     "size": 8792819,
                     "date_published": "2026-07-08T13:01:45.737Z"
+                }
+            ]
+        },
+        {
+            "pakku_id": "dB3PUhEva74Zyyl8",
+            "pakku_links": [
+                "Tjr9kFwS6a4UAYGL"
+            ],
+            "type": "MOD",
+            "slug": {
+                "curseforge": "sbw-komodo-rendering-accelerator"
+            },
+            "name": {
+                "curseforge": "[SBW] Komodo rendering accelerator"
+            },
+            "id": {
+                "curseforge": "1616090"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "komodo-1.20.1-Forge-1.1.0.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "beta",
+                    "url": "https://edge.forgecdn.net/files/8467/350/komodo-1.20.1-Forge-1.1.0.jar",
+                    "id": "8467350",
+                    "parent_id": "1616090",
+                    "hashes": {
+                        "sha1": "89f6a102d3a0226a6f7279e2450101238547f6f8",
+                        "md5": "c1621298b898f23db3bd828a9eccad3f"
+                    },
+                    "required_dependencies": [
+                        "1218165"
+                    ],
+                    "size": 869086,
+                    "date_published": "2026-07-19T20:45:05.517Z"
                 }
             ]
         },

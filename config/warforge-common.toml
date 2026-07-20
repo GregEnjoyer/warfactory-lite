@@ -45,6 +45,19 @@
 	#Can players mount entities Unclaimed Chunks
 	"Unclaimed - Allow Mount Entity" = true
 
+	[Unclaimed.MineTime]
+		#If enabled, breaking a block this profile would normally block is slowed down rather than cancelled in Unclaimed Chunks. Whitelisted per-block values below still apply even when this is false.
+		"Unclaimed - MineTime Enabled" = false
+		#Default slow-down mode: MULTIPLIER (break time = natural time x value) or FIXED (break time = value seconds).
+		"Unclaimed - MineTime Default Mode" = "MULTIPLIER"
+		#Default value for the chosen mode: a time multiplier for MULTIPLIER, or a break time in seconds for FIXED.
+		#Range: 0.0 ~ 100000.0
+		"Unclaimed - MineTime Default Value" = 5.0
+		#Blocks that MineTime always slows in this profile (even when disabled above), optionally with a per-entry override. Each entry is a pattern, optionally followed by '=' and a value spec. Patterns: exact id ('gregtech:steam_macerator'), '*' globs ('gregtech:*', 'minecraft:*_ore') or block tags ('#forge:ores'). Value specs: 'x10' or '10' = 10x time, '30s' = fixed 30 seconds; omit to use the default mode/value. Example: 'gregtech:*=x20' slows every GregTech block to 20x break time.
+		"Unclaimed - MineTime Whitelist" = []
+		#Blocks excluded from MineTime in this profile (they keep full, uncancellable protection when the system is enabled). Same pattern syntax as the whitelist; no value spec. Whitelist entries win over the blacklist.
+		"Unclaimed - MineTime Blacklist" = []
+
 [SafeZone]
 	#Can players break blocks in Safe Zone
 	"SafeZone - Break Blocks" = false
@@ -90,6 +103,19 @@
 	"SafeZone - Allow Dismount Entity" = false
 	#Can players mount entities Safe Zone
 	"SafeZone - Allow Mount Entity" = false
+
+	[SafeZone.MineTime]
+		#If enabled, breaking a block this profile would normally block is slowed down rather than cancelled in Safe Zone. Whitelisted per-block values below still apply even when this is false.
+		"SafeZone - MineTime Enabled" = false
+		#Default slow-down mode: MULTIPLIER (break time = natural time x value) or FIXED (break time = value seconds).
+		"SafeZone - MineTime Default Mode" = "MULTIPLIER"
+		#Default value for the chosen mode: a time multiplier for MULTIPLIER, or a break time in seconds for FIXED.
+		#Range: 0.0 ~ 100000.0
+		"SafeZone - MineTime Default Value" = 5.0
+		#Blocks that MineTime always slows in this profile (even when disabled above), optionally with a per-entry override. Each entry is a pattern, optionally followed by '=' and a value spec. Patterns: exact id ('gregtech:steam_macerator'), '*' globs ('gregtech:*', 'minecraft:*_ore') or block tags ('#forge:ores'). Value specs: 'x10' or '10' = 10x time, '30s' = fixed 30 seconds; omit to use the default mode/value. Example: 'gregtech:*=x20' slows every GregTech block to 20x break time.
+		"SafeZone - MineTime Whitelist" = []
+		#Blocks excluded from MineTime in this profile (they keep full, uncancellable protection when the system is enabled). Same pattern syntax as the whitelist; no value spec. Whitelist entries win over the blacklist.
+		"SafeZone - MineTime Blacklist" = []
 
 [WarZone]
 	#Can players break blocks in War Zone
@@ -137,6 +163,19 @@
 	#Can players mount entities War Zone
 	"WarZone - Allow Mount Entity" = true
 
+	[WarZone.MineTime]
+		#If enabled, breaking a block this profile would normally block is slowed down rather than cancelled in War Zone. Whitelisted per-block values below still apply even when this is false.
+		"WarZone - MineTime Enabled" = false
+		#Default slow-down mode: MULTIPLIER (break time = natural time x value) or FIXED (break time = value seconds).
+		"WarZone - MineTime Default Mode" = "MULTIPLIER"
+		#Default value for the chosen mode: a time multiplier for MULTIPLIER, or a break time in seconds for FIXED.
+		#Range: 0.0 ~ 100000.0
+		"WarZone - MineTime Default Value" = 5.0
+		#Blocks that MineTime always slows in this profile (even when disabled above), optionally with a per-entry override. Each entry is a pattern, optionally followed by '=' and a value spec. Patterns: exact id ('gregtech:steam_macerator'), '*' globs ('gregtech:*', 'minecraft:*_ore') or block tags ('#forge:ores'). Value specs: 'x10' or '10' = 10x time, '30s' = fixed 30 seconds; omit to use the default mode/value. Example: 'gregtech:*=x20' slows every GregTech block to 20x break time.
+		"WarZone - MineTime Whitelist" = []
+		#Blocks excluded from MineTime in this profile (they keep full, uncancellable protection when the system is enabled). Same pattern syntax as the whitelist; no value spec. Whitelist entries win over the blacklist.
+		"WarZone - MineTime Blacklist" = []
+
 [CitadelFriend]
 	#Can players break blocks in Citadels of their Faction
 	"CitadelFriend - Break Blocks" = true
@@ -182,6 +221,19 @@
 	"CitadelFriend - Allow Dismount Entity" = true
 	#Can players mount entities Citadels of their Faction
 	"CitadelFriend - Allow Mount Entity" = true
+
+	[CitadelFriend.MineTime]
+		#If enabled, breaking a block this profile would normally block is slowed down rather than cancelled in Citadels of their Faction. Whitelisted per-block values below still apply even when this is false.
+		"CitadelFriend - MineTime Enabled" = false
+		#Default slow-down mode: MULTIPLIER (break time = natural time x value) or FIXED (break time = value seconds).
+		"CitadelFriend - MineTime Default Mode" = "MULTIPLIER"
+		#Default value for the chosen mode: a time multiplier for MULTIPLIER, or a break time in seconds for FIXED.
+		#Range: 0.0 ~ 100000.0
+		"CitadelFriend - MineTime Default Value" = 5.0
+		#Blocks that MineTime always slows in this profile (even when disabled above), optionally with a per-entry override. Each entry is a pattern, optionally followed by '=' and a value spec. Patterns: exact id ('gregtech:steam_macerator'), '*' globs ('gregtech:*', 'minecraft:*_ore') or block tags ('#forge:ores'). Value specs: 'x10' or '10' = 10x time, '30s' = fixed 30 seconds; omit to use the default mode/value. Example: 'gregtech:*=x20' slows every GregTech block to 20x break time.
+		"CitadelFriend - MineTime Whitelist" = []
+		#Blocks excluded from MineTime in this profile (they keep full, uncancellable protection when the system is enabled). Same pattern syntax as the whitelist; no value spec. Whitelist entries win over the blacklist.
+		"CitadelFriend - MineTime Blacklist" = []
 
 [CitadelFoe]
 	#Can players break blocks in Citadels of other Factions
@@ -229,6 +281,19 @@
 	#Can players mount entities Citadels of other Factions
 	"CitadelFoe - Allow Mount Entity" = false
 
+	[CitadelFoe.MineTime]
+		#If enabled, breaking a block this profile would normally block is slowed down rather than cancelled in Citadels of other Factions. Whitelisted per-block values below still apply even when this is false.
+		"CitadelFoe - MineTime Enabled" = false
+		#Default slow-down mode: MULTIPLIER (break time = natural time x value) or FIXED (break time = value seconds).
+		"CitadelFoe - MineTime Default Mode" = "MULTIPLIER"
+		#Default value for the chosen mode: a time multiplier for MULTIPLIER, or a break time in seconds for FIXED.
+		#Range: 0.0 ~ 100000.0
+		"CitadelFoe - MineTime Default Value" = 5.0
+		#Blocks that MineTime always slows in this profile (even when disabled above), optionally with a per-entry override. Each entry is a pattern, optionally followed by '=' and a value spec. Patterns: exact id ('gregtech:steam_macerator'), '*' globs ('gregtech:*', 'minecraft:*_ore') or block tags ('#forge:ores'). Value specs: 'x10' or '10' = 10x time, '30s' = fixed 30 seconds; omit to use the default mode/value. Example: 'gregtech:*=x20' slows every GregTech block to 20x break time.
+		"CitadelFoe - MineTime Whitelist" = []
+		#Blocks excluded from MineTime in this profile (they keep full, uncancellable protection when the system is enabled). Same pattern syntax as the whitelist; no value spec. Whitelist entries win over the blacklist.
+		"CitadelFoe - MineTime Blacklist" = []
+
 [ClaimFriend]
 	#Can players break blocks in Claims of their Faction
 	"ClaimFriend - Break Blocks" = true
@@ -274,6 +339,19 @@
 	"ClaimFriend - Allow Dismount Entity" = true
 	#Can players mount entities Claims of their Faction
 	"ClaimFriend - Allow Mount Entity" = true
+
+	[ClaimFriend.MineTime]
+		#If enabled, breaking a block this profile would normally block is slowed down rather than cancelled in Claims of their Faction. Whitelisted per-block values below still apply even when this is false.
+		"ClaimFriend - MineTime Enabled" = false
+		#Default slow-down mode: MULTIPLIER (break time = natural time x value) or FIXED (break time = value seconds).
+		"ClaimFriend - MineTime Default Mode" = "MULTIPLIER"
+		#Default value for the chosen mode: a time multiplier for MULTIPLIER, or a break time in seconds for FIXED.
+		#Range: 0.0 ~ 100000.0
+		"ClaimFriend - MineTime Default Value" = 5.0
+		#Blocks that MineTime always slows in this profile (even when disabled above), optionally with a per-entry override. Each entry is a pattern, optionally followed by '=' and a value spec. Patterns: exact id ('gregtech:steam_macerator'), '*' globs ('gregtech:*', 'minecraft:*_ore') or block tags ('#forge:ores'). Value specs: 'x10' or '10' = 10x time, '30s' = fixed 30 seconds; omit to use the default mode/value. Example: 'gregtech:*=x20' slows every GregTech block to 20x break time.
+		"ClaimFriend - MineTime Whitelist" = []
+		#Blocks excluded from MineTime in this profile (they keep full, uncancellable protection when the system is enabled). Same pattern syntax as the whitelist; no value spec. Whitelist entries win over the blacklist.
+		"ClaimFriend - MineTime Blacklist" = []
 
 [ClaimAlly]
 	#Can players break blocks in Claims of allied Factions (only applies when the owning faction enables ally interaction)
@@ -321,6 +399,19 @@
 	#Can players mount entities Claims of allied Factions (only applies when the owning faction enables ally interaction)
 	"ClaimAlly - Allow Mount Entity" = true
 
+	[ClaimAlly.MineTime]
+		#If enabled, breaking a block this profile would normally block is slowed down rather than cancelled in Claims of allied Factions (only applies when the owning faction enables ally interaction). Whitelisted per-block values below still apply even when this is false.
+		"ClaimAlly - MineTime Enabled" = false
+		#Default slow-down mode: MULTIPLIER (break time = natural time x value) or FIXED (break time = value seconds).
+		"ClaimAlly - MineTime Default Mode" = "MULTIPLIER"
+		#Default value for the chosen mode: a time multiplier for MULTIPLIER, or a break time in seconds for FIXED.
+		#Range: 0.0 ~ 100000.0
+		"ClaimAlly - MineTime Default Value" = 5.0
+		#Blocks that MineTime always slows in this profile (even when disabled above), optionally with a per-entry override. Each entry is a pattern, optionally followed by '=' and a value spec. Patterns: exact id ('gregtech:steam_macerator'), '*' globs ('gregtech:*', 'minecraft:*_ore') or block tags ('#forge:ores'). Value specs: 'x10' or '10' = 10x time, '30s' = fixed 30 seconds; omit to use the default mode/value. Example: 'gregtech:*=x20' slows every GregTech block to 20x break time.
+		"ClaimAlly - MineTime Whitelist" = []
+		#Blocks excluded from MineTime in this profile (they keep full, uncancellable protection when the system is enabled). Same pattern syntax as the whitelist; no value spec. Whitelist entries win over the blacklist.
+		"ClaimAlly - MineTime Blacklist" = []
+
 [ClaimFoe]
 	#Can players break blocks in Claims of other Factions
 	"ClaimFoe - Break Blocks" = false
@@ -366,6 +457,19 @@
 	"ClaimFoe - Allow Dismount Entity" = false
 	#Can players mount entities Claims of other Factions
 	"ClaimFoe - Allow Mount Entity" = false
+
+	[ClaimFoe.MineTime]
+		#If enabled, breaking a block this profile would normally block is slowed down rather than cancelled in Claims of other Factions. Whitelisted per-block values below still apply even when this is false.
+		"ClaimFoe - MineTime Enabled" = false
+		#Default slow-down mode: MULTIPLIER (break time = natural time x value) or FIXED (break time = value seconds).
+		"ClaimFoe - MineTime Default Mode" = "MULTIPLIER"
+		#Default value for the chosen mode: a time multiplier for MULTIPLIER, or a break time in seconds for FIXED.
+		#Range: 0.0 ~ 100000.0
+		"ClaimFoe - MineTime Default Value" = 5.0
+		#Blocks that MineTime always slows in this profile (even when disabled above), optionally with a per-entry override. Each entry is a pattern, optionally followed by '=' and a value spec. Patterns: exact id ('gregtech:steam_macerator'), '*' globs ('gregtech:*', 'minecraft:*_ore') or block tags ('#forge:ores'). Value specs: 'x10' or '10' = 10x time, '30s' = fixed 30 seconds; omit to use the default mode/value. Example: 'gregtech:*=x20' slows every GregTech block to 20x break time.
+		"ClaimFoe - MineTime Whitelist" = []
+		#Blocks excluded from MineTime in this profile (they keep full, uncancellable protection when the system is enabled). Same pattern syntax as the whitelist; no value spec. Whitelist entries win over the blacklist.
+		"ClaimFoe - MineTime Blacklist" = []
 
 [Sieger]
 	#Can players break blocks in [Deprecated] Sieges they started
@@ -413,6 +517,19 @@
 	#Can players mount entities [Deprecated] Sieges they started
 	"Sieger - Allow Mount Entity" = true
 
+	[Sieger.MineTime]
+		#If enabled, breaking a block this profile would normally block is slowed down rather than cancelled in [Deprecated] Sieges they started. Whitelisted per-block values below still apply even when this is false.
+		"Sieger - MineTime Enabled" = false
+		#Default slow-down mode: MULTIPLIER (break time = natural time x value) or FIXED (break time = value seconds).
+		"Sieger - MineTime Default Mode" = "MULTIPLIER"
+		#Default value for the chosen mode: a time multiplier for MULTIPLIER, or a break time in seconds for FIXED.
+		#Range: 0.0 ~ 100000.0
+		"Sieger - MineTime Default Value" = 5.0
+		#Blocks that MineTime always slows in this profile (even when disabled above), optionally with a per-entry override. Each entry is a pattern, optionally followed by '=' and a value spec. Patterns: exact id ('gregtech:steam_macerator'), '*' globs ('gregtech:*', 'minecraft:*_ore') or block tags ('#forge:ores'). Value specs: 'x10' or '10' = 10x time, '30s' = fixed 30 seconds; omit to use the default mode/value. Example: 'gregtech:*=x20' slows every GregTech block to 20x break time.
+		"Sieger - MineTime Whitelist" = []
+		#Blocks excluded from MineTime in this profile (they keep full, uncancellable protection when the system is enabled). Same pattern syntax as the whitelist; no value spec. Whitelist entries win over the blacklist.
+		"Sieger - MineTime Blacklist" = []
+
 [SiegeOther]
 	#Can players break blocks in [Deprecated] Other sieges, defending or neutral
 	"SiegeOther - Break Blocks" = true
@@ -458,6 +575,19 @@
 	"SiegeOther - Allow Dismount Entity" = true
 	#Can players mount entities [Deprecated] Other sieges, defending or neutral
 	"SiegeOther - Allow Mount Entity" = true
+
+	[SiegeOther.MineTime]
+		#If enabled, breaking a block this profile would normally block is slowed down rather than cancelled in [Deprecated] Other sieges, defending or neutral. Whitelisted per-block values below still apply even when this is false.
+		"SiegeOther - MineTime Enabled" = false
+		#Default slow-down mode: MULTIPLIER (break time = natural time x value) or FIXED (break time = value seconds).
+		"SiegeOther - MineTime Default Mode" = "MULTIPLIER"
+		#Default value for the chosen mode: a time multiplier for MULTIPLIER, or a break time in seconds for FIXED.
+		#Range: 0.0 ~ 100000.0
+		"SiegeOther - MineTime Default Value" = 5.0
+		#Blocks that MineTime always slows in this profile (even when disabled above), optionally with a per-entry override. Each entry is a pattern, optionally followed by '=' and a value spec. Patterns: exact id ('gregtech:steam_macerator'), '*' globs ('gregtech:*', 'minecraft:*_ore') or block tags ('#forge:ores'). Value specs: 'x10' or '10' = 10x time, '30s' = fixed 30 seconds; omit to use the default mode/value. Example: 'gregtech:*=x20' slows every GregTech block to 20x break time.
+		"SiegeOther - MineTime Whitelist" = []
+		#Blocks excluded from MineTime in this profile (they keep full, uncancellable protection when the system is enabled). Same pattern syntax as the whitelist; no value spec. Whitelist entries win over the blacklist.
+		"SiegeOther - MineTime Blacklist" = []
 
 [ClaimDefended]
 	#Can players break blocks in Claims of a faction under siege that are outside the War/Sieged zones
@@ -505,6 +635,19 @@
 	#Can players mount entities Claims of a faction under siege that are outside the War/Sieged zones
 	"ClaimDefended - Allow Mount Entity" = true
 
+	[ClaimDefended.MineTime]
+		#If enabled, breaking a block this profile would normally block is slowed down rather than cancelled in Claims of a faction under siege that are outside the War/Sieged zones. Whitelisted per-block values below still apply even when this is false.
+		"ClaimDefended - MineTime Enabled" = false
+		#Default slow-down mode: MULTIPLIER (break time = natural time x value) or FIXED (break time = value seconds).
+		"ClaimDefended - MineTime Default Mode" = "MULTIPLIER"
+		#Default value for the chosen mode: a time multiplier for MULTIPLIER, or a break time in seconds for FIXED.
+		#Range: 0.0 ~ 100000.0
+		"ClaimDefended - MineTime Default Value" = 5.0
+		#Blocks that MineTime always slows in this profile (even when disabled above), optionally with a per-entry override. Each entry is a pattern, optionally followed by '=' and a value spec. Patterns: exact id ('gregtech:steam_macerator'), '*' globs ('gregtech:*', 'minecraft:*_ore') or block tags ('#forge:ores'). Value specs: 'x10' or '10' = 10x time, '30s' = fixed 30 seconds; omit to use the default mode/value. Example: 'gregtech:*=x20' slows every GregTech block to 20x break time.
+		"ClaimDefended - MineTime Whitelist" = []
+		#Blocks excluded from MineTime in this profile (they keep full, uncancellable protection when the system is enabled). Same pattern syntax as the whitelist; no value spec. Whitelist entries win over the blacklist.
+		"ClaimDefended - MineTime Blacklist" = []
+
 [SiegedFriend]
 	#Can players break blocks in Inner sieged zone, member of the defending faction
 	"SiegedFriend - Break Blocks" = true
@@ -550,6 +693,19 @@
 	"SiegedFriend - Allow Dismount Entity" = true
 	#Can players mount entities Inner sieged zone, member of the defending faction
 	"SiegedFriend - Allow Mount Entity" = true
+
+	[SiegedFriend.MineTime]
+		#If enabled, breaking a block this profile would normally block is slowed down rather than cancelled in Inner sieged zone, member of the defending faction. Whitelisted per-block values below still apply even when this is false.
+		"SiegedFriend - MineTime Enabled" = false
+		#Default slow-down mode: MULTIPLIER (break time = natural time x value) or FIXED (break time = value seconds).
+		"SiegedFriend - MineTime Default Mode" = "MULTIPLIER"
+		#Default value for the chosen mode: a time multiplier for MULTIPLIER, or a break time in seconds for FIXED.
+		#Range: 0.0 ~ 100000.0
+		"SiegedFriend - MineTime Default Value" = 5.0
+		#Blocks that MineTime always slows in this profile (even when disabled above), optionally with a per-entry override. Each entry is a pattern, optionally followed by '=' and a value spec. Patterns: exact id ('gregtech:steam_macerator'), '*' globs ('gregtech:*', 'minecraft:*_ore') or block tags ('#forge:ores'). Value specs: 'x10' or '10' = 10x time, '30s' = fixed 30 seconds; omit to use the default mode/value. Example: 'gregtech:*=x20' slows every GregTech block to 20x break time.
+		"SiegedFriend - MineTime Whitelist" = []
+		#Blocks excluded from MineTime in this profile (they keep full, uncancellable protection when the system is enabled). Same pattern syntax as the whitelist; no value spec. Whitelist entries win over the blacklist.
+		"SiegedFriend - MineTime Blacklist" = []
 
 [SiegedFoe]
 	#Can players break blocks in Inner sieged zone, attacker or other faction (chunk protection disabled)
@@ -597,6 +753,19 @@
 	#Can players mount entities Inner sieged zone, attacker or other faction (chunk protection disabled)
 	"SiegedFoe - Allow Mount Entity" = true
 
+	[SiegedFoe.MineTime]
+		#If enabled, breaking a block this profile would normally block is slowed down rather than cancelled in Inner sieged zone, attacker or other faction (chunk protection disabled). Whitelisted per-block values below still apply even when this is false.
+		"SiegedFoe - MineTime Enabled" = false
+		#Default slow-down mode: MULTIPLIER (break time = natural time x value) or FIXED (break time = value seconds).
+		"SiegedFoe - MineTime Default Mode" = "MULTIPLIER"
+		#Default value for the chosen mode: a time multiplier for MULTIPLIER, or a break time in seconds for FIXED.
+		#Range: 0.0 ~ 100000.0
+		"SiegedFoe - MineTime Default Value" = 5.0
+		#Blocks that MineTime always slows in this profile (even when disabled above), optionally with a per-entry override. Each entry is a pattern, optionally followed by '=' and a value spec. Patterns: exact id ('gregtech:steam_macerator'), '*' globs ('gregtech:*', 'minecraft:*_ore') or block tags ('#forge:ores'). Value specs: 'x10' or '10' = 10x time, '30s' = fixed 30 seconds; omit to use the default mode/value. Example: 'gregtech:*=x20' slows every GregTech block to 20x break time.
+		"SiegedFoe - MineTime Whitelist" = []
+		#Blocks excluded from MineTime in this profile (they keep full, uncancellable protection when the system is enabled). Same pattern syntax as the whitelist; no value spec. Whitelist entries win over the blacklist.
+		"SiegedFoe - MineTime Blacklist" = []
+
 [WarFriend]
 	#Can players break blocks in Outer war zone, member of the defending faction
 	"WarFriend - Break Blocks" = true
@@ -643,6 +812,19 @@
 	#Can players mount entities Outer war zone, member of the defending faction
 	"WarFriend - Allow Mount Entity" = true
 
+	[WarFriend.MineTime]
+		#If enabled, breaking a block this profile would normally block is slowed down rather than cancelled in Outer war zone, member of the defending faction. Whitelisted per-block values below still apply even when this is false.
+		"WarFriend - MineTime Enabled" = false
+		#Default slow-down mode: MULTIPLIER (break time = natural time x value) or FIXED (break time = value seconds).
+		"WarFriend - MineTime Default Mode" = "MULTIPLIER"
+		#Default value for the chosen mode: a time multiplier for MULTIPLIER, or a break time in seconds for FIXED.
+		#Range: 0.0 ~ 100000.0
+		"WarFriend - MineTime Default Value" = 5.0
+		#Blocks that MineTime always slows in this profile (even when disabled above), optionally with a per-entry override. Each entry is a pattern, optionally followed by '=' and a value spec. Patterns: exact id ('gregtech:steam_macerator'), '*' globs ('gregtech:*', 'minecraft:*_ore') or block tags ('#forge:ores'). Value specs: 'x10' or '10' = 10x time, '30s' = fixed 30 seconds; omit to use the default mode/value. Example: 'gregtech:*=x20' slows every GregTech block to 20x break time.
+		"WarFriend - MineTime Whitelist" = []
+		#Blocks excluded from MineTime in this profile (they keep full, uncancellable protection when the system is enabled). Same pattern syntax as the whitelist; no value spec. Whitelist entries win over the blacklist.
+		"WarFriend - MineTime Blacklist" = []
+
 [WarFoe]
 	#Can players break blocks in Outer war zone, attacker or other faction (kills count, cannot break blocks)
 	"WarFoe - Break Blocks" = false
@@ -688,6 +870,19 @@
 	"WarFoe - Allow Dismount Entity" = true
 	#Can players mount entities Outer war zone, attacker or other faction (kills count, cannot break blocks)
 	"WarFoe - Allow Mount Entity" = true
+
+	[WarFoe.MineTime]
+		#If enabled, breaking a block this profile would normally block is slowed down rather than cancelled in Outer war zone, attacker or other faction (kills count, cannot break blocks). Whitelisted per-block values below still apply even when this is false.
+		"WarFoe - MineTime Enabled" = false
+		#Default slow-down mode: MULTIPLIER (break time = natural time x value) or FIXED (break time = value seconds).
+		"WarFoe - MineTime Default Mode" = "MULTIPLIER"
+		#Default value for the chosen mode: a time multiplier for MULTIPLIER, or a break time in seconds for FIXED.
+		#Range: 0.0 ~ 100000.0
+		"WarFoe - MineTime Default Value" = 5.0
+		#Blocks that MineTime always slows in this profile (even when disabled above), optionally with a per-entry override. Each entry is a pattern, optionally followed by '=' and a value spec. Patterns: exact id ('gregtech:steam_macerator'), '*' globs ('gregtech:*', 'minecraft:*_ore') or block tags ('#forge:ores'). Value specs: 'x10' or '10' = 10x time, '30s' = fixed 30 seconds; omit to use the default mode/value. Example: 'gregtech:*=x20' slows every GregTech block to 20x break time.
+		"WarFoe - MineTime Whitelist" = []
+		#Blocks excluded from MineTime in this profile (they keep full, uncancellable protection when the system is enabled). Same pattern syntax as the whitelist; no value spec. Whitelist entries win over the blacklist.
+		"WarFoe - MineTime Blacklist" = []
 
 [Claims]
 	#In which dimensions should player be able to claim chunks
@@ -745,19 +940,32 @@
 	"Available Default Flags" = ["white", "light_gray", "gray", "black", "red", "orange", "yellow", "lime", "green", "cyan", "light_blue", "blue", "purple", "magenta", "pink", "brown"]
 	#Custom server-side flags allowed from resources/warforge/flags. Use '*' to allow all validated custom flags or list exact ids without extension.
 	"Available Custom Flags" = ["*"]
-
-[MineTime]
-	#If enabled, breaking a block that territory protection would normally block is instead slowed down rather than cancelled. Whitelisted per-block values below still apply even when this is false.
-	"MineTime Enabled" = false
-	#Default slow-down mode: MULTIPLIER (break time = natural time x value) or FIXED (break time = value seconds).
-	"MineTime Default Mode" = "MULTIPLIER"
-	#Default value for the chosen mode: a time multiplier for MULTIPLIER, or a break time in seconds for FIXED.
-	#Range: 0.0 ~ 100000.0
-	"MineTime Default Value" = 5.0
-	#Blocks that MineTime always slows (even when disabled above), optionally with a per-entry override. Each entry is a pattern, optionally followed by '=' and a value spec. Patterns: exact id ('gregtech:steam_macerator'), '*' globs ('gregtech:*', 'minecraft:*_ore') or block tags ('#forge:ores'). Value specs: 'x10' or '10' = 10x time, '30s' = fixed 30 seconds; omit to use the default mode/value. Example: 'gregtech:*=x20' slows every GregTech block to 20x break time.
-	"MineTime Whitelist" = []
-	#Blocks excluded from MineTime (they keep full, uncancellable protection when the system is enabled). Same pattern syntax as the whitelist; no value spec. Whitelist entries win over the blacklist.
-	"MineTime Blacklist" = []
+	#Maximum number of forward operating bases (FOBs) a single faction may establish. Ignored when the citadel upgrade system is enabled; the per-level 'max_fobs' value from upgrade_levels.toml is used instead.
+	#Range: 0 ~ 1024
+	"Max FOBs Per Faction" = 3
+	#Maximum warp tickets a FOB can hold. Ignored when the citadel upgrade system is enabled; the per-level 'fob_ticket_limit' value from upgrade_levels.toml is used instead.
+	#Range: 0 ~ 1024
+	"FOB Ticket Limit" = 5
+	#Warp tickets restored to a FOB each time a siege timer resets. Ignored when the citadel upgrade system is enabled; the per-level 'fob_ticket_regen' value from upgrade_levels.toml is used instead.
+	#Range: 0 ~ 1024
+	"FOB Ticket Regen Per Siege Tick" = 1
+	#Number of ticks a player must wait before a FOB warp fires.
+	#Range: 0 ~ 1000000
+	"FOB Warp Ticks" = 200
+	#If true, the central FOB block can be mined (very slowly, at a fixed rate independent of tool tier); otherwise it is only removed programmatically.
+	"FOB Block Breakable" = false
+	#Buffer, in chunks, that must separate any new claim (including a founding citadel) from an active (faction-owned) FOB. A value of N forbids claiming within N chunks (square/Chebyshev radius) of any established FOB. This applies to everyone, including the FOB's own faction. Set to 0 to forbid only the exact FOB chunk.
+	#Range: 0 ~ 64
+	"FOB Claim Exclusion Radius" = 1
+	#Extra warp ticket cost per vehicle entity, in the form 'namespace:path=extraCost'. A warp with a vehicle costs 1 plus this value.
+	"FOB Vehicle Ticket Cost" = []
+	#Minimum gap, in chunks, that must separate a new claim from an opposing (non-allied) faction's claims. A value of N forbids claiming within N chunks (square radius) of an opposing faction; allied factions are exempt. Set to 0 to disable.
+	#Range: 0 ~ 64
+	"Minimum Distance Between Opposing Factions" = 1
+	#If true, liquids cannot flow from a chunk into a differently-claimed chunk (stops lavacast/water griefing across claim borders).
+	"Block Foreign Fluid Inflow" = true
+	#If true, pistons cannot push or pull blocks across a claim border into/out of a differently-claimed chunk.
+	"Block Foreign Piston Push" = true
 
 [Sieges]
 	#How much attack pressure a siege camp exerts on adjacent enemy claims
@@ -775,7 +983,7 @@
 	#The number of seconds a siege can be undefended before any action occurs. Setting to 0 results in checks being run every tick.
 	#Range: > 0
 	"Defender Desertion Timer [s]" = 300
-	#The number of milliseconds to permit placement within a chunk only by the faction who last won a siege on it. Setting to 0 results in no grace period.
+	#Milliseconds a chunk stays conquered no-man's-land after attackers win a siege on it: unclaimable by everyone and unprotected (free-build wilderness) until it reverts to normal wilderness. Setting to 0 makes won chunks immediately claimable.
 	#Range: > 0
 	"Attacker Conquered Chunk Grace Period [ms]" = 3600000
 	#The number of milliseconds to deny sieging or claiming in previously sieged chunk in which the siege was won by the defenders. Setting to 0 results in no grace period.
@@ -847,9 +1055,6 @@
 	#Cooldown between sieges, in minutes
 	#Range: 0 ~ 100000
 	"Cooldown between sieges after failure" = 30
-	#Cooldown between flag moves, in minutes
-	#Range: 0.0 ~ 100000.0
-	"Cooldown between Flag move" = 1.0
 	#How much the siege swings per attacker flag per day
 	#Range: 0 ~ 1024
 	"Siege Swing Per Attacker Flag" = 1
@@ -937,8 +1142,6 @@
 	#The time in milliseconds for which each member of a vein will be displayed when it is being cycled through, to the precision allowed by the client tick system.
 	#Range: > 100
 	"Vein Member Display Time" = 1000
-	#Enable modern warfare models, instead of medival more vanilla-friendly models
-	"Enable modern warfare models" = false
 	#What percent of the entire screen resolution from the top must certain displays (such as vein info) be before they stop rendering. Set to 0.0 to disable all relevant displays, or 1.0 to turn this off.
 	#Range: 0.0 ~ 1.0
 	"HUD Vertical cutoff" = 0.4000000059604645
@@ -994,6 +1197,8 @@
 	#How many ticks must the player stand still for a warp command to take effect
 	#Range: 0 ~ 6000
 	"Num Ticks for Warps" = 400
+	#If enabled, bed and respawn-anchor spawn points are disabled and players respawn in their faction citadel's chunk, at the citadel's Y level. Players not in a faction fall back to the world spawn.
+	"Respawn At Citadel" = false
 
 [Debug]
 	#DEBUG/diagnostic only. When enabled, logs every server-side setBlockState that lands inside a claimed chunk, together with the position, the owning claim, the block being placed and the calling code. Use this to identify mods that mutate protected terrain outside the explosion-event path (e.g. GregTech Industrial TNT, AE2 Tiny TNT). Very spammy - leave disabled in production.

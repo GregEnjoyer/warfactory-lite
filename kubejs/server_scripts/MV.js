@@ -94,14 +94,6 @@
         },
         {
             id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:16,GunFireMode:"AUTO",GunId:"tacz:spas_1",HasBulletInBarrel:1b}',
-            circuit: 11,
-            ingredients: [
-                Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
-        },
-
-        {
-            id: 'tacz:modern_kinetic_gun',
             nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"tacz:m1014",HasBulletInBarrel:1b}',
             circuit: 12,
             ingredients: [
@@ -163,35 +155,6 @@
         },
         {
             id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:16,GunFireMode:"AUTO",GunId:"tacz:scarh",HasBulletInBarrel:1b}',
-            circuit: 2,
-            ingredients: [
-                Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
-        },
-
-        {
-            id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"tacz:scarl",HasBulletInBarrel:1b}',
-            circuit: 21,
-            ingredients: [
-                Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
-        },
-        {
-            id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"tacz:hk416",HasBulletInBarrel:1b}',
-            circuit: 3,
-            ingredients: [
-                Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
-        },
-        {
-            id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"tacz:qbz_9",HasBulletInBarrel:1b}',
-            circuit: 4,
-            ingredients: [
-                Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
-        },
-        {
-            id: 'tacz:modern_kinetic_gun',
             nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"tacz:g36k",HasBulletInBarrel:1b}',
             circuit: 5,
             ingredients: [
@@ -199,99 +162,8 @@
         },
         {
             id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"tacz:qbz_1",HasBulletInBarrel:1b}',
-            circuit: 6,
-            ingredients: [
-                Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
-        },
-        {
-            id: 'tacz:modern_kinetic_gun',
             nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"tacz:m4a1",HasBulletInBarrel:1b}',
             circuit: 7,
-            ingredients: [
-                Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
-        },
-        {
-            id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"romc:lvar",HasBulletInBarrel:1b}',
-            circuit: 8,
-            ingredients: [
-                Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
-        },
-        {
-            id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"romc:g3a3",HasBulletInBarrel:1b}',
-            circuit: 9,
-            ingredients: [
-                Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
-        },
-        {
-            id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"romc:rtwc",HasBulletInBarrel:1b}',
-            circuit: 10,
-            ingredients: [
-                Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
-        },
-        {
-            id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"romc:m14",HasBulletInBarrel:1b}',
-            circuit: 11,
-            ingredients: [
-                Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
-        },
-        {
-            id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"romc:mk18",HasBulletInBarrel:1b}',
-            circuit: 12,
-            ingredients: [
-                Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
-        },
-        {
-            id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"romc:mk17",HasBulletInBarrel:1b}',
-            circuit: 13,
-            ingredients: [
-                Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
-        },
-        {
-            id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"romc:mk16",HasBulletInBarrel:1b}',
-            circuit: 14,
-            ingredients: [
-                Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
-        },
-        {
-            id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"romc:scarl",HasBulletInBarrel:1b}',
-            circuit: 16,
-            ingredients: [
-                Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
-        },
-        {
-            id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"tacz:scarl",HasBulletInBarrel:1b}',
-            circuit: 17,
-            ingredients: [
-                Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
-        },
-        {
-            id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"tacz:scarl",HasBulletInBarrel:1b}',
-            circuit: 18,
-            ingredients: [
-                Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
-        },
-        {
-            id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"tacz:scarl",HasBulletInBarrel:1b}',
-            circuit: 19,
-            ingredients: [
-                Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
-        },
-        {
-            id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"tacz:scarl",HasBulletInBarrel:1b}',
-            circuit: 20,
             ingredients: [
                 Item.of('gtceu:polyethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:small_steel_gear' ]
         },
@@ -313,13 +185,6 @@
             id: 'tacz:modern_kinetic_gun',
             nbt: '{GunCurrentAmmoCount:8,GunFireMode:"SEMI",GunId:"tacz:timeless50",HasBulletInBarrel:1b}',
             circuit: 1,
-            ingredients: [
-                Item.of('gtceu:polytetrafluoroethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:stainless_steel_gear' ]
-        },
-        {
-            id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:16,GunFireMode:"AUTO",GunId:"tacz:scarh",HasBulletInBarrel:1b}',
-            circuit: 2,
             ingredients: [
                 Item.of('gtceu:polytetrafluoroethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:stainless_steel_gear' ]
         },
@@ -379,14 +244,6 @@
             ingredients: [
                 Item.of('gtceu:polytetrafluoroethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:stainless_steel_gear' ]
         },
-        {
-            id: 'tacz:modern_kinetic_gun',
-            nbt: '{GunCurrentAmmoCount:8,GunFireMode:"SEMI",GunId:"ronmc:m45a1",HasBulletInBarrel:1b}',
-            circuit: 11,
-            ingredients: [
-                Item.of('gtceu:polytetrafluoroethylene_plate', 2),'kubejs:barrel_steel', 'gtceu:stainless_steel_gear' ]
-        },
-
     ];
 
     MODERNPISTOLS.forEach(gun => {
@@ -398,5 +255,123 @@
         .duration(20)
         .addCondition(WFResearch.condition('guns4heavy'))
         .EUt(4);
+    });
+
+    // =========================
+    // GUNS - progression brief implementation (warfactory-lite-gun-progression-notes.md)
+    // MV = Cold War era.
+    // =========================
+
+    // Cold War pistols
+    const coldWarPistols = [
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"tacz:b93r",HasBulletInBarrel:0b}', circuit: 1 },
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"tacz:lonetrail",HasBulletInBarrel:0b}', circuit: 2 },
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"tacz:taurus943",HasBulletInBarrel:0b}', circuit: 3 },
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"ronmc:357_magnum",HasBulletInBarrel:0b}', circuit: 4 },
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"ronmc:glock_18c",HasBulletInBarrel:0b}', circuit: 5 },
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"ronmc:glock_19",HasBulletInBarrel:0b}', circuit: 6 },
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"ronmc:mkv",HasBulletInBarrel:0b}', circuit: 7 },
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"ronmc:raider",HasBulletInBarrel:0b}', circuit: 8 },
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"ronmc:trpl",HasBulletInBarrel:0b}', circuit: 9 },
+    ];
+    coldWarPistols.forEach(g => {
+        event.remove({ output: Item.of('tacz:modern_kinetic_gun', g.nbt) });
+        event.recipes.gtceu.assembler(`cw_pistol_${g.circuit}`)
+        .itemInputs(
+            Item.of('gtceu:polyethylene_plate', 2),
+                    Item.of('gtceu:small_steel_gear', 1),
+                    'kubejs:barrel_steel'
+        )
+        .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, g.nbt))
+        .circuit(g.circuit)
+        .duration(20)
+        .EUt(4)
+        .addCondition(WFResearch.condition('guns2'));
+    });
+
+    // Cold War SMGs
+    const coldWarSmgs = [
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"tacz:hk_mp5a5",HasBulletInBarrel:0b}', circuit: 1 },
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"AUTO",GunId:"tacz:uzi",HasBulletInBarrel:0b}', circuit: 2 },
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"AUTO",GunId:"tacz:p90",HasBulletInBarrel:0b}', circuit: 3 },
+    ];
+    coldWarSmgs.forEach(g => {
+        event.remove({ output: Item.of('tacz:modern_kinetic_gun', g.nbt) });
+        event.recipes.gtceu.assembler(`cw_smg_${g.circuit}`)
+        .itemInputs(
+            Item.of('gtceu:polyethylene_plate', 2),
+                    Item.of('gtceu:small_steel_gear', 1),
+                    'kubejs:barrel_steel'
+        )
+        .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, g.nbt))
+        .circuit(g.circuit)
+        .duration(20)
+        .EUt(4)
+        .addCondition(WFResearch.condition('guns2'));
+    });
+
+    // Cold War rifles
+    const coldWarRifles = [
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"tacz:ak47",HasBulletInBarrel:0b}', circuit: 1 },
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"tacz:aug",HasBulletInBarrel:0b}', circuit: 2 },
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"tacz:hk_g3",HasBulletInBarrel:0b}', circuit: 3 },
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"ronmc:m14",HasBulletInBarrel:0b}', circuit: 4 },
+    ];
+    coldWarRifles.forEach(g => {
+        event.remove({ output: Item.of('tacz:modern_kinetic_gun', g.nbt) });
+        event.recipes.gtceu.assembler(`cw_rifle_${g.circuit}`)
+        .itemInputs(
+            Item.of('gtceu:polyethylene_plate', 3),
+                    Item.of('gtceu:small_steel_gear', 1),
+                    'kubejs:barrel_steel'
+        )
+        .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, g.nbt))
+        .circuit(g.circuit)
+        .duration(20)
+        .EUt(4)
+        .addCondition(WFResearch.condition('guns1'));
+    });
+
+    // Cold War shotguns
+    const coldWarShotguns = [
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"ronmc:870cqb",HasBulletInBarrel:0b}', circuit: 1 },
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"tacz:aa12",HasBulletInBarrel:0b}', circuit: 2 },
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"tacz:spas_12",HasBulletInBarrel:0b}', circuit: 3 },
+    ];
+    coldWarShotguns.forEach(g => {
+        event.remove({ output: Item.of('tacz:modern_kinetic_gun', g.nbt) });
+        event.recipes.gtceu.assembler(`cw_shotgun_${g.circuit}`)
+        .itemInputs(
+            Item.of('gtceu:polyethylene_plate', 2),
+                    Item.of('gtceu:treated_wood_plate', 1),
+                    Item.of('gtceu:small_steel_gear', 1),
+                    'kubejs:barrel_steel'
+        )
+        .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, g.nbt))
+        .circuit(g.circuit)
+        .duration(20)
+        .EUt(4)
+        .addCondition(WFResearch.condition('guns2heavy'));
+    });
+
+    // Cold War machine guns / launchers
+    const coldWarMgLaunchers = [
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"AUTO",GunId:"tacz:m249",HasBulletInBarrel:0b}', circuit: 1 },
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"tacz:rpk",HasBulletInBarrel:0b}', circuit: 2 },
+        { nbt: '{GunCurrentAmmoCount:0,GunFireMode:"SEMI",GunId:"tacz:rpg7",HasBulletInBarrel:0b}', circuit: 3 },
+    ];
+    coldWarMgLaunchers.forEach(g => {
+        event.remove({ output: Item.of('tacz:modern_kinetic_gun', g.nbt) });
+        event.recipes.gtceu.assembler(`cw_mg_${g.circuit}`)
+        .itemInputs(
+            Item.of('gtceu:polyethylene_plate', 2),
+                    Item.of('gtceu:steel_gear', 2),
+                    'kubejs:barrel_steel', 'kubejs:barrel_steel'
+        )
+        .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, g.nbt))
+        .circuit(g.circuit)
+        .duration(40)
+        .EUt(4)
+        .addCondition(WFResearch.condition('guns4heavy'));
     });
 })

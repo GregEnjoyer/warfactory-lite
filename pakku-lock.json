@@ -678,7 +678,7 @@
             ]
         },
         {
-            "pakku_id": "cNEpjcrQNr1Yvrd9",
+            "pakku_id": "1e3bx1Ximmkkj0sc",
             "type": "MOD",
             "side": "CLIENT",
             "slug": {
@@ -713,6 +713,42 @@
                     ],
                     "size": 115280,
                     "date_published": "2023-07-16T04:39:30.644589Z"
+                }
+            ]
+        },
+        {
+            "pakku_id": "LbpISI50EIgdtdPj",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "corpse"
+            },
+            "name": {
+                "curseforge": "Corpse"
+            },
+            "id": {
+                "curseforge": "316582"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "corpse-forge-1.20.1-1.0.23.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/7018/272/corpse-forge-1.20.1-1.0.23.jar",
+                    "id": "7018272",
+                    "parent_id": "316582",
+                    "hashes": {
+                        "sha1": "843b16ca88bc5c390bb22a2a84437e6bffdd43dd",
+                        "md5": "a486f676f5e47e5846e31cb66cb5c16d"
+                    },
+                    "required_dependencies": [],
+                    "size": 245644,
+                    "date_published": "2025-09-21T09:06:56.603Z"
                 }
             ]
         },
@@ -3023,51 +3059,7 @@
             ]
         },
         {
-            "pakku_id": "2qR97EoeRX2ujeQt",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "tacz-additions"
-            },
-            "name": {
-                "curseforge": "TaCZ Additions"
-            },
-            "id": {
-                "curseforge": "1356005"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "taczadditions-1.20.1-1.0.5-hotfix2.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge",
-                        "neoforge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/8344/584/taczadditions-1.20.1-1.0.5-hotfix2.jar",
-                    "id": "8344584",
-                    "parent_id": "1356005",
-                    "hashes": {
-                        "sha1": "7a8c782e441c79fa89a52f6b4fc4a6e2c92d1cb8",
-                        "md5": "98206a0557fc89f308a12aa1aca6d853"
-                    },
-                    "required_dependencies": [
-                        "1028108"
-                    ],
-                    "size": 81808,
-                    "date_published": "2026-06-30T05:49:40.243Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "L3KDtazWSufGvjzs",
-            "pakku_links": [
-                "tCGWZOFM1bXN8Z6z",
-                "FeDSKrDKzUaT602C",
-                "U8bDirmUwPuF5XV7"
-            ],
+            "pakku_id": "w5OOdVGP9sev7kZ2",
             "type": "MOD",
             "slug": {
                 "curseforge": "tacz-tweaks"
@@ -3082,7 +3074,7 @@
             "files": [
                 {
                     "type": "curseforge",
-                    "file_name": "tacz-tweaks-2.13.2-all.jar",
+                    "file_name": "tacz-tweaks-2.14.2-all.jar",
                     "mc_versions": [
                         "1.20.1",
                         "1.20"
@@ -3091,20 +3083,20 @@
                         "forge"
                     ],
                     "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/7977/41/tacz-tweaks-2.13.2-all.jar",
-                    "id": "7977041",
+                    "url": "https://edge.forgecdn.net/files/8345/813/tacz-tweaks-2.14.2-all.jar",
+                    "id": "8345813",
                     "parent_id": "1193263",
                     "hashes": {
-                        "sha1": "3a734a71563357ae24a12831aa0d6260a56cd7f1",
-                        "md5": "90390903531a08d347096a798c2cbe29"
+                        "sha1": "f7393848203a31a3b9ab592c51e1a2e59dce7a2a",
+                        "md5": "b308109c5d2b712756746dea9c41e42b"
                     },
                     "required_dependencies": [
                         "1028108",
                         "351264",
                         "667299"
                     ],
-                    "size": 1923360,
-                    "date_published": "2026-04-24T11:58:06.593Z"
+                    "size": 1930028,
+                    "date_published": "2026-06-30T12:11:57.210Z"
                 }
             ]
         },
@@ -3567,47 +3559,6 @@
             ]
         },
         {
-            "pakku_id": "dB3PUhEva74Zyyl8",
-            "pakku_links": [
-                "Tjr9kFwS6a4UAYGL"
-            ],
-            "type": "MOD",
-            "slug": {
-                "curseforge": "sbw-komodo-rendering-accelerator"
-            },
-            "name": {
-                "curseforge": "[SBW] Komodo rendering accelerator"
-            },
-            "id": {
-                "curseforge": "1616090"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "komodo-1.20.1-Forge-1.1.0.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "beta",
-                    "url": "https://edge.forgecdn.net/files/8467/350/komodo-1.20.1-Forge-1.1.0.jar",
-                    "id": "8467350",
-                    "parent_id": "1616090",
-                    "hashes": {
-                        "sha1": "89f6a102d3a0226a6f7279e2450101238547f6f8",
-                        "md5": "c1621298b898f23db3bd828a9eccad3f"
-                    },
-                    "required_dependencies": [
-                        "1218165"
-                    ],
-                    "size": 869086,
-                    "date_published": "2026-07-19T20:45:05.517Z"
-                }
-            ]
-        },
-        {
             "pakku_id": "TPpxOkIf9JCMFZUg",
             "type": "MOD",
             "slug": {
@@ -3768,7 +3719,7 @@
             ]
         },
         {
-            "pakku_id": "tCGWZOFM1bXN8Z6z",
+            "pakku_id": "jHuMKWvSQQM9DB5j",
             "type": "MOD",
             "slug": {
                 "curseforge": "timeless-and-classics-zero"
@@ -3783,7 +3734,7 @@
             "files": [
                 {
                     "type": "curseforge",
-                    "file_name": "tacz-1.20.1-1.1.7-hotfix2.jar",
+                    "file_name": "tacz-1.20.1-1.1.8-hotfix.jar",
                     "mc_versions": [
                         "1.20.1"
                     ],
@@ -3791,16 +3742,16 @@
                         "forge"
                     ],
                     "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/7745/481/tacz-1.20.1-1.1.7-hotfix2.jar",
-                    "id": "7745481",
+                    "url": "https://edge.forgecdn.net/files/8141/310/tacz-1.20.1-1.1.8-hotfix.jar",
+                    "id": "8141310",
                     "parent_id": "1028108",
                     "hashes": {
-                        "sha1": "cb84817b83025fa93d380e87de655e57a607ced8",
-                        "md5": "0038fa8d38a045d711d8405eb6c382e6"
+                        "sha1": "bddafeea4c9c1132ed720c30fbaedfe5ab25e846",
+                        "md5": "65e19238d5669d1a74305ba7e49408f7"
                     },
                     "required_dependencies": [],
-                    "size": 52426062,
-                    "date_published": "2026-03-12T03:01:48.243Z"
+                    "size": 57465167,
+                    "date_published": "2026-05-25T01:44:12.020Z"
                 }
             ]
         },

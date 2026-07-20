@@ -129,4 +129,107 @@ ServerEvents.recipes(event => {
         .itemOutputs(Item.of('superbwarfare:mortar_shell', 4))
         .duration(40)
         .EUt(30);
+
+        // =========================
+        // GUNS - progression brief implementation (warfactory-lite-gun-progression-notes.md)
+        // LV = WW1/WW2 era. Circuits are per-array, not global.
+        // =========================
+
+    // WW-era pistols (Type 14 Nambu, S1100)
+    const wwPistols = [
+        { nbt: '{GunCurrentAmmoCount:16,GunFireMode:"SEMI",GunId:"ww:s1100",HasBulletInBarrel:1b}', circuit: 1 },
+        { nbt: '{GunCurrentAmmoCount:4,GunFireMode:"SEMI",GunId:"ww:t14",HasBulletInBarrel:1b}', circuit: 2 },
+    ];
+    wwPistols.forEach(g => {
+        event.remove({ output: Item.of('tacz:modern_kinetic_gun', g.nbt) });
+        event.recipes.gtceu.assembler(`ww_pistol_${g.circuit}`)
+        .itemInputs(
+            Item.of('gtceu:steel_plate', 2),
+                    Item.of('gtceu:small_steel_gear', 1),
+                    Item.of('gtceu:steel_screw', 1)
+        )
+        .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, g.nbt))
+        .circuit(g.circuit)
+        .duration(200)
+        .EUt(32);
+    });
+
+    // WW-era SMGs (stamped steel + wood)
+    const wwSmgs2 = [
+        { nbt: '{GunCurrentAmmoCount:10,GunFireMode:"SEMI",GunId:"ww:m1928a1",HasBulletInBarrel:1b}', circuit: 1 },
+        { nbt: '{GunCurrentAmmoCount:16,GunFireMode:"SEMI",GunId:"ww:mp34",HasBulletInBarrel:1b}', circuit: 2 },
+        { nbt: '{GunCurrentAmmoCount:16,GunFireMode:"SEMI",GunId:"ww:mp40",HasBulletInBarrel:1b}', circuit: 3 },
+        { nbt: '{GunCurrentAmmoCount:16,GunFireMode:"SEMI",GunId:"ww:sten",HasBulletInBarrel:1b}', circuit: 4 },
+    ];
+    wwSmgs2.forEach(g => {
+        event.remove({ output: Item.of('tacz:modern_kinetic_gun', g.nbt) });
+        event.recipes.gtceu.assembler(`ww_smg2_${g.circuit}`)
+        .itemInputs(
+            Item.of('gtceu:steel_plate', 5),
+                    Item.of('gtceu:small_steel_gear', 1),
+                    Item.of('gtceu:treated_wood_plate', 2)
+        )
+        .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, g.nbt))
+        .circuit(g.circuit)
+        .duration(400)
+        .EUt(32);
+    });
+
+    // WW-era rifles
+    const wwRifles2 = [
+        { nbt: '{GunCurrentAmmoCount:15,GunFireMode:"SEMI",GunId:"ww:as44",HasBulletInBarrel:1b}', circuit: 1 },
+    ];
+    wwRifles2.forEach(g => {
+        event.remove({ output: Item.of('tacz:modern_kinetic_gun', g.nbt) });
+        event.recipes.gtceu.assembler(`ww_rifle2_${g.circuit}`)
+        .itemInputs(
+            Item.of('gtceu:steel_plate', 5),
+                    Item.of('gtceu:small_steel_gear', 1),
+                    Item.of('gtceu:treated_wood_plate', 2)
+        )
+        .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, g.nbt))
+        .circuit(g.circuit)
+        .duration(400)
+        .EUt(32);
+    });
+
+    // WW-era machine guns - contemporary with the rest of LV, not modern belt-feds. Costs more than a rifle, same tier.
+    const wwMachineGuns = [
+        { nbt: '{GunCurrentAmmoCount:23,GunFireMode:"AUTO",GunId:"ww:dp28",HasBulletInBarrel:1b}', circuit: 1 },
+        { nbt: '{GunCurrentAmmoCount:125,GunFireMode:"AUTO",GunId:"ww:m1919",HasBulletInBarrel:1b}', circuit: 2 },
+        { nbt: '{GunCurrentAmmoCount:25,GunFireMode:"SEMI",GunId:"ww:mg42",HasBulletInBarrel:1b}', circuit: 3 },
+        { nbt: '{GunCurrentAmmoCount:15,GunFireMode:"SEMI",GunId:"ww:t99",HasBulletInBarrel:1b}', circuit: 4 },
+    ];
+    wwMachineGuns.forEach(g => {
+        event.remove({ output: Item.of('tacz:modern_kinetic_gun', g.nbt) });
+        event.recipes.gtceu.assembler(`ww_mg_${g.circuit}`)
+        .itemInputs(
+            Item.of('gtceu:steel_plate', 8),
+                    Item.of('gtceu:small_steel_gear', 2),
+                    Item.of('gtceu:treated_wood_plate', 2)
+        )
+        .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, g.nbt))
+        .circuit(g.circuit)
+        .duration(600)
+        .EUt(32);
+    });
+
+    // Classic break-action double-barrel shotguns - just-past-musket-era design
+    const classicShotguns = [
+        { nbt: '{GunCurrentAmmoCount:1,GunFireMode:"SEMI",GunId:"tacz:db_long",HasBulletInBarrel:1b}', circuit: 1 },
+        { nbt: '{GunCurrentAmmoCount:1,GunFireMode:"SEMI",GunId:"tacz:db_short",HasBulletInBarrel:1b}', circuit: 2 },
+    ];
+    classicShotguns.forEach(g => {
+        event.remove({ output: Item.of('tacz:modern_kinetic_gun', g.nbt) });
+        event.recipes.gtceu.assembler(`classic_shotgun_${g.circuit}`)
+        .itemInputs(
+            Item.of('gtceu:steel_plate', 3),
+                    Item.of('gtceu:treated_wood_plate', 3),
+                    Item.of('gtceu:small_steel_gear', 1)
+        )
+        .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, g.nbt))
+        .circuit(g.circuit)
+        .duration(300)
+        .EUt(32);
+    });
 })

@@ -12,12 +12,7 @@
     "tacz:workbench_b",
     "tacz:workbench_c",
     "tacz:target",
-    "travelersbackpack:bookshelf",
-    "travelersbackpack:melon",
-    "travelersbackpack:pumpkin",
     "sbwdroneconfig:extraction_crate",
-    "wwii_uniforms_mod:uniform_station",
-    "ae2:crank",
     "gtceu:pump_deck",
     "gtceu:powderbarrel",
     "gtceu:rubber_log",
@@ -44,6 +39,7 @@
     "gtceu:treated_wood_button",
     "gtceu:treated_wood_fence_gate",
     "gtceu:treated_wood_door",
+    "ae2:crank",
     "walkietalkie:speaker"
   ]
 }

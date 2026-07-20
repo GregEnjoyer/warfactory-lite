@@ -257,321 +257,126 @@ ServerEvents.recipes(event => {
     });
 
     // =========================
-    // GUNS - PLACEHOLDER REPLACEMENTS
-    // TODO: these are stubs so every gun has a working GTCEu recipe to tune. Replace
-    // itemInputs()/duration()/EUt() per entry with real balanced values. The count on
-    // the placeholder input is only there to give each recipe a unique signature (GTCEu
-    // circuits cap out well under 153, so quantity is the disambiguator here instead).
+    // GUNS - PLACEHOLDER REPLACEMENTS (REMOVED)
+    // Real, era-appropriate recipes now live in LV.js/MV.js/HV.js/Primitive.js per
+    // warfactory-lite-gun-progression-notes.md. Guns not covered there are intentionally
+    // excluded from progression (see doc §3.3) and get no recipe at all.
     // =========================
-    const gunPlaceholders = [
-        { id: 'tacz:aa12', qty: 1 },
-        { id: 'tacz:ai_awp', qty: 2 },
-        { id: 'tacz:ak47', qty: 3 },
-        { id: 'tacz:aug', qty: 4 },
-        { id: 'tacz:b93r', qty: 5 },
-        { id: 'tacz:cz75', qty: 6 },
-        { id: 'tacz:db_long', qty: 7 },
-        { id: 'tacz:db_short', qty: 8 },
-        { id: 'tacz:deagle', qty: 9 },
-        { id: 'tacz:deagle_golden', qty: 10 },
-        { id: 'tacz:fn_evolys', qty: 11 },
-        { id: 'tacz:fn_fal', qty: 12 },
-        { id: 'tacz:g36k', qty: 13 },
-        { id: 'tacz:glock_17', qty: 14 },
-        { id: 'tacz:hk416d', qty: 15 },
-        { id: 'tacz:hk_g3', qty: 16 },
-        { id: 'tacz:hk_mk23', qty: 17 },
-        { id: 'tacz:hk_mp5a5', qty: 18 },
-        { id: 'tacz:kar98', qty: 19 },
-        { id: 'tacz:lonetrail', qty: 20 },
-        { id: 'tacz:m1014', qty: 21 },
-        { id: 'tacz:m107', qty: 22 },
-        { id: 'tacz:m16a1', qty: 23 },
-        { id: 'tacz:m16a4', qty: 24 },
-        { id: 'tacz:m1911', qty: 25 },
-        { id: 'tacz:m249', qty: 26 },
-        { id: 'tacz:m320', qty: 27 },
-        { id: 'tacz:m4a1', qty: 28 },
-        { id: 'tacz:m700', qty: 29 },
-        { id: 'tacz:m870', qty: 30 },
-        { id: 'tacz:m95', qty: 31 },
-        { id: 'tacz:m9a4', qty: 32 },
-        { id: 'tacz:minigun', qty: 33 },
-        { id: 'tacz:mk14', qty: 34 },
-        { id: 'tacz:p320', qty: 35 },
-        { id: 'tacz:p90', qty: 36 },
-        { id: 'tacz:qbz_191', qty: 37 },
-        { id: 'tacz:qbz_95', qty: 38 },
-        { id: 'tacz:rhino357', qty: 39 },
-        { id: 'tacz:rpg7', qty: 40 },
-        { id: 'tacz:rpk', qty: 41 },
-        { id: 'tacz:scar_h', qty: 42 },
-        { id: 'tacz:scar_l', qty: 43 },
-        { id: 'tacz:sks_tactical', qty: 44 },
-        { id: 'tacz:spas_12', qty: 45 },
-        { id: 'tacz:spr15hb', qty: 46 },
-        { id: 'tacz:springfield1873', qty: 47 },
-        { id: 'tacz:taurus500', qty: 48 },
-        { id: 'tacz:taurus943', qty: 49 },
-        { id: 'tacz:timeless50', qty: 50 },
-        { id: 'tacz:type_81', qty: 51 },
-        { id: 'tacz:ump45', qty: 52 },
-        { id: 'tacz:uzi', qty: 53 },
-        { id: 'tacz:vector45', qty: 54 },
-        { id: 'ww:anm2', qty: 55 },
-        { id: 'ww:as44', qty: 56 },
-        { id: 'ww:avt_40', qty: 57 },
-        { id: 'ww:c96', qty: 58 },
-        { id: 'ww:cph', qty: 59 },
-        { id: 'ww:dp28', qty: 60 },
-        { id: 'ww:g43', qty: 61 },
-        { id: 'ww:kar98k', qty: 62 },
-        { id: 'ww:lee', qty: 63 },
-        { id: 'ww:m1', qty: 64 },
-        { id: 'ww:m1897', qty: 65 },
-        { id: 'ww:m1903', qty: 66 },
-        { id: 'ww:m1911a1', qty: 67 },
-        { id: 'ww:m1912', qty: 68 },
-        { id: 'ww:m1918', qty: 69 },
-        { id: 'ww:m1918a1', qty: 70 },
-        { id: 'ww:m1918a2', qty: 71 },
-        { id: 'ww:m1919', qty: 72 },
-        { id: 'ww:m1921', qty: 73 },
-        { id: 'ww:m1928a1', qty: 74 },
-        { id: 'ww:m1a1', qty: 75 },
-        { id: 'ww:m1g', qty: 76 },
-        { id: 'ww:m1t', qty: 77 },
-        { id: 'ww:m2', qty: 78 },
-        { id: 'ww:m28s', qty: 79 },
-        { id: 'ww:m2s', qty: 80 },
-        { id: 'ww:m50', qty: 81 },
-        { id: 'ww:m712', qty: 82 },
-        { id: 'ww:m91', qty: 83 },
-        { id: 'ww:mg34', qty: 84 },
-        { id: 'ww:mg42', qty: 85 },
-        { id: 'ww:mp28', qty: 86 },
-        { id: 'ww:mp34', qty: 87 },
-        { id: 'ww:mp38', qty: 88 },
-        { id: 'ww:mp40', qty: 89 },
-        { id: 'ww:mp41', qty: 90 },
-        { id: 'ww:p08', qty: 91 },
-        { id: 'ww:p38', qty: 92 },
-        { id: 'ww:pps', qty: 93 },
-        { id: 'ww:s1100', qty: 94 },
-        { id: 'ww:sten', qty: 95 },
-        { id: 'ww:stg44', qty: 96 },
-        { id: 'ww:svt_40', qty: 97 },
-        { id: 'ww:t100', qty: 98 },
-        { id: 'ww:t100l', qty: 99 },
-        { id: 'ww:t14', qty: 100 },
-        { id: 'ww:t20', qty: 101 },
-        { id: 'ww:t96', qty: 102 },
-        { id: 'ww:t99', qty: 103 },
-        { id: 'ww:tbe', qty: 104 },
-        { id: 'ww:type38', qty: 105 },
-        { id: 'ww:type99', qty: 106 },
-        { id: 'ronmc:357_magnum', qty: 107 },
-        { id: 'ronmc:509', qty: 108 },
-        { id: 'ronmc:57usg', qty: 109 },
-        { id: 'ronmc:590m', qty: 110 },
-        { id: 'ronmc:870cqb', qty: 111 },
-        { id: 'ronmc:b1301', qty: 112 },
-        { id: 'ronmc:b92x', qty: 113 },
-        { id: 'ronmc:beanbag_shot', qty: 114 },
-        { id: 'ronmc:entryman', qty: 115 },
-        { id: 'ronmc:f90', qty: 116 },
-        { id: 'ronmc:g36c', qty: 117 },
-        { id: 'ronmc:g3a3', qty: 118 },
-        { id: 'ronmc:ga416', qty: 119 },
-        { id: 'ronmc:glock_18c', qty: 120 },
-        { id: 'ronmc:glock_19', qty: 121 },
-        { id: 'ronmc:lvar', qty: 122 },
-        { id: 'ronmc:m1014', qty: 123 },
-        { id: 'ronmc:m11', qty: 124 },
-        { id: 'ronmc:m14', qty: 125 },
-        { id: 'ronmc:m1911', qty: 126 },
-        { id: 'ronmc:m32a1', qty: 127 },
-        { id: 'ronmc:m45a1', qty: 128 },
-        { id: 'ronmc:mcx', qty: 129 },
-        { id: 'ronmc:mk16', qty: 130 },
-        { id: 'ronmc:mk17', qty: 131 },
-        { id: 'ronmc:mk18', qty: 132 },
-        { id: 'ronmc:mkv', qty: 133 },
-        { id: 'ronmc:mp5_10mm', qty: 134 },
-        { id: 'ronmc:mp5a2', qty: 135 },
-        { id: 'ronmc:mp5a3', qty: 136 },
-        { id: 'ronmc:mp5sd6', qty: 137 },
-        { id: 'ronmc:mp7', qty: 138 },
-        { id: 'ronmc:mp9', qty: 139 },
-        { id: 'ronmc:mpx', qty: 140 },
-        { id: 'ronmc:p90', qty: 141 },
-        { id: 'ronmc:p99', qty: 142 },
-        { id: 'ronmc:raider', qty: 143 },
-        { id: 'ronmc:rtwc', qty: 144 },
-        { id: 'ronmc:shorty', qty: 145 },
-        { id: 'ronmc:sti_2011', qty: 146 },
-        { id: 'ronmc:supernova', qty: 147 },
-        { id: 'ronmc:train_g19', qty: 148 },
-        { id: 'ronmc:train_mk18', qty: 149 },
-        { id: 'ronmc:trpl', qty: 150 },
-        { id: 'ronmc:ump45', qty: 151 },
-        { id: 'ronmc:ump9', qty: 152 },
-        { id: 'ronmc:usp45', qty: 153 },
-    ];
-
-    gunPlaceholders.forEach(g => {
-        event.recipes.gtceu.assembler(`gun_placeholder_${g.id.replace(':', '_')}`)
-        .itemInputs(Item.of('gtceu:steel_plate', g.qty)) // TODO: placeholder input
-        .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, `{GunId:"${g.id}"}`))
-        .duration(200)
-        .EUt(16);
-    });
 
     // =========================
-    // ATTACHMENTS - PLACEHOLDER REPLACEMENTS
-    // TODO: same deal as guns above - stub recipes, tune inputs/duration/EUt per entry.
+    // ATTACHMENTS (warfactory-lite-gun-progression-notes.md §5.3)
+    // Gated by attachment FUNCTION, not by which gun/mod it belongs to - a WW-era
+    // bayonet and a modern one cost the same, since the design principle is "what does
+    // this part do", not "what pack did it ship in". This is the least-verified part of
+    // the progression brief (no prior in-pack attachment recipes existed to extend), so
+    // category placement calls (particularly the WW-era optics and ronmc misc parts,
+    // which don't map cleanly onto the doc's tacz-centric naming) are our own judgment.
     // =========================
-    const attachmentPlaceholders = [
-        { id: 'tacz:ammo_mod_fmj', qty: 1 },
-        { id: 'tacz:ammo_mod_he', qty: 2 },
-        { id: 'tacz:ammo_mod_hp', qty: 3 },
-        { id: 'tacz:ammo_mod_i', qty: 4 },
-        { id: 'tacz:ammo_mod_slug', qty: 5 },
-        { id: 'tacz:bayonet_6h3', qty: 6 },
-        { id: 'tacz:bayonet_m9', qty: 7 },
-        { id: 'tacz:deagle_golden_long_barrel', qty: 8 },
-        { id: 'tacz:extended_mag_1', qty: 9 },
-        { id: 'tacz:extended_mag_2', qty: 10 },
-        { id: 'tacz:extended_mag_3', qty: 11 },
-        { id: 'tacz:grip_cobra', qty: 12 },
-        { id: 'tacz:grip_cqr', qty: 13 },
-        { id: 'tacz:grip_magpul_afg_2', qty: 14 },
-        { id: 'tacz:grip_osovets_black', qty: 15 },
-        { id: 'tacz:grip_rk0', qty: 16 },
-        { id: 'tacz:grip_rk1_b25u', qty: 17 },
-        { id: 'tacz:grip_rk6', qty: 18 },
-        { id: 'tacz:grip_se_5', qty: 19 },
-        { id: 'tacz:grip_td', qty: 20 },
-        { id: 'tacz:grip_vertical_military', qty: 21 },
-        { id: 'tacz:grip_vertical_ranger', qty: 22 },
-        { id: 'tacz:grip_vertical_talon', qty: 23 },
-        { id: 'tacz:laser_compact', qty: 24 },
-        { id: 'tacz:laser_lopro', qty: 25 },
-        { id: 'tacz:laser_nightstick', qty: 26 },
-        { id: 'tacz:laser_peq15', qty: 27 },
-        { id: 'tacz:laser_peq6', qty: 28 },
-        { id: 'tacz:light_extended_mag_1', qty: 29 },
-        { id: 'tacz:light_extended_mag_2', qty: 30 },
-        { id: 'tacz:light_extended_mag_3', qty: 31 },
-        { id: 'tacz:muzzle_brake_cthulhu', qty: 32 },
-        { id: 'tacz:muzzle_brake_cyclone_d2', qty: 33 },
-        { id: 'tacz:muzzle_brake_mastiff_sg', qty: 34 },
-        { id: 'tacz:muzzle_brake_pioneer', qty: 35 },
-        { id: 'tacz:muzzle_brake_timeless50', qty: 36 },
-        { id: 'tacz:muzzle_brake_trex', qty: 37 },
-        { id: 'tacz:muzzle_choke_sg', qty: 38 },
-        { id: 'tacz:muzzle_compensator_trident', qty: 39 },
-        { id: 'tacz:muzzle_duckbill_sg', qty: 40 },
-        { id: 'tacz:muzzle_silencer_knight_qd', qty: 41 },
-        { id: 'tacz:muzzle_silencer_mirage', qty: 42 },
-        { id: 'tacz:muzzle_silencer_phantom_s1', qty: 43 },
-        { id: 'tacz:muzzle_silencer_ptilopsis', qty: 44 },
-        { id: 'tacz:muzzle_silencer_sg', qty: 45 },
-        { id: 'tacz:muzzle_silencer_ursus', qty: 46 },
-        { id: 'tacz:muzzle_silencer_vulture', qty: 47 },
-        { id: 'tacz:muzzle_silencer_wraith', qty: 48 },
-        { id: 'tacz:oem_stock_heavy', qty: 49 },
-        { id: 'tacz:oem_stock_light', qty: 50 },
-        { id: 'tacz:oem_stock_tactical', qty: 51 },
-        { id: 'tacz:scope_1873_6x', qty: 52 },
-        { id: 'tacz:scope_98k', qty: 53 },
-        { id: 'tacz:scope_acog_ta31', qty: 54 },
-        { id: 'tacz:scope_aug_default', qty: 55 },
-        { id: 'tacz:scope_contender', qty: 56 },
-        { id: 'tacz:scope_elcan_4x', qty: 57 },
-        { id: 'tacz:scope_hamr', qty: 58 },
-        { id: 'tacz:scope_lpvo_1_6', qty: 59 },
-        { id: 'tacz:scope_mk5hd', qty: 60 },
-        { id: 'tacz:scope_qmk152', qty: 61 },
-        { id: 'tacz:scope_retro_2x', qty: 62 },
-        { id: 'tacz:scope_scout', qty: 63 },
-        { id: 'tacz:scope_standard_8x', qty: 64 },
-        { id: 'tacz:scope_vudu', qty: 65 },
-        { id: 'tacz:shotgun_extended_mag_1', qty: 66 },
-        { id: 'tacz:shotgun_extended_mag_2', qty: 67 },
-        { id: 'tacz:shotgun_extended_mag_3', qty: 68 },
-        { id: 'tacz:sight_552', qty: 69 },
-        { id: 'tacz:sight_acro_pistol', qty: 70 },
-        { id: 'tacz:sight_acro_rifle', qty: 71 },
-        { id: 'tacz:sight_coyote', qty: 72 },
-        { id: 'tacz:sight_deltapoint_pistol', qty: 73 },
-        { id: 'tacz:sight_deltapoint_rifle', qty: 74 },
-        { id: 'tacz:sight_exp3', qty: 75 },
-        { id: 'tacz:sight_fastfire_pistol', qty: 76 },
-        { id: 'tacz:sight_fastfire_rifle', qty: 77 },
-        { id: 'tacz:sight_okp7', qty: 78 },
-        { id: 'tacz:sight_p90', qty: 79 },
-        { id: 'tacz:sight_pk06_pistol', qty: 80 },
-        { id: 'tacz:sight_pk06_rifle', qty: 81 },
-        { id: 'tacz:sight_rmr_dot', qty: 82 },
-        { id: 'tacz:sight_sro_dot', qty: 83 },
-        { id: 'tacz:sight_srs_02', qty: 84 },
-        { id: 'tacz:sight_t1', qty: 85 },
-        { id: 'tacz:sight_t2', qty: 86 },
-        { id: 'tacz:sight_uh1', qty: 87 },
-        { id: 'tacz:sniper_extended_mag_1', qty: 88 },
-        { id: 'tacz:sniper_extended_mag_2', qty: 89 },
-        { id: 'tacz:sniper_extended_mag_3', qty: 90 },
-        { id: 'tacz:stock_ak12', qty: 91 },
-        { id: 'tacz:stock_carbon_bone_c5', qty: 92 },
-        { id: 'tacz:stock_heavy_spas_12', qty: 93 },
-        { id: 'tacz:stock_hk_slim_line', qty: 94 },
-        { id: 'tacz:stock_m4ss', qty: 95 },
-        { id: 'tacz:stock_militech_b5', qty: 96 },
-        { id: 'tacz:stock_moe', qty: 97 },
-        { id: 'tacz:stock_ripstock', qty: 98 },
-        { id: 'tacz:stock_sba3', qty: 99 },
-        { id: 'tacz:stock_tactical_ar', qty: 100 },
-        { id: 'tacz:stock_tactical_spas_12', qty: 101 },
-        { id: 'ww:bayonet_m1884', qty: 102 },
-        { id: 'ww:bayonet_m1930', qty: 103 },
-        { id: 'ww:bayonet_no4', qty: 104 },
-        { id: 'ww:m82', qty: 105 },
-        { id: 'ww:no32', qty: 106 },
-        { id: 'ww:peyu', qty: 107 },
-        { id: 'ww:pyu', qty: 108 },
-        { id: 'ww:silence', qty: 109 },
-        { id: 'ww:silencep', qty: 110 },
-        { id: 'ww:zf39', qty: 111 },
-        { id: 'ww:zf4', qty: 112 },
-        { id: 'ronmc:12ga_brake', qty: 113 },
-        { id: 'ronmc:357_snub', qty: 114 },
-        { id: 'ronmc:angled_grip', qty: 115 },
-        { id: 'ronmc:canted', qty: 116 },
-        { id: 'ronmc:combat_grip', qty: 117 },
-        { id: 'ronmc:custom_laser', qty: 118 },
-        { id: 'ronmc:flashlight_1', qty: 119 },
-        { id: 'ronmc:flashlight_2', qty: 120 },
-        { id: 'ronmc:laser_peq15', qty: 121 },
-        { id: 'ronmc:laser_pointer', qty: 122 },
-        { id: 'ronmc:m32a1_he', qty: 123 },
-        { id: 'ronmc:mp5a2_grip', qty: 124 },
-        { id: 'ronmc:rmr_dot', qty: 125 },
-        { id: 'ronmc:side_angle_grip', qty: 126 },
-        { id: 'ronmc:snub', qty: 127 },
-        { id: 'ronmc:spread_choke', qty: 128 },
-        { id: 'ronmc:sro_dot', qty: 129 },
-        { id: 'ronmc:stock_tactical_tan', qty: 130 },
-        { id: 'ronmc:tac_laser', qty: 131 },
-    ];
 
-    attachmentPlaceholders.forEach(a => {
-        event.recipes.gtceu.assembler(`attachment_placeholder_${a.id.replace(':', '_')}`)
-        .itemInputs(Item.of('gtceu:aluminium_plate', a.qty)) // TODO: placeholder input
-        .itemOutputs(Item.of('tacz:attachment', 1, `{AttachmentId:"${a.id}"}`))
-        .duration(100)
-        .EUt(16);
-    });
+    function attachmentGroup(prefix, ids, inputs, duration, eut, condition) {
+        ids.forEach(id => {
+            let recipe = event.recipes.gtceu.assembler(`attachment_${prefix}_${id.replace(':', '_')}`)
+            .itemInputs(inputs)
+            .itemOutputs(Item.of('tacz:attachment', 1, `{AttachmentId:"${id}"}`))
+            .duration(duration)
+            .EUt(eut);
+            if (condition) recipe.addCondition(WFResearch.condition(condition));
+        });
+    }
+
+    // Grips & stocks (LV) - basic ergonomic parts, no electronics or optics involved
+    attachmentGroup('grip_stock', [
+        'tacz:grip_cobra', 'tacz:grip_cqr', 'tacz:grip_magpul_afg_2', 'tacz:grip_osovets_black',
+        'tacz:grip_rk0', 'tacz:grip_rk1_b25u', 'tacz:grip_rk6', 'tacz:grip_se_5', 'tacz:grip_td',
+        'tacz:grip_vertical_military', 'tacz:grip_vertical_ranger', 'tacz:grip_vertical_talon',
+        'tacz:oem_stock_heavy', 'tacz:oem_stock_light', 'tacz:oem_stock_tactical',
+        'tacz:stock_ak12', 'tacz:stock_carbon_bone_c5', 'tacz:stock_heavy_spas_12',
+        'tacz:stock_hk_slim_line', 'tacz:stock_m4ss', 'tacz:stock_militech_b5', 'tacz:stock_moe',
+        'tacz:stock_ripstock', 'tacz:stock_sba3', 'tacz:stock_tactical_ar', 'tacz:stock_tactical_spas_12',
+        'ronmc:angled_grip', 'ronmc:combat_grip', 'ronmc:mp5a2_grip', 'ronmc:side_angle_grip',
+        'ronmc:stock_tactical_tan',
+    ], [Item.of('gtceu:treated_wood_plate', 1), Item.of('gtceu:small_steel_gear', 1)], 100, 32, null);
+
+    // Extended magazines (LV) - just more sheet steel and a stronger spring
+    attachmentGroup('mag', [
+        'tacz:extended_mag_1', 'tacz:extended_mag_2', 'tacz:extended_mag_3',
+        'tacz:light_extended_mag_1', 'tacz:light_extended_mag_2', 'tacz:light_extended_mag_3',
+        'tacz:shotgun_extended_mag_1', 'tacz:shotgun_extended_mag_2', 'tacz:shotgun_extended_mag_3',
+        'tacz:sniper_extended_mag_1', 'tacz:sniper_extended_mag_2', 'tacz:sniper_extended_mag_3',
+    ], [Item.of('gtceu:steel_plate', 1), Item.of('gtceu:small_steel_spring', 1)], 100, 32, null);
+
+    // Muzzle devices - brakes/chokes/compensators (LV) - simple machined steel, no optics/explosives
+    attachmentGroup('muzzle', [
+        'tacz:muzzle_brake_cthulhu', 'tacz:muzzle_brake_cyclone_d2', 'tacz:muzzle_brake_mastiff_sg',
+        'tacz:muzzle_brake_pioneer', 'tacz:muzzle_brake_timeless50', 'tacz:muzzle_brake_trex',
+        'tacz:muzzle_choke_sg', 'tacz:muzzle_compensator_trident', 'tacz:muzzle_duckbill_sg',
+        'tacz:deagle_golden_long_barrel',
+        'ronmc:12ga_brake', 'ronmc:357_snub', 'ronmc:snub', 'ronmc:spread_choke',
+    ], [Item.of('gtceu:steel_plate', 1)], 100, 32, null);
+
+    // Bayonets (LV) - just a fitted steel blade
+    attachmentGroup('bayonet', [
+        'tacz:bayonet_6h3', 'tacz:bayonet_m9',
+        'ww:bayonet_m1884', 'ww:bayonet_m1930', 'ww:bayonet_no4',
+    ], [Item.of('gtceu:steel_plate', 2)], 100, 32, null);
+
+    // WW-era optics (LV, tied to the same era as the WW1/WW2 guns they mount to) -
+    // simple ground-glass scopes, not the precision MV/HV tacz line below
+    attachmentGroup('ww_optic', [
+        'ww:m82', 'ww:no32', 'ww:peyu', 'ww:pyu', 'ww:zf39', 'ww:zf4',
+    ], [Item.of('gtceu:glass_lens', 1), Item.of('gtceu:treated_wood_plate', 1), Item.of('gtceu:steel_screw', 1)], 150, 32, null);
+
+    // Iron/red-dot sights (MV) - needs a proper glass lens, gated behind guns2 like the
+    // rest of the Cold War pistol/SMG line these mostly mount to
+    attachmentGroup('sight', [
+        'tacz:sight_552', 'tacz:sight_acro_pistol', 'tacz:sight_acro_rifle', 'tacz:sight_coyote',
+        'tacz:sight_deltapoint_pistol', 'tacz:sight_deltapoint_rifle', 'tacz:sight_exp3',
+        'tacz:sight_fastfire_pistol', 'tacz:sight_fastfire_rifle', 'tacz:sight_okp7', 'tacz:sight_p90',
+        'tacz:sight_pk06_pistol', 'tacz:sight_pk06_rifle', 'tacz:sight_rmr_dot', 'tacz:sight_sro_dot',
+        'tacz:sight_srs_02', 'tacz:sight_t1', 'tacz:sight_t2', 'tacz:sight_uh1',
+        'ronmc:canted', 'ronmc:rmr_dot', 'ronmc:sro_dot',
+    ], [Item.of('gtceu:steel_plate', 1), Item.of('gtceu:glass_lens', 1)], 100, 4, 'guns2');
+
+    // Magnified scopes, basic tier (MV) - same materials the pre-existing `scopes` array
+    // above already uses, so this one has a loose in-pack precedent
+    attachmentGroup('scope_basic', [
+        'tacz:scope_1873_6x', 'tacz:scope_98k', 'tacz:scope_aug_default', 'tacz:scope_contender',
+        'tacz:scope_retro_2x', 'tacz:scope_scout', 'tacz:scope_standard_8x',
+    ], [Item.of('gtceu:glass_lens', 2), Item.of('gtceu:steel_screw', 2), Item.of('gtceu:aluminium_plate', 1)], 150, 4, 'guns2');
+
+    // Magnified scopes, advanced tier (HV) - same formula, doubled optics for the
+    // higher-end glass, ungated to match how HV.js's own gun recipes are ungated
+    attachmentGroup('scope_advanced', [
+        'tacz:scope_acog_ta31', 'tacz:scope_elcan_4x', 'tacz:scope_hamr', 'tacz:scope_lpvo_1_6',
+        'tacz:scope_mk5hd', 'tacz:scope_qmk152', 'tacz:scope_vudu',
+    ], [Item.of('gtceu:glass_lens', 2), Item.of('gtceu:steel_screw', 2), Item.of('gtceu:aluminium_plate', 2)], 150, 512, null);
+
+    // Suppressors (MV) - needs precision-machined parts, gated same as MV pistols/SMGs
+    attachmentGroup('suppressor', [
+        'tacz:muzzle_silencer_knight_qd', 'tacz:muzzle_silencer_mirage', 'tacz:muzzle_silencer_phantom_s1',
+        'tacz:muzzle_silencer_ptilopsis', 'tacz:muzzle_silencer_sg', 'tacz:muzzle_silencer_ursus',
+        'tacz:muzzle_silencer_vulture', 'tacz:muzzle_silencer_wraith',
+        'ww:silence', 'ww:silencep',
+    ], [Item.of('gtceu:steel_plate', 1), Item.of('gtceu:steel_screw', 2)], 150, 4, 'guns2');
+
+    // Lasers & lights (MV) - needs an actual electronic circuit, so it can't be earlier than MV
+    attachmentGroup('laser_light', [
+        'tacz:laser_compact', 'tacz:laser_lopro', 'tacz:laser_nightstick', 'tacz:laser_peq15', 'tacz:laser_peq6',
+        'ronmc:custom_laser', 'ronmc:flashlight_1', 'ronmc:flashlight_2', 'ronmc:laser_peq15',
+        'ronmc:laser_pointer', 'ronmc:tac_laser',
+    ], [Item.of('gtceu:polyethylene_plate', 1), Item.of('gtceu:basic_electronic_circuit', 1)], 150, 4, 'guns2');
+
+    // Standard ammo mods - FMJ/HP/AP/slug (MV) - just a different bullet material, same
+    // tier as the rest of Cold War ammo
+    attachmentGroup('ammo_mod', [
+        'tacz:ammo_mod_fmj', 'tacz:ammo_mod_hp', 'tacz:ammo_mod_i', 'tacz:ammo_mod_slug',
+    ], [Item.of('gtceu:lead_nugget', 2), Item.of('gtceu:steel_nugget', 1)], 100, 4, 'guns2');
+
+    // Explosive ammo mods - HE (HV) - needs an actual explosive-chain input, like the
+    // grenade launchers in HV.js
+    attachmentGroup('ammo_mod_explosive', [
+        'tacz:ammo_mod_he', 'ronmc:m32a1_he',
+    ], [Item.of('gtceu:dynamite', 1), Item.of('gtceu:steel_nugget', 1)], 150, 512, null);
 
     // =========================
     // OTHER AMMO - PLACEHOLDER REPLACEMENTS (calibers not covered above)
@@ -582,12 +387,9 @@ ServerEvents.recipes(event => {
     // =========================
     const otherAmmo = [
         { id: 'tacz:22wmr', circuit: 1 },
-        { id: 'tacz:40mm', circuit: 2 },
         { id: 'tacz:500mag', circuit: 3 },
         { id: 'tacz:50ae', circuit: 4 },
-        { id: 'tacz:50bmg', circuit: 5 },
         { id: 'tacz:792x57', circuit: 6 },
-        { id: 'tacz:rpg_rocket', circuit: 7 },
         { id: 'ww:65a', circuit: 8 },
         { id: 'ww:763', circuit: 9 },
         { id: 'ronmc:300blk', circuit: 10 },
@@ -609,5 +411,33 @@ ServerEvents.recipes(event => {
         .circuit(ammo.circuit)
         .duration(20)
         .EUt(4);
+    });
+
+    // Heavy ordnance calibers - genuinely different from a standard round, not just a
+    // relabeled pistol/rifle recipe. 50bmg gets a thicker casing and more propellant;
+    // 40mm and rpg_rocket are explosive-payload/rocket rounds and pull from the same
+    // explosive-chain / rocket-fuel items the launcher guns and MISC section already use.
+    const heavyOrdnanceAmmo = [
+        {
+            id: 'tacz:50bmg', circuit: 5, qty: 2, duration: 60, eut: 30,
+            inputs: [Item.of('kubejs:bullet_casing_xl', 2), Item.of('gtceu:steel_plate', 1), Item.of('gtceu:small_gunpowder_dust', 2)],
+        },
+        {
+            id: 'tacz:40mm', circuit: 2, qty: 2, duration: 100, eut: 30,
+            inputs: [Item.of('kubejs:bullet_casing_xl', 1), Item.of('gtceu:dynamite', 1)],
+        },
+        {
+            id: 'tacz:rpg_rocket', circuit: 7, qty: 1, duration: 200, eut: 30,
+            inputs: [Item.of('kubejs:bullet_casing_xl', 2), Item.of('gtceu:dynamite', 1), 'kubejs:solid_rocket_fuel'],
+        },
+    ];
+
+    heavyOrdnanceAmmo.forEach(ammo => {
+        event.recipes.gtceu.ammo_press(`heavy_ordnance_ammo_${ammo.circuit}`)
+        .itemInputs(ammo.inputs)
+        .itemOutputs(Item.of('tacz:ammo', ammo.qty, `{AmmoId:"${ammo.id}"}`))
+        .circuit(ammo.circuit)
+        .duration(ammo.duration)
+        .EUt(ammo.eut);
     });
 });

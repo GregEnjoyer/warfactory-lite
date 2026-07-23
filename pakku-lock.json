@@ -3245,16 +3245,16 @@
             "files": [
                 {
                     "type": "github",
-                    "file_name": "wfmedical-0.1.0.jar",
+                    "file_name": "wfmedical-0.2.0.jar",
                     "release_type": "release",
-                    "url": "https://github.com/Warfactory-Official/WFMedical/releases/download/v0.1.0/wfmedical-0.1.0.jar",
-                    "id": "475846230",
+                    "url": "https://github.com/Warfactory-Official/WFMedical/releases/download/v0.2.0/wfmedical-0.2.0.jar",
+                    "id": "487676130",
                     "parent_id": "1289634608",
                     "hashes": {
-                        "sha256": "0b0172bf6e489cbccbd3a3d35a81fe4f75dbe1722c8f54d0f3617565cfdc6b9b"
+                        "sha256": "3f9fc5db500956c24b97617b139a5c8947dcc87e3e00a1a608d128bf0220b082"
                     },
-                    "size": 430116,
-                    "date_published": "2026-07-13T19:59:47Z"
+                    "size": 447588,
+                    "date_published": "2026-07-23T21:55:37Z"
                 }
             ]
         },

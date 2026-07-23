@@ -1,0 +1,18 @@
+
+#On-damage body-outline overlay: a limb-health-coloured silhouette that flashes up when you take damage, then eases out.
+[damageOutline]
+	#Master toggle for the on-damage body-outline overlay.
+	enabled = true
+	#Screen edge/corner the outline is anchored to before applying the pixel offsets.
+	#Allowed Values: TOP_LEFT, TOP_CENTER, TOP_RIGHT, MIDDLE_LEFT, CENTER, MIDDLE_RIGHT, BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT
+	anchor = "MIDDLE_LEFT"
+	#Pixel offset from the anchor along X (positive = right).
+	#Range: -4096 ~ 4096
+	offsetX = 10
+	#Pixel offset from the anchor along Y (positive = down).
+	#Range: -4096 ~ 4096
+	offsetY = 0
+	#Size multiplier for the body outline (1.0 = the base ~40x64px silhouette).
+	#Range: 0.25 ~ 8.0
+	scale = 1.0
+

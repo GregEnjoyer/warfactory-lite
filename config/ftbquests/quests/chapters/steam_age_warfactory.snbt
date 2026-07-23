@@ -9,7 +9,7 @@
 	quest_links: [ ]
 	quests: [
 		{
-			dependencies: ["2B7C4D9E1F3A8006"]
+			dependencies: ["5F4AB8898713F70B"]
 			description: [
 				"&3High Pressure Boilers&r will be a better source of Steam for powering your Steam machines."
 				""
@@ -70,30 +70,6 @@
 				"If Lava is \"too hot to handle\", we've included a &6direct crafting recipe&r for &aPotions of Fire Resistance&r using &bWater Bottles&r."
 			]
 			id: "3989D06AFD382B0D"
-			rewards: [
-				{
-					id: "12AB81447DEBCC7C"
-					item: {
-						Count: 1
-						id: "minecraft:potion"
-						tag: {
-							Potion: "minecraft:long_fire_resistance"
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "0C218346213A7BBC"
-					item: {
-						Count: 1
-						id: "minecraft:potion"
-						tag: {
-							Potion: "minecraft:long_fire_resistance"
-						}
-					}
-					type: "item"
-				}
-			]
 			shape: "square"
 			size: 0.75d
 			subtitle: "A little bit of exploring never hurt anyone"
@@ -243,7 +219,7 @@
 			y: -0.375d
 		}
 		{
-			dependencies: ["2B7C4D9E1F3A8006"]
+			dependencies: ["5F4AB8898713F70B"]
 			description: [
 				"Make the listed molds for future alloy smelting. Be sure to make &aMolds&r - don't make &cExtruder Shapes&r, as they're used in a different machine."
 				""
@@ -306,7 +282,7 @@
 			subtitle: "The Steam Extractor extracts..."
 			tasks: [{
 				id: "34A7BA06058C21A2"
-				item: "gtceu:hp_steam_extractor"
+				item: "gtceu:lp_steam_extractor"
 				type: "item"
 			}]
 			title: "Steam Extractor"
@@ -638,7 +614,7 @@
 			]
 			title: "Glass, at last!"
 			x: 4.125d
-			y: -0.375d
+			y: 0.0d
 		}
 		{
 			dependencies: ["1465C345D616435A"]
@@ -1154,7 +1130,7 @@
 			y: 1.875d
 		}
 		{
-			dependencies: ["2B7C4D9E1F3A8006"]
+			dependencies: ["5F4AB8898713F70B"]
 			description: [
 				"The &3Charcoal Pile Igniter&r is a particularly unique multiblock. You can use it to produce &aCharcoal&r faster than &3Coke Ovens&r, but this comes with the trade-off of &amanual labor&r."
 				"{@pagebreak}"
@@ -1175,8 +1151,8 @@
 				item: "gtceu:brittle_charcoal"
 				type: "item"
 			}]
-			shape: "rsquare"
-			size: 0.66d
+			shape: "square"
+			size: 0.75d
 			subtitle: "I'm the trouble starter, punkin' instigator..."
 			tasks: [
 				{
@@ -1192,7 +1168,7 @@
 				}
 			]
 			title: "Fuel Pit"
-			x: 0.33d
+			x: 0.0d
 			y: -1.98d
 		}
 		{
@@ -1225,7 +1201,7 @@
 			y: 1.875d
 		}
 		{
-			dependencies: ["2B7C4D9E1F3A8006"]
+			dependencies: ["5F4AB8898713F70B"]
 			icon: {
 				Count: 1
 				id: "tacz:modern_kinetic_gun"
@@ -1237,17 +1213,18 @@
 				}
 			}
 			id: "423B1F8AD6DE0AFE"
+			size: 0.75d
 			tasks: [{
-				id: "71E9200D5E2FC729"
-				item: "gtceu:small_steel_gear"
-				type: "item"
+				id: "52A9088B285342E4"
+				title: "You can get those now."
+				type: "checkmark"
 			}]
 			title: "WW1 Guns"
-			x: 2.5d
-			y: -2.5d
+			x: 2.25d
+			y: -1.875d
 		}
 		{
-			dependencies: ["3276AB734F642B52"]
+			dependencies: ["5F4AB8898713F70B"]
 			description: [
 				"The &3Large Blast Furnace&r replaces the old Primitive Blast Furnace as your steel engine. It runs &etwo&r recipes at once, and up to &esix&r once you add its optional side chimneys, so one of these does the work of a whole wall of furnaces."
 				""
@@ -1264,7 +1241,7 @@
 				type: "item"
 			}]
 			shape: "gear"
-			size: 1.3d
+			size: 1.4d
 			subtitle: "Steel Yourself for Greater Things"
 			tasks: [
 				{
@@ -1273,24 +1250,18 @@
 					type: "item"
 				}
 				{
-					count: 32L
+					count: 76L
 					id: "2B7C4D9E1F3A810C"
 					item: "gtceu:firebricks"
-					type: "item"
-				}
-				{
-					count: 8L
-					id: "2B7C4D9E1F3A810D"
-					item: "gtceu:bronze_firebox_casing"
 					type: "item"
 				}
 			]
 			title: "Large Blast Furnace"
 			x: 1.125d
-			y: -1.5d
+			y: -3.0d
 		}
 		{
-			dependencies: ["2B7C4D9E1F3A8006"]
+			dependencies: ["5F4AB8898713F70B"]
 			description: [
 				"The &3Large Blast Furnace&r pours out &cliquid Steel&r. The &3Strandcaster&r freezes 144 mB of molten metal back into &e1 ingot&r."
 				""
@@ -1315,11 +1286,11 @@
 				}
 			]
 			title: "Strandcaster"
-			x: 1.125d
-			y: -2.7d
+			x: 0.0d
+			y: -3.0d
 		}
 		{
-			dependencies: ["2B7C4D9E1F3A8006"]
+			dependencies: ["5F4AB8898713F70B"]
 			description: [
 				"One furnace is a fine start, but an &7LV&r base is hungry for &9Steel&r. Scale up."
 				""
@@ -1353,11 +1324,11 @@
 				}
 			]
 			title: "We Need More Steel!"
-			x: 3.0d
-			y: -1.5d
+			x: 2.25d
+			y: -1.125d
 		}
 		{
-			dependencies: ["1465C345D616435A"]
+			dependencies: ["5F4AB8898713F70B"]
 			description: [
 				"The &3Primitive Alloyer&r is a &6no power&r alloy multiblock. Feed it &dLava&r or any solid fuel (not logs or planks) and it melts metals into molten alloy."
 				""
@@ -1388,8 +1359,8 @@
 				}
 			]
 			title: "Primitive Alloyer"
-			x: 3.375d
-			y: 1.5d
+			x: 2.25d
+			y: -3.0d
 		}
 		{
 			description: [
@@ -1421,7 +1392,7 @@
 			]
 			title: "Fire Clay Molds"
 			x: 4.5d
-			y: -2.6d
+			y: -3.5d
 		}
 		{
 			dependencies: ["2B7C4D9E1F3A8002"]
@@ -1448,8 +1419,8 @@
 				}
 			]
 			title: "The Foundry"
-			x: 5.625d
-			y: -2.6d
+			x: 5.75d
+			y: -3.5d
 		}
 		{
 			dependencies: ["2B7C4D9E1F3A8003"]
@@ -1458,33 +1429,18 @@
 				""
 				"Three &aClay Balls&r give you four &6Fire Clay&r pipes."
 			]
-			icon: "gtceu:bronze_normal_fluid_pipe"
+			icon: "gtceu:clay_pipe_material_normal_fluid_pipe"
 			id: "2B7C4D9E1F3A8004"
 			subtitle: "Plumbing for molten metal"
 			tasks: [{
 				id: "2B7C4D9E1F3A8107"
-				item: {
-					Count: 1
-					id: "itemfilters:or"
-					tag: {
-						items: [
-							{
-								Count: 1b
-								id: "gtceu:fire_clay_normal_fluid_pipe"
-							}
-							{
-								Count: 1b
-								id: "wfcore:fire_clay_normal_fluid_pipe"
-							}
-						]
-					}
-				}
+				item: "gtceu:clay_pipe_material_normal_fluid_pipe"
 				title: "Fire Clay Fluid Pipe"
 				type: "item"
 			}]
 			title: "Fire Clay Pipes"
-			x: 6.75d
-			y: -2.6d
+			x: 7.0d
+			y: -3.5d
 		}
 		{
 			dependencies: ["67EE36A29E81E96A"]
@@ -1517,8 +1473,86 @@
 				}
 			]
 			title: "Steam Wiremill"
-			x: 5.0d
-			y: 2.0d
+			x: 3.5d
+			y: 1.875d
+		}
+		{
+			dependencies: ["3276AB734F642B52"]
+			description: [
+				"This is your first source of &4steel&r."
+				""
+				"This may seem &6slow&r but don't worry, there's a &bbetter option&r right around the corner after you've gotten a little bit of steel."
+			]
+			id: "5F4AB8898713F70B"
+			subtitle: "A kilogram of steel...?"
+			tasks: [{
+				id: "6D9FCF13AE27E1FF"
+				item: "gtceu:primitive_blast_furnace"
+				type: "item"
+			}]
+			x: 1.125d
+			y: -1.5d
+		}
+		{
+			description: [
+				"This is the &4detonator&r."
+				""
+				"The following quests are &e2 tiers&r of &6mining explosives&r. Both of these mining explosives have &afortune&r and explode in a &bpredefined area&r. They cannot be normally blown up by flint and steel, which is why we have this &4detonator&r!"
+				""
+				"Walk up to a mining explosive and &lshift-rightclick&r, it is now linked to your detonator. You can link &e5 explosives&r in total. Once you've selected all of your explosives, walk away from their radius and &lrightclick&r normally. All of them will blow up at once."
+				""
+				"&8&oTip: Mining explosives act just like normal TNT when they are next to eachother. This means you can set off a chain reaction!&r&r"
+			]
+			icon: "wfcore:detonator"
+			id: "79F9C99D849FB3D0"
+			shape: "square"
+			size: 0.75d
+			subtitle: "5 big booms"
+			tasks: [{
+				id: "03C2861DF50D2BF9"
+				item: "wfcore:detonator"
+				type: "item"
+			}]
+			title: "Detonator"
+			x: 3.375d
+			y: -1.125d
+		}
+		{
+			dependencies: ["79F9C99D849FB3D0"]
+			description: ["Blows up everything &lbelow deepslate&r."]
+			icon: "wfcore:mining_charge"
+			id: "5271EF9DC3E0B1EA"
+			shape: "octagon"
+			size: 0.75d
+			subtitle: "Tier 1!"
+			tasks: [{
+				id: "21A7E27D7B0994F8"
+				item: "wfcore:mining_charge"
+				type: "item"
+			}]
+			title: "Mining Charge"
+			x: 4.5d
+			y: -1.125d
+		}
+		{
+			dependencies: [
+				"79F9C99D849FB3D0"
+				"5271EF9DC3E0B1EA"
+			]
+			description: ["Blows up everything, &lincluding deepslate&r."]
+			icon: "wfcore:deep_mining_charge"
+			id: "3488B9FE2FDD7058"
+			shape: "octagon"
+			size: 1.0d
+			subtitle: "Tier 2!"
+			tasks: [{
+				id: "32D88BADC8B2DE58"
+				item: "wfcore:deep_mining_charge"
+				type: "item"
+			}]
+			title: "Deep Mining Charge"
+			x: 4.5d
+			y: -2.25d
 		}
 	]
 	subtitle: ["Harness the power of Steam and learn the basics"]

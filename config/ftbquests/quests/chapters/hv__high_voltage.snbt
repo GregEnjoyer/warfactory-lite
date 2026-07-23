@@ -6,7 +6,7 @@
 	group: "693226878D58638A"
 	icon: "gtceu:hv_electric_motor"
 	id: "237BDB19A9495869"
-	order_index: 3
+	order_index: 4
 	quest_links: [
 		{
 			id: "2583D0B64E51FAC8"
@@ -678,8 +678,8 @@
 		}
 		{
 			dependencies: [
-				"41D32C5178760F47"
 				"4AFD3073C731A1E4"
+				"652D99588DB6B971"
 			]
 			description: [
 				"The next &3Circuit Assembler&r. This tier of Circuit Assembler is only required for one type of Circuit - your first ever &aMainframe&r."
@@ -697,44 +697,6 @@
 			title: "HV Circuit Assembler"
 			x: 7.875d
 			y: -3.0d
-		}
-		{
-			dependencies: [
-				"124B32A0583A636A"
-				"16E3465CF94E2BDD"
-				"4024C831C77101CA"
-			]
-			description: [
-				"Regardless of whether you're playing on Peaceful or not, you will have to defeat the &4Ender Dragon&r to return to the Overworld safely."
-				""
-				"Prepare yourself with a bow, a few arrows, a blade, and some beds &7(speedrunner strats!)&r."
-				""
-				"This quest will print the &alocation of the nearest Stronghold&r in chat. This &cwon't work&r if you have cheats disabled, unfortunately."
-				"{@pagebreak}"
-				"&9The End&r has even more new veins and materials to harvest, such as &ePlatinum&r and &7Naquadah&r! Similar to Nether ores, End ores are &6worth two Overworld ores&r."
-				""
-				"&aEyes of Ender&r are additionally used in crafting certain components, or for creating &5Quantum Eyes&r."
-			]
-			icon: "minecraft:end_portal_frame"
-			id: "41D32C5178760F47"
-			rewards: [{
-				command: "/locate structure minecraft:stronghold"
-				icon: "minecraft:end_portal_frame"
-				id: "30A15D4EF08A423C"
-				title: "Nearest Stronghold location printed in chat"
-				type: "command"
-			}]
-			size: 0.75d
-			subtitle: "...but not the end of your playthrough"
-			tasks: [{
-				count: 12L
-				id: "30A89DD2A22EE314"
-				item: "minecraft:ender_eye"
-				type: "item"
-			}]
-			title: "The End of an Era"
-			x: 7.875d
-			y: -1.875d
 		}
 		{
 			dependencies: [
@@ -827,7 +789,7 @@
 			y: -3.0d
 		}
 		{
-			dependencies: ["41D32C5178760F47"]
+			dependencies: ["652D99588DB6B971"]
 			description: [
 				"This prospector boasts a &6higher range&r than its &7LV&r counterpart."
 				""
@@ -1083,11 +1045,7 @@
 		}
 		{
 			dependencies: ["390E59F05132FCB8"]
-			description: [
-				"If you've killed a Blaze before, you may have noticed it dropped &eSulfur Dust&r instead of a &cBlaze Rod&r."
-				""
-				"In order to get &6Blaze Powder&r, you must instead combine &7Carbon Dust&r and &eSulfur Dust&r in a &3HV Chemical Reactor&r."
-			]
+			description: ["In order to get &6Blaze Powder&r, you must instead combine &7Carbon Dust&r and &eSulfur Dust&r in a &3HV Chemical Reactor&r."]
 			icon: "minecraft:blaze_powder"
 			id: "16E3465CF94E2BDD"
 			size: 0.75d
@@ -1474,6 +1432,131 @@
 			title: "Nanomuscles, son!"
 			x: 4.5d
 			y: -3.0d
+		}
+		{
+			dependencies: ["16A6AE5C770DB83A"]
+			description: [
+				"You may have already seen the singleblock miners, this is the &4BIG one&r!"
+				""
+				"Unlike singleblock miners, this one can mine &cin&r&6fi&r&eni&r&ate&r&bly&r. You can find &8bedrock ore deposits&r in the world &o&7(the bar on the top of your screen)&r&r and put this drill above them, preferably on &6bedrock level&r. Once placed, given power, and optionally fed &edrilling fluid&r to make it faster, it will start outputting ores from that vein. Though there is a &a\"limit\"&r which gets depleted. Every hour, the bedrock ore veins get &erestocked&r, that's what the little counter on the &1bottom right&r of your screen displays."
+			]
+			icon: "gtceu:steel_drill_head"
+			id: "62BEDF697CB9F4DC"
+			rewards: [{
+				count: 2
+				id: "0F7A3B92EDB4921F"
+				item: "gtceu:micro_processor_assembly"
+				type: "item"
+			}]
+			shape: "gear"
+			size: 1.1d
+			subtitle: "NOPHONODRILL..."
+			tasks: [{
+				id: "235F9208B3482F90"
+				item: "wfcore:drill_rig"
+				optional_task: true
+				type: "item"
+			}]
+			title: "Drilling Rig"
+			x: 3.375d
+			y: -1.3125d
+		}
+		{
+			dependencies: ["16A6AE5C770DB83A"]
+			dependency_requirement: "one_completed"
+			description: ["Same thing as in every age, has a bigger radius now though."]
+			id: "126BDE64D37F0789"
+			shape: "square"
+			size: 0.75d
+			subtitle: "Tier 3!"
+			tasks: [{
+				id: "6271AA45300DAF98"
+				item: "wfcore:chunk_reinforcer_hv"
+				type: "item"
+			}]
+			title: "Fortified Chunk Reinforcer"
+			x: 2.25d
+			y: -4.125d
+		}
+		{
+			dependencies: [
+				"16E3465CF94E2BDD"
+				"4024C831C77101CA"
+			]
+			description: ["No end in this."]
+			icon: "minecraft:ender_eye"
+			id: "652D99588DB6B971"
+			size: 0.75d
+			subtitle: ":eyes:"
+			tasks: [{
+				id: "0317F595601E74CB"
+				item: "minecraft:ender_eye"
+				type: "item"
+			}]
+			title: "Ender Eye"
+			x: 7.875d
+			y: -1.875d
+		}
+		{
+			dependencies: ["1E4553D5633DD5A0"]
+			dependency_requirement: "one_completed"
+			description: [
+				"The &1missile launch silo&r, here you'll be able to actually fire your missiles to any place you desire!"
+				""
+				"You &9can't pick missiles up&r so you have to get yourself a &adata stick&r and link the launch silo to the &3missile factory&r."
+			]
+			id: "33BC8A36F0761342"
+			shape: "diamond"
+			size: 1.0d
+			subtitle: "The real fun begins now..."
+			tasks: [{
+				id: "3B7952C97347A779"
+				item: "wfcore:missile_launcher"
+				type: "item"
+			}]
+			title: "Missile Launch Silo"
+			x: 3.375d
+			y: 2.625d
+		}
+		{
+			dependencies: ["6975F16F5B50F17F"]
+			dependency_requirement: "one_completed"
+			description: [
+				"This is the &amissile factory&r, you can guess what it does."
+				""
+				"The assembled missiles get stored inside of here to be used for &4later purposes&r."
+			]
+			id: "1E4553D5633DD5A0"
+			shape: "square"
+			size: 0.75d
+			subtitle: "The missile needs to be pointy!"
+			tasks: [{
+				id: "6642FD3A6FD0F9D4"
+				item: "wfcore:missile_factory"
+				type: "item"
+			}]
+			title: "Missile Factory"
+			x: 3.375d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7FA0ACB7F161F378"]
+			description: [
+				"This can start making actual war vehicles."
+				""
+				"Supply it with EV Power and you're good to go!"
+			]
+			icon: "wfcore:tank_assembly"
+			id: "63AC6A461E83F199"
+			size: 0.75d
+			tasks: [{
+				id: "7F3F714F49C9C078"
+				item: "wfcore:tank_assembly"
+				type: "item"
+			}]
+			title: "Tank Assembly Line"
+			x: 4.5d
+			y: -5.25d
 		}
 	]
 	subtitle: ["Scale up your power and begin advanced chemistry"]

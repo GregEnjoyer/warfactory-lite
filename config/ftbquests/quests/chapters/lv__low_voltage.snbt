@@ -5,15 +5,8 @@
 	group: "693226878D58638A"
 	icon: "gtceu:lv_electric_motor"
 	id: "7D50771C3FE033D7"
-	order_index: 1
-	quest_links: [{
-		id: "376725077649D2CC"
-		linked_quest: "5A8F0124E07D5025"
-		shape: "gear"
-		size: 1.2d
-		x: 2.25d
-		y: 0.0d
-	}]
+	order_index: 2
+	quest_links: [ ]
 	quests: [
 		{
 			dependencies: ["2F7617C0C4B330DE"]
@@ -71,7 +64,6 @@
 			y: 0.0d
 		}
 		{
-			dependencies: ["5A8F0124E07D5025"]
 			description: [
 				"Less common as a component, but used in a number of critical machines."
 				""
@@ -98,7 +90,6 @@
 			y: 1.125d
 		}
 		{
-			dependencies: ["5A8F0124E07D5025"]
 			description: [
 				"When placed on a machine, pumps will transfer fluid. You can configure them to import or export."
 				""
@@ -123,7 +114,6 @@
 			y: 0.0d
 		}
 		{
-			dependencies: ["5A8F0124E07D5025"]
 			description: [
 				"A specialized motor needed to make certain machines."
 				""
@@ -148,10 +138,6 @@
 			y: 0.0d
 		}
 		{
-			dependencies: [
-				"4B979482EF026BFF"
-				"5A8F0124E07D5025"
-			]
 			description: [
 				"The &3Steam Turbine&r is the only Generator you can realistically use in &7LV&r. &2Later, you'll unlock more interesting Power options&r, such as natural gases or petrols."
 				""
@@ -233,7 +219,6 @@
 			y: 3.360459183673477d
 		}
 		{
-			dependencies: ["4B979482EF026BFF"]
 			description: [
 				"Make some Battery Alloy, used for Battery Hulls."
 				""
@@ -359,10 +344,6 @@
 			y: 2.25d
 		}
 		{
-			dependencies: [
-				"4B979482EF026BFF"
-				"5A8F0124E07D5025"
-			]
 			description: [
 				"You could make any other &7LV&r Machine, but it would be easiest to start with the most useful one. We know, we know... you wanna make some of the crazier stuff first, but trust us, this is the best starting point."
 				""
@@ -1230,10 +1211,7 @@
 			y: 9.0d
 		}
 		{
-			dependencies: [
-				"32B08E6F414A00C0"
-				"4B979482EF026BFF"
-			]
+			dependencies: ["32B08E6F414A00C0"]
 			description: [
 				"With &7LV&r power, the primary way of getting &aAluminium Dust&r is by electrolyzing &9Sapphire&r or &2Green Sapphire&r. Aluminium is the main &bMV&r material, similar to how Steel is crucial in &7LV&r, and Bronze is important in the &6Steam Age&r."
 				""
@@ -1753,7 +1731,6 @@
 			dependencies: [
 				"3647B1B964A15E4E"
 				"7BE7DE4C0109D788"
-				"4B979482EF026BFF"
 			]
 			description: [
 				"Well... gotten any Aluminium Ingots yet?"
@@ -1928,6 +1905,7 @@
 					DisallowContainerItem: 0b
 					GT.Behaviours: { }
 					GT.Tool: {
+						DefaultEnchantments: [ ]
 						MaxDamage: 1023
 					}
 					HideFlags: 2
@@ -1944,7 +1922,7 @@
 			}]
 			title: "I'm Fetching Me Mallet!"
 			x: 8.91d
-			y: 4.5d
+			y: 2.25d
 		}
 		{
 			dependencies: ["15928F50AE80A5CF"]
@@ -1961,6 +1939,176 @@
 			title: "Nitrogen"
 			x: -2.25d
 			y: 7.875d
+		}
+		{
+			dependencies: [
+				"581CDF545E1EA1FD"
+				"5B2696206205CB2E"
+			]
+			description: [
+				"This is the first &2custom materials&r added by warfactory."
+				""
+				"You make it by putting &bsteel ingots&r and &bliquid zinc&r into a &6fluid solidifier&r."
+				""
+				"It is mainly used for casings, which are found in various &emultiblocks&r."
+			]
+			id: "38028255BC3A0BFD"
+			size: 0.75d
+			subtitle: "Steel but galvanized"
+			tasks: [{
+				id: "621878EDAECF096D"
+				item: "wfcore:galvanized_steel_ingot"
+				type: "item"
+			}]
+			x: 6.75d
+			y: 5.625d
+		}
+		{
+			dependencies: ["38028255BC3A0BFD"]
+			description: [
+				"This is the casing."
+				""
+				"You make certain &emultiblocks&r with this."
+			]
+			id: "759446B5EFB62E11"
+			size: 0.75d
+			tasks: [{
+				id: "6D2BAC17616F274A"
+				item: "wfcore:galvanized_steel_casing"
+				type: "item"
+			}]
+			title: "Galvanized Steel casing"
+			x: 6.75d
+			y: 6.75d
+		}
+		{
+			dependencies: ["38028255BC3A0BFD"]
+			description: [
+				"This is the first of the &cChunk Reinforcer&r Series!"
+				""
+				"When given any &dfood source&r, it will get consumed and consequently protect your Chunk by a &ncertain margin&r. This means that if you were to get attacked, the enemy would be forced to kill &4more people&r for that chunk to be taken over."
+				""
+				"&8&oThese are kind of expensive...&r&r"
+			]
+			id: "67A5F0512AA98C2F"
+			rewards: [{
+				count: 16
+				id: "74568F98AD2F5875"
+				item: "wfcore:galvanized_steel_dust"
+				type: "item"
+			}]
+			size: 0.75d
+			subtitle: "Tier 1!"
+			tasks: [{
+				id: "3B490AB4EEDDD056"
+				item: "wfcore:chunk_reinforcer_lv"
+				type: "item"
+			}]
+			title: "Chunk Reinforcer LV"
+			x: 7.875d
+			y: 5.625d
+		}
+		{
+			dependencies: ["1E9BE8D3F8A602DC"]
+			description: [
+				"This is steel... but &0&nblack&r&r."
+				""
+				"You will soon unlock the first &6light vehicle&r and &6plane assembling&r &edepots&r! This is the material which is gating those multiblocks."
+				""
+				"You may notice that you don't immediately get the ingot, but instead a &4&lhot&r&r ingot. Now be careful, it &eburns&r! That is the reason why you will need to make a &9chemical bath&r and &bcool down&r the hot black steel ingots with &1water&r."
+			]
+			id: "4C339A8CAC2ED029"
+			rewards: [{
+				count: 16
+				id: "32A68291C638A469"
+				item: "gtceu:black_steel_dust"
+				type: "item"
+			}]
+			size: 0.75d
+			subtitle: "looks like steel but different or something like that idk"
+			tasks: [{
+				id: "4B8639EBBE932851"
+				item: "gtceu:black_steel_ingot"
+				type: "item"
+			}]
+			title: "Black Steel Ingot"
+			x: 9.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["4C339A8CAC2ED029"]
+			description: ["The vehicles arent that good yet but they can definitely make you less defenseless!"]
+			id: "32676A53A5169C89"
+			rewards: [{
+				count: 16
+				id: "3B866C1A2DEA668B"
+				item: "gtceu:black_steel_dust"
+				type: "item"
+			}]
+			size: 0.75d
+			subtitle: "Your first cars!"
+			tasks: [{
+				id: "700E85811189D9B3"
+				item: "wfcore:light_ground_vehicle_factory"
+				type: "item"
+			}]
+			title: "Light Ground Vehicle Assembler"
+			x: 10.125d
+			y: 4.5d
+		}
+		{
+			dependencies: ["4C339A8CAC2ED029"]
+			description: [
+				"You can finally traverse the &bsky&r!"
+				""
+				"Maybe you can even start &oattacking&r people now...? Some of these early planes can definitely do some &4damage&r, especially to players."
+				""
+				"They might be &eexpensive&r though."
+			]
+			id: "1B835CD468B792B2"
+			rewards: [{
+				count: 16
+				id: "754EBB63FDBD0ADC"
+				item: "gtceu:black_steel_dust"
+				type: "item"
+			}]
+			size: 0.75d
+			subtitle: "Your first planes!"
+			tasks: [{
+				id: "1F0A11FEFA9B9DD8"
+				item: "wfcore:light_plane_assembler"
+				type: "item"
+			}]
+			title: "Light Plane Assembler"
+			x: 10.125d
+			y: 5.625d
+		}
+		{
+			dependencies: ["4C339A8CAC2ED029"]
+			description: [
+				"Small Interceptor Battery!"
+				""
+				"While you may not need it at this moment you will &osoon&r! It does exactly what it's name says, it &4intercepts missiles&r, you cant use it yet but you will be able to in &lHV&r&6, when you unlock &cmissile production&r."
+				""
+				"&8&oJust keep this multiblock in mind.&r&r"
+			]
+			id: "3A8B4FB05E5FCBD3"
+			rewards: [{
+				count: 8
+				id: "0282EAEF4218F0B6"
+				item: "gtceu:black_steel_dust"
+				type: "item"
+			}]
+			size: 0.75d
+			subtitle: "Things are getting spicy!"
+			tasks: [{
+				id: "4156CF8AB294DFFD"
+				item: "wfcore:interceptor"
+				type: "item"
+			}]
+			title: "Interceptor"
+			x: 9.0d
+			y: 5.625d
 		}
 	]
 	subtitle: ["Tame electricity and make your first machines"]

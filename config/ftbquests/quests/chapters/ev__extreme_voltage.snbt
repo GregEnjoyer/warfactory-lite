@@ -6,7 +6,7 @@
 	group: "693226878D58638A"
 	icon: "gtceu:ev_electric_motor"
 	id: "7FB9F636D95820A3"
-	order_index: 4
+	order_index: 5
 	quest_links: [
 		{
 			id: "2E99A771FCA40E15"
@@ -271,7 +271,6 @@
 		{
 			dependencies: [
 				"330BDB559A7BAB35"
-				"41D32C5178760F47"
 				"57D4E09A9CAB150C"
 			]
 			dependency_requirement: "one_completed"
@@ -387,7 +386,6 @@
 		{
 			dependencies: [
 				"3398FC108D9DCB46"
-				"41D32C5178760F47"
 				"40408FFD02134148"
 				"4AFD3073C731A1E4"
 				"6B08799BCFD01D3D"
@@ -1118,10 +1116,7 @@
 			y: 10.125d
 		}
 		{
-			dependencies: [
-				"41D32C5178760F47"
-				"42FB276AB16258D9"
-			]
+			dependencies: ["42FB276AB16258D9"]
 			description: [
 				"&aUranium&r has very few uses in &2GTCEu&r right now, as we're &4yet to&r implement our &3Nuclear Reactor&r (it's planned!)."
 				""
@@ -2015,6 +2010,44 @@
 			title: "EU P2P Tunnels"
 			x: 8.418367346938766d
 			y: 2.7806122448979593d
+		}
+		{
+			dependencies: [
+				"4AFD3073C731A1E4"
+				"7FA0ACB7F161F378"
+			]
+			description: ["Again..."]
+			id: "05FF793C147C5301"
+			shape: "square"
+			size: 0.75d
+			subtitle: "Tier 4!"
+			tasks: [{
+				id: "378777985827B801"
+				item: "wfcore:chunk_reinforcer_ev"
+				type: "item"
+			}]
+			title: "Advanced Chunk Reinforcer"
+			x: 3.375d
+			y: 6.75d
+		}
+		{
+			dependencies: ["117FBB18DEE6F08B"]
+			description: [
+				"Just like the early one, but this one requires quite the amount of materials!"
+				""
+				"It pays off though, you can make some real destructive planes with this."
+			]
+			id: "2838B52C72F173E5"
+			size: 0.75d
+			subtitle: "Expensive...."
+			tasks: [{
+				id: "7FF68507CA04B884"
+				item: "wfcore:heavy_plane_assembler"
+				type: "item"
+			}]
+			title: "Heavy Plane Assembler"
+			x: 3.375d
+			y: 9.0d
 		}
 	]
 	subtitle: ["Improve your infrastructure and parallelise your setups"]

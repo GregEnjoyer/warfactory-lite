@@ -313,6 +313,21 @@
 	#CLIENT_HINT only: slack (blocks) added to the victim's bounding box when validating a streamed pose. A supplied limb box whose centre falls outside the box+margin (or whose size is implausible) is rejected and the server rebuilds instead. Guards against a client shrinking/displacing its own hitboxes. Default 0.6.
 	#Range: 0.0 ~ 4.0
 	poseHintMargin = 0.6
+	#Animation-aware hitboxes (PlayerAnimator compat). When ON, a player's limb hitboxes track
+	#played animations for HIT REGISTRATION -- not just the client visual. PlayerAnimator applies
+	#animations client-side only, so the animated pose reaches the server via the SAME validated
+	#pose-stream path as CLIENT_HINT: the victim streams its own posed rig, the server still runs
+	#the ray test ITSELF and validates the pose (an attacker can never pick the limb). This turns
+	#on pose streaming even under SERVER authority, so it carries the same client-trust caveat as
+	#CLIENT_HINT. OFF (default): animations are a client-side visual only; hits use the server's
+	#vanilla-pose rebuild. PlayerAnimator itself is NOT required on the server.
+	animatedHitboxes = false
+	#Client-pose streaming sensitivity: the victim resends its pose once any limb-box scalar
+	#(position or orientation) drifts more than this many blocks from the last sent pose. Lower =
+	#small rotations reach the server sooner (finer tracking) for a little more bandwidth; higher =
+	#coarser, small movements ignored. Default 0.0002.
+	#Range: 0.0 ~ 1.0
+	poseStreamChangeEpsilon = 2.0E-4
 
 #PENETRATION (through-and-through): when on, a traced shot can wound EVERY rigged limb box it
 #passes through (e.g. a raised arm AND the torso behind it), not just the nearest. The nearest

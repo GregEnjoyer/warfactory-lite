@@ -678,45 +678,6 @@
             ]
         },
         {
-            "pakku_id": "1e3bx1Ximmkkj0sc",
-            "type": "MOD",
-            "side": "CLIENT",
-            "slug": {
-                "modrinth": "controlling"
-            },
-            "name": {
-                "modrinth": "Controlling"
-            },
-            "id": {
-                "modrinth": "xv94TkTM"
-            },
-            "files": [
-                {
-                    "type": "modrinth",
-                    "file_name": "Controlling-forge-1.20.1-12.0.2.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://cdn.modrinth.com/data/xv94TkTM/versions/LH6Bi6Am/Controlling-forge-1.20.1-12.0.2.jar",
-                    "id": "LH6Bi6Am",
-                    "parent_id": "xv94TkTM",
-                    "hashes": {
-                        "sha512": "3945bf3f6d843957f13584dfc70bede253d1e48f0dcb96f647fbcc6fcd3d1748a0dd9c6ca5c882e07a41f98eb84057934f51e43ab6023ed0a19695de2e6fe9f5",
-                        "sha1": "6195a3d1464f8fb641d7e165163aea1a857ce08e"
-                    },
-                    "required_dependencies": [
-                        "fuuu3xnx"
-                    ],
-                    "size": 115280,
-                    "date_published": "2023-07-16T04:39:30.644589Z"
-                }
-            ]
-        },
-        {
             "pakku_id": "LbpISI50EIgdtdPj",
             "type": "MOD",
             "slug": {
@@ -2496,6 +2457,42 @@
             ]
         },
         {
+            "pakku_id": "nMUj5EuvhUHIZLsX",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "open-persistence"
+            },
+            "name": {
+                "curseforge": "Open Persistence"
+            },
+            "id": {
+                "curseforge": "1339925"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "openpersistence-1.20.1-Forge-1.1.0.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/8491/577/openpersistence-1.20.1-Forge-1.1.0.jar",
+                    "id": "8491577",
+                    "parent_id": "1339925",
+                    "hashes": {
+                        "sha1": "c1b6c143488fb74828c945fc4b4b0fd8e6bfcc97",
+                        "md5": "eeabb8eda5aa01779de4057f806640c2"
+                    },
+                    "required_dependencies": [],
+                    "size": 37961,
+                    "date_published": "2026-07-23T04:13:39.827Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "LX3qQxDpp9H5RsX2",
             "pakku_links": [
                 "8FKIacURzh25i6RC"
@@ -3436,44 +3433,6 @@
             ]
         },
         {
-            "pakku_id": "fZo23npl1BHBuOyy",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "ashvehicle"
-            },
-            "name": {
-                "curseforge": "[SBW] AshVehicle"
-            },
-            "id": {
-                "curseforge": "1291715"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "ashvehicle-1.20.1-4.6-8.9.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/8456/433/ashvehicle-1.20.1-4.6-8.9.jar",
-                    "id": "8456433",
-                    "parent_id": "1291715",
-                    "hashes": {
-                        "sha1": "39ca1075af4870d7bb2fda00964213994c72f7ed",
-                        "md5": "4a43158e9ca49b1632357babacf09d5f"
-                    },
-                    "required_dependencies": [
-                        "1218165"
-                    ],
-                    "size": 18695193,
-                    "date_published": "2026-07-18T07:02:02.187Z"
-                }
-            ]
-        },
-        {
             "pakku_id": "UH4QP70Hij6w3V1F",
             "pakku_links": [
                 "Tjr9kFwS6a4UAYGL",
@@ -3559,6 +3518,44 @@
             ]
         },
         {
+            "pakku_id": "F85TM4vvqFo5XPq0",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "sbw-komodo-rendering-accelerator"
+            },
+            "name": {
+                "curseforge": "[SBW] Komodo rendering accelerator"
+            },
+            "id": {
+                "curseforge": "1616090"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "komodo-1.20.1-Forge-1.2.0.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/8469/599/komodo-1.20.1-Forge-1.2.0.jar",
+                    "id": "8469599",
+                    "parent_id": "1616090",
+                    "hashes": {
+                        "sha1": "578c93a7b56dc4f280c4eeee583cc39f2bc9ebe6",
+                        "md5": "e45fae5a202637a1475d454fb99b0081"
+                    },
+                    "required_dependencies": [
+                        "1218165"
+                    ],
+                    "size": 872391,
+                    "date_published": "2026-07-20T05:00:45.593Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "TPpxOkIf9JCMFZUg",
             "type": "MOD",
             "slug": {
@@ -3593,6 +3590,44 @@
                     ],
                     "size": 5791616,
                     "date_published": "2026-06-17T21:24:40.893Z"
+                }
+            ]
+        },
+        {
+            "pakku_id": "ysv6LWIPfYq32ICw",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "sbw-mavic-drone-range-extender"
+            },
+            "name": {
+                "curseforge": "[SBW] Mavic Drone range extender"
+            },
+            "id": {
+                "curseforge": "1616970"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "sbw_mavic_extender-1.20.1-Forge-1.1.0.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/8467/393/sbw_mavic_extender-1.20.1-Forge-1.1.0.jar",
+                    "id": "8467393",
+                    "parent_id": "1616970",
+                    "hashes": {
+                        "sha1": "ea989f1a2290de12563c8b454494c170c584395f",
+                        "md5": "c6ce9c71286ea5d0e854ce9e1082d0c8"
+                    },
+                    "required_dependencies": [
+                        "1218165"
+                    ],
+                    "size": 24813,
+                    "date_published": "2026-07-19T20:52:38.670Z"
                 }
             ]
         },
@@ -3793,6 +3828,43 @@
                     ],
                     "size": 11711774,
                     "date_published": "2026-06-08T12:49:53.660Z"
+                }
+            ]
+        },
+        {
+            "pakku_id": "IPUxjAZYIPBLAlMg",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "playeranimator"
+            },
+            "name": {
+                "curseforge": "playerAnimator"
+            },
+            "id": {
+                "curseforge": "658587"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "player-animation-lib-forge-1.0.2-rc1+1.20.jar",
+                    "mc_versions": [
+                        "1.20.1",
+                        "1.20"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "beta",
+                    "url": "https://edge.forgecdn.net/files/4587/214/player-animation-lib-forge-1.0.2-rc1+1.20.jar",
+                    "id": "4587214",
+                    "parent_id": "658587",
+                    "hashes": {
+                        "sha1": "16808f94a41d45d8e986b4e4ea6b02ba57fa058a",
+                        "md5": "46f8554181d4d240075ea4919d01fd01"
+                    },
+                    "required_dependencies": [],
+                    "size": 181437,
+                    "date_published": "2023-06-14T20:01:58.627Z"
                 }
             ]
         },

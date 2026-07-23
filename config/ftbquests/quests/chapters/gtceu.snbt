@@ -43,37 +43,14 @@
 					type: "item"
 				}
 				{
-					count: 30
-					id: "10F0F52374DC04BC"
-					item: "minecraft:cooked_beef"
+					id: "49D6B7658EFBCA7D"
+					item: "gtmthings:advanced_terminal"
 					type: "item"
 				}
 				{
-					id: "186364195B5A3464"
-					item: {
-						Count: 1
-						id: "gtceu:netherite_mining_hammer"
-						tag: {
-							Damage: 0
-							DisallowContainerItem: 0b
-							GT.Behaviours: {
-								AoEColumn: 1
-								AoELayer: 0
-								AoERow: 1
-								MaxAoEColumn: 1
-								MaxAoELayer: 0
-								MaxAoERow: 1
-								TorchPlacing: 1b
-							}
-							GT.Tool: {
-								DefaultEnchantments: [ ]
-								HarvestLevel: 4
-								MaxDamage: 6095
-								ToolSpeed: 8.0f
-							}
-							HideFlags: 2
-						}
-					}
+					count: 32
+					id: "10F0F52374DC04BC"
+					item: "minecraft:cooked_beef"
 					type: "item"
 				}
 				{
@@ -105,6 +82,95 @@
 				{
 					id: "3E38E253C278867F"
 					item: "walkietalkie:stone_walkietalkie"
+					type: "item"
+				}
+				{
+					id: "186364195B5A3464"
+					item: {
+						Count: 1
+						id: "gtceu:netherite_mining_hammer"
+						tag: {
+							Damage: 0
+							DisallowContainerItem: 0b
+							Enchantments: [{
+								id: "minecraft:efficiency"
+								lvl: 5s
+							}]
+							GT.Behaviours: {
+								AoEColumn: 1
+								AoELayer: 0
+								AoERow: 1
+								MaxAoEColumn: 1
+								MaxAoELayer: 0
+								MaxAoERow: 1
+								TorchPlacing: 1b
+							}
+							GT.Tool: {
+								AttackDamage: 5.5f
+								AttackSpeed: -3.2f
+								DefaultEnchantments: [ ]
+								HarvestLevel: 4
+								MaxDamage: 6095
+								ToolSpeed: 8.0f
+							}
+							HideFlags: 2
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "3DDBE4197476BA89"
+					item: {
+						Count: 1
+						id: "gtceu:diamond_axe"
+						tag: {
+							Damage: 0
+							DisallowContainerItem: 0b
+							Enchantments: [{
+								id: "minecraft:efficiency"
+								lvl: 5s
+							}]
+							GT.Behaviours: {
+								DisableShields: 1b
+								TreeFelling: 1b
+							}
+							GT.Tool: {
+								AttackDamage: 12.0f
+								AttackSpeed: -3.1000001f
+								DefaultEnchantments: [ ]
+								HarvestLevel: 3
+								MaxDamage: 767
+								ToolSpeed: 8.0f
+							}
+							HideFlags: 2
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "091552928FADC1AA"
+					item: {
+						Count: 1
+						id: "gtceu:diamond_shovel"
+						tag: {
+							Damage: 0
+							DisallowContainerItem: 0b
+							Enchantments: [{
+								id: "minecraft:efficiency"
+								lvl: 5s
+							}]
+							GT.Behaviours: { }
+							GT.Tool: {
+								AttackDamage: 8.5f
+								AttackSpeed: -2.9f
+								DefaultEnchantments: [ ]
+								HarvestLevel: 3
+								MaxDamage: 767
+								ToolSpeed: 10.0f
+							}
+							HideFlags: 2
+						}
+					}
 					type: "item"
 				}
 			]
@@ -906,8 +972,8 @@
 				type: "item"
 			}]
 			title: "Crafting Station"
-			x: 3.63d
-			y: -4.29d
+			x: 3.75d
+			y: -4.5d
 		}
 		{
 			dependencies: ["25289F9E8AE01C29"]
@@ -1002,14 +1068,16 @@
 				}
 				type: "item"
 			}]
+			shape: "rsquare"
+			size: 1.0d
 			subtitle: "From all the developers of warfactory lite, thank you so much for playing, and thank you especially to Tommykay and his crew for helping us get the playerbase for this event."
 			tasks: [{
 				id: "7D8D7D195750ED05"
 				title: "The Developers"
 				type: "checkmark"
 			}]
-			x: -1.0d
-			y: 0.0d
+			x: -0.75d
+			y: 0.5d
 		}
 		{
 			dependencies: ["1ECBA1CBFFB9F625"]
@@ -1054,7 +1122,7 @@
 				}
 				type: "item"
 			}]
-			x: 2.0d
+			x: 1.5d
 			y: -0.5d
 		}
 	]

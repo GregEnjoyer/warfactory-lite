@@ -3,6 +3,7 @@
 	default_quest_shape: ""
 	filename: "warfactory_medical"
 	group: "539A285D299C0F64"
+	icon: "wfmedical:bandage"
 	id: "2B23B6D624A525C9"
 	order_index: 0
 	quest_links: [ ]

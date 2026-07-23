@@ -1,0 +1,10 @@
+#Log verbose [Mavic] chunk-streaming diagnostics (per-drone status, transfers, stream counts). Off by default.
+verboseLogging = false
+
+[drone]
+	#Max distance (blocks) before the drone HUD shows the out-of-range WARNING and red distance marker.
+	#Range: 16 ~ 1000000
+	defaultMaxDistance = 2048
+	#Per-vehicle overrides, so addon drones can differ. Format: "namespace:entity=distance", separated by ';' or ','. Example: "superbwarfare:drone=4096;mymod:big_drone=8192".
+	perVehicleMaxDistance = ""
+

@@ -1,0 +1,9 @@
+
+[persistent_players]
+	#If players in creative mode should leave a persistent body behind
+	persist_creative_players = true
+	#If offline persistent bodies should lie down (sleeping pose)
+	offline_players_sleep = false
+	#Verbose logging for debugging
+	better_logging = false
+

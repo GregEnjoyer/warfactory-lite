@@ -5,7 +5,7 @@
 	group: "693226878D58638A"
 	icon: "gtceu:mv_electric_motor"
 	id: "43E779CEEB25D55B"
-	order_index: 2
+	order_index: 3
 	quest_links: [{
 		id: "6FCAD016C795DE93"
 		linked_quest: "7567E885B7166603"
@@ -522,8 +522,8 @@
 				}
 			]
 			title: "A Balanced Quest"
-			x: -1.65d
-			y: 1.98d
+			x: -2.25d
+			y: 2.445153061224488d
 		}
 		{
 			dependencies: ["4A92AFD2532EED26"]
@@ -573,6 +573,7 @@
 			]
 			icon: "ae2:molecular_assembler"
 			id: "0A1165C6D1F62C2B"
+			shape: "diamond"
 			size: 0.66d
 			subtitle: "Autocrafting at last!"
 			tasks: [{
@@ -2275,21 +2276,40 @@
 		}
 		{
 			dependencies: ["1BFA1378C55E4B5E"]
+			description: [
+				"&aResearch&r is a new system added to gregtech."
+				""
+				"Several crafting recipes for &1weapons&r and &9vehicles&r are locked behind research. Research units require &acomputation&r. This is from a &3computer multiblock&r."
+			]
 			id: "14C6C5179E434577"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "111AFC909A0D4653"
+				table_id: 6500114529187527477L
+				type: "random"
+			}]
 			shape: "gear"
-			subtitle: "Research is a new system added to gregtech via the WFcore mod. Several crafting recipes for weapons and vehicles are locked behind research. Research units require Computation. This is from a computer multiblock."
+			subtitle: "Warfactory AI"
 			tasks: [{
 				id: "3975A053F1417A7B"
 				item: "wfcore:research_unit"
 				type: "item"
 			}]
-			title: "RESEARCH"
+			title: "Research Unit"
 			x: -3.5d
-			y: 4.0d
+			y: 2.5d
 		}
 		{
-			dependencies: ["7567E885B7166603"]
+			dependencies: ["2E78B26496760786"]
+			description: [
+				"The &acomputation mainframe&r, the first step in &eresearch&r!"
+				""
+				"Here, a new kind of &epower&r gets introduced, similar to &lEU&r&6 but used for a different purpose. It's called &bcomputation(CWU)&r."
+				""
+				"To get the computation mainframe going, you need to feed it &epower&r, but it can also &coverheat&r! There is passive cooling in the form of &3fans and heatsinks&r but you can also choose to cool this multiblock through &1liquids&r!"
+			]
 			id: "1BFA1378C55E4B5E"
+			subtitle: "I can't think of a good subtitle"
 			tasks: [{
 				id: "4D73DFB5C6E157A5"
 				item: "wfcore:mainframe"
@@ -2297,6 +2317,289 @@
 			}]
 			x: -3.5d
 			y: 1.5d
+		}
+		{
+			dependencies: ["7567E885B7166603"]
+			description: [
+				"&nVery&r useful casing."
+				""
+				"This one is used in quite alot of multiblocks so be sure to procure &6alot&r of &3aluminium&r and maybe even passive it!"
+			]
+			id: "2E78B26496760786"
+			rewards: [{
+				count: 32
+				id: "12C0D178F5F00333"
+				item: "gtceu:aluminium_dust"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "so shiny..."
+			tasks: [{
+				id: "0425DE4952CD5555"
+				item: "wfcore:aluminium_sheet_casing"
+				type: "item"
+			}]
+			title: "Aluminium Sheet Casing"
+			x: -2.25d
+			y: 1.5d
+		}
+		{
+			dependencies: ["1BFA1378C55E4B5E"]
+			dependency_requirement: "one_completed"
+			description: [
+				"These are the aforementioned &efans&r. They provide passive &bcooling&r."
+				""
+				"You don't have to get all of these of course, one of these is enough to complete the quest."
+			]
+			id: "2565EE85885C5AB0"
+			shape: "square"
+			size: 0.75d
+			subtitle: "the wheels on the bus go round and round"
+			tasks: [
+				{
+					id: "396606CF737E0FDA"
+					item: "wfcore:cooling_fan_cover_lv"
+					type: "item"
+				}
+				{
+					id: "342E7A2BEA45173B"
+					item: "wfcore:cooling_fan_cover_mv"
+					type: "item"
+				}
+				{
+					id: "27B7E92C0364E754"
+					item: "wfcore:cooling_fan_cover_hv"
+					type: "item"
+				}
+				{
+					id: "4F9E82F8B849515F"
+					item: "wfcore:cooling_fan_cover_ev"
+					type: "item"
+				}
+			]
+			title: "Cooling Fans"
+			x: -4.875d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7567E885B7166603"]
+			dependency_requirement: "one_completed"
+			description: ["You should know what these do by now."]
+			id: "508DFCA6223EDC36"
+			shape: "square"
+			size: 0.75d
+			subtitle: "Tier 2!"
+			tasks: [{
+				id: "6116E0C1367CF638"
+				item: "wfcore:chunk_reinforcer_mv"
+				type: "item"
+			}]
+			title: "Hardened Chunk Reinforcer"
+			x: -1.125d
+			y: 0.375d
+		}
+		{
+			dependencies: ["4AFD3073C731A1E4"]
+			description: [
+				"You crafted &5EV Circuits&r and can now finally craft the &aradar&r!"
+				""
+				"The &aradar&r is a multiblock which &9scans&r a certain area of chunks for &egregtech machines&r, &3players&r and several &dnon-natural blocks&r. This Machine needs to be at atleast &ey = 120&r to work. Provide It with atleast &5EV energy&r and computation, input a &2data stick&r and start scanning! It scans for bases above a &9certain tier&r, meaning small bases, with almost no progression or activity will get &dleft behind&r. After the radar has finished a cycle it will output that same data stick, but &cmodified with certain chunk data&r."
+			]
+			icon: "wfcore:radar"
+			id: "10EFB0F10FD91C93"
+			rewards: [{
+				count: 2
+				id: "706D21D862F1BEEF"
+				item: "gtceu:micro_processor_computer"
+				type: "item"
+			}]
+			shape: "gear"
+			size: 1.25d
+			subtitle: "No comment."
+			tasks: [{
+				id: "2C145E0138380285"
+				item: "wfcore:radar"
+				type: "item"
+			}]
+			title: "Radar"
+			x: 11.25d
+			y: 0.375d
+		}
+		{
+			dependencies: ["10EFB0F10FD91C93"]
+			description: [
+				"This is the &6data printer&r."
+				""
+				"Once your radar has finished scanning, take its &adata stick&r and input it into this singleblock. It will output a &ebook and quill&r with all of the suspected bases' &9coordinates&r ordered from largest to smallest."
+			]
+			icon: "wfcore:printer"
+			id: "25C6D0F3C64298D1"
+			shape: "square"
+			size: 0.75d
+			subtitle: "Printing classified files..."
+			tasks: [{
+				id: "2F291EDCD2EF8068"
+				item: "wfcore:printer"
+				type: "item"
+			}]
+			title: "Data Printer"
+			x: 11.25d
+			y: 1.5d
+		}
+		{
+			dependencies: ["26394C1290D70AB6"]
+			dependency_requirement: "one_completed"
+			description: [
+				"These are &9AC Wires&r!"
+				""
+				"They are cheap wires that work like superconductors at any age, with the only difference being that they can only have one &ainput&r and one &coutput&r. They also don't transport energy &9regularly&r. These are meant to be used only for &n&5long distance transport&r&r, that implies far away &0oil-&r/&7mining&r rigs or &aradars&r! The following quests will explain this in more detail."
+			]
+			icon: "wfcore:quadruple_ac_pipe"
+			id: "3B8DBC2F321669DE"
+			shape: "square"
+			size: 0.75d
+			subtitle: "Better than superconductors?"
+			tasks: [
+				{
+					id: "487ADC31841479BB"
+					item: "wfcore:single_ac_pipe"
+					type: "item"
+				}
+				{
+					id: "0EE6FD548FECB97D"
+					item: "wfcore:double_ac_pipe"
+					type: "item"
+				}
+				{
+					id: "192AEC5DF73BA931"
+					item: "wfcore:quadruple_ac_pipe"
+					type: "item"
+				}
+				{
+					id: "2789557CE81C8BA4"
+					item: "wfcore:octal_ac_pipe"
+					type: "item"
+				}
+				{
+					id: "210B0C27DDD64252"
+					item: "wfcore:hex_ac_pipe"
+					type: "item"
+				}
+			]
+			title: "AC wire"
+			x: 7.875d
+			y: 1.5d
+		}
+		{
+			dependencies: ["3B8DBC2F321669DE"]
+			description: [
+				"This is so to say the &4hub&r of your &9AC&r wires."
+				""
+				"This is where the actual &eenergy transfer&r happens with normal &6energy hatches&r and &edynamo hatches&r. Here you can mount your &9AC&r/&cDC&r hatches for your &clong distance energy lines&r! It also needs constant &1water&r supply to function."
+			]
+			icon: "wfcore:large_transformer"
+			id: "28EBE2CFC77CA8F6"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "5543B3F81C6F8522"
+				table_id: 6500114529187527477L
+				type: "choice"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "Sometimes better than superconductors."
+			tasks: [{
+				id: "22BE16415CB95271"
+				item: "wfcore:large_transformer"
+				type: "item"
+			}]
+			title: "Large Transformer"
+			x: 7.875d
+			y: 2.625d
+		}
+		{
+			dependencies: ["3B8DBC2F321669DE"]
+			description: [
+				"How does this whole &9AC&r/&cDC&r Thing work?"
+				""
+				"Normal GT Energy = &cDC&r"
+				"Converted GT Energy = &9AC&r"
+				""
+				"There's the &cDC&r → &9AC&r hatch, this is the &dstarting point&r of your energy line, the input. It takes the &l&7EU&r&r stored inside the &5energy hatch&r and converts it to AC energy format."
+				""
+				"Then there's the &9AC&r → &cDC&r hatch, this is the &eend&r of your energy line, the output. It takes the AC energy and converts it back to &l&7EU&r&r, which then gets outputted into the &6dynamo hatch&r."
+			]
+			icon: "wfcore:ac_input_hatch"
+			id: "531997AB496C3A07"
+			rewards: [{
+				exclude_from_claim_all: true
+				id: "6C2C7596AB55B525"
+				table_id: 4302125856527628630L
+				type: "choice"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "more logistics..."
+			tasks: [
+				{
+					id: "4A209B3F16461F61"
+					item: "wfcore:ac_input_hatch"
+					type: "item"
+				}
+				{
+					id: "7E75489F92E72D2C"
+					item: "wfcore:ac_output_hatch"
+					type: "item"
+				}
+			]
+			title: "AC / DC Hatches"
+			x: 9.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["10FB27DD3C7BEC2F"]
+			description: ["This acts just like the first tier of vehicle depot, it can just make &dbetter&r vehicles."]
+			icon: "wfcore:heavy_vehicle_depot"
+			id: "200A10FB7732771C"
+			shape: "square"
+			size: 0.75d
+			subtitle: "Second and last tier of this!"
+			tasks: [{
+				id: "0303142DF793544F"
+				item: "wfcore:heavy_vehicle_depot"
+				type: "item"
+			}]
+			title: "Heavy Vehicle Depot"
+			x: 9.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["26394C1290D70AB6"]
+			description: [
+				"As is common for every tier, the &3Circuit Assembler&r is an essential part of progression, always opening up a new Tier of circuits."
+				""
+				"At this point you should be placing an &3Extractor&r next to your Circuit Assembler. Send off dozens of stacks of &aSoldering Alloy&r Ingots, and you won't have to worry about refilling again."
+			]
+			icon: "gtceu:mv_circuit_assembler"
+			id: "1F1DC4D4B0C071C5"
+			rewards: [{
+				count: 40
+				id: "072C62B2FC31584D"
+				item: "gtceu:soldering_alloy_dust"
+				type: "item"
+			}]
+			shape: "square"
+			size: 0.75d
+			subtitle: "Yippee, yahoo"
+			tasks: [{
+				id: "480EAC409A0421B1"
+				item: "gtceu:mv_circuit_assembler"
+				type: "item"
+			}]
+			title: "Advanced Circuit Assembler"
+			x: 9.0d
+			y: 0.375d
 		}
 	]
 	subtitle: ["Venture into petrochemistry and refine electronics"]

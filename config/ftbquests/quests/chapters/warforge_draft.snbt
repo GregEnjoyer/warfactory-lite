@@ -273,6 +273,104 @@
 			x: 4.5d
 			y: 3.0d
 		}
+		{
+			dependencies: ["1A2F3B4C5D6E7001"]
+			description: ["These blocks provide greater resistance against any sort of &cexplosion&r."]
+			id: "57F14ED159445A01"
+			subtitle: "Protection"
+			tasks: [{
+				id: "520C90381CDD8E35"
+				item: "wfcore:sandbags"
+				type: "item"
+			}]
+			title: "Protecting your base"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["57F14ED159445A01"]
+			description: [""]
+			id: "13E55AA9BA3B72D6"
+			subtitle: "Protection"
+			tasks: [{
+				id: "64B1E0413851EF22"
+				item: "wfcore:hesco_bastion"
+				type: "item"
+			}]
+			title: "Protecting your base"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["13E55AA9BA3B72D6"]
+			description: [""]
+			id: "0496BBDCE16F5E37"
+			subtitle: "Protection"
+			tasks: [{
+				id: "489AC0D4B8A19F6F"
+				item: "wfcore:ballistic_glass"
+				type: "item"
+			}]
+			title: "Protecting your base"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0496BBDCE16F5E37"]
+			description: [""]
+			id: "3572FD2F1F195F45"
+			subtitle: "Protection"
+			tasks: [{
+				id: "720F35CEAE8F4AED"
+				item: "wfcore:standard_concrete"
+				type: "item"
+			}]
+			title: "Protecting your base"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3572FD2F1F195F45"]
+			description: [""]
+			id: "5B347E79D0225CAD"
+			subtitle: "Protection"
+			tasks: [{
+				id: "3E1B99BFB4A65882"
+				item: "wfcore:reinforced_concrete"
+				type: "item"
+			}]
+			title: "Protecting your base"
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["5B347E79D0225CAD"]
+			description: [""]
+			id: "7BE1B871A37784D1"
+			subtitle: "Protection"
+			tasks: [{
+				id: "2AF99A4AAE270B77"
+				item: "wfcore:hardened_steel"
+				type: "item"
+			}]
+			title: "Protecting your base"
+			x: 9.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7BE1B871A37784D1"]
+			description: [""]
+			id: "001181073BFB890A"
+			subtitle: "Protection"
+			tasks: [{
+				id: "359FB515614957E2"
+				item: "wfcore:tungsten_plating"
+				type: "item"
+			}]
+			title: "Protecting your base"
+			x: 10.5d
+			y: 0.0d
+		}
 	]
 	title: "WarForge"
 }

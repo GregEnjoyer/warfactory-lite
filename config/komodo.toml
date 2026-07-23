@@ -1,0 +1,8 @@
+
+[dormancy]
+	#Vehicle ids that keep animating on their own while fully idle and so must be periodically re-checked.
+	#Example: ["superbwarfare:some_idle_animated_vehicle"]
+	probeVehicles = []
+	#When true, EVERY vehicle is probed regardless of the list above.
+	probeAllVehicles = false
+

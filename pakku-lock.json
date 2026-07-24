@@ -3353,16 +3353,16 @@
             "files": [
                 {
                     "type": "github",
-                    "file_name": "wfcore-1.1.0.jar",
+                    "file_name": "wfcore-1.2.0.jar",
                     "release_type": "release",
-                    "url": "https://github.com/Warfactory-Official/Warfctory-Modern-Core/releases/download/latest/wfcore-1.1.0.jar",
-                    "id": "487611601",
+                    "url": "https://github.com/Warfactory-Official/Warfctory-Modern-Core/releases/download/latest/wfcore-1.2.0.jar",
+                    "id": "488780432",
                     "parent_id": "1205218751",
                     "hashes": {
-                        "sha256": "60e98c640bb72d7e220ba21923fcc124631ca212d70473e34d87e8a2f605f9d6"
+                        "sha256": "95e62eb9c3e481c81bd02e81afb11b94c00a65cba780c99166ae70842f240d3a"
                     },
-                    "size": 4949930,
-                    "date_published": "2026-07-23T20:33:28Z"
+                    "size": 5004757,
+                    "date_published": "2026-07-24T20:11:51Z"
                 }
             ]
         },

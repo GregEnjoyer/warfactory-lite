@@ -13,7 +13,7 @@ ServerEvents.recipes(event => {
         mv: { plate: 'gtceu:aluminium_plate',       eut: 120 },
         hv: { plate: 'gtceu:stainless_steel_plate', eut: 480 },
         ev: { plate: 'gtceu:titanium_plate',        eut: 1920 },
-        iv: { plate: 'gtceu:tungstensteel_plate',   eut: 7680 },
+        iv: { plate: 'gtceu:tungsten_steel_plate',  eut: 7680 },
     }
     // component -> flavour ingredient
     const PART = {

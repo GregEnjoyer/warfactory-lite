@@ -80,9 +80,6 @@
         "embeddium": {
             "side": "CLIENT"
         },
-        "immediatelyfast": {
-            "side": "CLIENT"
-        },
         "observable": {
             "side": "SERVER"
         },

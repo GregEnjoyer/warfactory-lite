@@ -3328,13 +3328,13 @@
                     "file_name": "warforge-remaintained-2.4.0.jar",
                     "release_type": "release",
                     "url": "https://github.com/Warfactory-Official/WarForge-Remaintained/releases/download/snapshots/warforge-remaintained-2.4.0.jar",
-                    "id": "475924881",
+                    "id": "489002081",
                     "parent_id": "824503430",
                     "hashes": {
-                        "sha256": "e97361fac3b73f94954630fc536fc73d69e0aa9af84893b1ca9aeffa6ba89f28"
+                        "sha256": "b2e35c5fcce1e30795d5d07aa44ae8befcc87b5b51cea5648c99fa647eb91a14"
                     },
-                    "size": 1026866,
-                    "date_published": "2026-07-13T21:33:22Z"
+                    "size": 1027751,
+                    "date_published": "2026-07-25T01:05:59Z"
                 }
             ]
         },
@@ -3356,13 +3356,13 @@
                     "file_name": "wfcore-1.2.0.jar",
                     "release_type": "release",
                     "url": "https://github.com/Warfactory-Official/Warfctory-Modern-Core/releases/download/latest/wfcore-1.2.0.jar",
-                    "id": "488780432",
+                    "id": "489005509",
                     "parent_id": "1205218751",
                     "hashes": {
-                        "sha256": "95e62eb9c3e481c81bd02e81afb11b94c00a65cba780c99166ae70842f240d3a"
+                        "sha256": "494a3a4f8e2c68f8b9298e0c8bc28e917214c6c3cf64c2e6b44b2ee45dd0922a"
                     },
                     "size": 5004757,
-                    "date_published": "2026-07-24T20:11:51Z"
+                    "date_published": "2026-07-25T01:12:29Z"
                 }
             ]
         },

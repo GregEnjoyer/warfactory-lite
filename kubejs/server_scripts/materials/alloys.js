@@ -16,4 +16,44 @@ ServerEvents.recipes(event => {
         .itemOutputs(Item.of('gtceu:gun_metal_ingot'))
         .duration(200)
         .EUt(480)
+
+    // netherrack
+    event.recipes.gtceu.chemical_reactor('minecraft:netherrack')
+        .itemInputs(Item.of('minecraft:sand'))
+        .inputFluids(Fluid.of('minecraft:lava', 1000))
+        .itemOutputs(Item.of('minecraft:netherrack'))
+        .duration(80)
+        .EUt(128)
+
+    // nether air
+    event.recipes.wfcore.gas_extractor('gtceu:nether_air')
+        .itemInputs(Item.of('minecraft:netherrack'))
+        .inputFluids(Fluid.of('gtceu:air', 20000))
+        .outputFluids(Fluid.of('gtceu:nether_air', 20000))
+        .duration(160)
+        .EUt(480)
+
+    // ender air
+    event.recipes.wfcore.gas_extractor('gtceu:ender_air')
+        .itemInputs(Item.of('minecraft:ender_pearl'))
+        .inputFluids(Fluid.of('gtceu:air', 20000))
+        .outputFluids(Fluid.of('gtceu:ender_air', 20000))
+        .duration(80)
+        .EUt(480)
+
+    // black steel
+    event.recipes.gtceu.chemical_bath('gtceu:black_steel_cool_down')
+        .itemInputs(Item.of('gtceu:hot_black_steel_ingot'))
+        .inputFluids(Fluid.of('minecraft:water', 100))
+        .itemOutputs(Item.of('gtceu:black_steel_ingot'))
+        .duration(200)
+        .EUt(30)
+
+    // black steel
+    event.recipes.gtceu.chemical_bath('gtceu:black_steel_cool_down_distilled_water')
+        .itemInputs(Item.of('gtceu:hot_black_steel_ingot'))
+        .inputFluids(Fluid.of('gtceu:distilled_water', 100))
+        .itemOutputs(Item.of('gtceu:black_steel_ingot'))
+        .duration(200)
+        .EUt(30)
 })

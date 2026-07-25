@@ -9,48 +9,192 @@
 	quest_links: [ ]
 	quests: [
 		{
+			description: [
+				"Warfactory has its own in house &cmedical system&r, with &6limb damage&r, &4blood loss&r, and other features"
+				""
+				"You may have already seen the little character to the left of your screen which displays a little overview of your &abodily health&r."
+				""
+				"Press &7&n&lG&r&r to&r access the health and status of your body. If you die, you can get &crevived&r by another player."
+			]
+			icon: "minecraft:apple"
 			id: "05CC5C8BB6340BEF"
-			subtitle: "Warfactory has its own in house medical system, with limb damage, blood loss, and other cool features. "
+			subtitle: "Limbs..."
 			tasks: [{
 				id: "41F5AF0FC7239E4A"
 				title: "Medical system"
 				type: "checkmark"
 			}]
+			title: "Medical System"
 			x: 0.0d
 			y: 0.0d
 		}
 		{
 			dependencies: ["05CC5C8BB6340BEF"]
-			id: "571FB1D72E5C9000"
+			description: [""]
+			id: "491CE8BA2821741D"
 			tasks: [{
-				id: "35A54E94D7EA320E"
-				title: "Blood loss"
-				type: "checkmark"
+				id: "0C16FCA935380C22"
+				item: "wfmedical:medkit"
+				type: "item"
 			}]
-			x: 2.0d
+			x: -0.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["05CC5C8BB6340BEF"]
+			description: [""]
+			id: "0EB626FD0D75B1C1"
+			tasks: [{
+				id: "2BCD690CD6C7EF0C"
+				item: "wfmedical:tourniquet"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 2.5d
+		}
+		{
+			dependencies: ["05CC5C8BB6340BEF"]
+			description: [""]
+			id: "23AECFF6B54BD1C8"
+			tasks: [{
+				id: "0ACE96ACD9DD64B0"
+				item: "wfmedical:hemostatic"
+				type: "item"
+			}]
+			x: 1.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["05CC5C8BB6340BEF"]
+			description: [""]
+			id: "67DC8D3EA91AA89E"
+			tasks: [{
+				id: "0FAAE112B3036714"
+				item: "wfmedical:burn_ointment"
+				type: "item"
+			}]
+			x: -1.5d
+			y: 2.0d
+		}
+		{
+			dependencies: ["05CC5C8BB6340BEF"]
+			description: [""]
+			id: "2450E781DCBFBA53"
+			tasks: [{
+				id: "201300F71DC2F655"
+				item: "wfmedical:splint"
+				type: "item"
+			}]
+			x: 0.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["05CC5C8BB6340BEF"]
+			description: [""]
+			id: "723674C4A75DC65C"
+			tasks: [{
+				id: "0F9E41E3FFD05576"
+				item: "wfmedical:suture_kit"
+				type: "item"
+			}]
+			x: 1.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["05CC5C8BB6340BEF"]
+			description: [""]
+			id: "3B5197F76F504850"
+			tasks: [{
+				id: "3D33D984ABA0A3DD"
+				item: "wfmedical:bandage"
+				type: "item"
+			}]
+			x: -0.5d
+			y: -2.5d
+		}
+		{
+			dependencies: ["05CC5C8BB6340BEF"]
+			description: [""]
+			id: "65DC532221DCE66F"
+			tasks: [{
+				id: "03223CB8EC4945DE"
+				item: "wfmedical:combat_stimulant_i"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -2.0d
+		}
+		{
+			dependencies: ["05CC5C8BB6340BEF"]
+			description: [""]
+			id: "695B6E8E95496C7F"
+			tasks: [{
+				id: "2584CDC2C6DF7FD6"
+				item: "wfmedical:naloxone_syringe"
+				type: "item"
+			}]
+			x: -2.5d
+			y: -1.0d
+		}
+		{
+			dependencies: ["05CC5C8BB6340BEF"]
+			description: [""]
+			id: "3C4C5CB0F5E75414"
+			tasks: [{
+				id: "3F955699501AC34E"
+				item: "wfmedical:antirad_shot"
+				type: "item"
+			}]
+			x: -2.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["05CC5C8BB6340BEF"]
+			description: [""]
+			id: "590274F2F9B691C0"
+			tasks: [{
+				id: "0BCBF6840A6D479B"
+				item: "wfmedical:morphine_syringe"
+				type: "item"
+			}]
+			x: -3.0d
 			y: 0.0d
 		}
 		{
 			dependencies: ["05CC5C8BB6340BEF"]
-			id: "460942E4C3055A92"
+			description: [""]
+			id: "420E1ABCB1CF80D3"
 			tasks: [{
-				id: "2278AE5233D95178"
-				title: "Limbs"
-				type: "checkmark"
+				id: "0AACEDD111801801"
+				item: "wfmedical:local_anesthetic"
+				type: "item"
 			}]
-			x: -2.0d
+			x: 2.5d
+			y: 1.0d
+		}
+		{
+			dependencies: ["05CC5C8BB6340BEF"]
+			description: [""]
+			id: "1EBEBBAD6CE3D815"
+			tasks: [{
+				id: "4B4954D5D38BE91B"
+				item: "wfmedical:painkillers"
+				type: "item"
+			}]
+			x: 3.0d
 			y: 0.0d
 		}
 		{
 			dependencies: ["05CC5C8BB6340BEF"]
-			id: "73EDE987733748F5"
+			description: [""]
+			id: "18BE1A60D0A0A4F9"
 			tasks: [{
-				id: "3C2093BA7DD18652"
-				title: "Pain"
-				type: "checkmark"
+				id: "6A08AD2451EEFC2E"
+				item: "wfmedical:blood_bag"
+				type: "item"
 			}]
-			x: 0.0d
-			y: 1.5d
+			x: 2.5d
+			y: -1.0d
 		}
 	]
 	title: "WarFactory Medical"

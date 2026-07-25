@@ -5,7 +5,7 @@
 	group: "693226878D58638A"
 	icon: "gtceu:mv_electric_motor"
 	id: "43E779CEEB25D55B"
-	order_index: 3
+	order_index: 2
 	quest_links: [{
 		id: "6FCAD016C795DE93"
 		linked_quest: "7567E885B7166603"
@@ -2600,6 +2600,28 @@
 			title: "Advanced Circuit Assembler"
 			x: 9.0d
 			y: 0.375d
+		}
+		{
+			dependencies: ["16A6AE5C770DB83A"]
+			dependency_requirement: "one_completed"
+			description: [
+				"You may have noticed by now that you can't go into any &ddimensions&r other than the &2overworld&r."
+				""
+				"But in the future, you will need air from&b different dimensions&r to process and use for &eprogression&r."
+				"Feed this thing normal air and a the a &ccatalyst&r, depending on the type of air you want, to start slowly producing air from other &ddimensions&r!"
+			]
+			id: "15C9AB027D60D668"
+			shape: "square"
+			size: 0.75d
+			subtitle: "Crucial!"
+			tasks: [{
+				id: "3A6D194870552F1F"
+				item: "wfcore:gas_extractor"
+				type: "item"
+			}]
+			title: "Large Gas Extractor"
+			x: 2.25d
+			y: 1.5d
 		}
 	]
 	subtitle: ["Venture into petrochemistry and refine electronics"]

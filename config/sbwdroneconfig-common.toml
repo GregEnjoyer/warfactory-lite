@@ -12,7 +12,7 @@
 	#Range: 0 ~ 4
 	droneChunkLoadRadius = 1
 	#Move the controlling player with the drone while using the monitor so vanilla chunk loading follows the drone.
-	enableDronePlayerAnchor = true
+	enableDronePlayerAnchor = false
 	#Allow drone crash explosions to damage entities and destroy blocks.
 	enableDroneCrashExplosionDamage = true
 

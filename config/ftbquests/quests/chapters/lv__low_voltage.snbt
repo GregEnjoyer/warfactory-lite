@@ -5,7 +5,7 @@
 	group: "693226878D58638A"
 	icon: "gtceu:lv_electric_motor"
 	id: "7D50771C3FE033D7"
-	order_index: 2
+	order_index: 1
 	quest_links: [ ]
 	quests: [
 		{

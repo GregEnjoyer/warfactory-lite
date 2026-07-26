@@ -1,9 +1,16 @@
 import com.norwood.wfcore.integration.kubejs
 StartupEvents.postInit(event => {
 
-// categories
+// categories (research tabs)
+WFResearch.category('ballistics')
+.name('Ballistics')
+.icon(Item.of('superbwarfare:large_shell_he'))    // artillery shell — projectile/ballistics theme
+.backgroundColor(0xFF101814)                // optional solid background (used if no texture)
+.connectorColor(0xFF60C060)      // colour of the connector lines
+.register()
+
 WFResearch.category('infantry')
-.name('Infantry Equipment')                       // optional lang key; defaults to wfcore.research.category.logistics
+.name('Infantry weapons')                       // optional lang key; defaults to wfcore.research.category.logistics
 .icon(Item.of('kubejs:infantry_icon'))           // optional tab icon
 // optional tiled background texture
 .backgroundColor(0xFF101814)                // optional solid background (used if no texture)
@@ -11,7 +18,7 @@ WFResearch.category('infantry')
 .register()
 
 WFResearch.category('armor')
-.name('Armored Vehicles')                       // optional lang key; defaults to wfcore.research.category.logistics
+.name('Ground vehicles')                       // optional lang key; defaults to wfcore.research.category.logistics
 .icon(Item.of('kubejs:tank_icon'))           // optional tab icon
 // optional tiled background texture
 .backgroundColor(0xFF101814)                // optional solid background (used if no texture)
@@ -19,7 +26,7 @@ WFResearch.category('armor')
 .register()
 
 WFResearch.category('air')
-.name('Air Vehicles')                       // optional lang key; defaults to wfcore.research.category.logistics
+.name('Aviation')                       // optional lang key; defaults to wfcore.research.category.logistics
 .icon(Item.of('kubejs:plane_icon'))           // optional tab icon
 // optional tiled background texture
 .backgroundColor(0xFF101814)                // optional solid background (used if no texture)

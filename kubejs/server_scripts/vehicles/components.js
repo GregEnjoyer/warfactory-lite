@@ -32,6 +32,10 @@ ServerEvents.recipes(event => {
     Object.keys(TIER).forEach(tier => {
         const t = TIER[tier]
         PARTS.forEach((part, i) => {
+            // Engines have a dedicated bill of materials (pistons/double plates/rings/gears) in engines.js.
+            // Skip them here — but leave 'engine' in the PART map above so the other parts keep their circuit
+            // numbers (i is unchanged by this early return).
+            if (part === 'engine') return
             event.recipes.gtceu.assembler('veh_' + tier + '_' + part)
                 .itemInputs(Item.of(t.plate, 4), Item.of(PART[part]))
                 .itemOutputs(Item.of('kubejs:' + tier + '_' + part))

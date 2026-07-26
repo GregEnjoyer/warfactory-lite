@@ -19,3 +19,7 @@ rhino.local.properties
 emi.json
 modlist.html
 manifest.json
+
+# Local Claude Code config + machine-specific PrismLauncher instance-sync hook
+.claude/settings.local.json
+.claude/hooks/sync-to-instance.sh

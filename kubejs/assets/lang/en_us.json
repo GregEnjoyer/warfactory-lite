@@ -61,3 +61,15 @@
 "wfcore.research.guns6.name": "Ayran Weapons",
 "wfcore.research.guns6heavy.desc": "todo",
 
+"wfcore.deposit.titanium_deposit": "Ilmenite (Titanium) Deposit",
+"wfcore.deposit.tungsten_deposit": "Scheelite (Tungsten) Deposit",
+"wfcore.deposit.platinum_deposit": "Sheldonite (Platinum) Deposit",
+"wfcore.deposit.uranium_deposit": "Pitchblende (Uranium) Deposit",
+"wfcore.deposit.naquadah_deposit": "Naquadah Deposit",
+"wfcore.deposit.copper_deposit": "Chalcopyrite (Copper) Deposit",
+"wfcore.deposit.chromium_deposit": "Chromite (Chromium) Deposit",
+"wfcore.deposit.ruby_deposit": "Ruby Deposit",
+"wfcore.deposit.sapphire_deposit": "Sapphire Deposit",
+"wfcore.deposit.diamond_deposit": "Diamond Deposit"
+}
+

@@ -1,0 +1,46 @@
+# WFCore configuration (Forge/NightConfig TOML — this is the file the mod actually reads).
+# The old config/wfcore.yaml, from the pre-1.x snakeyaml version, is no longer parsed.
+
+# Forge energy produced per millibucket of fluid fuel consumed.
+energyToFluidRatio = 10
+
+# How often (in ticks) a fuelled vehicle tops up from its fluid tank.
+refuelIntervalTicks = 20
+
+# Empty every chest and fishing loot table by default; repopulate or whitelist via KubeJS (WFLoot).
+clearStructureLoot = true
+
+# Make the Nether inaccessible: nether portals never form and travel to the_nether is blocked.
+disableNether = true
+
+# Dev tool: numpad-driven live editor for animated-machine model offsets. Off for normal play.
+modelTransformDebugEnabled = false
+
+# Vehicle fuel/storage overrides + foliage breakers are now authored via the WFVehicles KubeJS API,
+# in kubejs/startup_scripts/wfcore_vehicles.js — no longer configured here.
+
+[deposits]
+    # Default per-block deposit yield range, used when a deposit type does not set its own.
+    defaultYieldMin = 2000
+    defaultYieldMax = 8000
+
+    [deposits.worldgen]
+        enabled = true
+        # Ambient weighted scatter. OFF so the KubeJS region quotas in wfcore_drill_deposits.js hold exactly
+        # (with scatter on, the 1-in-24-chunk random placement swamps them and mixes in built-in iron/copper/gold).
+        scatter = false
+        rarity = 24
+        # Debug: log every deposit cluster placed by worldgen (type, size, position).
+        logPlacements = false
+
+[ballistics]
+    enabled = true
+    debugLogging = false
+
+[playerRanks]
+    enabled = true
+    manifestUrl = ""
+    refreshIntervalMinutes = 4
+    replayRequiresRank = true
+    showChatTags = true
+    showTabTags = true

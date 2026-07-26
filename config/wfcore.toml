@@ -1,46 +1,66 @@
-# WFCore configuration (Forge/NightConfig TOML — this is the file the mod actually reads).
-# The old config/wfcore.yaml, from the pre-1.x snakeyaml version, is no longer parsed.
-
-# Forge energy produced per millibucket of fluid fuel consumed.
+#Forge energy produced per millibucket of fluid fuel consumed.
+#Range: > 1
 energyToFluidRatio = 10
-
-# How often (in ticks) a fuelled vehicle tops up from its fluid tank.
+#How often (in ticks) a fuelled vehicle tops up from its fluid tank.
+#Range: > 1
 refuelIntervalTicks = 20
-
-# Empty every chest and fishing loot table by default; repopulate or whitelist via KubeJS (WFLoot).
+#Empty every chest and fishing loot table by default; repopulate or whitelist via KubeJS (WFLoot).
 clearStructureLoot = true
-
-# Make the Nether inaccessible: nether portals never form and travel to the_nether is blocked.
+#Make the Nether inaccessible: nether portals never form and any travel to the_nether (portals, commands) is blocked.
 disableNether = true
-
-# Dev tool: numpad-driven live editor for animated-machine model offsets. Off for normal play.
+#Dev tool: numpad-driven live editor for animated-machine model offsets (see IAnimatedMachine). Off by default so the numpad bindings and HUD stay inert for normal players.
 modelTransformDebugEnabled = false
+#Per-vehicle fuel/storage overrides. One quoted entry per line, format:
+#  "vehicleId; maxFuel=4000; fluids=fluidId=ratio,fluidId=ratio; storageSize=40; storageColumns=10"
+#Every field after the id is optional. An entry only takes effect if it sets fluids or storageSize.
+#storageSize switches the vehicle to WFCore's resizable ModularUI storage; storageColumns is the grid width (default 9).
+#Example: "superbwarfare:example_vehicle; maxFuel=4000; fluids=minecraft:lava=1.0,minecraft:water=0.5; storageSize=40; storageColumns=10"
+vehicles = []
+#Vehicle ids that plough through and break cacti, wood logs and leaves as they drive.
+#Example: ["superbwarfare:lav_150", "superbwarfare:truck"]
+foliageBreakers = []
 
-# Vehicle fuel/storage overrides + foliage breakers are now authored via the WFVehicles KubeJS API,
-# in kubejs/startup_scripts/wfcore_vehicles.js — no longer configured here.
-
+#Drillable bedrock deposits. defaultYield is the per-block yield range used when a deposit type (built-in or KubeJS) does not specify its own.
 [deposits]
-    # Default per-block deposit yield range, used when a deposit type does not set its own.
-    defaultYieldMin = 2000
-    defaultYieldMax = 8000
+	#Range: > 1
+	defaultYieldMin = 2000
+	#Range: > 1
+	defaultYieldMax = 8000
 
-    [deposits.worldgen]
-        enabled = true
-        # Ambient weighted scatter. OFF so the KubeJS region quotas in wfcore_drill_deposits.js hold exactly
-        # (with scatter on, the 1-in-24-chunk random placement swamps them and mixes in built-in iron/copper/gold).
-        scatter = false
-        rarity = 24
-        # Debug: log every deposit cluster placed by worldgen (type, size, position).
-        logPlacements = false
+	#Ambient weighted scatter across the world. Turn scatter off to rely only on KubeJS nodes/regions. rarity is "1 in N chunks".
+	[deposits.worldgen]
+		enabled = true
+		scatter = false
+		#Range: > 1
+		rarity = 24
+		#Debug: log every deposit cluster placed by worldgen (type, size, position). Testing aid.
+		logPlacements = false
 
+#Off-thread long-range ballistics for TACZ bullets and Superb Warfare projectiles.
 [ballistics]
-    enabled = true
-    debugLogging = false
+	#Master switch. When off, projectiles are never handed to the off-thread ballistics engine and behave exactly as their own mod ships them.
+	enabled = true
+	#Log each virtual shell's lifecycle to the server log: leaving loaded chunks, impact position (and whether that chunk was loaded), deferred detonations, and expiries.
+	debugLogging = false
 
+#Client-side player ranks / vanity tags, downloaded from a remote JSON manifest (uuid -> rank).
+#Ranks: ARTIST, SCRIPTER (chat/tab tag), PRESS (may play back replays), MODERATOR, ADMIN (both
+#of the above), plus the fun tags MTNS and SUPEROBAMA (chat-text effects only).
 [playerRanks]
-    enabled = true
-    manifestUrl = ""
-    refreshIntervalMinutes = 4
-    replayRequiresRank = true
-    showChatTags = true
-    showTabTags = true
+	#Master switch. When off, no manifest is downloaded and no tags or replay gate apply.
+	enabled = true
+	#URL of the JSON rank manifest. Leave blank to disable downloads (cached data, if any, still loads).
+	#Shape: { "ranks": { "<uuid>": "ADMIN", "<uuid>": ["ARTIST", "SUPEROBAMA"] } }.
+	#UUIDs may be dashed or undashed; a value may be one rank or an array of ranks.
+	manifestUrl = ""
+	#How often (minutes) the manifest is re-downloaded after the initial fetch. 3-5 recommended.
+	#Range: 1 ~ 1440
+	refreshIntervalMinutes = 4
+	#When true, replay playback requires a replay-granting rank (Press/Moderator/Admin).
+	#Recording is never restricted. Fails open until a manifest has loaded at least once.
+	replayRequiresRank = true
+	#Show the vanity [Tag] before ranked players' chat messages.
+	showChatTags = true
+	#Show the vanity [Tag] before ranked players' names in the tab list.
+	showTabTags = true
+

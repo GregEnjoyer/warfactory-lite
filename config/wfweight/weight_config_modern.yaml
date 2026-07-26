@@ -3,16 +3,12 @@ precision:
   tooltipDecimals: 1
   stackDecimals: 2
 limits:
-  defaultCarryCapacityKg: 50.0
+  defaultCarryCapacityKg: 80.0
   hardLockWeightKg: 220.0
   enableFailsafeFullScan: true
   fullScanIntervalTicks: 600
 rules:
   exact:
-    minecraft:water_bucket: 4.5
-    minecraft:shield: 5.0
-    minecraft:lava_bucket: 4.8
-    minecraft:elytra: 6.0
     tacz:aa12: 4.0
     tacz:ai_awp: 7.0
     tacz:ak47: 5.0

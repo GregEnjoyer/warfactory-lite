@@ -2,7 +2,7 @@
 [drone]
 	#Maximum allowed distance in blocks between the player and a linked Superb Warfare drone.
 	#Range: 1 ~ 30000
-	droneMaxRange = 100
+	droneMaxRange = 30000
 	#Extra flight speed multiplier applied to FPV drone travel input.
 	#Range: 1.0 ~ 4.0
 	droneSpeedMultiplier = 1.0

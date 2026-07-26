@@ -60,6 +60,15 @@
 	enableAsphyxia = true
 	#If true, going underwater with no air is handled as ASPHYXIA (drowning) instead of vanilla drowning damage: once your breath runs out you struggle, then pass out and DROWN TO DEATH unless you reach the surface in time. Vanilla drowning damage is suppressed.
 	enableDrowningAsphyxia = true
+	#If true, fully depleting the HEAD's health kills the player OUTRIGHT (bypasses bleed-out/downing). Default false -> a destroyed head downs the player.
+	headDepletionInstakill = false
+	#If true, fully depleting the TORSO's health kills the player OUTRIGHT (bypasses bleed-out/downing). Default false -> a destroyed torso downs the player.
+	torsoDepletionInstakill = false
+	#If true, a downed (unconscious / bleeding-out) player may HOLD the 'Give Up' key to die instantly and reach the respawn screen.
+	enableGiveUp = true
+	#How long (ticks) a downed player must HOLD the 'Give Up' key before dying (20 ticks = 1 second). Default 40 (2 seconds).
+	#Range: 1 ~ 1200
+	giveUpHoldTicks = 40
 
 [balance]
 	#Ticks a player may remain unconscious from bleeding out before dying.
@@ -131,6 +140,9 @@
 	#Movement-speed multiplier while consciously asphyxiating (heavy constraint). Sprint and jump are also blocked. Default 0.25 = a quarter speed.
 	#Range: 0.0 ~ 1.0
 	asphyxiaMoveMultiplier = 0.25
+	#How long (ticks) after being damaged by a player that a subsequent bleed-out / engine death is still credited to that player (20 ticks = 1 second). Vanilla forgets an attacker after 100 ticks, so this must be long enough to cover a full bleed-out. Default 6000 (5 minutes).
+	#Range: 0 ~ 432000
+	deathAttributionWindowTicks = 6000
 
 	#MAJOR TRAUMA (instant death): a hit kills outright -- before it could become a survivable
 	#unconsciousness -- when its damage reaches this fraction of the player's FULL healthy health
@@ -236,6 +248,12 @@
 	#runtime cost -- the boxes are built straight from their fixed base spec, no tuning applied.
 	#The '/wfmedical hitbox debug on|off' command flips this live for a session without a reload.
 	hitboxDebug = false
+	#DEBUG/TEST tool. If true, every TACZ bullet's own broad-phase collision test is compared
+	#against the rig's per-limb OBBs for nearby players and logged: whether TACZ itself registered
+	#a hit, and whether the rig would have classified a limb for that same ray. A 'HITBOX GAP'
+	#warning is logged whenever a shot would land on a rig limb box but TACZ's own collision test
+	#missed it entirely (so no damage/hurt event ever fired). Off (the default) has ZERO runtime cost.
+	logHitDetection = false
 
 [compat]
 	#If true and Open Persistence is installed, a player's persistent logout body carries their medical profile: it inherits their trauma on logout, accrues new trauma when hit while they are offline, and the (possibly worse) state is restored to the player on login. The body keeps vanilla health while offline -- there is no live physiology/bleed-out tick on it.

@@ -2,6 +2,7 @@
   "receiveServerLods": true,
   "lodDistanceChunks": 0,
   "offThreadSectionProcessing": true,
+  "incrementalSpiralRescan": false,
   "extendEntityRenderDistance": true,
   "renderedEntityTypes": [
     "minecraft:player",
@@ -11,5 +12,5 @@
     "halovecs:*"
   ],
   "entityRenderDistanceChunks": 64,
-  "mipmapEntityTextures": false
+  "distantEntityDepthMode": "PRECISE"
 }

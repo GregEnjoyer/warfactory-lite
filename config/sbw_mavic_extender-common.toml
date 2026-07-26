@@ -1,5 +1,10 @@
 #Log verbose [Mavic] chunk-streaming diagnostics (per-drone status, transfers, stream counts). Off by default.
 verboseLogging = false
+#While you pilot a drone, stop streaming entities around your real body (which you cannot see through the drone camera anyway).
+#This avoids double-streaming two regions at once, which raises bandwidth and ping on busy servers.
+#Entities you are riding/attached to are never hidden, and your body's surroundings are restored the instant you stop viewing.
+#Turn off only if you suspect it is hiding something it should not.
+suppressBodyStream = true
 
 [drone]
 	#Max distance (blocks) before the drone HUD shows the out-of-range WARNING and red distance marker.
@@ -7,4 +12,10 @@ verboseLogging = false
 	defaultMaxDistance = 2048
 	#Per-vehicle overrides, so addon drones can differ. Format: "namespace:entity=distance", separated by ';' or ','. Example: "superbwarfare:drone=4096;mymod:big_drone=8192".
 	perVehicleMaxDistance = ""
+	#Maximum drone-view chunks streamed to a pilot per server tick (20 ticks/sec).
+	#Entering a drone over already-loaded terrain would otherwise dump the whole view square in one tick,
+	#which briefly saturates the connection and stalls input for a few seconds after entering. Lower this
+	#if pilots report input lag on entry; raise it for a faster (burstier) fill on high-bandwidth setups.
+	#Range: 1 ~ 1024
+	maxChunksPerTick = 16
 

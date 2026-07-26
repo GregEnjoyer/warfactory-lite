@@ -123,7 +123,7 @@
 
 [impact_smoke]
 	#Spawn subtle client-side smoke puffs when TaCZ bullets hit blocks.
-	enableImpactSmoke = true
+	enableImpactSmoke = false
 	#Base smoke particles per impact.
 	#Range: 0 ~ 64
 	impactSmokeAmount = 6
@@ -141,7 +141,7 @@
 
 [metal_impacts]
 	#Spawn bright directional sparks when TaCZ bullets hit metal blocks.
-	enableMetalSparks = true
+	enableMetalSparks = false
 	#Spark particles per metal impact.
 	#Range: 0 ~ 64
 	metalSparkAmount = 8
@@ -153,7 +153,7 @@
 
 [wood_impacts]
 	#Spawn directional wood splinters when TaCZ bullets hit wooden blocks.
-	enableWoodSplinters = true
+	enableWoodSplinters = false
 	#Wood splinter particles per wooden impact. Shotguns and high calibers scale this up.
 	#Range: 0 ~ 96
 	woodSplinterAmount = 10
@@ -216,7 +216,7 @@
 
 [muzzle_smoke]
 	#Spawn client-side muzzle smoke when TaCZ guns fire.
-	enableMuzzleSmoke = true
+	enableMuzzleSmoke = false
 	#Base muzzle smoke particles per shot. Campfire smoke is dense, so defaults are intentionally low.
 	#Range: 0 ~ 64
 	muzzleSmokeAmount = 2
@@ -234,7 +234,7 @@
 
 [indoor_smoke]
 	#Accumulate longer-lived client-side tactical smoke in enclosed indoor spaces during gunfights.
-	enableIndoorSmoke = true
+	enableIndoorSmoke = false
 	#Multiplier for smoke density gained in enclosed indoor spaces.
 	#Range: 0.0 ~ 10.0
 	indoorSmokeMultiplier = 2.5
@@ -254,7 +254,7 @@
 
 [glass_shards]
 	#Spawn temporary client-side glass shard debris when bullets hit or break glass.
-	enableGlassShards = true
+	enableGlassShards = false
 	#Base glass shard debris count for full glass blocks. Panes spawn fewer shards.
 	#Range: 0 ~ 128
 	glassShardAmount = 12
@@ -514,9 +514,9 @@
 
 [suppression_effects]
 	#Render a very subtle edge-only pressure vignette/blur hint for explosions and sustained nearby fire. Accessibility: set false to disable visual blur.
-	enableSuppressionBlur = true
+	enableSuppressionBlur = false
 	#Play short fading tinnitus/ringing after heavy suppression, sniper cracks, or nearby explosions.
-	enableSuppressionRinging = true
+	enableSuppressionRinging = false
 	#Enable subtle desaturation tint and pressure feel while under heavy fire.
 	enableStressEffects = true
 	#Maximum visual strength for subtle edge suppression blur. Center screen remains clear.
@@ -556,11 +556,11 @@
 
 [shockwave_dust]
 	#Spawn client-side shockwave dust, haze, and drifting debris after indoor explosions and heavy breaching detonations.
-	enableShockwaveDust = true
+	enableShockwaveDust = false
 	#Apply brief client-side pressure feedback near indoor explosions.
-	enableIndoorPressureEffect = true
+	enableIndoorPressureEffect = false
 	#Spawn short falling dust/debris from ceilings and nearby surfaces after explosions.
-	enableDebrisFalloff = true
+	enableDebrisFalloff = false
 	#Global intensity multiplier for explosion shockwave dust.
 	#Range: 0.0 ~ 5.0
 	shockwaveDustIntensity = 1.0
@@ -748,7 +748,7 @@
 	#Compatibility flag only. Must remain false: distant gunshots never fall back to Minecraft vanilla sounds.
 	useVanillaSoundsFallback = false
 	#Log distant gunshot dispatch details for troubleshooting. Can also be toggled with /taczbreach distantgunshots debug.
-	debugDistantGunshots = true
+	debugDistantGunshots = false
 
 [weapon_jamming]
 	#Allow TaCZ firearms to malfunction and jam during combat.

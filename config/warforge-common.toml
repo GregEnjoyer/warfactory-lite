@@ -1020,8 +1020,6 @@
 	#Inner 'Sieged' zone: chunks (square radius) from each active siege camp where chunk protection is fully disabled - anyone may breach (SiegedFriend/SiegedFoe profiles). Kills also count here. Typically smaller than the War radius.
 	#Range: > 0
 	"Sieged Square Chunk Radius From Siege" = 1
-	#If true, ANY death of a participant inside the War/Sieged zone counts toward the siege goal (environmental, mob, fall, etc.), not only kills confirmed to be dealt by an opposing player.
-	"Count All Zone Deaths" = false
 	#The number of chunks in any direction from the siege block that an attacker can be in to prevent siege abandon.
 	#Range: > 0
 	"Attacker Square Chunk Radius From Siege" = 1
@@ -1070,6 +1068,17 @@
 	"Siege momentum duration" = 60
 	#List of momentum multipliers in the form level=multiplier
 	SiegeMomentumMultipliers = ["0=15:00", "1=10:00", "2=8:30", "3=5:00", "4=2:30"]
+	#How siege kills are detected. PRECISE (default): only a confirmed kill by an opposing player inside the War/Sieged zone counts (an attacker must kill a defender, or a defender an attacker). SIMPLE: any participant death inside the zone counts toward the siege, including environmental/mob/fall deaths - e.g. a defender dying to fall damage awards the attackers a point.
+	#Allowed Values: PRECISE, SIMPLE
+	"Kill Detection Mode" = "PRECISE"
+	#Anti-stall: once the defenders' lead exceeds this many points, each consecutive siege-timer tick with no kills doubles the attackers' swing (reset by any kill). Only reachable when Siege Defence Threshold is higher than this. Set very high to effectively disable.
+	#Range: 0 ~ 1024
+	"Siege Stall Escalation Threshold" = 10
+	#How many points the defenders must swing the siege in their favour to repel it (attackers win at their own difficulty threshold).
+	#Range: 1 ~ 1024
+	"Siege Defence Threshold" = 5
+	#If true, a siege concludes the instant a side reaches its point goal (e.g. via a kill), even mid-timer. If false, reaching the goal does not end the siege early; it only concludes when the siege timer next elapses.
+	"Siege Ends On Goal Reached" = true
 
 [Alliances]
 	#When an alliance is broken, both factions enter a truce during which they cannot siege or harm each other. Length in minutes; 0 disables the truce.

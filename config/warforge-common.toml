@@ -27,7 +27,7 @@
 	#Whitelist: block IDs that can still be interacted with. Has no effect if interacting is allowed anyway
 	"Unclaimed - Interact Whitelist" = ["minecraft:ender_chest", "warforge:citadelblock", "warforge:basicclaimblock", "warforge:reinforcedclaimblock", "warforge:siegecampblock"]
 	#Whitelist: item IDs that can still be used. Has no effect if using items is allowed anyway
-	"Unclaimed - Use Whitelist" = ["minecraft:snowball"]
+	"Unclaimed - Use Whitelist" = ["superbwarfare:hand_grenade", "superbwarfare:rgo_grenade", "superbwarfare:m18_smoke_grenade"]
 	#Blacklist: block IDs that can never be placed, even if placement is otherwise allowed
 	"Unclaimed - Place Blacklist" = []
 	#Blacklist: block IDs that can never be broken, even if breaking is otherwise allowed
@@ -1090,7 +1090,7 @@
 
 [General]
 	#The block IDs that count towards the value of your citadel's vault
-	"Valuable Blocks" = ["minecraft:gold_block"]
+	"Valuable Blocks" = ["gtceu:naquadah_block", "gtceu:naquadah_alloy_block", "gtceu:platinum_block", "gtceu:uranium_block", "gtceu:chromium_block"]
 	#How many characters long can a faction name be.
 	#Range: 3 ~ 128
 	"Max Faction Name Length" = 32
@@ -1198,7 +1198,7 @@
 	#Allow players to use /f home when in a different dimension to their citadel
 	"Allow /f home across dimensions" = false
 	#Allow players to use /spawn to teleport to the world spawn
-	"Enable /spawn Command" = true
+	"Enable /spawn Command" = false
 	#Allow players to craft a potion that takes them to the world spawn
 	"Enable /spawn Potion" = false
 	#Allow players to use /spawn when in a different dimension to the world spawn
@@ -1207,7 +1207,7 @@
 	#Range: 0 ~ 6000
 	"Num Ticks for Warps" = 400
 	#If enabled, bed and respawn-anchor spawn points are disabled and players respawn in their faction citadel's chunk, at the citadel's Y level. Players not in a faction fall back to the world spawn.
-	"Respawn At Citadel" = false
+	"Respawn At Citadel" = true
 
 [Debug]
 	#DEBUG/diagnostic only. When enabled, logs every server-side setBlockState that lands inside a claimed chunk, together with the position, the owning claim, the block being placed and the calling code. Use this to identify mods that mutate protected terrain outside the explosion-event path (e.g. GregTech Industrial TNT, AE2 Tiny TNT). Very spammy - leave disabled in production.

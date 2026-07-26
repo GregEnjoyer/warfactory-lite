@@ -48,7 +48,10 @@ ServerEvents.recipes(event => {
 
     VEHICLES.forEach((v, i) => {
         try {
-            const r = WFVehicles.recipe('kubejs:veh_' + i, v.entity, v.factory);
+            // NB: var (not const/let) — Rhino throws "redeclaration of var r" on later
+            // iterations once an earlier iteration's initializer throws (e.g. a removed halo
+            // entity), which silently killed every recipe after the first failure.
+            var r = WFVehicles.recipe('kubejs:veh_' + i, v.entity, v.factory);
             (v.items || []).forEach(it => r.item(it[0], it[1]));
             (v.tags || []).forEach(tg => r.tag(tg[0], tg[1]));
             (v.fluids || []).forEach(fl => r.fluid(fl[0], fl[1]));

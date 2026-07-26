@@ -41,19 +41,14 @@ ServerEvents.recipes(event => {
         .duration(80)
         .EUt(480)
 
-    // black steel
-    event.recipes.gtceu.chemical_bath('gtceu:black_steel_cool_down')
+    // black steel — water-cooled hot black steel (replaces the two default GTCEu cool-down recipes)
+    event.recipes.gtceu.chemical_bath('kubejs:cooling_black_steel')
         .itemInputs(Item.of('gtceu:hot_black_steel_ingot'))
         .inputFluids(Fluid.of('minecraft:water', 100))
         .itemOutputs(Item.of('gtceu:black_steel_ingot'))
         .duration(200)
-        .EUt(30)
+        .EUt(32)
 
-    // black steel
-    event.recipes.gtceu.chemical_bath('gtceu:black_steel_cool_down_distilled_water')
-        .itemInputs(Item.of('gtceu:hot_black_steel_ingot'))
-        .inputFluids(Fluid.of('gtceu:distilled_water', 100))
-        .itemOutputs(Item.of('gtceu:black_steel_ingot'))
-        .duration(200)
-        .EUt(30)
+    event.remove({ id: 'gtceu:chemical_bath/black_steel_cool_down'})
+    event.remove({ id: 'gtceu:chemical_bath/black_steel_cool_down_distilled_water'})
 })

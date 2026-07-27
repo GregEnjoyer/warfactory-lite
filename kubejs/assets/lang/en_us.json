@@ -45,6 +45,9 @@
   "item.kubejs.launcher_complicated": "Complex Launcher Internals",
   "item.kubejs.launcher_modern": "Modern Launcher Internals",
 "material.gtceu.clay_pipe_material": "Watertight Clay",
+"material.gtceu.gun_metal": "Carbon Fibre Composite",
+"block.wfcore.greenhouse": "Greenhouse",
+"block.wfcore.mob_farmer": "Mob Farmer",
 
 "wfcore.research.guns1.name": "Early Cold War Weapons",
 "wfcore.research.guns1.desc": "Early Cold War weapons such as the legendary FAL and M700",

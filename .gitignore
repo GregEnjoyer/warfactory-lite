@@ -23,3 +23,6 @@ manifest.json
 # Local Claude Code config + machine-specific PrismLauncher instance-sync hook
 .claude/settings.local.json
 .claude/hooks/sync-to-instance.sh
+
+# Local dev-workflow notes (machine-specific paths; not for the shared pack)
+CLAUDE.md

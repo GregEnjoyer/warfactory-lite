@@ -419,34 +419,6 @@
             ]
         },
         {
-            "pakku_id": "v0tHTa0huwkNLE4a",
-            "type": "MOD",
-            "slug": {
-                "github": "Warfactory-Official/Boxy"
-            },
-            "name": {
-                "github": "Boxy"
-            },
-            "id": {
-                "github": "1282110506"
-            },
-            "files": [
-                {
-                    "type": "github",
-                    "file_name": "boxy-1.0.0.jar",
-                    "release_type": "release",
-                    "url": "https://github.com/Warfactory-Official/Boxy/releases/download/v1.0.0/boxy-1.0.0.jar",
-                    "id": "466662451",
-                    "parent_id": "1282110506",
-                    "hashes": {
-                        "sha256": "f3881918b76e3652da512a532260f624a410fae78520dc7720266833d3059018"
-                    },
-                    "size": 4904080,
-                    "date_published": "2026-07-04T22:36:45Z"
-                }
-            ]
-        },
-        {
             "pakku_id": "iyS7n3Nhc35HUSU4",
             "type": "MOD",
             "slug": {
@@ -896,6 +868,45 @@
                     "required_dependencies": [],
                     "size": 76558,
                     "date_published": "2024-10-03T02:32:45.850Z"
+                }
+            ]
+        },
+        {
+            "pakku_id": "Q4YfEgPqC8yU5FZB",
+            "type": "MOD",
+            "side": "CLIENT",
+            "slug": {
+                "modrinth": "downloader"
+            },
+            "name": {
+                "modrinth": "Downloader"
+            },
+            "id": {
+                "modrinth": "8uoaSEmr"
+            },
+            "files": [
+                {
+                    "type": "modrinth",
+                    "file_name": "downloadbypass-forge-1.2-SNAPSHOT.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://cdn.modrinth.com/data/8uoaSEmr/versions/AnWfyGeR/downloadbypass-forge-1.2-SNAPSHOT.jar",
+                    "id": "AnWfyGeR",
+                    "parent_id": "8uoaSEmr",
+                    "hashes": {
+                        "sha512": "3b2ae9210d54aefc0e3157388b0f92ad7dbd05a836a9e97b418c98ae51c15b4ee5743ad7a22d4753474c0f48af42fb2d05f42ceb2370766c680d27701a0795e1",
+                        "sha1": "de978446d2e42cbf3bf94c5d5f097b53a7b33581"
+                    },
+                    "required_dependencies": [
+                        "lhGA9TYQ"
+                    ],
+                    "size": 3148021,
+                    "date_published": "2025-12-20T15:45:46.509739Z"
                 }
             ]
         },
@@ -3142,62 +3153,6 @@
             ]
         },
         {
-            "pakku_id": "lcN8wFBf0xqIUEcx",
-            "type": "MOD",
-            "slug": {
-                "github": "Warfactory-Official/WF-Ballistics"
-            },
-            "name": {
-                "github": "WF-Ballistics"
-            },
-            "id": {
-                "github": "1283626439"
-            },
-            "files": [
-                {
-                    "type": "github",
-                    "file_name": "wfballistics-1.0.1-all.jar",
-                    "release_type": "release",
-                    "url": "https://github.com/Warfactory-Official/WF-Ballistics/releases/download/v1.0.1/wfballistics-1.0.1-all.jar",
-                    "id": "482710280",
-                    "parent_id": "1283626439",
-                    "hashes": {
-                        "sha256": "778de974b07bd909f12d1f19144c6383ec2218825cd54cfe201720821e19473e"
-                    },
-                    "size": 3286478,
-                    "date_published": "2026-07-19T20:35:35Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "21adOiyKqmAHcvIk",
-            "type": "MOD",
-            "slug": {
-                "github": "Warfactory-Official/WFMedical"
-            },
-            "name": {
-                "github": "WFMedical"
-            },
-            "id": {
-                "github": "1289634608"
-            },
-            "files": [
-                {
-                    "type": "github",
-                    "file_name": "wfmedical-0.3.1.jar",
-                    "release_type": "release",
-                    "url": "https://github.com/Warfactory-Official/WFMedical/releases/download/v0.3.1/wfmedical-0.3.1.jar",
-                    "id": "489924590",
-                    "parent_id": "1289634608",
-                    "hashes": {
-                        "sha256": "108dc0d18eeb4ba6233ec25bb5928c9d7942452b3406fcacd8cfd484e2108636"
-                    },
-                    "size": 468483,
-                    "date_published": "2026-07-26T01:33:39Z"
-                }
-            ]
-        },
-        {
             "pakku_id": "bpp9Nlkf0wr7DsH9",
             "pakku_links": [
                 "lDL7VyNmSPLYGhl6"
@@ -3236,106 +3191,6 @@
                     ],
                     "size": 169451,
                     "date_published": "2024-02-24T19:01:32.397Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "2iIxPskNsb1ruvkU",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "warfactory-ultimate-weight"
-            },
-            "name": {
-                "curseforge": "Warfactory Ultimate Weight"
-            },
-            "id": {
-                "curseforge": "1581277"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "wfweight-1.20.1-Forge-1.1.0.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/8491/609/wfweight-1.20.1-Forge-1.1.0.jar",
-                    "id": "8491609",
-                    "parent_id": "1581277",
-                    "hashes": {
-                        "sha1": "9a7ca2cb2d94df59b0107a44545e9ccf40030ea1",
-                        "md5": "3accc4fd2eb4a192e98bb327616b63b5"
-                    },
-                    "required_dependencies": [],
-                    "size": 26663199,
-                    "date_published": "2026-07-23T04:22:52.030Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "Xdz7D8gh0BuJg82v",
-            "type": "MOD",
-            "slug": {
-                "github": "Warfactory-Official/Warfctory-Modern-Core"
-            },
-            "name": {
-                "github": "Warfctory-Modern-Core"
-            },
-            "id": {
-                "github": "1205218751"
-            },
-            "files": [
-                {
-                    "type": "github",
-                    "file_name": "wfcore-1.2.0.jar",
-                    "release_type": "release",
-                    "url": "https://github.com/Warfactory-Official/Warfctory-Modern-Core/releases/download/latest/wfcore-1.2.0.jar",
-                    "id": "491319351",
-                    "parent_id": "1205218751",
-                    "hashes": {
-                        "sha256": "0a99b1db3ebc58098e74b057cf176c2a06bffd5d52b1db871810ae68db6c5014"
-                    },
-                    "size": 5080230,
-                    "date_published": "2026-07-27T10:24:40Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "Cp5Fx9Ve5zCHA8uP",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "warforge-factions-remaintained"
-            },
-            "name": {
-                "curseforge": "Warforge Factions: Remaintained"
-            },
-            "id": {
-                "curseforge": "1340172"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "warforge-remaintained-2.4.1.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/8508/700/warforge-remaintained-2.4.1.jar",
-                    "id": "8508700",
-                    "parent_id": "1340172",
-                    "hashes": {
-                        "sha1": "4414d21002652129fd6f837631348efa7ae75b58",
-                        "md5": "677b9762b744eb7db60d6129e5a77298"
-                    },
-                    "required_dependencies": [],
-                    "size": 1044065,
-                    "date_published": "2026-07-25T19:46:39.833Z"
                 }
             ]
         },
@@ -3809,44 +3664,6 @@
                     "required_dependencies": [],
                     "size": 3114590,
                     "date_published": "2023-09-05T08:02:20.050Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "voxyBoxyCompat01",
-            "type": "MOD",
-            "side": "CLIENT",
-            "slug": {
-                "github": "TheVirtualizedG/voxy"
-            },
-            "name": {
-                "github": "voxy"
-            },
-            "id": {
-                "github": "1286525487"
-            },
-            "update_strategy": "NONE",
-            "files": [
-                {
-                    "type": "github",
-                    "file_name": "voxy-0.2.14-alpha.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "fabric"
-                    ],
-                    "release_type": "release",
-                    "url": "https://github.com/TheVirtualizedG/voxy/releases/download/v1.0.0/voxy-0.2.14-alpha.jar",
-                    "id": "463665271",
-                    "parent_id": "1286525487",
-                    "hashes": {
-                        "sha512": "5951c2fff5d625b4cbd7ee6edf016f6dc28e71f4143bacbdaab8143d5378fdf8e3451de85f5e0d14adf140ab6843ff6de7c191564b9899d0afb736f5dab30b6a",
-                        "sha1": "4cb7c39e3ae2b9da7405d2780ebfa339378cb852"
-                    },
-                    "required_dependencies": [],
-                    "size": 12525562,
-                    "date_published": "2026-07-01T22:14:36Z"
                 }
             ]
         }

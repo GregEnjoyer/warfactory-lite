@@ -405,6 +405,7 @@ ServerEvents.recipes(event => {
     casingRecipes(['6x gtceu:beryllium_plate', '1x gtceu:aluminium_frame'], 'wfcore', 'boltable_casing', 1, null, 120, 6);
     casingRecipes(['1x wfcore:galvanized_steel_frame'], 'wfcore', 'concrete_base', 1, 'gtceu:concrete 576', 120, 6);
     casingRecipes(['6x gtceu:beryllium_plate', '1x gtceu:stainless_steel_frame'], 'wfcore', 'machine_casing_turbine_titanium', 1, null, 512);
+    casingRecipes(['1x gtceu:clean_machine_casing', '6x gtceu:stainless_steel_plate', '1x wfcore:galvanized_steel_frame'], 'wfcore', 'reinforced_stainless_casing', 1, null, 30, 6);
     casingRecipes(['2x gtceu:magnesium_diboride_single_wire'], 'wfcore', 'single_ac_pipe', 32, 'gtceu:polyvinyl_chloride 288', 120);
     casingRecipes(['2x gtceu:magnesium_diboride_double_wire'], 'wfcore', 'double_ac_pipe', 32, 'gtceu:polyvinyl_chloride 576', 120);
     casingRecipes(['2x gtceu:magnesium_diboride_quadruple_wire'], 'wfcore', 'quadruple_ac_pipe', 32, 'gtceu:polyvinyl_chloride 1152', 120);

@@ -31,4 +31,10 @@ ServerEvents.recipes(event => {
         'ashvehicle:jerry_can_refill',
     ]
     CUSTOM_TYPES.forEach(type => event.remove({ type: type }))
+
+    // Potion-effect mortar: belt-and-suspenders removal of ANY recipe that outputs the potion mortar
+    // shell (the `superbwarfare:potion_mortar_shell` type above already covers its dedicated recipe;
+    // this also catches any crafting/other recipe from any source). The item itself is hidden from
+    // JEI in client_scripts/hide_items.js.
+    event.remove({ output: 'superbwarfare:potion_mortar_shell' })
 })

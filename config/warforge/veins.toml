@@ -45,3 +45,177 @@
 #     { item = "minecraft:coal_ore", yield = 1.0, mults = [ { id = "minecraft:the_nether", mult = 4.0 } ] },
 # ]
 #...
+
+# -----------------------------------------------------------------------------------------------
+# LIVE CONFIG -- Overworld-only vein set (this pack has no Nether/End access: disableNether = true
+# in config/wfcore.toml, so there is deliberately no [[veins]].dims entry for those dimensions).
+#
+# Tiered to match the rarity model already established for this pack's other GT resource systems
+# (kubejs/startup_scripts/wfcore_drill_deposits.js and warforge-common.toml's "Valuable Blocks"):
+# common industrial ores get high `weight` / low `wealth`; precious and endgame materials get the
+# opposite. `weight` is relative, not a fraction of 1.0 -- lower means rarer.
+#
+# megachunk_length = 32 chunks (512 blocks) per region; at a 50k-block world border that's roughly
+# 195 regions per side. floor(32^2 * weight) is the guaranteed minimum per region, e.g. naquadah's
+# 0.002 guarantees floor(1024 * 0.002) = 2 per region -- present but genuinely scarce.
+# -----------------------------------------------------------------------------------------------
+
+iteration = 0
+megachunk_length = 32
+
+# --- Common industrial tier ----------------------------------------------------------------
+
+[[veins]]
+key = "warforge.veins.iron"
+wealth = 1
+dims = [ { id = "minecraft:overworld", weight = 0.15 } ]
+components = [
+    { item = "gtceu:iron_ore", yield = 3.0 },
+    { item = "gtceu:pyrite_ore", yield = 1.0 },
+]
+
+[[veins]]
+key = "warforge.veins.copper"
+wealth = 1
+dims = [ { id = "minecraft:overworld", weight = 0.13 } ]
+components = [
+    { item = "gtceu:chalcopyrite_ore", yield = 3.0 },
+    { item = "gtceu:cobaltite_ore", yield = 0.5 },
+]
+
+[[veins]]
+key = "warforge.veins.coal"
+wealth = 1
+dims = [ { id = "minecraft:overworld", weight = 0.15 } ]
+components = [
+    { item = "gtceu:coal_ore", yield = 3.0 },
+]
+
+[[veins]]
+key = "warforge.veins.redstone"
+wealth = 1
+dims = [ { id = "minecraft:overworld", weight = 0.10 } ]
+components = [
+    { item = "gtceu:redstone_ore", yield = 3.0 },
+    { item = "gtceu:cinnabar_ore", yield = 0.75 },
+]
+
+# --- Uncommon tier ---------------------------------------------------------------------------
+
+[[veins]]
+key = "warforge.veins.tin_zinc"
+wealth = 2
+dims = [ { id = "minecraft:overworld", weight = 0.08 } ]
+components = [
+    { item = "gtceu:cassiterite_ore", yield = 2.5 },
+    { item = "gtceu:sphalerite_ore", yield = 1.0 },
+]
+
+[[veins]]
+key = "warforge.veins.lead_silver"
+wealth = 2
+dims = [ { id = "minecraft:overworld", weight = 0.07 } ]
+components = [
+    { item = "gtceu:galena_ore", yield = 2.5 },
+    { item = "gtceu:silver_ore", yield = 0.75 },
+]
+
+[[veins]]
+key = "warforge.veins.gold"
+wealth = 2
+dims = [ { id = "minecraft:overworld", weight = 0.05 } ]
+components = [
+    { item = "gtceu:gold_ore", yield = 2.0 },
+]
+
+[[veins]]
+key = "warforge.veins.quartz"
+wealth = 2
+dims = [ { id = "minecraft:overworld", weight = 0.08 } ]
+components = [
+    { item = "gtceu:nether_quartz_ore", yield = 1.5 },
+]
+
+# --- Industrial-bulk high tier (titanium/tungsten -- large-patch materials in this pack's other
+# resource systems, so kept common-ish here too despite being higher wealth than mid-tier) -------
+
+[[veins]]
+key = "warforge.veins.titanium"
+wealth = 3
+dims = [ { id = "minecraft:overworld", weight = 0.05 } ]
+components = [
+    { item = "gtceu:ilmenite_ore", yield = 2.5 },
+    { item = "gtceu:bauxite_ore", yield = 1.5 },
+    { item = "gtceu:chromite_ore", yield = 0.5 },
+]
+
+[[veins]]
+key = "warforge.veins.tungsten"
+wealth = 3
+dims = [ { id = "minecraft:overworld", weight = 0.04 } ]
+components = [
+    { item = "gtceu:scheelite_ore", yield = 2.5 },
+    { item = "gtceu:tungstate_ore", yield = 1.0 },
+    { item = "gtceu:spodumene_ore", yield = 0.5 },
+]
+
+# --- Rare tier ---------------------------------------------------------------------------------
+
+[[veins]]
+key = "warforge.veins.chromium"
+wealth = 4
+dims = [ { id = "minecraft:overworld", weight = 0.015 } ]
+components = [
+    { item = "gtceu:chromite_ore", yield = 1.5 },
+    { item = "gtceu:magnetite_ore", yield = 1.0 },
+]
+
+[[veins]]
+key = "warforge.veins.ruby"
+wealth = 4
+dims = [ { id = "minecraft:overworld", weight = 0.01 } ]
+components = [
+    { item = "gtceu:ruby_ore", yield = 1.5 },
+    { item = "gtceu:red_garnet_ore", yield = 0.75 },
+    { item = "gtceu:pyrope_ore", yield = 0.5 },
+]
+
+[[veins]]
+key = "warforge.veins.sapphire_diamond"
+wealth = 5
+dims = [ { id = "minecraft:overworld", weight = 0.007 } ]
+components = [
+    { item = "gtceu:sapphire_ore", yield = 1.25 },
+    { item = "gtceu:green_sapphire_ore", yield = 0.5 },
+    { item = "gtceu:diamond_ore", yield = 0.5 },
+]
+
+# --- Precious tier -------------------------------------------------------------------------
+
+[[veins]]
+key = "warforge.veins.platinum"
+wealth = 5
+dims = [ { id = "minecraft:overworld", weight = 0.008 } ]
+components = [
+    { item = "gtceu:cooperite_ore", yield = 1.5 },
+    { item = "gtceu:palladium_ore", yield = 0.5 },
+]
+
+[[veins]]
+key = "warforge.veins.uranium"
+wealth = 5
+dims = [ { id = "minecraft:overworld", weight = 0.006 } ]
+components = [
+    { item = "gtceu:pitchblende_ore", yield = 1.5 },
+    { item = "gtceu:uraninite_ore", yield = 0.5 },
+]
+
+# --- Rarest tier -----------------------------------------------------------------------------
+
+[[veins]]
+key = "warforge.veins.naquadah"
+wealth = 10
+dims = [ { id = "minecraft:overworld", weight = 0.002 } ]
+components = [
+    { item = "gtceu:naquadah_ore", yield = 1.0 },
+]

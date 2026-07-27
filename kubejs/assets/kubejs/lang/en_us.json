@@ -45,9 +45,6 @@
   "item.kubejs.launcher_complicated": "Complex Launcher Internals",
   "item.kubejs.launcher_modern": "Modern Launcher Internals",
 "material.gtceu.clay_pipe_material": "Watertight Clay",
-"material.gtceu.gun_metal": "Carbon Fibre Composite",
-"block.wfcore.greenhouse": "Greenhouse",
-"block.wfcore.mob_farmer": "Mob Farmer",
 
 "wfcore.research.guns1.name": "Early Cold War Weapons",
 "wfcore.research.guns1.desc": "Early Cold War weapons such as the legendary FAL and M700",
@@ -73,6 +70,20 @@
 "wfcore.deposit.chromium_deposit": "Chromite (Chromium) Deposit",
 "wfcore.deposit.ruby_deposit": "Ruby Deposit",
 "wfcore.deposit.sapphire_deposit": "Sapphire Deposit",
-"wfcore.deposit.diamond_deposit": "Diamond Deposit"
+"wfcore.deposit.diamond_deposit": "Diamond Deposit",
+
+"warforge.veins.iron": "%s Iron-Pyrite Vein",
+"warforge.veins.coal": "%s Coal Vein",
+"warforge.veins.redstone": "%s Redstone-Cinnabar Vein",
+"warforge.veins.tin_zinc": "%s Tin-Zinc Vein",
+"warforge.veins.lead_silver": "%s Lead-Silver Vein",
+"warforge.veins.titanium": "%s Titanium Vein",
+"warforge.veins.tungsten": "%s Tungsten Vein",
+"warforge.veins.chromium": "%s Chromium Vein",
+"warforge.veins.ruby": "%s Ruby Vein",
+"warforge.veins.sapphire_diamond": "%s Sapphire-Diamond Vein",
+"warforge.veins.platinum": "%s Platinum Vein",
+"warforge.veins.uranium": "%s Uranium Vein",
+"warforge.veins.naquadah": "%s Naquadah Vein"
 }
 

@@ -994,7 +994,7 @@
 	"Time to Combat Log Action [ms]" = 10000
 	#The number of milliseconds before a defending team which went offline after a siege against them has begun is considered to have quit, forfeiting the siege.
 	#Range: > 0
-	"Time to Live Quit Siege [ms]" = 900000
+	"Time to Live Quit Siege [ms]" = 300000
 	#If enabled, officers can declare a siege directly from the claim map UI (consuming a siege camp block item) without physically placing a siege camp.
 	"Allow UI Siege Declaration" = true
 	#When declaring a siege from the claim map UI, the maximum chunk distance (chebyshev) allowed between the chosen start-from chunk and the target chunk.
@@ -1010,7 +1010,7 @@
 	"Max Players Before Online Status" = 0
 	#The maximum percent of players in a faction which can be online at some point during a siege before the online count dropping to 0 indicates a live quit.
 	#Range: 0.0 ~ 1.0
-	"Max Player % Before Online Status" = 0.5
+	"Max Player % Before Online Status" = 0.0
 	#The number of blocks up or down a siege block can be placed from a potential target, inclusively. Sieges may also only be started on targets within this vertical radius.
 	#Range: > 0
 	"Maximum Vertical Siege Radius [Inclusive]" = 40

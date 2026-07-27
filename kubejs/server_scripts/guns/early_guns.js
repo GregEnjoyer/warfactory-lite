@@ -16,21 +16,7 @@ ServerEvents.recipes(event => {
     400
   )
 
-  // Springfield 1873
-  event.shaped(
-    Item.of('tacz:ammo', 12, '{AmmoId:"tacz:45_70"}'),
-               [
-                ' I ',
-               ' G ',
-               ' P '
-               ],
-               {
-                 I: 'gtceu:lead_nugget',
-                 G: 'gtceu:tiny_gunpowder_dust',
-                 P: 'gtceu:brass_plate',
-               }
-  )
-
+  // Springfield 1873 (its .45-70 bootstrap ammo now lives in ../guns/ammo.js)
   event.shaped(
     Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:1,GunFireMode:"SEMI",GunId:"tacz:springfield1873"}'),
     [

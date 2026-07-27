@@ -46,6 +46,30 @@
   "item.kubejs.launcher_modern": "Modern Launcher Internals",
 "material.gtceu.clay_pipe_material": "Watertight Clay",
 
+"material.gtceu.fluix": "Fluix",
+"material.gtceu.early_rocket_fuel": "Early Rocket Fuel",
+
+"material.gtceu.gun_metal": "Carbon Fibre Composite",
+"material.gtceu.aircraft_grade_metal": "Aircraft Grade Metal",
+"material.gtceu.tank_grade_metal": "Tank Grade Metal",
+"material.gtceu.tung_tung_tungsten": "Tung Tung Tungsten",
+"material.gtceu.vehicle_metal": "Vehicle Metal",
+"material.gtceu.advanced_aircraft_metal": "Advanced Aircraft Metal",
+"material.gtceu.heavy_duty_fabric": "Heavy Duty Fabric",
+
+"material.gtceu.poppy": "Crushed Poppy",
+"material.gtceu.blood": "Blood",
+"material.gtceu.morphine": "Morphine",
+"material.gtceu.naloxone": "Naloxone",
+"material.gtceu.lidocaine": "Lidocaine",
+"material.gtceu.coagulant": "Coagulant",
+"material.gtceu.amphetamine": "Amphetamine",
+"material.gtceu.epinephrine": "Epinephrine",
+"material.gtceu.combat_stim": "Combat Stimulant Serum",
+
+"block.wfcore.greenhouse": "Greenhouse",
+"block.wfcore.mob_farmer": "Mob Farmer",
+
 "wfcore.research.guns1.name": "Early Cold War Weapons",
 "wfcore.research.guns1.desc": "Early Cold War weapons such as the legendary FAL and M700",
 "wfcore.research.guns2.name": "Early Cold War Pistols",

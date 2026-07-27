@@ -46,4 +46,18 @@ JEIEvents.hideItems(event => {
     // All enchanted books — one NBT variant per enchantment/level, so JEI lists hundreds. Item-id hide
     // (no NBT) removes every variant at once.
     event.hide('minecraft:enchanted_book')
+
+    // Sophisticated Backpacks — only the plain backpack is craftable now (LV assembler; see
+    // server_scripts/misc/backpacks.js). Every other sophisticatedbackpacks item — the copper/iron/gold/
+    // diamond/netherite tier packs, the upgrade_base, and all the *_upgrade items — has had its recipe
+    // stripped, so hide the whole namespace except the plain backpack. Collect first, then hide, to avoid
+    // mutating the ingredient list while iterating.
+    var sbHidden = []
+    event.getAllIngredients().forEach(stack => {
+        var sid = '' + stack.id
+        if (sid.startsWith('sophisticatedbackpacks:') && sid !== 'sophisticatedbackpacks:backpack') {
+            sbHidden.push(stack)
+        }
+    })
+    sbHidden.forEach(stack => event.hide(stack))
 })

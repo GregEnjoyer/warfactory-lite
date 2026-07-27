@@ -119,15 +119,7 @@ ServerEvents.recipes(event => {
         .duration(400)
         .EUt(30);
 
-        // Mortar shell
-        event.recipes.gtceu.ammo_press('kubejs:mortar')
-        .itemInputs(
-                Item.of('minecraft:gunpowder'),
-                    Item.of('gtceu:steel_plate')
-        )
-        .itemOutputs(Item.of('superbwarfare:mortar_shell', 4))
-        .duration(40)
-        .EUt(30);
+        // Mortar shells now live in ../guns/ammo.js (all ammo is consolidated there).
 
         // =========================
         // GUNS - progression brief implementation (warfactory-lite-gun-progression-notes.md)

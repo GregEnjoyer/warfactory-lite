@@ -1,0 +1,7 @@
+<config>
+  <defense>8</defense>
+  <toughness>1.0</toughness>
+  <knockback-resistance>0.0</knockback-resistance>
+  <durability>300</durability>
+  <rarity>common</rarity>
+</config>

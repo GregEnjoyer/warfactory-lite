@@ -1,122 +1,15 @@
+// ============================================================================
+// gun_parts.js — gun sub-parts (grips/stocks), the RPG launcher, optics and the
+// full TaCZ/ronmc/ww attachment tree.
+//
+// This is what used to be guns_and_ammo.js AFTER all ammunition was pulled out
+// into the consolidated ammo.js. Casings, cartridges, shells, rockets, grenades,
+// mines, missiles, bombs and drones ALL live in ammo.js now.
+//
+// Vendor crafting-table removals live in ../cleanup/remove_crafting.js.
+// ============================================================================
+
 ServerEvents.recipes(event => {
-
-    // Vendor crafting-table removals (TaCZ + Superb Warfare) now live in
-    // ../cleanup/remove_crafting.js.
-
-    // =========================
-    // CASINGS
-    // =========================
-    const casing = [
-        { id: 'kubejs:bullet_casing_small', plates: 1, amount: 5, circuit: 1 },
-        { id: 'kubejs:bullet_casing_medium', plates: 2, amount: 5, circuit: 2 },
-        { id: 'kubejs:bullet_casing_large', plates: 3, amount: 5, circuit: 3 },
-        { id: 'kubejs:bullet_casing_xl', plates: 4, amount: 1, circuit: 4 },
-    ];
-
-    casing.forEach(c => {
-        event.recipes.gtceu.cutter(c.id)
-        .itemInputs(Item.of('gtceu:brass_plate', c.plates))
-        .itemOutputs(Item.of(c.id, c.amount))
-        .duration(20)
-        .circuit(c.circuit)
-        .EUt(4);
-    });
-
-    // =========================
-    // HEAVY AMMO
-    // =========================
-    const heavyAmmo = [
-        { id: 'superbwarfare:heavy_ammo', circuit: 2, plate: 1, nugget: 1, gunpowder: 1 },
-        // 'superbwarfare:small_shell' is not a real item - superbwarfare only registers typed
-        // small-caliber shells (see assets/superbwarfare/lang/en_us.json), which is why this
-        // recipe threw "Invalid or empty output item". Expanded to the four real variants.
-        { id: 'superbwarfare:small_shell_ap', circuit: 3, plate: 1, nugget: 3, gunpowder: 3 },
-        { id: 'superbwarfare:small_shell_he', circuit: 4, plate: 1, nugget: 3, gunpowder: 3 },
-        { id: 'superbwarfare:small_shell_gs', circuit: 5, plate: 1, nugget: 3, gunpowder: 3 },
-        { id: 'superbwarfare:small_shell_aa', circuit: 6, plate: 1, nugget: 3, gunpowder: 3 },
-    ];
-
-    heavyAmmo.forEach(h => {
-        event.recipes.gtceu.ammo_press(h.id)
-        .itemInputs(
-            Item.of('kubejs:bullet_casing_large', h.plate),
-                    Item.of('gtceu:steel_nugget', h.nugget),
-                    Item.of('gtceu:small_gunpowder_dust', h.gunpowder)
-        )
-        .itemOutputs(Item.of(h.id))
-        .circuit(h.circuit)
-        .duration(20)
-        .EUt(4);
-    });
-
-    // =========================
-    // RIFLE AMMO
-    // =========================
-    const rifleAmmo = [
-        { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:556x45"}', circuit: 4 },
-        { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:45_70"}', circuit: 5 },
-        { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:545x39"}', circuit: 6 },
-        { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:30_06"}', circuit: 7 },
-        { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:57x28"}', circuit: 8 },
-        { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:46x30"}', circuit: 9 },
-        { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:338"}', circuit: 10 },
-        { id: 'tacz:ammo', nbt: '{AmmoId:"ww:77a"}', circuit: 11 },
-        { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:762x54"}', circuit: 12 },
-        { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:762x39"}', circuit: 13 },
-        { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:58x42"}', circuit: 14 },
-        { id: 'tacz:ammo', nbt: '{AmmoId:"ww:303"}', circuit: 15 },
-        { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:308"}', circuit: 16 },
-        { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:68x51fury"}', circuit: 17 },
-        { id: 'tacz:ammo', nbt: '{AmmoId:"ww:30c"}', circuit: 18 },
-        { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:12g"}', circuit: 19 },
-        { id: 'tacz:ammo', nbt: '{AmmoId:"ronmc:10mm"}', circuit: 20 },
-        { id: 'tacz:ammo', nbt: '{AmmoId:"ronmc:762x51"}', circuit: 21 },
-        { id: 'tacz:ammo', nbt: '{AmmoId:"ronmc:65x48"}', circuit: 22 },
-    ];
-
-    rifleAmmo.forEach(ammo => {
-        event.remove({ output: Item.of(ammo.id, ammo.nbt) });
-
-        event.recipes.gtceu.ammo_press(`rifle_ammo_${ammo.circuit}`)
-        .itemInputs(
-            Item.of('kubejs:bullet_casing_medium'),
-                    'gtceu:lead_nugget',
-                    'gtceu:small_gunpowder_dust'
-        )
-        .itemOutputs(Item.of(ammo.id, 5, ammo.nbt))
-        .circuit(ammo.circuit)
-        .duration(20)
-        .EUt(4);
-    });
-
-    // =========================
-    // PISTOL AMMO
-    // =========================
-    const pistolAmmo = [
-
- { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:762x25"}', circuit: 1 },
-  { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:45acp"}', circuit: 2 },
-   { id: 'tacz:ammo', nbt: '{AmmoId:"ww:8mm"}', circuit: 3 },
-   { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:9mm"}', circuit: 4 },
-   { id: 'tacz:ammo', nbt: '{AmmoId:"ww:765"}', circuit: 5 },
-{ id: 'tacz:ammo', nbt: '{AmmoId:"tacz:357mag"}', circuit: 6 },
-{ id: 'tacz:ammo', nbt: '{AmmoId:"ronmc:10mm"}', circuit: 7 },
-    ];
-
-    pistolAmmo.forEach(ammo => {
-        event.remove({ output: Item.of(ammo.id, ammo.nbt) });
-
-        event.recipes.gtceu.ammo_press(`pistol_ammo_${ammo.circuit}`)
-        .itemInputs(
-            Item.of('kubejs:bullet_casing_small'),
-                    'gtceu:tiny_gunpowder_dust',
-                    'gtceu:lead_nugget'
-        )
-        .itemOutputs(Item.of(ammo.id, 7, ammo.nbt))
-        .circuit(ammo.circuit)
-        .duration(20)
-        .EUt(4);
-    });
 
     // =========================
     // PARTS - GRIPS
@@ -155,15 +48,8 @@ ServerEvents.recipes(event => {
     });
 
     // =========================
-    // MISC
+    // RPG LAUNCHER (the weapon; its rockets live in ammo.js)
     // =========================
-    event.recipes.gtceu.assembler('kubejs:solid_rocket_fuel')
-    .itemInputs('gtceu:sulfur_dust', 'gtceu:saltpeter_dust', 'gtceu:charcoal_dust')
-    .itemOutputs('kubejs:solid_rocket_fuel')
-    .circuit(1)
-    .duration(200)
-    .EUt(30);
-
     event.recipes.gtceu.assembler('kubejs:rpg')
     .itemInputs(
         Item.of('kubejs:heavy_barrel_steel', 3),
@@ -217,13 +103,6 @@ ServerEvents.recipes(event => {
         .duration(100)
         .EUt(30);
     });
-
-    // =========================
-    // GUNS - PLACEHOLDER REPLACEMENTS (REMOVED)
-    // Real, era-appropriate recipes now live in LV.js/MV.js/HV.js/Primitive.js per
-    // warfactory-lite-gun-progression-notes.md. Guns not covered there are intentionally
-    // excluded from progression (see doc §3.3) and get no recipe at all.
-    // =========================
 
     // =========================
     // ATTACHMENTS (warfactory-lite-gun-progression-notes.md §5.3)
@@ -339,67 +218,4 @@ ServerEvents.recipes(event => {
     attachmentGroup('ammo_mod_explosive', [
         'tacz:ammo_mod_he', 'ronmc:m32a1_he',
     ], [Item.of('gtceu:dynamite', 1), Item.of('gtceu:steel_nugget', 1)], 150, 512, null);
-
-    // =========================
-    // OTHER AMMO - PLACEHOLDER REPLACEMENTS (calibers not covered above)
-    // TODO: placeholder inputs, tune per caliber (rpg_rocket/40mm especially should
-    // NOT share the same cheap recipe as a pistol/rifle round once real-balanced).
-    // No per-item event.remove() needed here - the blanket
-    // `tacz:gun_smith_table_crafting` removal above already strips these too.
-    // =========================
-    const otherAmmo = [
-        { id: 'tacz:22wmr', circuit: 1 },
-        { id: 'tacz:500mag', circuit: 3 },
-        { id: 'tacz:50ae', circuit: 4 },
-        { id: 'tacz:792x57', circuit: 6 },
-        { id: 'ww:65a', circuit: 8 },
-        { id: 'ww:763', circuit: 9 },
-        { id: 'ronmc:300blk', circuit: 10 },
-        { id: 'ronmc:68pepperball', circuit: 11 },
-        { id: 'ronmc:bean_bag', circuit: 12 },
-        { id: 'ronmc:slug', circuit: 13 },
-        { id: 'ronmc:train_556x45', circuit: 14 },
-        { id: 'ronmc:train_9mm', circuit: 15 },
-    ];
-
-    otherAmmo.forEach(ammo => {
-        event.recipes.gtceu.ammo_press(`other_ammo_${ammo.circuit}`)
-        .itemInputs(
-            Item.of('kubejs:bullet_casing_xl'),
-                    'gtceu:lead_nugget',
-                    'gtceu:small_gunpowder_dust'
-        )
-        .itemOutputs(Item.of('tacz:ammo', 5, `{AmmoId:"${ammo.id}"}`))
-        .circuit(ammo.circuit)
-        .duration(20)
-        .EUt(4);
-    });
-
-    // Heavy ordnance calibers - genuinely different from a standard round, not just a
-    // relabeled pistol/rifle recipe. 50bmg gets a thicker casing and more propellant;
-    // 40mm and rpg_rocket are explosive-payload/rocket rounds and pull from the same
-    // explosive-chain / rocket-fuel items the launcher guns and MISC section already use.
-    const heavyOrdnanceAmmo = [
-        {
-            id: 'tacz:50bmg', circuit: 5, qty: 2, duration: 60, eut: 30,
-            inputs: [Item.of('kubejs:bullet_casing_xl', 2), Item.of('gtceu:steel_plate', 1), Item.of('gtceu:small_gunpowder_dust', 2)],
-        },
-        {
-            id: 'tacz:40mm', circuit: 2, qty: 2, duration: 100, eut: 30,
-            inputs: [Item.of('kubejs:bullet_casing_xl', 1), Item.of('gtceu:dynamite', 1)],
-        },
-        {
-            id: 'tacz:rpg_rocket', circuit: 7, qty: 1, duration: 200, eut: 30,
-            inputs: [Item.of('kubejs:bullet_casing_xl', 2), Item.of('gtceu:dynamite', 1), 'kubejs:solid_rocket_fuel'],
-        },
-    ];
-
-    heavyOrdnanceAmmo.forEach(ammo => {
-        event.recipes.gtceu.ammo_press(`heavy_ordnance_ammo_${ammo.circuit}`)
-        .itemInputs(ammo.inputs)
-        .itemOutputs(Item.of('tacz:ammo', ammo.qty, `{AmmoId:"${ammo.id}"}`))
-        .circuit(ammo.circuit)
-        .duration(ammo.duration)
-        .EUt(ammo.eut);
-    });
 });

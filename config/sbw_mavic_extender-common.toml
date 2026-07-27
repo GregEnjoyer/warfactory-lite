@@ -1,5 +1,5 @@
 #Log verbose [Mavic] chunk-streaming diagnostics (per-drone status, transfers, stream counts). Off by default.
-verboseLogging = true
+verboseLogging = false
 #While you pilot a drone, stop streaming entities around your real body (which you cannot see through the drone camera anyway).
 #This avoids double-streaming two regions at once, which raises bandwidth and ping on busy servers.
 #Entities you are riding/attached to are never hidden, and your body's surroundings are restored the instant you stop viewing.

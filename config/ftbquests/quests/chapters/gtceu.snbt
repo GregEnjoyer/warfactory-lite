@@ -1046,6 +1046,52 @@
 			x: 1.5d
 			y: -0.5d
 		}
+			{
+				dependencies: ["13E9DF7E980CFC5B"]
+				description: [
+					"&cThird person is disabled while on foot.&r There's no toggling it back - the &6F5&r perspective key won't do anything while you're walking around."
+					""
+					"The &2only&r time you'll get a third-person camera is when you're &bsitting in a vehicle&r. Hop in a car, tank, or aircraft and the view opens up; step out and it snaps back to first person."
+					""
+					"&8This keeps infantry combat honest - no peeking around corners or over cover in third person.&r"
+				]
+				icon: "minecraft:spyglass"
+				id: "7F3A1C9D2E4B6058"
+				shape: "circle"
+				size: 0.75d
+				subtitle: "F5 only works inside vehicles"
+				tasks: [{
+					id: "7F3A1C9D2E4B6059"
+					title: "Understood - first person on foot"
+					type: "checkmark"
+				}]
+				title: "No Third Person on Foot"
+				x: -3.75d
+				y: -1.5d
+			}
+			{
+				dependencies: ["008ABF78E56209F7"]
+				description: [
+					"&cPlayer nametags never render through walls&r - no matter what. There's no setting to switch this on, so don't go looking for one."
+					""
+					"If you can't &2directly see&r a player, you won't see their name floating above them either. Line of sight is everything."
+					""
+					"&8Effectively a built-in anti-wallhack: you can't track people through solid blocks by their tags.&r"
+				]
+				icon: "minecraft:name_tag"
+				id: "7F3A1C9D2E4B6060"
+				shape: "circle"
+				size: 0.75d
+				subtitle: "No seeing names through solid blocks"
+				tasks: [{
+					id: "7F3A1C9D2E4B6061"
+					title: "Got it - names need line of sight"
+					type: "checkmark"
+				}]
+				title: "Nametags Won't Show Through Walls"
+				x: -3.75d
+				y: -0.75d
+			}
 	]
 	subtitle: ["Welcome to &4Warfactory&r!"]
 	title: "Introduction"

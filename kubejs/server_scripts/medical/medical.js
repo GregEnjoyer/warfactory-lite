@@ -132,4 +132,75 @@ ServerEvents.recipes(event => {
         .itemOutputs(Item.of('wfmedical:blood_bag'))
         .duration(200)
         .EUt(30)
+
+    // ==== Chemical medicine chains ====
+    // Parody chemistry: everything routes through real GT chemical machines on real GT reagents,
+    // but the synthesis steps are intentionally NOT accurate recipes. Multi-fluid syntheses use the
+    // Large Chemical Reactor (the single Chemical Reactor has only one fluid-input tank).
+    const HV = 480, EV = 2048
+
+    // ---- Painkillers (MV): blister-pack GTCEu's own paracetamol ----
+    // GTCEu already synthesizes gtceu:paracetamol_dust (phenol -> aminophenol -> paracetamol), so we
+    // only package the finished dust rather than duplicate that chemistry.
+    event.recipes.gtceu.assembler('kubejs:painkillers')
+        .itemInputs('2x gtceu:paracetamol_dust', 'minecraft:paper')
+        .itemOutputs(Item.of('wfmedical:painkillers'))
+        .duration(120)
+        .EUt(MV)
+
+    // ---- Local anesthetic (HV): synth lidocaine, then can into a syringe (like the morphine syringe) ----
+    event.recipes.gtceu.large_chemical_reactor('kubejs:make_lidocaine')
+        .inputFluids(Fluid.of('gtceu:toluene', 500), Fluid.of('gtceu:ammonia', 250), Fluid.of('gtceu:acetic_acid', 250))
+        .outputFluids(Fluid.of('gtceu:lidocaine', 200))
+        .duration(240)
+        .EUt(HV)
+    event.recipes.gtceu.canner('kubejs:local_anesthetic')
+        .itemInputs(Item.of('gtceu:polyethylene_tiny_fluid_pipe', 1))
+        .inputFluids(Fluid.of('gtceu:lidocaine', 100))
+        .itemOutputs(Item.of('wfmedical:local_anesthetic'))
+        .duration(100)
+        .EUt(HV)
+
+    // ---- Hemostatic (MV): calcium-activate blood into a coagulant powder, impregnate a gauze ----
+    // Ties into the existing blood chain (bone meal -> blood). One fluid in/out, so single reactor is fine.
+    event.recipes.gtceu.chemical_reactor('kubejs:make_coagulant')
+        .itemInputs(Item.of('gtceu:calcium_chloride_dust', 1))
+        .inputFluids(Fluid.of('gtceu:blood', 1000))
+        .itemOutputs(Item.of('gtceu:coagulant_dust', 2))
+        .outputFluids(Fluid.of('gtceu:distilled_water', 750))
+        .duration(160)
+        .EUt(MV)
+    event.recipes.gtceu.assembler('kubejs:hemostatic')
+        .itemInputs('2x gtceu:coagulant_dust', 'kubejs:fabric')
+        .itemOutputs(Item.of('wfmedical:hemostatic'))
+        .duration(160)
+        .EUt(MV)
+
+    // ---- Combat Stimulant I (EV): morphine + amphetamine + epinephrine autoinjector ----
+    // Precursors synth at HV; the final blend + can run at EV. "morphine" reuses the opioid chain above.
+    event.recipes.gtceu.large_chemical_reactor('kubejs:make_amphetamine')
+        .inputFluids(Fluid.of('gtceu:benzene', 500), Fluid.of('gtceu:acetone', 250), Fluid.of('gtceu:ammonia', 250))
+        .outputFluids(Fluid.of('gtceu:amphetamine', 300))
+        .duration(300)
+        .EUt(HV)
+    event.recipes.gtceu.large_chemical_reactor('kubejs:make_epinephrine')
+        .inputFluids(Fluid.of('gtceu:phenol', 300), Fluid.of('gtceu:ammonia', 200), Fluid.of('gtceu:methanol', 200))
+        .outputFluids(Fluid.of('gtceu:epinephrine', 200))
+        .duration(300)
+        .EUt(HV)
+    event.recipes.gtceu.large_chemical_reactor('kubejs:combat_stim_serum')
+        .inputFluids(
+            Fluid.of('gtceu:morphine', 200),
+            Fluid.of('gtceu:amphetamine', 200),
+            Fluid.of('gtceu:epinephrine', 100),
+            Fluid.of('gtceu:distilled_water', 500))
+        .outputFluids(Fluid.of('gtceu:combat_stim', 500))
+        .duration(400)
+        .EUt(EV)
+    event.recipes.gtceu.canner('kubejs:combat_stimulant_i')
+        .itemInputs(Item.of('gtceu:polyethylene_tiny_fluid_pipe', 1))
+        .inputFluids(Fluid.of('gtceu:combat_stim', 250))
+        .itemOutputs(Item.of('wfmedical:combat_stimulant_i'))
+        .duration(120)
+        .EUt(EV)
 })

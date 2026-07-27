@@ -21,4 +21,31 @@ GTCEuStartupEvents.registry('gtceu:material', event => {
     event.create('naloxone')
         .liquid()
         .color(0x2E86C1).iconSet(GTMaterialIconSet.DULL)
+
+    // ---- Analgesic / anesthetic / hemostatic / stimulant chains (all parody chemistry) ----
+
+    // Lidocaine — aromatic-amide local anesthetic; canned into the local anesthetic injector.
+    event.create('lidocaine')
+        .liquid()
+        .color(0xEAE6D9).iconSet(GTMaterialIconSet.DULL)
+
+    // Coagulant — calcium-activated clotting factors precipitated from blood; dusts the hemostatic gauze.
+    event.create('coagulant')
+        .dust()
+        .color(0xD9C27A).iconSet(GTMaterialIconSet.ROUGH)
+
+    // Amphetamine — stimulant precursor for Combat Stimulant I.
+    event.create('amphetamine')
+        .liquid()
+        .color(0xE8F0F5).iconSet(GTMaterialIconSet.DULL)
+
+    // Epinephrine — adrenaline precursor for Combat Stimulant I.
+    event.create('epinephrine')
+        .liquid()
+        .color(0xF5E8EC).iconSet(GTMaterialIconSet.DULL)
+
+    // Combat stim serum — morphine + amphetamine + epinephrine blend; canned into the autoinjector.
+    event.create('combat_stim')
+        .liquid()
+        .color(0xC0392B).iconSet(GTMaterialIconSet.DULL)
 })

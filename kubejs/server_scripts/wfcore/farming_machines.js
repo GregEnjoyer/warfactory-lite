@@ -1,4 +1,4 @@
-// Recipes for the two wfcore farming multiblocks: the Greenhouse (LV) and the Mob Farmer (HV).
+// Recipes for the two wfcore farming multiblocks: the Greenhouse (LV) and the Mob Farmer (MV).
 // The controllers (wfcore:greenhouse / wfcore:mob_farmer) ship with no recipe from the mod, so — like
 // the Radar (see radar.js) — their crafting recipes are authored here, alongside the machines' operation
 // recipes on the wfcore:greenhouse / wfcore:mob_farmer recipe types.
@@ -14,13 +14,13 @@ ServerEvents.recipes(event => {
         .duration(200)
         .EUt(30)
 
-    // Mob Farmer controller — HV-tier assembly.
+    // Mob Farmer controller — MV-tier assembly.
     event.recipes.gtceu.assembler('wfcore:mob_farmer')
-        .itemInputs('4x gtceu:stainless_steel_plate', '4x gtceu:steel_frame', '2x #gtceu:circuits/hv',
+        .itemInputs('4x gtceu:steel_plate', '4x gtceu:steel_frame', '2x #gtceu:circuits/mv',
             '2x minecraft:iron_sword')
         .itemOutputs('wfcore:mob_farmer')
         .duration(200)
-        .EUt(480)
+        .EUt(120)
 
     // ------------------------------------------------------------------ greenhouse (LV)
     // Each recipe: a seed/crop + fertilizer (bone meal) + 100 mB water -> harvested crop. Seed-based crops
@@ -41,13 +41,13 @@ ServerEvents.recipes(event => {
     gh('cocoa',      'minecraft:cocoa_beans').itemOutputs(Item.of('minecraft:cocoa_beans', 3))
     gh('netherwart', 'minecraft:nether_wart').itemOutputs(Item.of('minecraft:nether_wart', 3))
 
-    // ------------------------------------------------------------------ mob farmer (HV)
+    // ------------------------------------------------------------------ mob farmer (MV)
     // A Programmed Circuit selects the mob; power yields its drops. Chanced outputs are per-10000
-    // (e.g. 3300 = 33%). EUt 256 forces HV (above the MV cap of 128).
+    // (e.g. 3300 = 33%). EUt 120 keeps it at MV (under the MV cap of 128).
     const mob = (id, circuit) => event.recipes.wfcore.mob_farmer('kubejs:mob_' + id)
         .circuit(circuit)
         .duration(200)
-        .EUt(256)
+        .EUt(120)
 
     mob('zombie', 1).itemOutputs(Item.of('minecraft:rotten_flesh', 2))
         .chancedOutput(Item.of('minecraft:iron_ingot', 1), 300, 0)

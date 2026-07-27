@@ -3776,43 +3776,6 @@
             ]
         },
         {
-            "pakku_id": "IPUxjAZYIPBLAlMg",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "playeranimator"
-            },
-            "name": {
-                "curseforge": "playerAnimator"
-            },
-            "id": {
-                "curseforge": "658587"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "player-animation-lib-forge-1.0.2-rc1+1.20.jar",
-                    "mc_versions": [
-                        "1.20.1",
-                        "1.20"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "beta",
-                    "url": "https://edge.forgecdn.net/files/4587/214/player-animation-lib-forge-1.0.2-rc1+1.20.jar",
-                    "id": "4587214",
-                    "parent_id": "658587",
-                    "hashes": {
-                        "sha1": "16808f94a41d45d8e986b4e4ea6b02ba57fa058a",
-                        "md5": "46f8554181d4d240075ea4919d01fd01"
-                    },
-                    "required_dependencies": [],
-                    "size": 181437,
-                    "date_published": "2023-06-14T20:01:58.627Z"
-                }
-            ]
-        },
-        {
             "pakku_id": "qkx1mHQyOs9g2tLI",
             "type": "MOD",
             "slug": {

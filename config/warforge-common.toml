@@ -985,10 +985,10 @@
 	"Defender Desertion Timer [s]" = 300
 	#Milliseconds a chunk stays conquered no-man's-land after attackers win a siege on it: unclaimable by everyone and unprotected (free-build wilderness) until it reverts to normal wilderness. Setting to 0 makes won chunks immediately claimable.
 	#Range: > 0
-	"Attacker Conquered Chunk Grace Period [ms]" = 3600000
+	"Attacker Conquered Chunk Grace Period [ms]" = 1800000
 	#The number of milliseconds to deny sieging or claiming in previously sieged chunk in which the siege was won by the defenders. Setting to 0 results in no grace period.
 	#Range: > 0
-	"Defender Conquered Chunk Grace Period [ms]" = 7200000
+	"Defender Conquered Chunk Grace Period [ms]" = 3600000
 	#The number of milliseconds before enforcement action is taken when a player leaves during a siege on any of their claims.
 	#Range: > 0
 	"Time to Combat Log Action [ms]" = 10000
@@ -1103,7 +1103,7 @@
 	#Prevent players from opening ender chests
 	"Disable Ender Chest" = false
 	#Allow players to craft and consume /tpa and /tpaccept style potions
-	"Enable TPA Potions" = true
+	"Enable TPA Potions" = false
 	#https://github.com/Chikachi/DiscordIntegration/wiki/IMC-Feature
 	"Discord Bot Channel ID" = "799595436154683422"
 

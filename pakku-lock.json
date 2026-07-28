@@ -535,6 +535,42 @@
             ]
         },
         {
+            "pakku_id": "r30iJyfHfUjnvArc",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "concurent-chunk-management-engine-forge"
+            },
+            "name": {
+                "curseforge": "Concurent Chunk Management Engine - Forge"
+            },
+            "id": {
+                "curseforge": "1610389"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "c2meforge-0.2.0-forge.2-all.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "beta",
+                    "url": "https://edge.forgecdn.net/files/8439/296/c2meforge-0.2.0-forge.2-all.jar",
+                    "id": "8439296",
+                    "parent_id": "1610389",
+                    "hashes": {
+                        "sha1": "8ef6ffbc027323a5e39fad1bea9cc303730cbf07",
+                        "md5": "2d04491f1b603ce1e0924e890513b700"
+                    },
+                    "required_dependencies": [],
+                    "size": 1171445,
+                    "date_published": "2026-07-15T18:20:53.913Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "eu6UD6050YIsNgWS",
             "type": "MOD",
             "side": "CLIENT",

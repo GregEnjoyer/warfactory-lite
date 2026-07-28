@@ -162,6 +162,11 @@ rules:
     ronmc:ump45: 3.0
     ronmc:ump9: 3.0
     ronmc:usp45: 2.0
+    # --- SuperbWarfare heavy/support weapons (real-world reference weights) ---
+    superbwarfare:m_79: 2.7
+    superbwarfare:javelin: 22.3
+    superbwarfare:igla_9k38: 18.0
+    superbwarfare:medium_anti_ground_missile: 25.0
     # --- TaCZ ammo (matched by AmmoId NBT tag on tacz:ammo) ---
     tacz:12g: 0.1
     tacz:22wmr: 0.1

@@ -80,21 +80,3 @@ GTCEuStartupEvents.registry('gtceu:machine', event => {
 
 
 
-GTCEuStartupEvents.registry('gtceu:machine', event => {
-    event.create('new_multiblock', 'multiblock')
-    .rotationState(RotationState.NON_Y_AXIS)
-    .recipeTypes('new_process')
-    .pattern(definition => FactoryBlockPattern.start()
-    .aisle("CCCCCCC", "BWWWBWB", "ABBBBBA")
-    .aisle("CCCCCCC", "BGGGGGB", "BBBBBBB")
-    .aisle("CCCCCCC", "BGGGGGB", "BBBBBBB")
-    .aisle("CCCCCCC", "BCCCCKB", "ABBBBBA")
-    .where('C', Predicates.blocks('gtceu:bronze_machine_casing'))
-    .where('B', Predicates.blocks('gtceu:steam_machine_casing'))
-    .where('W', Predicates.blocks('gtceu:steel_frame'))
-     .where('G', Predicates.blocks('gtceu:steel_gearbox'))
-    .where('A', Predicates.air())
-    .where('K', Predicates.controller(Predicates.blocks(definition.get())))
-
-    .build())
-});

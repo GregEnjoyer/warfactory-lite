@@ -103,7 +103,7 @@ Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:7,GunFireMode:"SEMI",Gu
     Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:type38",HasBulletInBarrel:1b}'),
     Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:m91",HasBulletInBarrel:1b}'),
   ].forEach(gun => {
-    event.recipes.gtceu.assembler(`infantry_c1_${gun.nbt.match(/GunId:"([^"]+)"/)[1].replace(':','_')}`)
+    event.recipes.gtceu.assembler(`infantry_c1_${gun.nbt.getString('GunId').replace(':','_')}`)
     .itemInputs(
       Item.of('gtceu:long_steel_rod', 2),
       Item.of('gtceu:small_steel_gear', 1),
@@ -122,7 +122,7 @@ Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:7,GunFireMode:"SEMI",Gu
     Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:8,GunFireMode:"SEMI",GunId:"ww:p08",HasBulletInBarrel:1b}'),
     Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:8,GunFireMode:"SEMI",GunId:"ww:p38",HasBulletInBarrel:1b}'),
   ].forEach(gun => {
-    event.recipes.gtceu.assembler(`short_barrel_${gun.nbt.match(/GunId:"([^"]+)"/)[1].replace(':','_')}`)
+    event.recipes.gtceu.assembler(`short_barrel_${gun.nbt.getString('GunId').replace(':','_')}`)
     .itemInputs(
       Item.of('gtceu:long_steel_rod', 1),
       Item.of('gtceu:small_steel_gear', 1),

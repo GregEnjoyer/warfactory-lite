@@ -127,7 +127,10 @@ WFResearch.builder('short_barreled_1')
 .name('Short Barreled I')
 .description('Compact sidearms for officers and crew: the Luger P08 and Walther P38.')
 .requires('infantry_combat_1')
-.runs(1).ticksPerRun(300).eut(32).cwuPerRun(0)
+.runs(15).ticksPerRun(220).eut(24).cwuPerRun(0)
+.itemPerRun(Item.of('gtceu:steel_plate', 2))
+.itemPerRun(Item.of('tacz:ammo', '{AmmoId:"tacz:9mm"}').withCount(2))
+.itemPerRun(Item.of('minecraft:gunpowder', 10))
 .unlocks(
     Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:8,GunFireMode:"SEMI",GunId:"ww:p08",HasBulletInBarrel:1b}'),
     Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:8,GunFireMode:"SEMI",GunId:"ww:p38",HasBulletInBarrel:1b}')
@@ -141,7 +144,11 @@ WFResearch.builder('pump_action_1')
 .name('Pump Action I')
 .description('Repeating shotgun designs for close-quarters combat: the Winchester M1897.')
 .requires('infantry_combat_1')
-.runs(1).ticksPerRun(300).eut(32).cwuPerRun(0)
+.runs(10).ticksPerRun(180).eut(24).cwuPerRun(0)
+.itemPerRun(Item.of('gtceu:steel_plate', 8))
+.itemPerRun(Item.of('gtceu:basic_integrated_circuit', 2))
+.itemPerRun(Item.of('tacz:ammo', '{AmmoId:"tacz:12g"}').withCount(6))
+.itemPerRun(Item.of('minecraft:gunpowder', 15))
 .unlocks(
     Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:m1897",HasBulletInBarrel:1b}')
 )
@@ -154,7 +161,11 @@ WFResearch.builder('automatic_weapons_1')
 .name('Automatic Weapons I')
 .description('Select-fire and full-auto small arms from the WWI-WWII era: the M712 Schnellfeuer and Sten.')
 .requires('infantry_combat_1')
-.runs(1).ticksPerRun(300).eut(32).cwuPerRun(0)
+.runs(30).ticksPerRun(300).eut(32).cwuPerRun(0)
+.itemPerRun(Item.of('gtceu:small_steel_spring', 9))
+.itemPerRun(Item.of('gtceu:basic_integrated_circuit', 2))
+.itemPerRun(Item.of('tacz:ammo', '{AmmoId:"tacz:9mm"}').withCount(2))
+.itemPerRun(Item.of('minecraft:gunpowder', 15))
 .unlocks(
     Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:10,GunFireMode:"SEMI",GunId:"ww:m712",HasBulletInBarrel:1b}'),
     Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:16,GunFireMode:"SEMI",GunId:"ww:sten",HasBulletInBarrel:1b}')
@@ -171,6 +182,42 @@ WFResearch.builder('infantry_combat_1_placeholder')
 .anyOf('short_barreled_1', 'pump_action_1', 'automatic_weapons_1')
 .runs(1).ticksPerRun(1).eut(32).cwuPerRun(0)
 .icon(Item.of('minecraft:nether_star'))
+.register()
+
+// =========================== GROUND VEHICLES ============================
+
+// "Mobile Combustion" — root node for the ground-vehicle tree.  Unlocks the
+// LV engine component; gated at LV (32 EU/t) with no compute requirement since
+// the Research Unit is an MV unlock.  Item costs are placeholders.
+WFResearch.builder('mobile_transport')
+.category('armor').pos(0, 0)
+.nodeColor(0xFF2F6BD8)
+.name('Mobile Combustion and Transport')
+.description('Internal combustion fundamentals for wheeled vehicles. Unlocks the LV engine component used in all early ground-vehicle assembly.')
+.runs(5).ticksPerRun(300).eut(32).cwuPerRun(0)
+.itemPerRun(Item.of('gtceu:steel_gearbox', 2))      // placeholder
+.itemPerRun(Item.of('gtceu:steel_minecart_wheels', 6))      // placeholder
+.itemPerRun(Item.of('gtceu:lv_electric_piston', 3))      // placeholder
+.unlocks(Item.of('kubejs:lv_engine'))
+.unlocks(Item.of('superbwarfare:wheel'))
+.icon(Item.of('kubejs:lv_engine'))
+.register()
+
+// "Ground Logistics" — civilian transport vehicles.  Unlocks the Truck and
+// Sodayo TenEven9 unarmed pickup.  Wheel used as display item; actual output
+// is a wfcore:packaged_vehicle entity spawn.  Costs are placeholders.
+WFResearch.builder('ground_logistics')
+.category('armor').pos(0, 1)
+.nodeColor(0xFF2F6BD8)
+.name('Ground Logistics')
+.description('Civilian wheeled transport: the Truck and Sodayo TenEven9 unarmed pickup. Essential for base resupply runs.')
+.requires('mobile_combustion')
+.runs(8).ticksPerRun(300).eut(32).cwuPerRun(0)
+.unlocks(
+      Item.of('wfcore:packaged_vehicle', '{entity:"superbwarfare:truck"}'),
+      Item.of('wfcore:packaged_vehicle', '{entity:"superbwarfare:sodayo_pick_up"}')
+      )
+.icon(Item.of('superbwarfare:wheel'))
 .register()
 
 })

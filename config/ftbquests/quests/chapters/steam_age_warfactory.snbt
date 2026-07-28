@@ -1423,26 +1423,6 @@
 			y: -3.5d
 		}
 		{
-			dependencies: ["2B7C4D9E1F3A8003"]
-			description: [
-				"Molten metal is too hot for normal pipes. Only &6Fire Clay&r pipes can carry it from a furnace or alloyer into a &3Foundry&r tank."
-				""
-				"Three &aClay Balls&r give you four &6Fire Clay&r pipes."
-			]
-			icon: "gtceu:clay_pipe_material_normal_fluid_pipe"
-			id: "2B7C4D9E1F3A8004"
-			subtitle: "Plumbing for molten metal"
-			tasks: [{
-				id: "2B7C4D9E1F3A8107"
-				item: "gtceu:clay_pipe_material_normal_fluid_pipe"
-				title: "Fire Clay Fluid Pipe"
-				type: "item"
-			}]
-			title: "Fire Clay Pipes"
-			x: 7.0d
-			y: -3.5d
-		}
-		{
 			dependencies: ["67EE36A29E81E96A"]
 			description: [
 				"Circuits eat an &cenormous&r amount of &6Copper wire&r, and hand cutting all of it wears out cutter after cutter."

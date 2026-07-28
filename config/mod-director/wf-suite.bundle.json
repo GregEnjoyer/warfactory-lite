@@ -2,31 +2,38 @@
   "url": [
     {
       "url": "https://github.com/Warfactory-Official/Warfctory-Modern-Core/releases/download/latest/wfcore-1.2.0.jar",
-      "fileName": "wfcore-1.2.0.jar"
+      "fileName": "wfcore-1.2.0.jar",
+      "installationPolicy": { "downloadAlways": true }
     },
     {
       "url": "https://github.com/Warfactory-Official/WFMedical/releases/download/v0.3.1/wfmedical-0.3.1.jar",
-      "fileName": "wfmedical-0.3.1.jar"
+      "fileName": "wfmedical-0.3.1.jar",
+      "installationPolicy": { "downloadAlways": true }
     },
     {
       "url": "https://github.com/Warfactory-Official/WF-Ballistics/releases/download/v1.0.1/wfballistics-1.0.1-all.jar",
-      "fileName": "wfballistics-1.0.1-all.jar"
+      "fileName": "wfballistics-1.0.1-all.jar",
+      "installationPolicy": { "downloadAlways": true }
     },
     {
       "url": "https://github.com/Warfactory-Official/Ultimate-Weight/releases/download/v1.2.0/wfweight-1.20.1-Forge-1.2.0.jar",
-      "fileName": "wfweight-1.20.1-Forge-1.2.0.jar"
+      "fileName": "wfweight-1.20.1-Forge-1.2.0.jar",
+      "installationPolicy": { "downloadAlways": true }
     },
     {
       "url": "https://github.com/Warfactory-Official/WarForge-Remaintained/releases/download/v2.4.1/warforge-remaintained-2.4.1.jar",
-      "fileName": "warforge-remaintained-2.4.1.jar"
+      "fileName": "warforge-remaintained-2.4.1.jar",
+      "installationPolicy": { "downloadAlways": true }
     },
     {
       "url": "https://github.com/Warfactory-Official/Boxy/releases/download/v1.0.0/boxy-1.0.0.jar",
-      "fileName": "boxy-1.0.0.jar"
+      "fileName": "boxy-1.0.0.jar",
+      "installationPolicy": { "downloadAlways": true }
     },
     {
       "url": "https://github.com/TheVirtualizedG/voxy/releases/download/v1.0.0/voxy-0.2.14-alpha.jar",
-      "fileName": "voxy-0.2.14-alpha.jar"
+      "fileName": "voxy-0.2.14-alpha.jar",
+      "installationPolicy": { "downloadAlways": true }
     }
   ]
 }

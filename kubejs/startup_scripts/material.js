@@ -15,6 +15,6 @@ GTCEuStartupEvents.registry("gtceu:material", (event) => {
     event
     .create("white_phosphorus")
     .dust()
-    .color(0xF2EFD0) // TODO final color
+    .color(0xF2EFD0)
     .iconSet(GTMaterialIconSet.DULL);
 });

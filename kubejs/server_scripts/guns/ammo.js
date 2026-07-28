@@ -63,18 +63,22 @@ ServerEvents.recipes(event => {
     // =======================================================================
     // 1. CASING PRODUCTION  (brass plate -> empty casings, on the cutter)
     // =======================================================================
+    // Pistol (small) + Rifle (medium) casings are gated behind the
+    // "Infantry Munitions 1" ballistics research (see startup_scripts/
+    // WFResearch.js); heavy/XL casings unlock at their own later nodes.
     [
-        { id: CASING_SMALL,  plates: 1, amount: 5, circuit: 1 },
-        { id: CASING_MEDIUM, plates: 2, amount: 5, circuit: 2 },
+        { id: CASING_SMALL,  plates: 1, amount: 5, circuit: 1, research: 'infantry_munitions_1' },
+        { id: CASING_MEDIUM, plates: 2, amount: 5, circuit: 2, research: 'infantry_munitions_1' },
         { id: CASING_LARGE,  plates: 3, amount: 5, circuit: 3 },
         { id: CASING_XL,     plates: 4, amount: 1, circuit: 4 },
     ].forEach(c => {
-        event.recipes.gtceu.cutter(c.id)
+        const r = event.recipes.gtceu.cutter(c.id)
             .itemInputs(Item.of('gtceu:brass_plate', c.plates))
             .itemOutputs(Item.of(c.id, c.amount))
             .circuit(c.circuit)
             .duration(20)
             .EUt(4);
+        if (c.research) r.addCondition(WFResearch.condition(c.research));
     });
 
     // =======================================================================
@@ -96,12 +100,13 @@ ServerEvents.recipes(event => {
     // =======================================================================
     function cartridgeBatch(prefix, inputs, count, duration, eut, entries) {
         entries.forEach(e => {
-            event.recipes.gtceu.ammo_press(`kubejs:${prefix}_${e.circuit}`)
+            const r = event.recipes.gtceu.ammo_press(`kubejs:${prefix}_${e.circuit}`)
                 .itemInputs(inputs)
                 .itemOutputs(e.nbt ? Item.of(e.out, count, e.nbt) : Item.of(e.out, count))
                 .circuit(e.circuit)
                 .duration(duration)
                 .EUt(eut);
+            if (e.research) r.addCondition(WFResearch.condition(e.research));
         });
     }
 
@@ -110,15 +115,15 @@ ServerEvents.recipes(event => {
         [Item.of(CASING_SMALL, 1), 'gtceu:lead_nugget', 'gtceu:tiny_gunpowder_dust'], 6, 20, 4, [
             { out: 'tacz:ammo', nbt: tacz('tacz:762x25'),      circuit: 1 },
             { out: 'tacz:ammo', nbt: tacz('tacz:45acp'),       circuit: 2 },
-            { out: 'tacz:ammo', nbt: tacz('ww:8mm'),           circuit: 3 },
-            { out: 'tacz:ammo', nbt: tacz('tacz:9mm'),         circuit: 4 },
-            { out: 'tacz:ammo', nbt: tacz('ww:765'),           circuit: 5 },
+            { out: 'tacz:ammo', nbt: tacz('ww:8mm'),           circuit: 3,  research: 'infantry_munitions_2' },
+            { out: 'tacz:ammo', nbt: tacz('tacz:9mm'),         circuit: 4,  research: 'infantry_munitions_2' },
+            { out: 'tacz:ammo', nbt: tacz('ww:765'),           circuit: 5,  research: 'infantry_munitions_2' },
             { out: 'tacz:ammo', nbt: tacz('tacz:357mag'),      circuit: 6 },
             { out: 'tacz:ammo', nbt: tacz('ronmc:10mm'),       circuit: 7 },
             { out: 'tacz:ammo', nbt: tacz('tacz:22wmr'),       circuit: 8 },  // was "vehicle" casing
             { out: 'tacz:ammo', nbt: tacz('tacz:500mag'),      circuit: 9 },  // was "vehicle" casing
             { out: 'tacz:ammo', nbt: tacz('tacz:50ae'),        circuit: 10 }, // was "vehicle" casing
-            { out: 'tacz:ammo', nbt: tacz('ww:763'),           circuit: 11 }, // was "vehicle" casing
+            { out: 'tacz:ammo', nbt: tacz('ww:763'),           circuit: 11, research: 'infantry_munitions_2' }, // was "vehicle" casing
             { out: 'tacz:ammo', nbt: tacz('ronmc:68pepperball'), circuit: 12 }, // non-lethal, was "vehicle" casing
             { out: 'tacz:ammo', nbt: tacz('ronmc:train_9mm'),  circuit: 13 }, // was "vehicle" casing
             { out: 'superbwarfare:handgun_ammo',               circuit: 14 },
@@ -133,27 +138,27 @@ ServerEvents.recipes(event => {
             { out: 'tacz:ammo', nbt: tacz('tacz:30_06'),       circuit: 4 },
             { out: 'tacz:ammo', nbt: tacz('tacz:57x28'),       circuit: 5 },  // PDW
             { out: 'tacz:ammo', nbt: tacz('tacz:46x30'),       circuit: 6 },  // PDW
-            { out: 'tacz:ammo', nbt: tacz('ww:77a'),           circuit: 7 },
-            { out: 'tacz:ammo', nbt: tacz('tacz:762x54'),      circuit: 8 },
+            { out: 'tacz:ammo', nbt: tacz('ww:77a'),           circuit: 7,  research: 'infantry_munitions_2' },
+            { out: 'tacz:ammo', nbt: tacz('tacz:762x54'),      circuit: 8,  research: 'infantry_munitions_2' },
             { out: 'tacz:ammo', nbt: tacz('tacz:762x39'),      circuit: 9 },
             { out: 'tacz:ammo', nbt: tacz('tacz:58x42'),       circuit: 10 },
-            { out: 'tacz:ammo', nbt: tacz('ww:303'),           circuit: 11 },
+            { out: 'tacz:ammo', nbt: tacz('ww:303'),           circuit: 11, research: 'infantry_munitions_2' },
             { out: 'tacz:ammo', nbt: tacz('tacz:308'),         circuit: 12 },
             { out: 'tacz:ammo', nbt: tacz('tacz:68x51fury'),   circuit: 13 },
-            { out: 'tacz:ammo', nbt: tacz('ww:30c'),           circuit: 14 },
+            { out: 'tacz:ammo', nbt: tacz('ww:30c'),           circuit: 14, research: 'infantry_munitions_2' },
             { out: 'tacz:ammo', nbt: tacz('ronmc:762x51'),     circuit: 15 },
             { out: 'tacz:ammo', nbt: tacz('ronmc:65x48'),      circuit: 16 },
             { out: 'tacz:ammo', nbt: tacz('ronmc:300blk'),     circuit: 17 }, // was "vehicle" casing
             { out: 'tacz:ammo', nbt: tacz('ronmc:train_556x45'), circuit: 18 }, // was "vehicle" casing
-            { out: 'tacz:ammo', nbt: tacz('tacz:792x57'),      circuit: 19 }, // was "vehicle" casing
-            { out: 'tacz:ammo', nbt: tacz('ww:65a'),           circuit: 20 }, // was "vehicle" casing
+            { out: 'tacz:ammo', nbt: tacz('tacz:792x57'),      circuit: 19, research: 'infantry_munitions_2' }, // was "vehicle" casing
+            { out: 'tacz:ammo', nbt: tacz('ww:65a'),           circuit: 20, research: 'infantry_munitions_2' }, // was "vehicle" casing
             { out: 'superbwarfare:rifle_ammo',                 circuit: 21 },
         ]);
 
     // ---- SHOTGUN / pellet rounds  (medium casing, 3x lead pellets, tiny gunpowder) ----
     cartridgeBatch('ammo_shotgun',
         [Item.of(CASING_MEDIUM, 1), Item.of('gtceu:lead_nugget', 3), 'gtceu:tiny_gunpowder_dust'], 5, 20, 4, [
-            { out: 'tacz:ammo', nbt: tacz('tacz:12g'),         circuit: 1 },  // 12ga, was "rifle" batch
+            { out: 'tacz:ammo', nbt: tacz('tacz:12g'),         circuit: 1,  research: 'infantry_munitions_2' },  // 12ga, was "rifle" batch
             { out: 'tacz:ammo', nbt: tacz('ronmc:bean_bag'),   circuit: 2 },  // was "vehicle" casing
             { out: 'tacz:ammo', nbt: tacz('ronmc:slug'),       circuit: 3 },  // was "vehicle" casing
             { out: 'superbwarfare:shotgun_ammo',               circuit: 4 },
@@ -192,11 +197,11 @@ ServerEvents.recipes(event => {
 
     // ---- Large tank/artillery shells (fill varies per type) ----
     [
-        { out: 'superbwarfare:large_shell_ap', circuit: 1, inputs: [Item.of(CASING_XL, 1), Item.of('gtceu:steel_nugget', 3), Item.of('gtceu:small_gunpowder_dust', 2)] },
-        { out: 'superbwarfare:large_shell_he', circuit: 2, inputs: [Item.of(CASING_XL, 1), Item.of('gtceu:dynamite', 1), Item.of('gtceu:small_gunpowder_dust', 1)] },
-        { out: 'superbwarfare:large_shell_cm', circuit: 3, inputs: [Item.of(CASING_XL, 2), Item.of('gtceu:dynamite', 2)] },
-        { out: 'superbwarfare:large_shell_gs', circuit: 4, inputs: [Item.of(CASING_XL, 1), Item.of('gtceu:lead_nugget', 6), Item.of('gtceu:small_gunpowder_dust', 1)] },
-        { out: 'superbwarfare:large_shell_wp', circuit: 5, inputs: [Item.of(CASING_XL, 1), Item.of('gtceu:phosphorus_dust', 1), Item.of('gtceu:sulfur_dust', 1)] },
+        { out: 'superbwarfare:large_shell_ap', circuit: 1, inputs: [Item.of(CASING_XL, 1), Item.of('gtceu:steel_plate', 1), Item.of('superbwarfare:grain', 2)] }, // AP: hard steel core + 2 grain -> pricier than standard
+        { out: 'superbwarfare:large_shell_he', circuit: 2, inputs: [Item.of(CASING_XL, 1), Item.of('gtceu:dynamite', 1), Item.of('superbwarfare:grain', 1)] }, // standard: 1 grain
+        { out: 'superbwarfare:large_shell_cm', circuit: 3, inputs: [Item.of(CASING_XL, 2), Item.of('gtceu:dynamite', 2), Item.of('superbwarfare:grain', 1)] }, // standard: 1 grain
+        { out: 'superbwarfare:large_shell_gs', circuit: 4, inputs: [Item.of(CASING_XL, 1), Item.of('gtceu:lead_nugget', 6), Item.of('superbwarfare:grain', 1)] }, // standard: 1 grain
+        { out: 'superbwarfare:large_shell_wp', circuit: 5, inputs: [Item.of(CASING_XL, 1), Item.of('gtceu:small_white_phosphorus_dust', 1), Item.of('superbwarfare:grain', 2)] }, // WP: white phosphorus + 2 grain -> pricier than standard
     ].forEach(s => {
         event.recipes.gtceu.ammo_press(`kubejs:ammo_${s.out.split(':')[1]}`)
             .itemInputs(s.inputs)
@@ -253,7 +258,7 @@ ServerEvents.recipes(event => {
         .EUt(30);
 
     event.recipes.gtceu.ammo_press('kubejs:ammo_mortar_shell_wp')
-        .itemInputs('gtceu:steel_plate', 'gtceu:phosphorus_dust', 'gtceu:sulfur_dust')
+        .itemInputs('gtceu:steel_plate', 'gtceu:small_white_phosphorus_dust', 'gtceu:small_gunpowder_dust') // mortar = lower tier -> gunpowder propellant
         .itemOutputs(Item.of('superbwarfare:mortar_shell_wp', 2))
         .circuit(1)
         .duration(60)
@@ -395,15 +400,24 @@ ServerEvents.recipes(event => {
 });
 
 // ============================================================================
-// PRIMITIVE BOOTSTRAP — hand-crafted .45-70 (moved from early_guns.js)
-// The only bench-craftable ammo: a starter round for the Springfield 1873 so
-// you can fire it before you have an ammo press. Once the press line is up, the
-// ammo_pistol/rifle batches above are how ammo is actually mass-produced.
+// PRIMITIVE BOOTSTRAP — hand-crafted ammo for steamage weapons
+// Bench-craftable starter rounds for the Springfield 1873 (.45-70) and
+// Taurus 943 (.22wmr). The soft mallet seats the bullet; GTCEu returns it
+// damaged but unconsumed. Mallet position distinguishes the two calibers.
+// Once the ammo press is running, the cartridgeBatch routes above take over.
 // ============================================================================
 ServerEvents.recipes(event => {
+    // .45-70 — 4 rounds; mallet on right
     event.shaped(
-        Item.of('tacz:ammo', 12, '{AmmoId:"tacz:45_70"}'),
-        [' I ', ' G ', ' P '],
-        { I: 'gtceu:lead_nugget', G: 'gtceu:tiny_gunpowder_dust', P: 'gtceu:brass_plate' }
+        Item.of('tacz:ammo', 4, '{AmmoId:"tacz:45_70"}'),
+        [' P ', 'LGM', '   '],
+        { P: 'gtceu:brass_plate', L: 'gtceu:lead_nugget', G: 'minecraft:gunpowder', M: '#forge:tools/mallets' }
+    );
+
+    // .22wmr — 8 rounds; mallet on left (same inputs, mallet position differs)
+    event.shaped(
+        Item.of('tacz:ammo', 8, '{AmmoId:"tacz:22wmr"}'),
+        [' P ', 'MGL', '   '],
+        { P: 'gtceu:brass_plate', L: 'gtceu:lead_nugget', G: 'minecraft:gunpowder', M: '#forge:tools/mallets' }
     );
 });

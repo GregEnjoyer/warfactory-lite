@@ -15,7 +15,15 @@ modelTransformDebugEnabled = false
 #Every field after the id is optional. An entry only takes effect if it sets fluids or storageSize.
 #storageSize switches the vehicle to WFCore's resizable ModularUI storage; storageColumns is the grid width (default 9).
 #Example: "superbwarfare:example_vehicle; maxFuel=4000; fluids=minecraft:lava=1.0,minecraft:water=0.5; storageSize=40; storageColumns=10"
-vehicles = []
+#Aircraft burn Jet Fuel only (production chain in kubejs chemicals.js). ratio = energy
+#multiplier: 2.0 = 20 FE/mB given energyToFluidRatio=10. Tune the list/ratio freely.
+vehicles = [
+	"ashvehicle:f-4; fluids=gtceu:jet_fuel=2.0",
+	"ashvehicle:f14; fluids=gtceu:jet_fuel=2.0",
+	"ashvehicle:f_16; fluids=gtceu:jet_fuel=2.0",
+	"ashvehicle:su-25; fluids=gtceu:jet_fuel=2.0",
+	"ashvehicle:f_15; fluids=gtceu:jet_fuel=2.0"
+]
 #Vehicle ids that plough through and break cacti, wood logs and leaves as they drive.
 #Example: ["superbwarfare:lav_150", "superbwarfare:truck"]
 foliageBreakers = []

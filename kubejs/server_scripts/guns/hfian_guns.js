@@ -28,8 +28,8 @@ ServerEvents.recipes(event => {
         .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"tacz:kar98",HasBulletInBarrel:0b}'))
         .circuit(1)
         .duration(20)
-        .EUt(4)
-        .addCondition(WFResearch.condition('guns1'));
+        .EUt(32)
+        .addCondition(WFResearch.condition('infantry_combat_1'));
 
     // =========================
     // MV - Pistols
@@ -44,7 +44,7 @@ ServerEvents.recipes(event => {
         .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, '{GunCurrentAmmoCount:12,GunFireMode:"SEMI",GunId:"ronmc:usp45",HasBulletInBarrel:0b}'))
         .circuit(1)
         .duration(20)
-        .EUt(4)
+        .EUt(32)
         .addCondition(WFResearch.condition('guns2'));
 
     event.remove({ output: Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:15,GunFireMode:"SEMI",GunId:"ronmc:fp9c_g19",HasBulletInBarrel:0b}') });
@@ -57,7 +57,7 @@ ServerEvents.recipes(event => {
         .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, '{GunCurrentAmmoCount:15,GunFireMode:"SEMI",GunId:"ronmc:fp9c_g19",HasBulletInBarrel:0b}'))
         .circuit(2)
         .duration(20)
-        .EUt(4)
+        .EUt(32)
         .addCondition(WFResearch.condition('guns2'));
 
     // =========================

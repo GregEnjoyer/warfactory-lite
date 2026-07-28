@@ -26,7 +26,7 @@ ServerEvents.recipes(event => {
     // Each recipe: a seed/crop + fertilizer (bone meal) + 100 mB water -> harvested crop. Seed-based crops
     // return one seed so the loop is self-sustaining. Runs at LV (32 EU/t).
     const gh = (id, input) => event.recipes.wfcore.greenhouse('kubejs:greenhouse_' + id)
-        .itemInputs(input, 'minecraft:bone_meal')
+        .itemInputs(input, 'gtceu:fertilizer')
         .inputFluids(Fluid.of('minecraft:water', 100))
         .duration(200)
         .EUt(30)

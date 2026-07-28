@@ -28,6 +28,14 @@ ServerEvents.recipes(event => {
         .duration(g.duration)
         .EUt(g.eut);
     });
+    event.shaped(
+        Item.of("kubejs:grip_wooden"),
+            ["AA ",
+             "A  ",
+             "   "
+            ],
+        {A : '#forge:plates/treated_wood' }
+    );
 
     // =========================
     // PARTS - STOCKS

@@ -7,12 +7,14 @@ ServerEvents.recipes(event => {
     // HV = cutting-edge modern era.
     // =========================
 
+    // taurus500 dropped from progression
+    event.remove({ output: Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"tacz:taurus500",HasBulletInBarrel:1b}') });
+
     // Modern pistols (1990s-2020s designs)
     const modernPistols2 = [
         { nbt: '{GunCurrentAmmoCount:12,GunFireMode:"SEMI",GunId:"tacz:hk_mk23",HasBulletInBarrel:1b}', circuit: 1 },
         { nbt: '{GunCurrentAmmoCount:17,GunFireMode:"SEMI",GunId:"tacz:m9a4",HasBulletInBarrel:1b}', circuit: 2 },
         { nbt: '{GunCurrentAmmoCount:6,GunFireMode:"SEMI",GunId:"tacz:rhino357",HasBulletInBarrel:1b}', circuit: 3 },
-        { nbt: '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"tacz:taurus500",HasBulletInBarrel:1b}', circuit: 4 },
         { nbt: '{GunCurrentAmmoCount:17,GunFireMode:"SEMI",GunId:"ronmc:509",HasBulletInBarrel:1b}', circuit: 5 },
         { nbt: '{GunCurrentAmmoCount:12,GunFireMode:"SEMI",GunId:"ronmc:p99",HasBulletInBarrel:1b}', circuit: 6 },
     ];

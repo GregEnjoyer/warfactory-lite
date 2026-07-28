@@ -52,7 +52,7 @@ ServerEvents.recipes(event => {
             .circuit(gun.circuit)
             .duration(20)
             .addCondition(WFResearch.condition('guns1'))
-            .EUt(4);
+            .EUt(32);
     });
 
     const ECWPISTOLS = [
@@ -82,7 +82,7 @@ ServerEvents.recipes(event => {
             .circuit(gun.circuit)
             .duration(20)
             .addCondition(WFResearch.condition('guns2'))
-            .EUt(4);
+            .EUt(32);
     });
     const ECWSHOTGUNS = [
         {
@@ -142,7 +142,7 @@ ServerEvents.recipes(event => {
             .circuit(gun.circuit)
             .duration(20)
             .addCondition(WFResearch.condition('guns2heavy'))
-            .EUt(4);
+            .EUt(32);
     });
 
     const MODERNRIFLES = [
@@ -177,7 +177,7 @@ ServerEvents.recipes(event => {
             .circuit(gun.circuit)
             .duration(20)
             .addCondition(WFResearch.condition('guns2'))
-            .EUt(4);
+            .EUt(32);
     });
 
     const MODERNPISTOLS = [
@@ -254,7 +254,7 @@ ServerEvents.recipes(event => {
             .circuit(gun.circuit)
             .duration(20)
             .addCondition(WFResearch.condition('guns4heavy'))
-            .EUt(4);
+            .EUt(32);
     });
 
     // =========================
@@ -285,7 +285,7 @@ ServerEvents.recipes(event => {
             .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, g.nbt))
             .circuit(g.circuit)
             .duration(20)
-            .EUt(4)
+            .EUt(32)
             .addCondition(WFResearch.condition('guns2'));
     });
 
@@ -306,7 +306,7 @@ ServerEvents.recipes(event => {
             .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, g.nbt))
             .circuit(g.circuit)
             .duration(20)
-            .EUt(4)
+            .EUt(32)
             .addCondition(WFResearch.condition('guns2'));
     });
 
@@ -328,7 +328,7 @@ ServerEvents.recipes(event => {
             .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, g.nbt))
             .circuit(g.circuit)
             .duration(20)
-            .EUt(4)
+            .EUt(32)
             .addCondition(WFResearch.condition('guns1'));
     });
 
@@ -350,7 +350,7 @@ ServerEvents.recipes(event => {
             .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, g.nbt))
             .circuit(g.circuit)
             .duration(20)
-            .EUt(4)
+            .EUt(32)
             .addCondition(WFResearch.condition('guns2heavy'));
     });
 
@@ -371,7 +371,7 @@ ServerEvents.recipes(event => {
             .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, g.nbt))
             .circuit(g.circuit)
             .duration(40)
-            .EUt(4)
+            .EUt(32)
             .addCondition(WFResearch.condition('guns4heavy'));
     });
 })

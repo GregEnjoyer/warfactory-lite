@@ -15,7 +15,7 @@ GTCEuStartupEvents.registry('gtceu:recipe_type', event => {
     .setMaxIOSize(4, 2, 0, 0)
     .setSlotOverlay(false, false, GuiTextures.COMPRESSOR_OVERLAY)
     .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, FillDirection.LEFT_TO_RIGHT)
-    .setSound(GTSoundEntries.FORGE_HAMMER)
+    .setSound(GTSoundEntries.COMPRESSOR) // reuse the compressor's running sound
 })
 
 // Ammo Factory recipe type
@@ -66,7 +66,7 @@ GTCEuStartupEvents.registry('gtceu:machine', event => {
     .definition((tier, builder) => builder
     .langValue(GTValues.VLVH[tier] + " Ammo Press")
     .recipeType('ammo_press')
-    .workableTieredHullModel('gtceu:block/machines/ammo_press')
+    .workableTieredHullModel('gtceu:block/machines/compressor') // reuse the compressor face
     )
 })
 GTCEuStartupEvents.registry('gtceu:machine', event => {
@@ -74,7 +74,7 @@ GTCEuStartupEvents.registry('gtceu:machine', event => {
     .hasHighPressure(true)
     .definition((isHighPressure, builder) => builder
     .recipeType('ammo_press')
-    .workableTieredHullModel('gtceu:block/machines/ammo_press')
+    .workableTieredHullModel('gtceu:block/machines/compressor') // reuse the compressor face
     )
 })
 

@@ -11,8 +11,7 @@ WFResearch.category('ballistics')
 
 WFResearch.category('infantry')
 .name('Infantry weapons')                       // optional lang key; defaults to wfcore.research.category.logistics
-.icon(Item.of('kubejs:infantry_icon'))           // optional tab icon
-// optional tiled background texture
+.icon(Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:30,GunFireMode:"SEMI",GunId:"tacz:scar_l",HasBulletInBarrel:1b}'))           // optional tab icon
 .backgroundColor(0xFF101814)                // optional solid background (used if no texture)
 .connectorColor(0xFF60C060)      // colour of the connector lines
 .register()
@@ -20,7 +19,6 @@ WFResearch.category('infantry')
 WFResearch.category('armor')
 .name('Ground vehicles')                       // optional lang key; defaults to wfcore.research.category.logistics
 .icon(Item.of('kubejs:tank_icon'))           // optional tab icon
-// optional tiled background texture
 .backgroundColor(0xFF101814)                // optional solid background (used if no texture)
 .connectorColor(0xFF60C060)      // colour of the connector lines
 .register()
@@ -28,7 +26,6 @@ WFResearch.category('armor')
 WFResearch.category('air')
 .name('Aviation')                       // optional lang key; defaults to wfcore.research.category.logistics
 .icon(Item.of('kubejs:plane_icon'))           // optional tab icon
-// optional tiled background texture
 .backgroundColor(0xFF101814)                // optional solid background (used if no texture)
 .connectorColor(0xFF60C060)      // colour of the connector lines
 .register()
@@ -36,223 +33,144 @@ WFResearch.category('air')
 WFResearch.category('defense')
 .name('Base Defenses')                       // optional lang key; defaults to wfcore.research.category.logistics
 .icon(Item.of('superbwarfare:barbed_wire'))           // optional tab icon
-// optional tiled background texture
 .backgroundColor(0xFF101814)                // optional solid background (used if no texture)
 .connectorColor(0xFF60C060)      // colour of the connector lines
-
 .register()
 
-//research guns
-WFResearch.builder('guns1')
+// =========================== BALLISTICS ============================
+// First ballistics node — "Infantry Munitions 1". Unlocks the pistol
+// (small) and rifle (medium) brass casing recipes; the gate is applied
+// to those cutter recipes in server_scripts/guns/ammo.js via
+// WFResearch.condition('infantry_munitions_1').
+// 15 runs x 15s each (300t), 32 EU/t. Compute = 0 on purpose: this is an
+// LV-stage node, and compute infrastructure (Mainframe/Research Unit) is an
+// MV unlock, so the earliest research must run with no CWU. See "Research
+// compute balance" in CLAUDE.md.
+WFResearch.builder('infantry_munitions_1')
+.category('ballistics').pos(0, 0)
+.nodeColor(0xFF2F6BD8)
+.name('Infantry Munitions 1')
+.description('Standardised brass cartridge casings for pistol and rifle calibres. Unlocks all pistol and rifle casing recipes.')
+.runs(15).ticksPerRun(300).eut(32).cwuPerRun(0)
+.itemPerRun(Item.of('gtceu:steel_plate', 10))
+.itemPerRun(Item.of('gtceu:bronze_plate', 10))
+.itemPerRun(Item.of('minecraft:gunpowder', 10))
+.unlocks(Item.of('kubejs:bullet_casing_small'), Item.of('kubejs:bullet_casing_medium'))
+.icon(Item.of('kubejs:bullet_casing_medium'))     // Rifle Casing (texture missing for now)
+.register()
+
+// Infantry Munitions 2 — gates WW-era calibres behind a proper munitions node.
+// Connected to IM1 so the player must unlock basic casing production first.
+WFResearch.builder('infantry_munitions_2')
+.category('ballistics').pos(0, 1)
+.nodeColor(0xFF2F6BD8)
+.name('Infantry Munitions 2')
+.description('WW-era rifle and pistol calibres: 8mm Mauser, 7.62x54R, 6.5mm Arisaka, 7.63mm Mauser, 7.65mm Para, .303 British, 7.7mm Arisaka, .30 Carbine, 8mm pistol.')
+.requires('infantry_munitions_1')
+.runs(10).ticksPerRun(300).eut(32).cwuPerRun(0)
+.unlocks(
+    Item.of('tacz:ammo', '{AmmoId:"tacz:792x57"}'),
+    Item.of('tacz:ammo', '{AmmoId:"tacz:762x54"}'),
+    Item.of('tacz:ammo', '{AmmoId:"ww:65a"}'),
+    Item.of('tacz:ammo', '{AmmoId:"ww:303"}'),
+    Item.of('tacz:ammo', '{AmmoId:"ww:77a"}'),
+    Item.of('tacz:ammo', '{AmmoId:"ww:763"}'),
+    Item.of('tacz:ammo', '{AmmoId:"ww:765"}'),
+    Item.of('tacz:ammo', '{AmmoId:"ww:8mm"}'),
+    Item.of('tacz:ammo', '{AmmoId:"ww:30c"}'),
+    Item.of('tacz:ammo', '{AmmoId:"tacz:9mm"}'),
+    Item.of('tacz:ammo', '{AmmoId:"tacz:12g"}')
+)
+.icon(Item.of('tacz:ammo', '{AmmoId:"tacz:792x57"}'))
+.register()
+
+// ── TRANSITIONAL SCAFFOLD (rebuild target) ─────────────────────────
+// The old node tree (guns*/planes*/helo*/armor*/defenses*/turrets*) was
+// PURGED — it was placeholder-grade (identical params, broken un-namespaced
+// unlock icons, no tiering). Their ids are retained below as a checklist to
+// rebuild toward, one properly-designed node at a time.
+//
+// SAFE TO PURGE: an unregistered research id fails OPEN
+// (ResearchGate.isUnlocked: unknown id -> allowed), so recipes still calling
+// WFResearch.condition('<id>') just run UNGATED for now — nothing bricks.
+//   - `gatingRecipes` ids ARE still referenced by gun recipe scripts
+//     (modern_guns/hfian_guns/gun_parts) and so are currently ungated until
+//     re-homed under a new node with the same id.
+//   - `orphaned` ids gate no recipe at all — free to rename/repurpose.
+const LEGACY_RESEARCH_IDS = {
+    gatingRecipes: ['guns1', 'guns2', 'guns2heavy', 'guns4heavy'],
+    orphaned: ['guns3', 'guns4', 'guns5', 'guns6',
+        'planes1', 'planes2', 'planes3', 'helo1', 'helo2',
+        'armor0', 'armor1', 'armor2', 'armor3', 'armor4',
+        'defenses1', 'defenses2', 'turrets1', 'turrets2', 'turrets3'],
+}
+
+// =========================== INFANTRY ============================
+
+WFResearch.builder('infantry_combat_1')
 .category('infantry').pos(0, 0)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(4).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('kubejs:infantry_icon_1'))
-.icon('kubejs:infantry_icon_1')
-
-.register()
-//ww2 guns
-WFResearch.builder('guns2')
-.category('infantry').pos(1, 0)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(8).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('kubejs:infantry_icon_2'))
-.icon('kubejs:infantry_icon_2')
-.requires('guns1')
-.register()
-//ww2 heavy guns
-WFResearch.builder('guns2heavy')
-.category('infantry').pos(2, 0)
-.nodeColor(0xFF2F6BD8)                // optional tile tint when the node is available
-.runs(8).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_ico_4'))
-.icon('kubejs:infantry_icon_4')
-.requires('guns2')
-.register()
-//ww2 advanced guns
-WFResearch.builder('guns3')
-.category('infantry').pos(3, 0)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(8).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_3'))
-.icon('kubejs:infantry_icon_3')
-.requires('guns2heavy')
-.register()
-//Early Modern advanced
-WFResearch.builder('guns4')
-.category('infantry').pos(4, 0)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_1'))
-.icon('kubejs:infantry_icon_1')
-.requires('guns3')
+.nodeColor(0xFF2F6BD8)
+.name('Infantry Combat 1')
+.description('Early bolt-action rifles and the calibres they fire. Unlocks the Kar98, Type 38, and Mosin M91.')
+.runs(5).ticksPerRun(300).eut(32).cwuPerRun(0)
+.unlocks(
+    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"tacz:kar98",HasBulletInBarrel:0b}'),
+    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:type38",HasBulletInBarrel:1b}'),
+    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:m91",HasBulletInBarrel:1b}')
+)
+.icon(Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"tacz:kar98",HasBulletInBarrel:0b}'))
 .register()
 
-WFResearch.builder('guns4heavy')
-.category('infantry').pos(5, 0)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_5'))
-.icon('kubejs:infantry_icon_5')
-.requires('guns4')
+WFResearch.builder('short_barreled_1')
+.category('infantry').pos(-1, 1)
+.nodeColor(0xFF2F6BD8)
+.name('Short Barreled I')
+.description('Compact sidearms for officers and crew: the Luger P08 and Walther P38.')
+.requires('infantry_combat_1')
+.runs(1).ticksPerRun(300).eut(32).cwuPerRun(0)
+.unlocks(
+    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:8,GunFireMode:"SEMI",GunId:"ww:p08",HasBulletInBarrel:1b}'),
+    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:8,GunFireMode:"SEMI",GunId:"ww:p38",HasBulletInBarrel:1b}')
+)
+.icon(Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:8,GunFireMode:"SEMI",GunId:"ww:p08",HasBulletInBarrel:1b}'))
 .register()
 
-WFResearch.builder('guns5')
-.category('infantry').pos(6, 0)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_1'))
-.icon('kubejs:infantry_icon_1')
-.requires('guns4heavy')
+WFResearch.builder('pump_action_1')
+.category('infantry').pos(0, 1)
+.nodeColor(0xFF2F6BD8)
+.name('Pump Action I')
+.description('Repeating shotgun designs for close-quarters combat: the Winchester M1897.')
+.requires('infantry_combat_1')
+.runs(1).ticksPerRun(300).eut(32).cwuPerRun(0)
+.unlocks(
+    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:m1897",HasBulletInBarrel:1b}')
+)
+.icon(Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:m1897",HasBulletInBarrel:1b}'))
 .register()
 
-WFResearch.builder('guns6')
-.category('infantry').pos(7, 0)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_1'))
-.icon('kubejs:infantry_icon_1')
-.requires('guns5')
+WFResearch.builder('automatic_weapons_1')
+.category('infantry').pos(1, 1)
+.nodeColor(0xFF2F6BD8)
+.name('Automatic Weapons I')
+.description('Select-fire and full-auto small arms from the WWI-WWII era: the M712 Schnellfeuer and Sten.')
+.requires('infantry_combat_1')
+.runs(1).ticksPerRun(300).eut(32).cwuPerRun(0)
+.unlocks(
+    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:10,GunFireMode:"SEMI",GunId:"ww:m712",HasBulletInBarrel:1b}'),
+    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:16,GunFireMode:"SEMI",GunId:"ww:sten",HasBulletInBarrel:1b}')
+)
+.icon(Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:10,GunFireMode:"SEMI",GunId:"ww:m712",HasBulletInBarrel:1b}'))
 .register()
 
-
-WFResearch.builder('planes1')
-.category('air').pos(0, 0)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_1'))
-.icon('kubejs:plane_icon')
+// Placeholder — unlocked by ANY ONE of the three branches above.
+WFResearch.builder('infantry_combat_1_placeholder')
+.category('infantry').pos(0, 2)
+.nodeColor(0xFF2F6BD8)
+.name('???')
+.description('Further infantry research coming soon.')
+.anyOf('short_barreled_1', 'pump_action_1', 'automatic_weapons_1')
+.runs(1).ticksPerRun(1).eut(32).cwuPerRun(0)
+.icon(Item.of('minecraft:nether_star'))
 .register()
 
-WFResearch.builder('planes2')
-.category('air').pos(1, 0)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_1'))
-.icon('kubejs:plane_icon')
-.requires('planes1')
-.register()
-
-
-WFResearch.builder('planes3')
-.category('air').pos(2, 0)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_1'))
-.icon('kubejs:plane_icon')
-.requires('planes2')
-.register()
-
-
-WFResearch.builder('helo1')
-.category('air').pos(1, 1)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_1'))
-.icon('kubejs:plane_icon')
-.requires('planes 2')
-.register()
-
-
-WFResearch.builder('helo2')
-.category('air').pos(2, 1)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_1'))
-.icon('kubejs:plane_icon')
-.requires('helo1')
-.register()
-
-WFResearch.builder('armor0')
-.category('armor').pos(0, 0)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('wfcore:light_ground_vehicle_factory'))
-.unlocks(Item.of('wfcore:light_ground_vehicle_factory'))
-.icon('wfcore:light_ground_vehicle_factory')
-.register()
-
-WFResearch.builder('armor1')
-.category('armor').pos(1, 0)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_1'))
-.icon('kubejs:tank_icon')
-.requires('armor0')
-.register()
-
-
-WFResearch.builder('armor2')
-.category('armor').pos(2, 0)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_1'))
-.icon('kubejs:tank_icon')
-.requires('armor1')
-
-.register()
-
-WFResearch.builder('armor3')
-.category('armor').pos(3, 0)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_1'))
-.icon('kubejs:tank_icon')
-.requires('armor2')
-.register()
-
-
-WFResearch.builder('armor4')
-.category('armor').pos(4, 0)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_1'))
-.icon('kubejs:tank_icon')
-.requires('armor3')
-.register()
-
-
-WFResearch.builder('defenses1')
-.category('defense').pos(0, 0)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_1'))
-.icon('superbwarfare:sandbag')
-.register()
-
-WFResearch.builder('defenses2')
-.category('defense').pos(4, 0)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_1'))
-.icon('superbwarfare:sandbag')
-.requires('defenses1')
-.register()
-
-WFResearch.builder('turrets1')
-.category('defense').pos(4, 2)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_1'))
-.icon('superbwarfare:sandbag')
-.requires('defenses1')
-.register()
-
-
-WFResearch.builder('turrets2')
-.category('defense').pos(5, 3)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_1'))
-.icon('superbwarfare:sandbag')
-.requires('turrets1')
-.register()
-
-WFResearch.builder('turrets3')
-.category('defense').pos(6, 4)
-.nodeColor(0xFF2F6BD8)                       // optional tile tint when the node is available
-.runs(16).cwuPerRun(64).itemPerRun(Item.of('gtceu:basic_electronic_circuit'))
-.unlocks(Item.of('infantry_icon_1'))
-.icon('superbwarfare:sandbag')
-.requires('turrets2')
-.register()
 })

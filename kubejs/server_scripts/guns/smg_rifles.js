@@ -35,7 +35,6 @@ ServerEvents.recipes(event => {
                 { id: 'kubejs:ww_avt40', gear: 1, woodPlate: 2, steelPlate: 5, circuit: 7, duration: 400, eut: 32, nbt: '{GunCurrentAmmoCount:10,GunFireMode:"SEMI",GunId:"ww:avt_40",HasBulletInBarrel:1b}' },
                 { id: 'kubejs:ww_g43',   gear: 1, woodPlate: 2, steelPlate: 5, circuit: 8, duration: 400, eut: 32, nbt: '{GunCurrentAmmoCount:10,GunFireMode:"SEMI",GunId:"ww:g43",HasBulletInBarrel:1b}'   },
                 { id: 'kubejs:tacz_m870', gear: 1, woodPlate: 2, steelPlate: 5, circuit: 9,  duration: 400, eut: 32, nbt: '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"tacz:m870",HasBulletInBarrel:1b}' },
-    { id: 'kubejs:ww_m1897', gear: 1, woodPlate: 2, steelPlate: 5, circuit: 10, duration: 400, eut: 32, nbt: '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:m1897",HasBulletInBarrel:1b}'  },
     { id: 'kubejs:ww_m1912', gear: 1, woodPlate: 2, steelPlate: 5, circuit: 11, duration: 400, eut: 32, nbt: '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:m1912",HasBulletInBarrel:1b}'  },
         { id: 'kubejs:ww_m1918a2', gear: 2, woodPlate: 2, steelPlate: 7, circuit: 12, duration: 400, eut: 32, nbt: '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:_m1918a2",HasBulletInBarrel:1b}'  },
         ];
@@ -55,6 +54,31 @@ ServerEvents.recipes(event => {
 
         //LMG
 
+        // pump_action_1 gated (Winchester M1897)
+        event.recipes.gtceu.assembler('kubejs:ww_m1897')
+        .itemInputs(
+                Item.of('gtceu:small_steel_gear', 1),
+                    Item.of('gtceu:treated_wood_plate', 2),
+                    Item.of('gtceu:steel_plate', 5)
+        )
+        .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:m1897",HasBulletInBarrel:1b}'))
+        .circuit(10)
+        .duration(400)
+        .EUt(32)
+        .addCondition(WFResearch.condition('pump_action_1'))
+
+        // automatic_weapons_1 gated (Sten)
+        event.recipes.gtceu.assembler('kubejs:ww_sten')
+        .itemInputs(
+                Item.of('gtceu:steel_plate', 5),
+                    Item.of('gtceu:small_steel_gear', 1),
+                    Item.of('gtceu:treated_wood_plate', 2)
+        )
+        .itemOutputs(Item.of('tacz:modern_kinetic_gun', 1, '{GunCurrentAmmoCount:16,GunFireMode:"SEMI",GunId:"ww:sten",HasBulletInBarrel:1b}'))
+        .circuit(4)
+        .duration(400)
+        .EUt(32)
+        .addCondition(WFResearch.condition('automatic_weapons_1'))
 
         // MLRS
         event.recipes.gtceu.assembler('kubejs:mlrs')
@@ -150,7 +174,6 @@ ServerEvents.recipes(event => {
         { nbt: '{GunCurrentAmmoCount:10,GunFireMode:"SEMI",GunId:"ww:m1928a1",HasBulletInBarrel:1b}', circuit: 1 },
         { nbt: '{GunCurrentAmmoCount:16,GunFireMode:"SEMI",GunId:"ww:mp34",HasBulletInBarrel:1b}', circuit: 2 },
         { nbt: '{GunCurrentAmmoCount:16,GunFireMode:"SEMI",GunId:"ww:mp40",HasBulletInBarrel:1b}', circuit: 3 },
-        { nbt: '{GunCurrentAmmoCount:16,GunFireMode:"SEMI",GunId:"ww:sten",HasBulletInBarrel:1b}', circuit: 4 },
     ];
     wwSmgs2.forEach(g => {
         event.remove({ output: Item.of('tacz:modern_kinetic_gun', g.nbt) });

@@ -381,6 +381,45 @@
             ]
         },
         {
+            "pakku_id": "qxLE2P8UFevoaVZS",
+            "type": "MOD",
+            "side": "BOTH",
+            "slug": {
+                "modrinth": "autopack-director"
+            },
+            "name": {
+                "modrinth": "AutoPack-Director"
+            },
+            "id": {
+                "modrinth": "Fqqapnbs"
+            },
+            "files": [
+                {
+                    "type": "modrinth",
+                    "file_name": "AutoPack-Director-1.3.0.jar",
+                    "mc_versions": [
+                        "1.12.2",
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "forge",
+                        "neoforge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://cdn.modrinth.com/data/Fqqapnbs/versions/gLhrG1om/AutoPack-Director-1.3.0.jar",
+                    "id": "gLhrG1om",
+                    "parent_id": "Fqqapnbs",
+                    "hashes": {
+                        "sha512": "75fd0ba47fd41c3984e941cff9f21630a506db7c21e5a0213baf5fb5b24bf784a7171a6f7d41f5f65b165cbb0aa61176e5637c138a9c5f61e775e3ffeb5efb4c",
+                        "sha1": "1b9683932e33d479152858841c1d202d535dcfe9"
+                    },
+                    "required_dependencies": [],
+                    "size": 3458905,
+                    "date_published": "2025-09-12T17:57:12.375823Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "NeB9ZR2SpnUOjOmT",
             "type": "MOD",
             "side": "CLIENT",
@@ -650,6 +689,48 @@
             ]
         },
         {
+            "pakku_id": "Y7VaMdOFiAohEnhc",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "contents-director"
+            },
+            "name": {
+                "curseforge": "Contents Director"
+            },
+            "id": {
+                "curseforge": "1587715"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "ContentsDirector-1.0.0-all.jar",
+                    "mc_versions": [
+                        "1.20.2",
+                        "1.20.5",
+                        "1.20.1",
+                        "1.20",
+                        "1.20.6",
+                        "1.20.4",
+                        "1.20.3"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/8319/172/ContentsDirector-1.0.0-all.jar",
+                    "id": "8319172",
+                    "parent_id": "1587715",
+                    "hashes": {
+                        "sha1": "e203636d3119a0580b8b17892ee62b41ff22d751",
+                        "md5": "75b64cca1384a88141c6c5e784217b4e"
+                    },
+                    "required_dependencies": [],
+                    "size": 3466302,
+                    "date_published": "2026-06-25T17:02:17.347Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "LbpISI50EIgdtdPj",
             "type": "MOD",
             "slug": {
@@ -868,45 +949,6 @@
                     "required_dependencies": [],
                     "size": 76558,
                     "date_published": "2024-10-03T02:32:45.850Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "Q4YfEgPqC8yU5FZB",
-            "type": "MOD",
-            "side": "CLIENT",
-            "slug": {
-                "modrinth": "downloader"
-            },
-            "name": {
-                "modrinth": "Downloader"
-            },
-            "id": {
-                "modrinth": "8uoaSEmr"
-            },
-            "files": [
-                {
-                    "type": "modrinth",
-                    "file_name": "downloadbypass-forge-1.2-SNAPSHOT.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://cdn.modrinth.com/data/8uoaSEmr/versions/AnWfyGeR/downloadbypass-forge-1.2-SNAPSHOT.jar",
-                    "id": "AnWfyGeR",
-                    "parent_id": "8uoaSEmr",
-                    "hashes": {
-                        "sha512": "3b2ae9210d54aefc0e3157388b0f92ad7dbd05a836a9e97b418c98ae51c15b4ee5743ad7a22d4753474c0f48af42fb2d05f42ceb2370766c680d27701a0795e1",
-                        "sha1": "de978446d2e42cbf3bf94c5d5f097b53a7b33581"
-                    },
-                    "required_dependencies": [
-                        "lhGA9TYQ"
-                    ],
-                    "size": 3148021,
-                    "date_published": "2025-12-20T15:45:46.509739Z"
                 }
             ]
         },

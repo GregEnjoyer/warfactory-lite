@@ -65,7 +65,7 @@ WFResearch.builder('infantry_munitions_2')
 .category('ballistics').pos(0, 1)
 .nodeColor(0xFF2F6BD8)
 .name('Infantry Munitions 2')
-.description('WW-era rifle and pistol calibres: 8mm Mauser, 7.62x54R, 6.5mm Arisaka, 7.63mm Mauser, 7.65mm Para, .303 British, 7.7mm Arisaka, .30 Carbine, 8mm pistol.')
+.description('WW-era rifle and pistol calibres: 8mm Mauser, 7.62x54R, 6.5mm Arisaka, 7.63mm Mauser, 7.65mm Para, .303 British, 7.7mm Arisaka, .30 Carbine, 8mm pistol. Also unlocks Superb Warfare rifle ammunition.')
 .requires('infantry_munitions_1')
 .runs(10).ticksPerRun(300).eut(32).cwuPerRun(0)
 .unlocks(
@@ -79,10 +79,94 @@ WFResearch.builder('infantry_munitions_2')
     Item.of('tacz:ammo', '{AmmoId:"ww:8mm"}'),
     Item.of('tacz:ammo', '{AmmoId:"ww:30c"}'),
     Item.of('tacz:ammo', '{AmmoId:"tacz:9mm"}'),
-    Item.of('tacz:ammo', '{AmmoId:"tacz:12g"}')
+    Item.of('tacz:ammo', '{AmmoId:"tacz:12g"}'),
+    Item.of('superbwarfare:rifle_ammo')
 )
 .icon(Item.of('tacz:ammo', '{AmmoId:"tacz:792x57"}'))
 .register()
+
+// Infantry Munitions 3 — first heavy small-arms tier. MV, but deliberately
+// CHEAP on compute (24 CWU/t over 300t => cwuPerRun 7200) and low voltage
+// (90 EU/t) so it's an early MV pickup. Unlocks the Heavy Rifle Casing plus
+// Superb Warfare heavy + sniper ammunition (gated in ammo.js via
+// WFResearch.condition('infantry_munitions_3')). Research consumes steel +
+// copper + a lot of gunpowder.
+WFResearch.builder('infantry_munitions_3')
+.category('ballistics').pos(2, 1)
+.nodeColor(0xFF2F6BD8)
+.name('Infantry Munitions 3')
+.description('Heavy rifle cartridge cases and the .50/heavy rounds they feed: Superb Warfare heavy and sniper ammunition. Unlocks Heavy Rifle Casing production.')
+.requires('infantry_munitions_2')
+.runs(20).ticksPerRun(300).eut(90).cwuPerRun(7200)   // 24 CWU/t = cheap MV
+.itemPerRun(Item.of('gtceu:steel_plate', 8))
+.itemPerRun(Item.of('gtceu:copper_plate', 6))
+.itemPerRun(Item.of('minecraft:gunpowder', 16))
+.unlocks(
+    Item.of('superbwarfare:heavy_ammo'),
+    Item.of('superbwarfare:sniper_ammo'),
+    Item.of('kubejs:bullet_casing_large')
+)
+.icon(Item.of('superbwarfare:heavy_ammo'))
+.register()
+
+// ── MV: Large-calibre casing gate ──────────────────────────────────
+// First ballistics node to require compute (Mainframe/Research Unit is an
+// MV unlock). Sized to the MV midpoint: ~64 CWU/t over 360-tick runs =>
+// cwuPerRun 23040 (see "Research compute balance" in CLAUDE.md). Unlocks steel
+// casing production plus the vehicle (XL) brass casing line; those recipes are
+// gated in server_scripts/guns/ammo.js via WFResearch.condition('large_casings').
+// (Heavy Rifle Casing is unlocked at infantry_munitions_3, not here.) Consumes
+// primer (craftable via the GT assembler route added in ammo.js — its vanilla
+// crafting recipe is stripped).
+WFResearch.builder('large_casings')
+.category('ballistics').pos(0, 2)
+.nodeColor(0xFF2F6BD8)
+.name('Large Casings')
+.description('Heavy steel cartridge cases for autocannon- and vehicle-grade ammunition. Unlocks steel casing production and the vehicle (XL) brass casing line.')
+.requires('infantry_munitions_2')
+.runs(25).ticksPerRun(360).eut(128).cwuPerRun(23040)   // ~64 CWU/t = MV midpoint
+.itemPerRun(Item.of('gtceu:steel_plate', 10))
+.itemPerRun(Item.of('superbwarfare:primer', 8))
+.itemPerRun(Item.of('minecraft:gunpowder', 10))
+.unlocks(
+    Item.of('kubejs:steel_bullet_casing'),
+    Item.of('kubejs:bullet_casing_xl')
+)
+.icon(Item.of('kubejs:steel_bullet_casing'))
+.register()
+
+// ── MV: four small-calibre vehicle-shell branches (AP / HE / GS / AA) ──
+// All four require large_casings and fan out beneath it. Each gates its own
+// superbwarfare small-shell ammo-press recipe in server_scripts/guns/ammo.js
+// via WFResearch.condition('<id>'). Same MV compute budget as the gate
+// (~64 CWU/t over 360t). Built from a data table since the nodes differ only
+// in name/icon/cost — the fluent builders above are kept explicit for clarity.
+;[
+    { id: 'armor_piercing_1', x: -3, out: 'small_shell_ap', name: 'Armor Piercing Shells',
+      desc: 'Hardened vanadium-steel penetrators for small-calibre vehicle cannons. Unlocks the Small Caliber AP Shell.',
+      runs: 25, items: [['kubejs:steel_bullet_casing', 2], ['superbwarfare:primer', 4], ['gtceu:vanadium_steel_bolt', 16]] },
+    { id: 'high_explosive_1', x: -1, out: 'small_shell_he', name: 'High Explosive Shells',
+      desc: 'High-energy explosive filler for small-calibre vehicle shells. Unlocks the Small Caliber HE Shell.',
+      runs: 25, items: [['gtceu:steel_plate', 10], ['superbwarfare:primer', 8], ['superbwarfare:high_energy_explosives', 2]] },
+    { id: 'grapeshot_1', x: 1, out: 'small_shell_gs', name: 'Grapeshot Shells',
+      desc: 'Multi-projectile canister loads that shred infantry at close range. Unlocks the Small Caliber Grapeshot Shell.',
+      runs: 20, items: [['kubejs:steel_bullet_casing', 2], ['superbwarfare:primer', 4], ['gtceu:lead_plate', 8]] },
+    { id: 'anti_air_1', x: 3, out: 'small_shell_aa', name: 'Anti-Air Shells',
+      desc: 'Proximity-fuzed fragmentation rounds for air defence. Unlocks the Small Caliber Anti-Air Shell.',
+      runs: 25, items: [['kubejs:steel_bullet_casing', 2], ['superbwarfare:primer', 6], ['superbwarfare:high_energy_explosives', 2], ['gtceu:basic_electronic_circuit', 2]] },
+].forEach(n => {
+    const b = WFResearch.builder(n.id)
+        .category('ballistics').pos(n.x, 3)
+        .nodeColor(0xFF2F6BD8)
+        .name(n.name)
+        .description(n.desc)
+        .requires('large_casings')
+        .runs(n.runs).ticksPerRun(360).eut(128).cwuPerRun(23040)   // ~64 CWU/t = MV midpoint
+        .unlocks(Item.of('superbwarfare:' + n.out))
+        .icon(Item.of('superbwarfare:' + n.out))
+    n.items.forEach(it => b.itemPerRun(Item.of(it[0], it[1])))
+    b.register()
+})
 
 // ── TRANSITIONAL SCAFFOLD (rebuild target) ─────────────────────────
 // The old node tree (guns*/planes*/helo*/armor*/defenses*/turrets*) was

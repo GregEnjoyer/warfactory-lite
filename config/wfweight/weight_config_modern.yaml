@@ -417,6 +417,8 @@ rules:
   superbwarfare:armor_plate: 20
     }
   tags:
+    minecraft:logs: 0
+    minecraft:planks: 0
 
 groupLimits: {
   }

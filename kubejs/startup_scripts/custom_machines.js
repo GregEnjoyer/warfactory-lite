@@ -7,12 +7,17 @@ const $Vector3f = Java.loadClass('org.joml.Vector3f')
 // RECIPE TYPE REGISTRATION
 // =====================================================
 
-// Ammo Press recipe type
+// Ammo Press recipe type — 6 item input slots (was 4). GTCEu simple machines
+// take their slot count from the recipe type, so every ammo press (steam + all
+// electric tiers) exposes 6 inputs; the extra headroom is what lets the heavier
+// recipes (e.g. Infantry Munitions 3 heavy/sniper ammo: casing + steel + copper
+// + gunpowder + circuit = 5 slots) fit. Higher-voltage presses are the ones with
+// the EU to actually run those bigger loads.
 GTCEuStartupEvents.registry('gtceu:recipe_type', event => {
     event.create('ammo_press')
     .category('ammo_press')
     .setEUIO('in')
-    .setMaxIOSize(4, 2, 0, 0)
+    .setMaxIOSize(6, 2, 0, 0)
     .setSlotOverlay(false, false, GuiTextures.COMPRESSOR_OVERLAY)
     .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, FillDirection.LEFT_TO_RIGHT)
     .setSound(GTSoundEntries.COMPRESSOR) // reuse the compressor's running sound

@@ -37,6 +37,7 @@ ServerEvents.recipes(event => {
     const CASING_MEDIUM = 'kubejs:bullet_casing_medium';  // Rifle Casing
     const CASING_LARGE  = 'kubejs:bullet_casing_large';   // Heavy Rifle Casings
     const CASING_XL     = 'kubejs:bullet_casing_xl';      // Vehicle Sized Casing
+    const CASING_STEEL  = 'kubejs:steel_bullet_casing';   // Steel Bullet Casing (small vehicle shells)
 
     // tacz ammo is one item (tacz:ammo) discriminated by an AmmoId NBT tag.
     const tacz = id => `{AmmoId:"${id}"}`;
@@ -64,13 +65,15 @@ ServerEvents.recipes(event => {
     // 1. CASING PRODUCTION  (brass plate -> empty casings, on the cutter)
     // =======================================================================
     // Pistol (small) + Rifle (medium) casings are gated behind the
-    // "Infantry Munitions 1" ballistics research (see startup_scripts/
-    // WFResearch.js); heavy/XL casings unlock at their own later nodes.
+    // "Infantry Munitions 1" ballistics research (see server_scripts/wfcore/
+    // WFResearch.js). Heavy Rifle Casing gates on the MV "Infantry Munitions 3"
+    // node (heavy/sniper ammo tier); the vehicle (XL) brass casing gates on the
+    // MV "Large Casings" node.
     [
         { id: CASING_SMALL,  plates: 1, amount: 5, circuit: 1, research: 'infantry_munitions_1' },
         { id: CASING_MEDIUM, plates: 2, amount: 5, circuit: 2, research: 'infantry_munitions_1' },
-        { id: CASING_LARGE,  plates: 3, amount: 5, circuit: 3 },
-        { id: CASING_XL,     plates: 4, amount: 1, circuit: 4 },
+        { id: CASING_LARGE,  plates: 3, amount: 5, circuit: 3, research: 'infantry_munitions_3' },
+        { id: CASING_XL,     plates: 4, amount: 1, circuit: 4, research: 'large_casings' },
     ].forEach(c => {
         const r = event.recipes.gtceu.cutter(c.id)
             .itemInputs(Item.of('gtceu:brass_plate', c.plates))
@@ -80,6 +83,17 @@ ServerEvents.recipes(event => {
             .EUt(4);
         if (c.research) r.addCondition(WFResearch.condition(c.research));
     });
+
+    // Steel bullet casing — the dedicated case for small vehicle shells (AP/HE/
+    // GS/AA below). Cut from steel plate; unlocked by the MV "Large Casings"
+    // node. Circuit 5 keeps it distinct from the brass casings above.
+    event.recipes.gtceu.cutter('kubejs:steel_bullet_casing')
+        .itemInputs(Item.of('gtceu:steel_plate', 3))
+        .itemOutputs(Item.of(CASING_STEEL, 5))
+        .circuit(5)
+        .duration(40)
+        .EUt(16)
+        .addCondition(WFResearch.condition('large_casings'));
 
     // =======================================================================
     // 2. AMMO COMPONENTS
@@ -91,6 +105,34 @@ ServerEvents.recipes(event => {
         .itemOutputs('kubejs:solid_rocket_fuel')
         .circuit(1)
         .duration(200)
+        .EUt(30);
+
+    // Superb Warfare crafting components — primer, high-energy explosives, grain.
+    // Their vanilla crafting recipes are stripped by cleanup/remove_crafting.js
+    // (all superbwarfare crafting_shaped/shapeless), so these GT routes are the
+    // only way to make them. Left UNGATED on purpose: primer + high-energy
+    // explosives are the *inputs* consumed by the Large Casings / HE / AA
+    // ballistics research, so they cannot sit behind that same research. (This
+    // also restores grain, which the large artillery shells below require.)
+    event.recipes.gtceu.assembler('kubejs:sw_primer')
+        .itemInputs(Item.of('gtceu:copper_plate', 1), Item.of('gtceu:small_gunpowder_dust', 1))
+        .itemOutputs(Item.of('superbwarfare:primer', 4))
+        .circuit(1)
+        .duration(60)
+        .EUt(16);
+
+    event.recipes.gtceu.assembler('kubejs:sw_high_energy_explosives')
+        .itemInputs(Item.of('minecraft:gunpowder', 4), Item.of('minecraft:sugar', 1), '#forge:sand')
+        .itemOutputs(Item.of('superbwarfare:high_energy_explosives', 4))
+        .circuit(2)
+        .duration(100)
+        .EUt(30);
+
+    event.recipes.gtceu.assembler('kubejs:sw_grain')
+        .itemInputs(Item.of('gtceu:copper_plate', 2), Item.of('minecraft:gunpowder', 2), Item.of('superbwarfare:primer', 1))
+        .itemOutputs(Item.of('superbwarfare:grain', 8))
+        .circuit(3)
+        .duration(100)
         .EUt(30);
 
     // =======================================================================
@@ -152,7 +194,7 @@ ServerEvents.recipes(event => {
             { out: 'tacz:ammo', nbt: tacz('ronmc:train_556x45'), circuit: 18 }, // was "vehicle" casing
             { out: 'tacz:ammo', nbt: tacz('tacz:792x57'),      circuit: 19, research: 'infantry_munitions_2' }, // was "vehicle" casing
             { out: 'tacz:ammo', nbt: tacz('ww:65a'),           circuit: 20, research: 'infantry_munitions_2' }, // was "vehicle" casing
-            { out: 'superbwarfare:rifle_ammo',                 circuit: 21 },
+            { out: 'superbwarfare:rifle_ammo',                 circuit: 21, research: 'infantry_munitions_2' },
         ]);
 
     // ---- SHOTGUN / pellet rounds  (medium casing, 3x lead pellets, tiny gunpowder) ----
@@ -164,12 +206,16 @@ ServerEvents.recipes(event => {
             { out: 'superbwarfare:shotgun_ammo',               circuit: 4 },
         ]);
 
-    // ---- HEAVY rifle / HMG / sniper  (large casing, steel core, small gunpowder) ----
+    // ---- HEAVY rifle / HMG / sniper  (heavy rifle casing + steel & copper core
+    // + a lot of gunpowder) ----  Uses 4 item inputs (+circuit) — fits the
+    // widened ammo-press slot count (see custom_machines.js). Superb Warfare
+    // heavy + sniper ammo gate on the MV "Infantry Munitions 3" node; the .338
+    // sniper round rides along (it also needs the IM3-gated heavy casing).
     cartridgeBatch('ammo_heavy',
-        [Item.of(CASING_LARGE, 1), 'gtceu:steel_nugget', 'gtceu:small_gunpowder_dust'], 3, 20, 4, [
-            { out: 'superbwarfare:heavy_ammo',                 circuit: 1 },
+        [Item.of(CASING_LARGE, 1), Item.of('gtceu:steel_nugget', 2), Item.of('gtceu:copper_nugget', 2), Item.of('minecraft:gunpowder', 3)], 3, 20, 4, [
+            { out: 'superbwarfare:heavy_ammo',                 circuit: 1, research: 'infantry_munitions_3' },
             { out: 'tacz:ammo', nbt: tacz('tacz:338'),         circuit: 2 },  // .338 sniper, was "rifle" batch
-            { out: 'superbwarfare:sniper_ammo',                circuit: 3 },  // was "vehicle" casing
+            { out: 'superbwarfare:sniper_ammo',                circuit: 3, research: 'infantry_munitions_3' },  // was "vehicle" casing
         ]);
 
     // ---- .50 BMG  (its own heavy load: double large casing + steel plate) ----
@@ -180,14 +226,26 @@ ServerEvents.recipes(event => {
         .duration(60)
         .EUt(30);
 
-    // ---- Small vehicle shells  (large casing, heavy steel + propellant load) ----
-    cartridgeBatch('ammo_small_shell',
-        [Item.of(CASING_LARGE, 1), Item.of('gtceu:steel_nugget', 3), Item.of('gtceu:small_gunpowder_dust', 3)], 1, 20, 4, [
-            { out: 'superbwarfare:small_shell_ap', circuit: 1 },
-            { out: 'superbwarfare:small_shell_he', circuit: 2 },
-            { out: 'superbwarfare:small_shell_gs', circuit: 3 },
-            { out: 'superbwarfare:small_shell_aa', circuit: 4 },
-        ]);
+    // ---- Small vehicle shells (steel bullet casing + type-specific payload) ----
+    // Each of the four types is gated behind its own MV ballistics node (AP/HE/
+    // GS/AA fan out under "Large Casings" in WFResearch.js). The steel casing
+    // itself unlocks at Large Casings, so having the casing already implies the
+    // parent research is done. Distinct payloads: AP = vanadium-steel penetrator,
+    // HE = high-energy explosives, GS = lead shot, AA = HE + magnesium tracer.
+    [
+        { out: 'superbwarfare:small_shell_ap', research: 'armor_piercing_1', circuit: 1, inputs: [Item.of(CASING_STEEL, 2), Item.of('gtceu:vanadium_steel_bolt', 2), Item.of('gtceu:small_gunpowder_dust', 4)] },
+        { out: 'superbwarfare:small_shell_he', research: 'high_explosive_1', circuit: 2, inputs: [Item.of(CASING_STEEL, 2), Item.of('superbwarfare:high_energy_explosives', 2), Item.of('gtceu:small_gunpowder_dust', 4)] },
+        { out: 'superbwarfare:small_shell_gs', research: 'grapeshot_1',      circuit: 3, inputs: [Item.of(CASING_STEEL, 2), Item.of('gtceu:lead_nugget', 12), Item.of('gtceu:small_gunpowder_dust', 4)] },
+        { out: 'superbwarfare:small_shell_aa', research: 'anti_air_1',       circuit: 4, inputs: [Item.of(CASING_STEEL, 2), Item.of('superbwarfare:high_energy_explosives', 2), Item.of('gtceu:magnesium_dust', 2)] },
+    ].forEach(s => {
+        event.recipes.gtceu.ammo_press(`kubejs:ammo_${s.out.split(':')[1]}`)
+            .itemInputs(s.inputs)
+            .itemOutputs(Item.of(s.out, 1))
+            .circuit(s.circuit)
+            .duration(60)
+            .EUt(30)
+            .addCondition(WFResearch.condition(s.research));
+    });
 
     // =======================================================================
     // 4. VEHICLE / ARTILLERY ORDNANCE  (xl casing, on the ammo press)
@@ -197,11 +255,11 @@ ServerEvents.recipes(event => {
 
     // ---- Large tank/artillery shells (fill varies per type) ----
     [
-        { out: 'superbwarfare:large_shell_ap', circuit: 1, inputs: [Item.of(CASING_XL, 1), Item.of('gtceu:steel_plate', 1), Item.of('superbwarfare:grain', 2)] }, // AP: hard steel core + 2 grain -> pricier than standard
-        { out: 'superbwarfare:large_shell_he', circuit: 2, inputs: [Item.of(CASING_XL, 1), Item.of('gtceu:dynamite', 1), Item.of('superbwarfare:grain', 1)] }, // standard: 1 grain
-        { out: 'superbwarfare:large_shell_cm', circuit: 3, inputs: [Item.of(CASING_XL, 2), Item.of('gtceu:dynamite', 2), Item.of('superbwarfare:grain', 1)] }, // standard: 1 grain
-        { out: 'superbwarfare:large_shell_gs', circuit: 4, inputs: [Item.of(CASING_XL, 1), Item.of('gtceu:lead_nugget', 6), Item.of('superbwarfare:grain', 1)] }, // standard: 1 grain
-        { out: 'superbwarfare:large_shell_wp', circuit: 5, inputs: [Item.of(CASING_XL, 1), Item.of('gtceu:small_white_phosphorus_dust', 1), Item.of('superbwarfare:grain', 2)] }, // WP: white phosphorus + 2 grain -> pricier than standard
+        { out: 'superbwarfare:large_shell_ap', circuit: 1, inputs: [Item.of(CASING_XL, 2), Item.of('gtceu:steel_plate', 2), Item.of('superbwarfare:grain', 3)] }, // AP: hard steel core, pricier than standard
+        { out: 'superbwarfare:large_shell_he', circuit: 2, inputs: [Item.of(CASING_XL, 1), Item.of('gtceu:dynamite', 2), Item.of('superbwarfare:grain', 2)] }, // standard HE
+        { out: 'superbwarfare:large_shell_cm', circuit: 3, inputs: [Item.of(CASING_XL, 2), Item.of('gtceu:dynamite', 3), Item.of('superbwarfare:grain', 2)] }, // cluster: double casing
+        { out: 'superbwarfare:large_shell_gs', circuit: 4, inputs: [Item.of(CASING_XL, 1), Item.of('gtceu:lead_nugget', 12), Item.of('superbwarfare:grain', 2)] }, // grapeshot: lots of shot
+        { out: 'superbwarfare:large_shell_wp', circuit: 5, inputs: [Item.of(CASING_XL, 2), Item.of('gtceu:small_white_phosphorus_dust', 2), Item.of('superbwarfare:grain', 3)] }, // WP: white phosphorus, pricier than standard
     ].forEach(s => {
         event.recipes.gtceu.ammo_press(`kubejs:ammo_${s.out.split(':')[1]}`)
             .itemInputs(s.inputs)

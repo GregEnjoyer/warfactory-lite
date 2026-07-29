@@ -37,4 +37,8 @@ ServerEvents.recipes(event => {
     // this also catches any crafting/other recipe from any source). The item itself is hidden from
     // JEI in client_scripts/hide_items.js.
     event.remove({ output: 'superbwarfare:potion_mortar_shell' })
+
+    // GTCEu jetpacks — removed from progression; all recipe types (crafting + assembler).
+    ;['gtceu:liquid_fuel_jetpack', 'gtceu:electric_jetpack', 'gtceu:advanced_electric_jetpack']
+        .forEach(id => event.remove({ output: id }))
 })

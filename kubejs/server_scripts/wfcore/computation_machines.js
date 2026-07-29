@@ -4,7 +4,7 @@
 // Ingredient COUNTS are placeholders — TODO tune.
 ServerEvents.recipes(event => {
     const g = event.recipes.gtceu
-    const MV = 120, LV = 32, HV = 480, EV = 1920
+    const MV = 120, LV = 32, HV = 480, EV = 1920, IV = 7680
 
     // small helper: MV assembler recipe -> single output
     const mv = (out) => g.assembler(out).itemOutputs(out).duration(200).EUt(MV)
@@ -20,6 +20,29 @@ ServerEvents.recipes(event => {
         '4x gtceu:copper_rod') // TODO
     mv('wfcore:cooling_liquid').itemInputs('gtceu:mv_machine_casing', 'gtceu:mv_electric_pump',
         '2x gtceu:steel_normal_fluid_pipe', '#gtceu:circuits/mv') // TODO
+
+    // ---- RAM modules (kubejs:<tier>_ram) — the RAM sticks for the Mainframe ---
+    // 4 fit in a RAM slot; each contributes its tier throughput (wfcore_compute.js),
+    // so a full RAM slot caps the mainframe at the tier ceiling: MV 96 / HV 128 /
+    // EV 192 / IV 512. Built from RAM chips on a poly board, tier-gated by the
+    // circuit + assembler voltage; raw gtceu:ram_wafer is de-registered as RAM so
+    // these are the route. Higher tiers use more chips (throughput scales with it).
+    g.assembler('kubejs:mv_ram')
+        .itemInputs('2x gtceu:ram_chip', '#gtceu:circuits/mv', 'gtceu:polyethylene_plate')
+        .itemOutputs('kubejs:mv_ram')
+        .duration(200).EUt(MV)
+    g.assembler('kubejs:hv_ram')
+        .itemInputs('3x gtceu:ram_chip', '#gtceu:circuits/hv', 'gtceu:polyethylene_plate')
+        .itemOutputs('kubejs:hv_ram')
+        .duration(200).EUt(HV)
+    g.assembler('kubejs:ev_ram')
+        .itemInputs('4x gtceu:ram_chip', '#gtceu:circuits/ev', '2x gtceu:polyethylene_plate')
+        .itemOutputs('kubejs:ev_ram')
+        .duration(200).EUt(EV)
+    g.assembler('kubejs:iv_ram')
+        .itemInputs('6x gtceu:ram_chip', '#gtceu:circuits/iv', '2x gtceu:polyethylene_plate')
+        .itemOutputs('kubejs:iv_ram')
+        .duration(200).EUt(IV)
 
     // ---- Research Unit (MV) --------------------------------------------------
     mv('wfcore:research_unit').itemInputs('gtceu:mv_machine_casing', '6x #gtceu:circuits/mv',

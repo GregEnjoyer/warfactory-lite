@@ -4,6 +4,7 @@
     "overrides": [
         "config",
         "kubejs",
+        "journeymap",
         "tacz"
     ],
     "client_overrides": [

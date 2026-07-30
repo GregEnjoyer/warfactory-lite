@@ -2,7 +2,11 @@
 #Settings for the ambient gunfire system, creating a 'battlefield' atmosphere.
 [Ambient]
 	#Globally enables or disables the ambient gunfire sound system.
-	enableAmbientGunfire = true
+	# Disabled: AmbientGunfireManager's per-player tick calls RandomSource#nextInt off the
+	# world random, which C2ME's CheckedThreadLocalRandom hard-crashes ("ThreadLocalRandom
+	# accessed from a different thread"). Setting false makes onServerTick return before the
+	# crashing PlayerTimer.tick path. The rest of Gunfire Overhaul (actual gunshot SFX) still works.
+	enableAmbientGunfire = false
 	#Minimum time in ticks between ambient gunfire events (20 ticks = 1 second).
 	#Range: 100 ~ 72000
 	minTimeBetweenShots = 1200

@@ -75,10 +75,12 @@ ServerEvents.recipes(event => {
         { id: CASING_LARGE,  plates: 3, amount: 5, circuit: 3, research: 'infantry_munitions_3' },
         { id: CASING_XL,     plates: 4, amount: 1, circuit: 4, research: 'large_casings' },
     ].forEach(c => {
+        // NOTE: cutter supports only 1 item input, so no .circuit() here — the recipes
+        // stay distinct by brass_plate count (1/2/3/4). Adding a circuit exceeded the
+        // input cap and was silently dropped by GTCEu (log spam).
         const r = event.recipes.gtceu.cutter(c.id)
             .itemInputs(Item.of('gtceu:brass_plate', c.plates))
             .itemOutputs(Item.of(c.id, c.amount))
-            .circuit(c.circuit)
             .duration(20)
             .EUt(4);
         if (c.research) r.addCondition(WFResearch.condition(c.research));
@@ -90,7 +92,6 @@ ServerEvents.recipes(event => {
     event.recipes.gtceu.cutter('kubejs:steel_bullet_casing')
         .itemInputs(Item.of('gtceu:steel_plate', 3))
         .itemOutputs(Item.of(CASING_STEEL, 5))
-        .circuit(5)
         .duration(40)
         .EUt(16)
         .addCondition(WFResearch.condition('large_casings'));

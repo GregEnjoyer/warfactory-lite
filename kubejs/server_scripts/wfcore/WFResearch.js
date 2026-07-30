@@ -1,5 +1,8 @@
 import com.norwood.wfcore.integration.kubejs
-ServerEvents.loaded(event => {
+// Register in ServerEvents.recipes (fires on server start AND /reload), NOT ServerEvents.loaded
+// (start only) — otherwise the research tree stays blank after a /reload. Registry is keyed by id
+// (put-replace), so re-running on reload just updates nodes in place.
+ServerEvents.recipes(event => {
 
 // categories (research tabs)
 WFResearch.category('ballistics')

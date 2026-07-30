@@ -99,7 +99,6 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of('gtceu:steel_plate', 3))
         .itemOutputs(Item.of('kubejs:barrel_steel', 2))
         .duration(120)
-        .circuit(1)
         .EUt(16)
 
         // damascus barrel
@@ -107,7 +106,6 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of('gtceu:damascus_steel_plate', 3))
         .itemOutputs(Item.of('kubejs:barrel_damascus', 2))
         .duration(120)
-        .circuit(2)
         .EUt(16)
 
         // heavy steel barrel
@@ -115,7 +113,6 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of('gtceu:steel_plate', 6))
         .itemOutputs(Item.of('kubejs:heavy_barrel_steel', 1))
         .duration(120)
-        .circuit(2)
         .EUt(16)
 
         // ❌ FIXED typo: barrel_2_bug → barrel_2_big
@@ -123,7 +120,6 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of('gtceu:damascus_steel_plate', 6))
         .itemOutputs(Item.of('kubejs:heavy_barrel_damascus', 1))
         .duration(120)
-        .circuit(1)
         .EUt(16)
 
 

@@ -1,6 +1,9 @@
 // Materials backing the Warfactory Medical processing chain.
 // GTCEu auto-generates the dust item + its texture from color + iconSet,
 // so no hand-drawn PNG is needed.
+//
+// Domain-specific by design: this cohesive chain keeps its own file. Generic
+// pack materials + stock-material shape mods live in ../materials.js (the hub).
 GTCEuStartupEvents.registry('gtceu:material', event => {
     // Crushed poppy — the macerated form of poppy flowers, leached for morphine.
     event.create('poppy')

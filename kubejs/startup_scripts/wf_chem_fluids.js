@@ -1,6 +1,9 @@
-// New GT fluids owned by the pack (see material.js for the white_phosphorus dust).
+// New GT fluids owned by the pack (see ../materials.js for the white_phosphorus dust).
 // GTCEu auto-names materials from the id (mustard_gas -> "Mustard Gas").
 // Startup script -> needs a full restart, NOT /reload.
+//
+// Domain-specific by design: these chem-weapon gases + fuels keep their own file.
+// Generic pack materials + stock-material shape mods live in materials.js (the hub).
 GTCEuStartupEvents.registry('gtceu:material', event => {
 
     // --- Chemical-weapon gases (both MV) — production in chemicals.js ---------

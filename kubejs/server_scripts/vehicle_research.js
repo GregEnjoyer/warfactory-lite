@@ -2,9 +2,10 @@
 // Each node unlocks (shows in the tree) and gates (via WFResearch.condition('veh_<tier>'),
 // see server_scripts/vehicles/components.js) that whole tier's 9 vehicle-component parts.
 //
-// Runs as a server script so it reloads on /reload (the registry is cleared automatically
-// by WFCore's reload listener before these scripts execute).
-ServerEvents.loaded(event => {
+// Runs in ServerEvents.recipes (fires on server start AND /reload), NOT ServerEvents.loaded
+// (start only) — otherwise the tree stays blank after a /reload. The research registry is keyed
+// by id (put-replace), so re-running on reload updates nodes in place; WFCore no longer wipes it.
+ServerEvents.recipes(event => {
 
     WFResearch.category('vehicles')
         .name('Vehicle Components')

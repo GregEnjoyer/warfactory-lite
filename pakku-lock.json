@@ -1898,6 +1898,42 @@
             ]
         },
         {
+            "pakku_id": "0l7P7z6nZgSPRW4M",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "journeymap"
+            },
+            "name": {
+                "curseforge": "JourneyMap"
+            },
+            "id": {
+                "curseforge": "32274"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "journeymap-forge-1.20.1-6.0.0-beta.6.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "beta",
+                    "url": "https://edge.forgecdn.net/files/8523/54/journeymap-forge-1.20.1-6.0.0-beta.6.jar",
+                    "id": "8523054",
+                    "parent_id": "32274",
+                    "hashes": {
+                        "sha1": "b0efcd835b53d8f243f811da706aa1c0287abe67",
+                        "md5": "e911332c32187d422834d3ca35471f64"
+                    },
+                    "required_dependencies": [],
+                    "size": 4183391,
+                    "date_published": "2026-07-27T21:46:08.427Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "m7RYDZlBDObtvyVr",
             "type": "MOD",
             "side": "CLIENT",

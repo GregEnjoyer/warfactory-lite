@@ -1,6 +1,6 @@
 // War chemicals + fuels. Produces the pack's new materials/fluids registered in
 // startup_scripts/wf_chem_fluids.js (phosgene, mustard_gas, kerosene, napalm,
-// jet_fuel) and material.js (white_phosphorus). Parody chemistry through real GT
+// jet_fuel) and startup_scripts/materials.js (white_phosphorus). Parody chemistry through real GT
 // machines on real GT reagents. Two-fluid syntheses use the Large Chemical
 // Reactor (a single Chemical Reactor has only one fluid-input tank).
 ServerEvents.recipes(event => {
@@ -49,4 +49,14 @@ ServerEvents.recipes(event => {
         .outputFluids('gtceu:jet_fuel 800')
         .circuit(2)
         .duration(200).EUt(MV)
+
+    // ---- RDX (EV): nitrate gelled toluene with mixed acid → cyclonite dust + spent acid ----------
+    // 2 gelled_toluene + 2000 nitric_acid + 1000 sulfuric_acid → 4 RDX + 1000 diluted_sulfuric_acid
+    // Two fluid inputs require the Large Chemical Reactor.
+    g.large_chemical_reactor('wfcore:rdx_nitration')
+        .itemInputs('2x gtceu:gelled_toluene')
+        .inputFluids('gtceu:nitric_acid 2000', 'gtceu:sulfuric_acid 1000')
+        .itemOutputs('4x gtceu:rdx_dust')
+        .outputFluids('gtceu:diluted_sulfuric_acid 1000')
+        .duration(400).EUt(2048)
 })

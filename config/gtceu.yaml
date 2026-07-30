@@ -595,7 +595,7 @@ compat:
       ftbChunksIntegration: false
 
       # Journey Map integration enabled
-      journeyMapIntegration: true
+      journeyMapIntegration: false
 
       # Xaerox's map integration enabled
       xaerosMapIntegration: true

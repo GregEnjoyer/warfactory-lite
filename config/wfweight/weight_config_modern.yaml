@@ -167,6 +167,13 @@ rules:
     superbwarfare:javelin: 22.3
     superbwarfare:igla_9k38: 18.0
     superbwarfare:medium_anti_ground_missile: 25.0
+    # --- WarFactory emplacements (deployable crew-served weapons; all heavy, below the 70kg pickup lock).
+    # The un-pickupable emplacements (CIWS, Type-63 MLRS, and the BL-132/Mk42/Mle1934 naval cannons) all
+    # deploy from superbwarfare:container, so they share one heaviest weight. The Mortar and TOW come as
+    # their own deployer items and are lighter (the only two recoverable with a GT crowbar). ---
+    superbwarfare:container: 60.0
+    superbwarfare:tow_deployer: 50.0
+    superbwarfare:mortar_deployer: 40.0
     # --- TaCZ ammo (matched by AmmoId NBT tag on tacz:ammo) ---
     tacz:12g: 0.1
     tacz:22wmr: 0.1

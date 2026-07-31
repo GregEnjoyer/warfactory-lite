@@ -267,7 +267,8 @@ ServerEvents.recipes(event => {
             .itemOutputs(Item.of(s.out, 1))
             .circuit(s.circuit)
             .duration(60)
-            .EUt(30);
+            .EUt(30)
+            .addCondition(WFResearch.condition('large_caliber_shells'));   // EV tank/artillery gate
     });
 
     // ---- 40mm grenade rounds (xl casing + dynamite) ----
@@ -412,12 +413,14 @@ ServerEvents.recipes(event => {
     event.recipes.gtceu.assembler('kubejs:sw_medium_anti_air_missile')
         .itemInputs(Item.of('gtceu:stainless_steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of('gtceu:dynamite', 1), Item.of('superbwarfare:seeker', 1))
         .itemOutputs(Item.of('superbwarfare:medium_anti_air_missile', 1))
-        .circuit(5).duration(400).EUt(128);
+        .circuit(5).duration(400).EUt(128)
+        .addCondition(WFResearch.condition('anti_air_missiles'));   // LAV-AD air-defence gate
 
     event.recipes.gtceu.assembler('kubejs:sw_medium_anti_ground_missile')
         .itemInputs(Item.of('gtceu:stainless_steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of('gtceu:dynamite', 2), Item.of('superbwarfare:seeker', 1))
         .itemOutputs(Item.of('superbwarfare:medium_anti_ground_missile', 1))
-        .circuit(6).duration(400).EUt(128);
+        .circuit(6).duration(400).EUt(128)
+        .addCondition(WFResearch.condition('anti_ground_missiles'));   // TOW-class gate (armed trucks, Bradley)
 
     event.recipes.gtceu.assembler('kubejs:sw_large_anti_ground_missile')
         .itemInputs(Item.of('gtceu:titanium_plate', 2), Item.of('superbwarfare:large_motor', 1), Item.of('gtceu:dynamite', 4), Item.of('superbwarfare:seeker', 1))

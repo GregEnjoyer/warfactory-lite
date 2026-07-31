@@ -1,0 +1,45 @@
+{
+  "__comment": "builtin/entity so vanilla defers to PackagedVehicleItemRenderer (BEWLR), which draws the actual vehicle 3D model (snatched from its GeckoLib entity), spinning in GUI. The display block only sets per-perspective placement; the BEWLR fits the mesh into unit space + adds the GUI spin. Mirrors WF-B's missile_render_base.json.",
+  "parent": "builtin/entity",
+  "gui_light": "side",
+  "textures": {
+    "particle": "minecraft:block/barrel_side"
+  },
+  "display": {
+    "gui": {
+      "rotation": [ 30, 0, 0 ],
+      "translation": [ 0, 0, 0 ],
+      "scale": [ 0.75, 0.75, 0.75 ]
+    },
+    "ground": {
+      "rotation": [ 0, 0, 0 ],
+      "translation": [ 0, 2, 0 ],
+      "scale": [ 0.5, 0.5, 0.5 ]
+    },
+    "fixed": {
+      "rotation": [ 0, 0, 0 ],
+      "translation": [ 0, 0, 0 ],
+      "scale": [ 0.8, 0.8, 0.8 ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [ 30, 45, 0 ],
+      "translation": [ 0, 2.5, 0 ],
+      "scale": [ 0.4, 0.4, 0.4 ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [ 30, 45, 0 ],
+      "translation": [ 0, 2.5, 0 ],
+      "scale": [ 0.4, 0.4, 0.4 ]
+    },
+    "firstperson_righthand": {
+      "rotation": [ 0, 45, 0 ],
+      "translation": [ 0, 3, 0 ],
+      "scale": [ 0.5, 0.5, 0.5 ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [ 0, 45, 0 ],
+      "translation": [ 0, 3, 0 ],
+      "scale": [ 0.5, 0.5, 0.5 ]
+    }
+  }
+}

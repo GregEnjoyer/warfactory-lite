@@ -80,17 +80,20 @@ ServerEvents.recipes(event => {
         .EUt(32)
         .addCondition(WFResearch.condition('automatic_weapons_1'))
 
-        // MLRS
+        // MLRS (Type-63 107mm) — gated on the Emplacements research 'emp_mlrs'. Scaled back vs the naval
+        // cannons but still expensive: a steel frame + the 12 launch tubes (small steel fluid pipes) + a
+        // weapons system (vehicle part). Outputs the container that deploys the Type-63 entity.
         event.recipes.gtceu.assembler('kubejs:mlrs')
         .itemInputs(
-                Item.of('kubejs:heavy_barrel_steel', 3),
-                    Item.of('gtceu:treated_wood_plate', 2),
-                    Item.of('gtceu:small_steel_spring')
+                Item.of('gtceu:double_steel_plate', 4),
+                    Item.of('gtceu:steel_small_fluid_pipe', 12),
+                    Item.of('kubejs:mv_weapons_system', 1)
         )
         .circuit(2)
         .itemOutputs(Item.of('superbwarfare:container', 1, '{BlockEntityTag:{EntityType:"superbwarfare:type_63"}}'))
-        .duration(400)
-        .EUt(16);
+        .duration(600)
+        .EUt(128)
+        .addCondition(WFResearch.condition('emp_mlrs'));
 
         // Mortar removals
         event.remove({ output: 'superbwarfare:mortar_deployer' })

@@ -10,8 +10,11 @@
 //   Bunker busters — shaped-charge; explosive-heavy (TNT basic → RDX heavy/tunneller).
 //   Cluster     — frame + iron_round metal sink; lower-tier explosives; gas uses mustard_gas 2nd slot.
 //   EMP         — lapotron cost replaces explosive load; plates scale to demolition floor.
-//   Interceptors — ~35% of same-tier missile plate floor; circuits below missile parity;
-//                 RAM is the unique resource sink; modest fuel + TNT; fastest production.
+//   Interceptors — deliberately the EXPENSIVE class: ~1.2–1.4× the mainline same-tier missile,
+//                 driven primarily by a heavy guidance circuit + RAM load (not the airframe).
+//                 Exception: penetrators match interceptor price (hypersonic ≈ interceptor_ace).
+//                 Cheap spam (drones, budget EMP) is intentionally cost-inefficient to swat —
+//                 that is interceptor_cluster's job, kept cheap as the anti-swarm volume option.
 //   Drones      — cheapest class (~80% of HV floor): aluminium + modest engines + fuel.
 //
 //   RDX synthesis (large_chemical_reactor): see bottom of file.
@@ -72,23 +75,25 @@ const MISSILES = [
     // ── Cluster (frame + iron_round metal sink; lower-tier explosives) ───────────────────────────
     ['cluster',      'cluster_munitions', HV, 10000, ['gtceu:diesel', 3000],  [[P+'vanadium_steel_frame',12],[LEAD_ROUND,64],[P+'stainless_steel_plate',75],[POW,48],[TNT,32],[FUSE,1]]],
     ['cluster_fire', 'cluster_munitions', HV, 10000, ['gtceu:diesel', 3000],  [[P+'vanadium_steel_frame',12],[P+'stainless_steel_plate',75],[WP,32],[POW,48],[TNT,32],[FUSE,1]]],
-    ['cluster_gas',  'cluster_munitions', HV, 10000, ['gtceu:diesel', 3000],       [[P+'vanadium_steel_frame',12],[P+'stainless_steel_frame',75],[POW,32],[TNT,32],[FUSE,1]], [['gtceu:mustard_gas', 8000]]],
+    ['cluster_gas',  'cluster_munitions', HV, 10000, ['gtceu:diesel', 3000],       [[P+'vanadium_steel_frame',12],[P+'stainless_steel_plate',75],[POW,32],[TNT,32],[FUSE,1]], [['gtceu:mustard_gas', 8000]]],
     ['frag_storm',   'frag_storm',        EV, 14000, ['gtceu:rocket_fuel', 8000],  [[P+'ultimet_frame',16],[LEAD_ROUND,256],[P+'titanium_plate',64],[POW,64],[TNT,24],[FUSE,1]]],
     ['skyfall',      'skyfall',           IV, 16000, ['gtceu:rocket_fuel', 12000], [[P+'stainless_steel_frame',20],['gtceu:hsss_round',96],[P+'titanium_plate',48],[C_IV,10],[POW,64],[FUSE,1]]],
 
     // ── EMP (lapotron cost replaces explosive load; plates scale to floor) ───────────────────────
-    ['emp',         'emp_warheads', HV, 10000, ['gtceu:diesel',      4000],  [[P+'blue_steel_plate',40],[P+'aluminium_plate',24],[LAPO_DUST,32],[CIRC,6],[C_HV,6]]],
-    ['emp_heavy',   'emp_heavy',    EV, 12000, ['gtceu:rocket_fuel', 8000],  [[P+'blue_steel_plate',48],[P+'titanium_plate',32],[LAPO,8],[CIRC,6],[C_EV,8]]],
-    ['emp_cluster', 'emp_cluster',  EV, 11000, ['gtceu:rocket_fuel', 8000],  [[P+'blue_steel_plate',64],[LEAD_ROUND,48],[LAPO,6],[POW,32],[CIRC,6],[C_EV,6]]],
-    ['emp_lance',   'emp_lance',    EV, 14000, ['gtceu:rocket_fuel', 10000], [[P+'titanium_plate',48],[P+'aluminium_plate',24],[LAPO,8],[CIRC,12],[C_IV,8]]],
+    ['emp',         'emp_warheads', HV, 10000, ['gtceu:diesel',      4000],  [[P+'blue_steel_plate',40],[P+'aluminium_plate',24],[LAPO_DUST,8],[C_HV,6]]],
+    ['emp_heavy',   'emp_heavy',    EV, 12000, ['gtceu:rocket_fuel', 8000],  [[P+'blue_steel_plate',48],[P+'titanium_plate',32],[LAPO,2, '{"Charge":25000000L}'],[C_EV,8]]],
+    ['emp_cluster', 'emp_cluster',  EV, 11000, ['gtceu:rocket_fuel', 8000],  [[P+'blue_steel_plate',64],[LEAD_ROUND,48],[LAPO,1,'{"Charge":25000000L}'],[POW,32],[C_EV,6]]],
+    ['emp_lance',   'emp_lance',    EV, 14000, ['gtceu:rocket_fuel', 10000], [[P+'tungsten_plate',80],[P+'titanium_plate',24],[LAPO,2,'{"Charge":25000000L}'],[C_IV,8]]],
 
-    // ── Interceptors (circuit-light vs same-tier missiles; ~35% of missile plate floor; RAM) ──────
-    // Plate ~35% of missile floor; circuits below same-tier missile parity; fuel < 50% of floor;
-    // small TNT+POW explosive cost (proximity fuze). RAM is the unique interceptor resource sink.
-    ['interceptor',         'interceptor_systems', HV,  8000, ['gtceu:rocket_fuel', 2000], [[P+'aluminium_plate',20],[P+'steel_plate',16],[C_HV,6],[MV_RAM,4],[POW,16],[TNT,12]]],
-    ['interceptor_mk2',     'interceptor_network', EV, 10000, ['gtceu:rocket_fuel', 3000], [[P+'titanium_plate',22],[P+'aluminium_plate',18],[C_EV,8],[HV_RAM,4],[POW,14],[TNT,16]]],
-    ['interceptor_ace',     'interceptor_ace',     IV, 12000, ['gtceu:rocket_fuel', 4000], [[P+'tungsten_steel_plate',16],[P+'titanium_plate',20],[C_IV,8],[HV_RAM,6],[POW,10],[TNT,16]]],
-    ['interceptor_cluster', 'interceptor_cluster', IV, 10000, ['gtceu:rocket_fuel', 3500], [[P+'titanium_plate',22],[P+'aluminium_plate',14],[C_IV,10],[HV_RAM,6],[IRON_ROUND,32],[TNT,12]]],
+    // ── Interceptors (the premium class: circuit + RAM heavy; ~1.2–1.4× mainline missile cost) ────
+    // The guidance package (high circuit count + RAM) is the cost driver, NOT the airframe: plates
+    // stay light, fuel < 50% of floor, small TNT (proximity fuze). Target cost-loss vs the mainline
+    // same-tier missile ≈ 1.2–1.4×; penetrators match interceptor price (hypersonic ≈ ace).
+    // interceptor_cluster is the exception — kept cheap as the anti-swarm volume option.
+    ['interceptor',         'interceptor_systems', HV,  8000, ['gtceu:rocket_fuel', 2000], [[P+'aluminium_plate',64],[P+'stainless_steel_plate',16],[C_HV,38],[MV_RAM,4],[ENG,8],[TNT,12]]],
+    ['interceptor_mk2',     'interceptor_network', EV, 10000, ['gtceu:rocket_fuel', 3000], [[P+'titanium_plate',64],[P+'ultimet_plate',16],[C_EV,32],[HV_RAM,4],[ENG,16],[TNT,16]]],
+    ['interceptor_ace',     'interceptor_ace',     IV, 12000, ['gtceu:rocket_fuel', 4000], [[P+'tungsten_steel_plate',64],[P+'titanium_plate',32],[C_IV,40],[HV_RAM,6],[ENG,16],[TNT,16]]],
+    ['interceptor_cluster', 'interceptor_cluster', IV, 10000, ['gtceu:rocket_fuel', 3500], [[P+'titanium_plate',22],[P+'aluminium_plate',14],[C_IV,10],[HV_RAM,6],['gtceu:hsss_round',32],[TNT,12]]],
 
     // ── Drones (cheapest class: ~80% of HV plate floor, more engines than original) ─────────────
     ['strike_drone', 'missile_systems', HV, 6000, ['gtceu:diesel', 4000], [[P+'aluminium_plate',80],[ENG,4],[C_HV,6],[TNT,40],['gtceu:stainless_steel_rotor',2]]],

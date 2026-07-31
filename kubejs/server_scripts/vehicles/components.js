@@ -1,11 +1,19 @@
 // Research-gated crafting for the tiered vehicle components (see
-// startup_scripts/partMaker/vehicle_components.js for the items and
-// startup_scripts/vehicle_research.js for the "Vehicle Components" research tree).
+// startup_scripts/partMaker/vehicle_components.js for the items).
 //
-// Each part is assembled from its tier's plate + a component-flavour ingredient, gated behind
-// the tier's research node. Inputs/duration/EUt are simple tunable placeholders — only pure
-// gtceu:/minecraft: ids are used so these resolve in any instance. The per-part circuit number
-// keeps each of a tier's 9 recipes uniquely selectable in the assembler.
+// GATING: the five GROUND-vehicle parts (vehicle_frame, engine, track, cannon_barrel,
+// weapons_system) at LV/MV/HV/EV are each gated on their own node in the independent
+// component tree — WFResearch.condition('veh_comp_<tier>_<part>'), defined in
+// server_scripts/vehicle_research.js on the "Ground vehicles" tab.
+// The AVIATION parts (air_frame, wing, rotor, cockpit) and the whole IV tier still carry a
+// condition on the retired 'veh_<tier>' ids, which no longer exist -> they FAIL OPEN
+// (ungated). Intentional: they'll be re-homed under a future Aviation-page component tree;
+// no ground vehicle needs them.
+//
+// Each part is assembled from its tier's plate + a component-flavour ingredient. Inputs/
+// duration/EUt are simple tunable placeholders — only pure gtceu:/minecraft: ids are used so
+// these resolve in any instance. The per-part circuit number keeps each of a tier's 9 recipes
+// uniquely selectable in the assembler.
 ServerEvents.recipes(event => {
     // tier -> main plate + assembler voltage (kept under each tier's EU/t cap)
 
@@ -25,7 +33,7 @@ ServerEvents.recipes(event => {
                 .circuit(23)
                 .duration(200)
                 .EUt(32)
-                .addCondition(WFResearch.condition('veh_' + 'lv'))
+                .addCondition(WFResearch.condition('veh_comp_' + 'lv' + '_' + 'vehicle_frame'))
 
 
             event.recipes.gtceu.assembler('veh_' + 'mv' + '_' + 'vehicle_frame')
@@ -39,7 +47,7 @@ ServerEvents.recipes(event => {
                             .circuit(23)
                             .duration(200)
                             .EUt(128)
-                            .addCondition(WFResearch.condition('veh_' + 'mv'))
+                            .addCondition(WFResearch.condition('veh_comp_' + 'mv' + '_' + 'vehicle_frame'))
 
 
             event.recipes.gtceu.assembler('veh_' + 'hv' + '_' + 'vehicle_frame')
@@ -53,7 +61,7 @@ ServerEvents.recipes(event => {
                                         .circuit(23)
                                         .duration(200)
                                         .EUt(128*4)
-                                        .addCondition(WFResearch.condition('veh_' + 'hv'))
+                                        .addCondition(WFResearch.condition('veh_comp_' + 'hv' + '_' + 'vehicle_frame'))
 
 
             event.recipes.gtceu.assembler('veh_' + 'ev' + '_' + 'vehicle_frame')
@@ -67,7 +75,18 @@ ServerEvents.recipes(event => {
                                                     .circuit(23)
                                                     .duration(200)
                                                     .EUt(128*4*4)
-                                                    .addCondition(WFResearch.condition('veh_' + 'ev'))
+                                                    .addCondition(WFResearch.condition('veh_comp_' + 'ev' + '_' + 'vehicle_frame'))
+
+            event.recipes.gtceu.assembler('veh_' + 'iv' + '_' + 'vehicle_frame')
+                                                    .itemInputs("16x gtceu:tungsten_steel_plate")
+                                                    .itemInputs("32x gtceu:double_tungsten_steel_plate")
+                                                    .itemInputs("32x gtceu:hsse_rod")
+                                                    .inputFluids(Fluid.of('gtceu:soldering_alloy', 32*144))
+                                                    .itemOutputs('kubejs:iv_vehicle_frame')
+                                                    .circuit(23)
+                                                    .duration(200)
+                                                    .EUt(128*4*4*4)
+                                                    .addCondition(WFResearch.condition('veh_' + 'iv'))
 
             event.recipes.gtceu.assembler('veh_' + 'lv' + '_' + 'air_frame')
                                                                 .itemInputs("8x minecraft:iron_block")
@@ -129,7 +148,7 @@ ServerEvents.recipes(event => {
                      .circuit(23)
                      .duration(200)
                      .EUt(32)
-                     .addCondition(WFResearch.condition('veh_' + 'lv'))
+                     .addCondition(WFResearch.condition('veh_comp_' + 'lv' + '_' + 'engine'))
 
             event.recipes.gtceu.assembler('veh_' + 'mv' + '_' + 'engine')
                       .itemInputs("16x gtceu:cobalt_brass_gear")
@@ -142,7 +161,7 @@ ServerEvents.recipes(event => {
                       .circuit(23)
                       .duration(200)
                       .EUt(32*4)
-                      .addCondition(WFResearch.condition('veh_' + 'mv'))
+                      .addCondition(WFResearch.condition('veh_comp_' + 'mv' + '_' + 'engine'))
 
             event.recipes.gtceu.assembler('veh_' + 'hv' + '_' + 'engine')
                                   .itemInputs("16x gtceu:black_bronze_gear")
@@ -155,7 +174,7 @@ ServerEvents.recipes(event => {
                                   .circuit(23)
                                   .duration(200)
                                   .EUt(32*4*4)
-                                  .addCondition(WFResearch.condition('veh_' + 'hv'))
+                                  .addCondition(WFResearch.condition('veh_comp_' + 'hv' + '_' + 'engine'))
 
 
             event.recipes.gtceu.assembler('veh_' + 'ev' + '_' + 'engine')
@@ -169,7 +188,7 @@ ServerEvents.recipes(event => {
                     .circuit(23)
                     .duration(200)
                     .EUt(32*4*4*4)
-                    .addCondition(WFResearch.condition('veh_' + 'ev'))
+                    .addCondition(WFResearch.condition('veh_comp_' + 'ev' + '_' + 'engine'))
 
             event.recipes.gtceu.assembler('veh_' + 'iv' + '_' + 'engine')
                     .itemInputs("16x gtceu:hsse_gear")
@@ -319,7 +338,7 @@ ServerEvents.recipes(event => {
                      .circuit(29)
                      .duration(200)
                      .EUt(32)
-                     .addCondition(WFResearch.condition('veh_' + 'lv'))
+                     .addCondition(WFResearch.condition('veh_comp_' + 'lv' + '_' + 'track'))
 
             event.recipes.gtceu.assembler('veh_' + 'mv' + '_' + 'track')
                      .itemInputs("64x gtceu:silicone_rubber_plate")
@@ -331,7 +350,7 @@ ServerEvents.recipes(event => {
                      .circuit(29)
                      .duration(200)
                      .EUt(32*4)
-                     .addCondition(WFResearch.condition('veh_' + 'mv'))
+                     .addCondition(WFResearch.condition('veh_comp_' + 'mv' + '_' + 'track'))
 
             event.recipes.gtceu.assembler('veh_' + 'hv' + '_' + 'track')
                      .itemInputs("64x gtceu:silicone_rubber_plate")
@@ -343,7 +362,7 @@ ServerEvents.recipes(event => {
                      .circuit(29)
                      .duration(200)
                      .EUt(32*4*4)
-                     .addCondition(WFResearch.condition('veh_' + 'hv'))
+                     .addCondition(WFResearch.condition('veh_comp_' + 'hv' + '_' + 'track'))
 
             event.recipes.gtceu.assembler('veh_' + 'ev' + '_' + 'track')
                      .itemInputs("64x gtceu:styrene_butadiene_rubber_plate")
@@ -355,7 +374,18 @@ ServerEvents.recipes(event => {
                      .circuit(29)
                      .duration(200)
                      .EUt(32*4*4*4)
-                     .addCondition(WFResearch.condition('veh_' + 'ev'))
+                     .addCondition(WFResearch.condition('veh_comp_' + 'ev' + '_' + 'track'))
+
+            event.recipes.gtceu.assembler('veh_' + 'iv' + '_' + 'track')
+                     .itemInputs("64x gtceu:styrene_butadiene_rubber_plate")
+                     .itemInputs("32x gtceu:small_tungsten_steel_gear")
+                     .itemInputs("32x gtceu:hsse_rod")
+                     .itemInputs("32x gtceu:tungsten_steel_plate")
+                     .itemOutputs('kubejs:iv_track')
+                     .circuit(29)
+                     .duration(200)
+                     .EUt(32*4*4*4*4)
+                     .addCondition(WFResearch.condition('veh_' + 'iv'))
 
             event.recipes.gtceu.assembler('veh_' + 'lv' + '_' + 'cannon_barrel')
                      .itemInputs("16x gtceu:steel_block")
@@ -364,7 +394,7 @@ ServerEvents.recipes(event => {
                      .circuit(25)
                      .duration(200)
                      .EUt(32)
-                     .addCondition(WFResearch.condition('veh_' + 'lv'))
+                     .addCondition(WFResearch.condition('veh_comp_' + 'lv' + '_' + 'cannon_barrel'))
 
             event.recipes.gtceu.assembler('veh_' + 'mv' + '_' + 'cannon_barrel')
                      .itemInputs("16x gtceu:aluminium_block")
@@ -373,7 +403,7 @@ ServerEvents.recipes(event => {
                      .circuit(25)
                      .duration(200)
                      .EUt(32*4)
-                     .addCondition(WFResearch.condition('veh_' + 'mv'))
+                     .addCondition(WFResearch.condition('veh_comp_' + 'mv' + '_' + 'cannon_barrel'))
 
             event.recipes.gtceu.assembler('veh_' + 'hv' + '_' + 'cannon_barrel')
                      .itemInputs("16x gtceu:stainless_steel_block")
@@ -382,7 +412,7 @@ ServerEvents.recipes(event => {
                      .circuit(25)
                      .duration(200)
                      .EUt(32*4*4)
-                     .addCondition(WFResearch.condition('veh_' + 'hv'))
+                     .addCondition(WFResearch.condition('veh_comp_' + 'hv' + '_' + 'cannon_barrel'))
 
             event.recipes.gtceu.assembler('veh_' + 'ev' + '_' + 'cannon_barrel')
                      .itemInputs("16x gtceu:titanium_block")
@@ -391,7 +421,7 @@ ServerEvents.recipes(event => {
                      .circuit(25)
                      .duration(200)
                      .EUt(32*4*4*4)
-                     .addCondition(WFResearch.condition('veh_' + 'ev'))
+                     .addCondition(WFResearch.condition('veh_comp_' + 'ev' + '_' + 'cannon_barrel'))
 
             event.recipes.gtceu.assembler('veh_' + 'lv' + '_' + 'weapons_system')
                      .itemInputs("32x gtceu:steel_plate")
@@ -403,7 +433,7 @@ ServerEvents.recipes(event => {
                      .circuit(30)
                      .duration(200)
                      .EUt(32)
-                     .addCondition(WFResearch.condition('veh_' + 'lv'))
+                     .addCondition(WFResearch.condition('veh_comp_' + 'lv' + '_' + 'weapons_system'))
 
             event.recipes.gtceu.assembler('veh_' + 'mv' + '_' + 'weapons_system')
                      .itemInputs("32x gtceu:aluminium_plate")
@@ -415,7 +445,7 @@ ServerEvents.recipes(event => {
                      .circuit(30)
                      .duration(200)
                      .EUt(32*4)
-                     .addCondition(WFResearch.condition('veh_' + 'mv'))
+                     .addCondition(WFResearch.condition('veh_comp_' + 'mv' + '_' + 'weapons_system'))
 
             event.recipes.gtceu.assembler('veh_' + 'hv' + '_' + 'weapons_system')
                      .itemInputs("32x gtceu:stainless_steel_plate")
@@ -427,7 +457,7 @@ ServerEvents.recipes(event => {
                      .circuit(30)
                      .duration(200)
                      .EUt(32*4*4)
-                     .addCondition(WFResearch.condition('veh_' + 'hv'))
+                     .addCondition(WFResearch.condition('veh_comp_' + 'hv' + '_' + 'weapons_system'))
 
             event.recipes.gtceu.assembler('veh_' + 'ev' + '_' + 'weapons_system')
                      .itemInputs("32x gtceu:titanium_plate")
@@ -439,7 +469,7 @@ ServerEvents.recipes(event => {
                      .circuit(30)
                      .duration(200)
                      .EUt(32*4*4*4)
-                     .addCondition(WFResearch.condition('veh_' + 'ev'))
+                     .addCondition(WFResearch.condition('veh_comp_' + 'ev' + '_' + 'weapons_system'))
 
             event.recipes.gtceu.assembler('veh_' + 'iv' + '_' + 'weapons_system')
                      .itemInputs("32x gtceu:tungsten_steel_plate")

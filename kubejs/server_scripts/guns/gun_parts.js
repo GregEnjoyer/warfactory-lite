@@ -56,19 +56,64 @@ ServerEvents.recipes(event => {
     });
 
     // =========================
-    // RPG LAUNCHER (the weapon; its rockets live in ammo.js)
+    // HEAVY LAUNCHERS (the weapons; their ammunition lives in ammo.js)
+    // Research chain (wfcore/research/infantry.js): M79 (LV) -> RPG (MV) -> {Javelin, Igla} (EV).
+    // Each recipe's EUt tracks its research tier; recipes gate on the matching wpn_* node.
     // =========================
+
+    // M79 grenade launcher (LV) — break-action 40mm tube on a wooden furniture.
+    event.recipes.gtceu.assembler('kubejs:m_79')
+    .itemInputs(
+        Item.of('kubejs:heavy_barrel_steel', 2),
+                Item.of('gtceu:treated_wood_plate', 2),
+                Item.of('gtceu:small_steel_spring', 1)
+    )
+    .circuit(1)
+    .itemOutputs(Item.of('superbwarfare:m_79'))
+    .duration(400)
+    .addCondition(WFResearch.condition('wpn_m79'))
+    .EUt(32)
+
+    // RPG-7 (MV) — shoulder-fired rocket launcher.
     event.recipes.gtceu.assembler('kubejs:rpg')
     .itemInputs(
         Item.of('kubejs:heavy_barrel_steel', 3),
                 Item.of('gtceu:treated_wood_plate', 2),
-                Item.of('gtceu:small_steel_spring')
+                Item.of('gtceu:small_steel_spring', 1)
     )
-    .circuit(1)
+    .circuit(2)
     .itemOutputs(Item.of('superbwarfare:rpg'))
     .duration(400)
-    .addCondition(WFResearch.condition('my_research'))
-    .EUt(16)
+    .addCondition(WFResearch.condition('wpn_rpg'))
+    .EUt(128)
+
+    // FGM-148 Javelin (EV) — guided top-attack ATGM launcher. Needs a seeker + missile engine.
+    event.recipes.gtceu.assembler('kubejs:javelin')
+    .itemInputs(
+        Item.of('gtceu:titanium_plate', 4),
+                Item.of('superbwarfare:seeker', 1),
+                Item.of('superbwarfare:missile_engine', 1),
+                '#gtceu:circuits/ev'
+    )
+    .circuit(3)
+    .itemOutputs(Item.of('superbwarfare:javelin'))
+    .duration(600)
+    .addCondition(WFResearch.condition('wpn_javelin'))
+    .EUt(2048)
+
+    // IGLA-9K38 MANPADS (EV) — IR-guided man-portable SAM launcher.
+    event.recipes.gtceu.assembler('kubejs:igla_9k38')
+    .itemInputs(
+        Item.of('gtceu:titanium_plate', 4),
+                Item.of('superbwarfare:seeker', 1),
+                Item.of('superbwarfare:missile_engine', 1),
+                '#gtceu:circuits/ev'
+    )
+    .circuit(4)
+    .itemOutputs(Item.of('superbwarfare:igla_9k38'))
+    .duration(600)
+    .addCondition(WFResearch.condition('wpn_igla'))
+    .EUt(2048)
 
     // =========================
     // ATTACHMENTS - SCOPES

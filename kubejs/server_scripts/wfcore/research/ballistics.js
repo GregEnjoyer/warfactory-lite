@@ -1,4 +1,4 @@
-// Ballistics research tab — all category('ballistics') nodes.
+// Ballistics research tab – all category('ballistics') nodes.
 // Runs in ServerEvents.recipes (fires on server start AND /reload).
 //
 // STRUCTURE (top -> down):
@@ -10,14 +10,14 @@
 //         grapeshot_warheads-> superbwarfare:gs_head  (Grapeshot)
 //         cluster_warheads  -> superbwarfare:cm_head  (Cluster Munitions)
 //         pyrotechnics      -> superbwarfare:wp_head  (White Phosphorus / fire)
-//   Munition tier — ONE ammo type per node. Every round CONSUMES its matching
+//   Munition tier – ONE ammo type per node. Every round CONSUMES its matching
 //   *_head warhead (recipe in guns/ammo.js) and .requires() that warhead node
 //   (rockets/missiles also require missile_engines / seekers), so the warhead is
 //   always researched BEFORE the round that carries it.
 //
-// Mortar: the HE mortar bomb (mortar_shell) is an LV node with NO warhead — it
-// keeps the LV Mortar emplacement fed from the start. The WP bomb
-// (mortar_shell_wp) is a fire round, so it sits under Pyrotechnics.
+// Mortar: the HE mortar bomb (mortar_shell) and the 40mm grenades (grenade_40mm) are both
+// HE-warhead children – they .requires('he_warheads') and are registered AFTER it (MV). The
+// WP mortar bomb (mortar_shell_wp) is a fire round, so it sits under Pyrotechnics.
 ServerEvents.recipes(event => {
 
     // Item-cost helper: a leading '#' marks a TAG, otherwise an exact item.
@@ -29,13 +29,13 @@ ServerEvents.recipes(event => {
     const sbw = id => Item.of('superbwarfare:' + id)
 
     // =========================== CASINGS BACKBONE ============================
-    // First ballistics node — "Infantry Munitions 1". Unlocks the pistol (small)
+    // First ballistics node – "Infantry Munitions 1". Unlocks the pistol (small)
     // and rifle (medium) brass casing recipes (gated in guns/ammo.js). LV: no compute.
     WFResearch.builder('infantry_munitions_1')
         .category('ballistics').pos(0, 0)
         .nodeColor(BLUE)
         .name('Infantry Munitions 1')
-        .description('Standardised brass cartridge casings for pistol and rifle calibres. Unlocks all pistol and rifle casing recipes.')
+        .description('Standardised brass cartridge casings for pistol and rifle calibres.')
         .runs(15).ticksPerRun(300).eut(32).cwuPerRun(0)
         .itemPerRun(Item.of('gtceu:steel_plate', 10))
         .itemPerRun(Item.of('gtceu:bronze_plate', 10))
@@ -44,12 +44,12 @@ ServerEvents.recipes(event => {
         .icon(Item.of('kubejs:bullet_casing_medium'))
         .register()
 
-    // Infantry Munitions 2 — WW-era calibres + Superb Warfare rifle ammunition. LV.
+    // Infantry Munitions 2 – WW-era calibres + Superb Warfare rifle ammunition. LV.
     WFResearch.builder('infantry_munitions_2')
         .category('ballistics').pos(0, 1)
         .nodeColor(BLUE)
         .name('Infantry Munitions 2')
-        .description('WW-era rifle and pistol calibres: 8mm Mauser, 7.62x54R, 6.5mm Arisaka, 7.63mm Mauser, 7.65mm Para, .303 British, 7.7mm Arisaka, .30 Carbine, 8mm pistol. Also unlocks Superb Warfare rifle ammunition.')
+        .description('WW-era rifle and pistol calibres.')
         .requires('infantry_munitions_1')
         .runs(10).ticksPerRun(300).eut(32).cwuPerRun(0)
         .unlocks(
@@ -69,12 +69,12 @@ ServerEvents.recipes(event => {
         .icon(Item.of('tacz:ammo', '{AmmoId:"tacz:792x57"}'))
         .register()
 
-    // Infantry Munitions 3 — heavy/sniper small-arms tier (cheap MV). Heavy Rifle Casing + SBW heavy/sniper ammo.
+    // Infantry Munitions 3 – heavy/sniper small-arms tier (cheap MV). Heavy Rifle Casing + SBW heavy/sniper ammo.
     WFResearch.builder('infantry_munitions_3')
         .category('ballistics').pos(2, 1)
         .nodeColor(BLUE)
         .name('Infantry Munitions 3')
-        .description('Heavy rifle cartridge cases and the .50/heavy rounds they feed: Superb Warfare heavy and sniper ammunition. Unlocks Heavy Rifle Casing production.')
+        .description('Heavy rifle cartridge cases and the .50/heavy rounds they feed.')
         .requires('infantry_munitions_2')
         .runs(20).ticksPerRun(300).eut(90).cwuPerRun(7200)   // 24 CWU/t = cheap MV
         .itemPerRun(Item.of('gtceu:steel_plate', 8))
@@ -84,7 +84,7 @@ ServerEvents.recipes(event => {
         .icon(sbw('heavy_ammo'))
         .register()
 
-    // MV large-calibre casing gate — first ballistics node to require compute. Steel + XL (vehicle) casings.
+    // MV large-calibre casing gate – first ballistics node to require compute. Steel + XL (vehicle) casings.
     WFResearch.builder('large_casings')
         .category('ballistics').pos(0, 2)
         .nodeColor(BLUE)
@@ -99,33 +99,20 @@ ServerEvents.recipes(event => {
         .icon(Item.of('kubejs:steel_bullet_casing'))
         .register()
 
-    // Mortar Bombs (HE) — LV, muzzle-loaded, NO warhead. Keeps the LV Mortar emplacement fed immediately.
-    WFResearch.builder('mortar_shell')
-        .category('ballistics').pos(-2, 0)
-        .nodeColor(BLUE)
-        .name('Mortar Bombs')
-        .description('Muzzle-loaded high-explosive mortar bombs for the man-portable Mortar. Unlocks HE mortar bomb production.')
-        .requires('infantry_munitions_1')
-        .runs(12).ticksPerRun(300).eut(32).cwuPerRun(0)
-        .itemPerRun(Item.of('gtceu:steel_plate', 4))
-        .itemPerRun(Item.of('minecraft:gunpowder', 8))
-        .unlock(sbw('mortar_shell'))
-        .icon(sbw('mortar_shell'))
-        .register()
-
     // ===================== COMPONENT TIER (MV, y=3) =====================
     // Propulsion + guidance cores (consumed by rockets / guided missiles / drones).
     WFResearch.builder('missile_engines')
         .category('ballistics').pos(2, 3)
         .nodeColor(BLUE)
         .name('Missile Engines')
-        .description('Solid-propellant rocket motors — the propulsion core of every rocket and guided missile. Unlocks Missile Engine production.')
+        .description('Solid-propellant rocket motors – the propulsion core of every rocket and guided missile. Unlocks Missile Engine production.')
         .requires('large_casings')
         .runs(20).ticksPerRun(360).eut(128).cwuPerRun(23040)   // ~64 CWU/t = MV midpoint
-        .itemPerRun(Item.of('gtceu:steel_plate', 6))
+        // MV-tier material demand: aluminium/magnalium structure + a pair of MV circuits.
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 6))
         .itemPerRun(Item.of('kubejs:solid_rocket_fuel', 2))
-        .itemPerRun(Item.of('gtceu:steel_rod', 4))
-        .itemTagPerRun('gtceu:circuits/mv', 1)
+        .itemPerRun(Item.of('gtceu:magnalium_rod', 4))
+        .itemTagPerRun('gtceu:circuits/mv', 2)
         .unlock(sbw('missile_engine'))
         .icon(sbw('missile_engine'))
         .register()
@@ -134,7 +121,7 @@ ServerEvents.recipes(event => {
         .category('ballistics').pos(4, 3)
         .nodeColor(BLUE)
         .name('Guidance Seekers')
-        .description('Infrared / radar seeker heads that let a missile track its target — the guidance core of every guided missile, SAM and smart mine. Unlocks Seeker production.')
+        .description('Infrared / radar seeker heads that let a missile track its target – the guidance core of every guided missile, SAM and smart mine.')
         .requires('large_casings')
         .runs(22).ticksPerRun(360).eut(128).cwuPerRun(23040)   // ~64 CWU/t = MV midpoint
         .itemPerRun(Item.of('gtceu:lv_sensor', 1))
@@ -145,23 +132,23 @@ ServerEvents.recipes(event => {
         .icon(sbw('seeker'))
         .register()
 
-    // FIVE warhead heads — the explosive payload cores. Each unlocks a superbwarfare:*_head item
+    // FIVE warhead heads – the explosive payload cores. Each unlocks a superbwarfare:*_head item
     // (GT recipe in guns/ammo.js) that its munition family CONSUMES. MV midpoint compute.
     ;[
         { id: 'he_warheads', x: -8, head: 'he_head', name: 'High Explosive Warheads',
-          desc: 'High-explosive filler warheads — the payload of HE shells, rockets, aerial bombs and fragmentation missiles.',
+          desc: 'High-explosive filler warheads – the payload of HE shells, rockets, aerial bombs and fragmentation missiles.',
           cost: [['gtceu:steel_plate', 6], ['minecraft:gunpowder', 12], ['gtceu:sulfur_dust', 4]] },
         { id: 'ap_warheads', x: -6, head: 'ap_head', name: 'Armor Piercing Warheads',
           desc: 'Dense tungsten-cored penetrator warheads for AP shells, AP rockets and anti-tank missiles.',
           cost: [['gtceu:steel_plate', 6], ['gtceu:tungsten_plate', 2], ['minecraft:gunpowder', 8]] },
         { id: 'grapeshot_warheads', x: -4, head: 'gs_head', name: 'Grapeshot Warheads',
-          desc: 'Canister warheads that burst into a cloud of shot — the payload of small- and large-calibre grapeshot shells.',
+          desc: 'Canister warheads that burst into a cloud of shot – the payload of small- and large-calibre grapeshot shells.',
           cost: [['gtceu:steel_plate', 6], ['gtceu:lead_nugget', 12], ['minecraft:gunpowder', 8]] },
         { id: 'cluster_warheads', x: -2, head: 'cm_head', name: 'Cluster Munitions',
           desc: 'Submunition-dispensing cluster warheads for large-calibre cluster shells and cluster rockets.',
           cost: [['gtceu:steel_plate', 8], ['gtceu:dynamite', 4], ['minecraft:gunpowder', 12]] },
         { id: 'pyrotechnics', x: 0, head: 'wp_head', name: 'Pyrotechnics',
-          desc: 'White-phosphorus incendiary warheads — the payload of every fire round: WP shells and WP mortar bombs.',
+          desc: 'White-phosphorus incendiary warheads – the payload of every fire round: WP shells and WP mortar bombs.',
           cost: [['gtceu:steel_plate', 6], ['minecraft:blaze_powder', 4], ['minecraft:gunpowder', 8]] },
     ].forEach(w => {
         const b = WFResearch.builder(w.id)
@@ -176,6 +163,40 @@ ServerEvents.recipes(event => {
         w.cost.forEach(it => addCost(b, it[0], it[1]))
         b.register()
     })
+
+    // ---- HE-warhead children (must be registered AFTER he_warheads above) ----
+
+    // Mortar Bombs (HE) – muzzle-loaded HE bombs for the man-portable Mortar. Moved under
+    // High Explosive Warheads: the HE mortar bomb is now HE-warhead tech, so it gates on he_warheads (MV).
+    WFResearch.builder('mortar_shell')
+        .category('ballistics').pos(-8, 2)
+        .nodeColor(BLUE)
+        .name('Mortar Bombs')
+        .description('Muzzle-loaded high-explosive mortar bombs for the man-portable Mortar. Gated on High Explosive Warheads. Unlocks HE mortar bomb production.')
+        .requires('he_warheads')
+        .runs(12).ticksPerRun(300).eut(128).cwuPerRun(15000)   // ~50 CWU/t – cheap MV filler
+        .itemPerRun(Item.of('gtceu:steel_plate', 4))
+        .itemPerRun(Item.of('minecraft:gunpowder', 8))
+        .unlock(sbw('mortar_shell'))
+        .icon(sbw('mortar_shell'))
+        .register()
+
+    // 40mm Grenades – low-velocity HE grenades for the M79 launcher and the Mk19 auto-GL
+    // (Humvee). Gated on High Explosive Warheads. Unlocks BOTH the Superb Warfare 40mm grenade
+    // and the MCSP 40mm HE round (recipes in guns/ammo.js).
+    WFResearch.builder('grenade_40mm')
+        .category('ballistics').pos(-9, 3)
+        .nodeColor(BLUE)
+        .name('40mm Grenades')
+        .description('Low-velocity 40mm high-explosive grenades for grenade launchers (M79, Mk19).')
+        .requires('he_warheads')
+        .runs(15).ticksPerRun(300).eut(128).cwuPerRun(19200)   // ~64 CWU/t = MV midpoint
+        .itemPerRun(Item.of('gtceu:steel_plate', 6))
+        .itemPerRun(Item.of('gtceu:dynamite', 4))
+        .itemPerRun(Item.of('minecraft:gunpowder', 8))
+        .unlocks(sbw('grenade_40mm'), Item.of('mcsp:40mm_explosive'))
+        .icon(sbw('grenade_40mm'))
+        .register()
 
     // ===================== MUNITION TIER (one ammo per node) =====================
     // Generic builder: id, ammo output, tree position, prereqs (array), tier, cost.
@@ -196,61 +217,62 @@ ServerEvents.recipes(event => {
         b.register()
     }
 
-    // --- Small vehicle shells (MV) — steel casing + head ---
+    // --- Small vehicle shells (MV) – steel casing + head ---
     ;[
         { id: 'high_explosive_1', out: 'small_shell_he', x: -8, y: 4, req: ['he_warheads'], name: 'Small HE Shells',
-          desc: 'High-explosive rounds for small-calibre vehicle cannons. Unlocks the Small Caliber HE Shell.',
+          desc: 'High-explosive rounds for small-calibre vehicle cannons.',
           runs: 25, cost: [['gtceu:steel_plate', 8], ['superbwarfare:primer', 8]] },
         { id: 'armor_piercing_1', out: 'small_shell_ap', x: -6, y: 4, req: ['ap_warheads'], name: 'Small AP Shells',
-          desc: 'Hardened penetrators for small-calibre vehicle cannons. Unlocks the Small Caliber AP Shell.',
+          desc: 'Hardened penetrators for small-calibre vehicle cannons.',
           runs: 25, cost: [['kubejs:steel_bullet_casing', 2], ['superbwarfare:primer', 4]] },
         { id: 'grapeshot_1', out: 'small_shell_gs', x: -4, y: 4, req: ['grapeshot_warheads'], name: 'Small Grapeshot Shells',
-          desc: 'Multi-projectile canister loads that shred infantry at close range. Unlocks the Small Caliber Grapeshot Shell.',
+          desc: 'Multi-projectile canister loads that shred infantry at close range.',
           runs: 20, cost: [['kubejs:steel_bullet_casing', 2], ['superbwarfare:primer', 4]] },
         { id: 'anti_air_1', out: 'small_shell_aa', x: -9, y: 4, req: ['he_warheads'], name: 'Small Anti-Air Shells',
-          desc: 'Proximity-fuzed fragmentation rounds for air defence (H/PJ-11 CIWS, LAV-AD). Unlocks the Small Caliber Anti-Air Shell.',
+          desc: 'Proximity-fuzed fragmentation rounds for air defence (H/PJ-11 CIWS, LAV-AD).',
           runs: 25, cost: [['kubejs:steel_bullet_casing', 2], ['#gtceu:circuits/lv', 2]] },
     ].forEach(n => { n.tier = 'mv'; munition(n) })
 
-    // --- Large tank/artillery shells (EV) — XL casing + head + grain ---
+    // --- Large tank/artillery shells (EV) – XL casing + head + grain ---
     ;[
         { id: 'large_shell_he', out: 'large_shell_he', x: -8, y: 5, req: ['high_explosive_1'], name: 'Large HE Shells',
-          desc: 'Tank and artillery main-gun high-explosive rounds. Unlocks the Large Caliber HE Shell.' },
+          desc: 'Tank and artillery main-gun high-explosive rounds.' },
         { id: 'large_shell_ap', out: 'large_shell_ap', x: -6, y: 5, req: ['armor_piercing_1'], name: 'Large AP Shells',
-          desc: 'Tank main-gun armour-piercing rounds. Unlocks the Large Caliber AP Shell.' },
+          desc: 'Tank main-gun armour-piercing rounds.' },
         { id: 'large_shell_gs', out: 'large_shell_gs', x: -4, y: 5, req: ['grapeshot_1'], name: 'Large Grapeshot Shells',
-          desc: 'Large-calibre canister rounds for close defence. Unlocks the Large Caliber Grapeshot Shell.' },
+          desc: 'Large-calibre canister rounds for close defence.' },
         { id: 'large_shell_cm', out: 'large_shell_cm', x: -2, y: 4, req: ['cluster_warheads'], name: 'Large Cluster Shells',
-          desc: 'Large-calibre cluster-munition rounds. Unlocks the Large Caliber Cluster Shell.' },
+          desc: 'Large-calibre cluster-munition rounds.' },
         { id: 'large_shell_wp', out: 'large_shell_wp', x: 0, y: 4, req: ['pyrotechnics'], name: 'Large White Phosphorus Shells',
-          desc: 'Large-calibre white-phosphorus incendiary rounds. Unlocks the Large Caliber WP Shell.' },
-    ].forEach(n => { n.tier = 'ev'; n.runs = 30; n.cost = [['gtceu:steel_plate', 12], ['superbwarfare:primer', 10], ['superbwarfare:grain', 8]]; munition(n) })
+          desc: 'Large-calibre white-phosphorus incendiary rounds.' },
+    // EV tier: the deeper large-shell nodes use vanadium steel plate (HV alloy) instead of plain steel.
+    ].forEach(n => { n.tier = 'ev'; n.runs = 30; n.cost = [['gtceu:vanadium_steel_plate', 12], ['superbwarfare:primer', 10], ['superbwarfare:grain', 8]]; munition(n) })
 
-    // --- Unguided rockets (MV) — missile engine + head. The head item enforces the warhead research;
+    // --- Unguided rockets (MV) – missile engine + head. The head item enforces the warhead research;
     //     the tree edge is the propulsion line (small_rocket -> the medium rockets) to keep the graph clean. ---
     ;[
         { id: 'small_rocket', out: 'small_rocket', x: 2, y: 4, req: ['missile_engines'], name: 'Small Rockets',
-          desc: 'Folding-fin HE rockets fired by helicopters and the Sodayo MLRS. Unlocks the Small Caliber Rocket.' },
+          desc: 'Folding-fin HE rockets fired by helicopters and the Sodayo MLRS.' },
         { id: 'medium_rocket_he', out: 'medium_rocket_he', x: 1, y: 5, req: ['small_rocket'], name: 'Medium HE Rockets',
-          desc: 'Medium-calibre high-explosive rockets for the Type-63 MLRS. Unlocks the Medium Caliber HE Rocket.' },
+          desc: 'Medium-calibre high-explosive rockets for the Type-63 MLRS.' },
         { id: 'medium_rocket_ap', out: 'medium_rocket_ap', x: 2, y: 5, req: ['small_rocket'], name: 'Medium AP Rockets',
-          desc: 'Medium-calibre armour-piercing rockets for the Type-63 MLRS. Unlocks the Medium Caliber AP Rocket.' },
+          desc: 'Medium-calibre armour-piercing rockets for the Type-63 MLRS.' },
         { id: 'medium_rocket_cm', out: 'medium_rocket_cm', x: 3, y: 5, req: ['small_rocket'], name: 'Medium Cluster Rockets',
-          desc: 'Medium-calibre cluster-munition rockets for the Type-63 MLRS. Unlocks the Medium Caliber Cluster Rocket.' },
+          desc: 'Medium-calibre cluster-munition rockets for the Type-63 MLRS.' },
     ].forEach(n => { n.tier = 'mv'; n.runs = 22; n.cost = [['gtceu:steel_plate', 8], ['superbwarfare:missile_engine', 2], ['kubejs:solid_rocket_fuel', 2]]; munition(n) })
 
-    // --- Aerial bombs (MV) — HE head + fin ring. Own column left of the HE shells; small -> medium chain. ---
+    // --- Aerial bombs (MV) – HE head + fin ring. Own column left of the HE shells; small -> medium chain. ---
     ;[
         { id: 'small_aerial_bomb', out: 'small_aerial_bomb', x: -10, y: 4, req: ['he_warheads'], name: 'Small Aerial Bombs',
-          desc: 'Small gravity high-explosive bombs for the Ju-87 Stuka. Unlocks the Small Aerial Bomb.' },
+          desc: 'Small gravity high-explosive bombs for the Ju-87 Stuka.' },
         { id: 'medium_aerial_bomb', out: 'medium_aerial_bomb', x: -10, y: 5, req: ['small_aerial_bomb'], name: 'Medium Aerial Bombs',
-          desc: 'Medium gravity high-explosive bombs for the Ju-87 Stuka. Unlocks the Medium Aerial Bomb.' },
+          desc: 'Medium gravity high-explosive bombs for the Ju-87 Stuka.' },
     ].forEach(n => { n.tier = 'mv'; n.runs = 20; n.cost = [['gtceu:steel_plate', 10], ['gtceu:steel_ring', 2], ['minecraft:gunpowder', 8]]; munition(n) })
 
-    // --- WP mortar bomb (Pyrotechnics, MV) — fire round. Sits beside the Large WP shell under Pyrotechnics. ---
+    // --- WP mortar bomb (Pyrotechnics, MV) – fire round. Sits beside the Large WP shell under Pyrotechnics. ---
     munition({
         id: 'mortar_shell_wp', out: 'mortar_shell_wp', x: 1, y: 4, req: ['pyrotechnics'], name: 'White Phosphorus Mortar',
-        desc: 'White-phosphorus incendiary mortar bombs. Unlocks the WP Mortar Bomb.',
+        desc: 'White-phosphorus incendiary mortar bombs.',
         tier: 'mv', runs: 15, cost: [['gtceu:steel_plate', 4], ['superbwarfare:wp_head', 2], ['minecraft:gunpowder', 6]],
     })
 
@@ -258,7 +280,7 @@ ServerEvents.recipes(event => {
     ;[
         { id: 'anti_ground_missiles', out: 'medium_anti_ground_missile', x: 4, y: 4, req: ['seekers'],
           tier: 'mv', runs: 25, name: 'Anti-Ground Missiles',
-          desc: 'Wire-/laser-guided anti-tank missiles (TOW class) fired by gun trucks, the Bradley and the TOW launcher. Unlocks the Medium Anti-Ground Missile.',
+          desc: 'Wire-/laser-guided anti-tank missiles (TOW class) fired by gun trucks, the Bradley and the TOW launcher.',
           cost: [['gtceu:stainless_steel_plate', 6], ['superbwarfare:missile_engine', 2], ['superbwarfare:seeker', 1]] },
         { id: 'heavy_anti_ground_missiles', out: 'large_anti_ground_missile', x: 4, y: 5, req: ['anti_ground_missiles'],
           tier: 'hv', runs: 28, name: 'Heavy Anti-Ground Missiles',
@@ -266,18 +288,18 @@ ServerEvents.recipes(event => {
           cost: [['gtceu:titanium_plate', 6], ['superbwarfare:large_motor', 1], ['superbwarfare:seeker', 2]] },
         { id: 'anti_air_missiles', out: 'medium_anti_air_missile', x: 5, y: 5, req: ['anti_ground_missiles'],
           tier: 'hv', runs: 30, name: 'Anti-Air Missiles',
-          desc: 'Radar-/IR-guided surface-to-air missiles for the LAV-AD air-defence vehicle. Unlocks the Medium Anti-Air Missile.',
+          desc: 'Radar-/IR-guided surface-to-air missiles for the LAV-AD air-defence vehicle.',
           cost: [['gtceu:stainless_steel_plate', 8], ['superbwarfare:missile_engine', 2], ['superbwarfare:seeker', 2]] },
     ].forEach(munition)
 
-    // --- Nuclear Bomb (IV APEX) — the B-2 Spirit's strategic payload (AshVehicle: ashvehicle:nuclearbombitem).
+    // --- Nuclear Bomb (IV APEX) – the B-2 Spirit's strategic payload (AshVehicle: ashvehicle:nuclearbombitem).
     //     BY FAR the most expensive munition to develop: IV compute + a fissile core, capping the aerial-bomb
-    //     column (small bomb -> medium bomb -> NUKE). Not routed through munition() — different namespace + IV tier. ---
+    //     column (small bomb -> medium bomb -> NUKE). Not routed through munition() – different namespace + IV tier. ---
     WFResearch.builder('nuclear_bomb')
         .category('ballistics').pos(-10, 6)
         .nodeColor(BLUE)
         .name('Nuclear Bomb')
-        .description('The B-2 Spirit\'s strategic payload: an implosion-type fission gravity bomb. The single most expensive round in the arsenal to develop — an IV-tier fissile weapon capping the aerial-bomb line.')
+        .description('The B-2 Spirit\'s strategic payload: an implosion-type fission gravity bomb.')
         .requires('medium_aerial_bomb')
         .runs(40).ticksPerRun(360).eut(8192).cwuPerRun(1474560)   // ~4096 CWU/t = IV midpoint
         .itemPerRun(Item.of('gtceu:uranium_235_block', 1))

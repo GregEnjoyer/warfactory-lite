@@ -174,17 +174,4 @@ ServerEvents.recipes(event => {
         'ronmc:laser_pointer', 'ronmc:tac_laser',
     ], [Item.of('gtceu:glass_lens', 1), Item.of('gtceu:steel_screw', 1), Item.of('#forge:plates/polyvinyl_chloride', 1), Item.of('#gtceu:circuits/mv', 1)], 100, 128, 'guns2');
 
-    // =========================
-    // AMMO MODS - standard bullet-tip swaps (MV) - FMJ/HP/AP/slug, still just
-    // a different bullet material, gated same as the rest of the Cold War line.
-    // =========================
-    replaceAttachments('ammo_mod', [
-        'tacz:ammo_mod_fmj', 'tacz:ammo_mod_hp', 'tacz:ammo_mod_i', 'tacz:ammo_mod_slug',
-    ], [Item.of('gtceu:lead_nugget', 2), Item.of('gtceu:steel_nugget', 1), Item.of('gtceu:steel_screw', 1)], 100, 128, 'guns2');
-
-    // AMMO MODS - explosive tip (HV) - needs an actual explosive-chain input.
-    replaceAttachments('ammo_mod_explosive', [
-        'tacz:ammo_mod_he', 'ronmc:m32a1_he',
-    ], [Item.of('gtceu:dynamite', 1), Item.of('gtceu:steel_nugget', 1), Item.of('gtceu:steel_screw', 1)], 150, 512, null);
-
 });

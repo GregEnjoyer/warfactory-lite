@@ -87,3 +87,32 @@ foliageBreakers = []
 	#Also flag manifest jars a client did NOT report (stripped mods). Off by default to reduce noise.
 	flagMissing = false
 
+#Server-enforced True Darkness (mod 'darkness'). True Darkness is a client-only render mod whose
+#settings a player could otherwise change via config/darkness.properties or its in-game config
+#screen. WFCore pins these values into the mod every frame and, on a server, pushes THIS section to
+#each client on join so the server's copy wins over the client's own. Editing darkness.properties or
+#the config screen then has no effect.
+[trueDarkness]
+	#Master switch. When off, WFCore stops enforcing and True Darkness falls back to its own config.
+	enabled = true
+	#Only darken block light; areas lit by the sky stay lit. false = full darkness even under open sky at night.
+	blockLightOnly = false
+	#Night is fully dark regardless of moon phase. false = a full moon lightens the night.
+	ignoreMoonPhase = true
+	#Enable the darkness effect in the Overworld.
+	darkOverworld = true
+	#Enable the darkness effect in the Nether (moot while the Nether is disabled).
+	darkNether = true
+	#Enable the darkness effect in The End.
+	darkEnd = true
+	#Enable the darkness effect in modded dimensions that have a sky.
+	darkDefault = true
+	#Enable the darkness effect in modded dimensions with no sky. Off by default to avoid breaking mining/utility dimensions.
+	darkSkyless = false
+	#Nether fog brightness floor (0 = darkest, 1 = vanilla). Only applies while darkNether is on.
+	#Range: 0.0 ~ 1.0
+	netherFog = 0.5
+	#End fog brightness floor (0 = darkest, 1 = vanilla). Only applies while darkEnd is on.
+	#Range: 0.0 ~ 1.0
+	endFog = 0.0
+

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-31",
+  "generated": "2026-08-01",
   "note": "fileName -> sha256 of every jar a client loads from mods/. Soft-checked by wfcore on join (see clientModAudit in wfcore.toml). Regenerate after any mods/ change: see script in the WF pack docs.",
   "mods": {
     "acceleratedrecoiling-20.1.12-alpha-all.jar": "e5852341ccb5a41c27f5866f6917a8bebb69a6a7aa045851983d692b9d621947",
@@ -100,9 +100,10 @@
     "warforge-remaintained-2.4.1.jar": "a5b0af33019d9b5655d9baf10fe51ccd3a3c6abf7872917df55bf77fa41735c3",
     "WaT 0.3.2.jar": "a665a5aa982476c38932f0264667d4f76cd309b954f0a45a4682cb832e597a1e",
     "wfballistics-1.1.6-all.jar": "244c36e299a252db70c71d03969cc8d98f8a812b832374a7575e66f138fb3607",
-    "wfcore-1.2.0.jar": "227eaf191dc7df90e6a3343058028651cfbb1361b8c4323509ab7f58a1d7c077",
+    "wfcore-1.2.0.jar": "df7555ea58cb4ffed1aef6fb0d023c293e61ade11a6af34a5c1ef844c563f6e2",
     "wfmedical-0.3.1.jar": "108dc0d18eeb4ba6233ec25bb5928c9d7942452b3406fcacd8cfd484e2108636",
     "wfweight-1.20.1-Forge-1.2.0.jar": "7e84939af202aed3e3d802799d5147da222f1c436dd31c3dce068a6645092846",
-    "yet_another_config_lib_v3-3.6.6+1.20.1-forge.jar": "bd05da3d9df29b914165583f1c6dfd918a138996447ff32c0418329824027a8f"
+    "yet_another_config_lib_v3-3.6.6+1.20.1-forge.jar": "bd05da3d9df29b914165583f1c6dfd918a138996447ff32c0418329824027a8f",
+    "darkness-forge-1.20.1-2.0.103-fork.jar": "6a1e7db25ad3eeb48642ac2fa3d5a61043e32493c9fda7f0631ba4f3f4cc3fd4"
   }
 }

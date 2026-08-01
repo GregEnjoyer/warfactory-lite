@@ -86,6 +86,10 @@
         },
         "ldlib": {
             "side": "BOTH"
+        },
+        "true-darkness-forge-updated-fork": {
+            "side": "CLIENT",
+            "update_strategy": "NONE"
         }
     }
 }

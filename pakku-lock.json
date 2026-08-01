@@ -3263,6 +3263,45 @@
             ]
         },
         {
+            "pakku_id": "xjxfjIaVkFKuVYHO",
+            "type": "MOD",
+            "side": "CLIENT",
+            "slug": {
+                "curseforge": "true-darkness-forge-updated-fork"
+            },
+            "name": {
+                "curseforge": "True Darkness [Forge] - Updated Fork"
+            },
+            "id": {
+                "curseforge": "970641"
+            },
+            "update_strategy": "NONE",
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "darkness-forge-1.20.1-2.0.103-fork.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "forge",
+                        "neoforge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/5080/314/darkness-forge-1.20.1-2.0.103-fork.jar",
+                    "id": "5080314",
+                    "parent_id": "970641",
+                    "hashes": {
+                        "sha1": "56be989675f110d74c04567c4ccc3c1941f7472c",
+                        "md5": "93217dc8f8a6f2745073bb190f82df1f"
+                    },
+                    "required_dependencies": [],
+                    "size": 29331,
+                    "date_published": "2024-02-04T13:12:36.493Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "bpp9Nlkf0wr7DsH9",
             "pakku_links": [
                 "lDL7VyNmSPLYGhl6"

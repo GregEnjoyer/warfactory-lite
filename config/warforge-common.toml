@@ -696,14 +696,14 @@
 
 	[SiegedFriend.MineTime]
 		#If enabled, breaking a block this profile would normally block is slowed down rather than cancelled in Inner sieged zone, member of the defending faction. Whitelisted per-block values below still apply even when this is false.
-		"SiegedFriend - MineTime Enabled" = false
+		"SiegedFriend - MineTime Enabled" = true
 		#Default slow-down mode: MULTIPLIER (break time = natural time x value) or FIXED (break time = value seconds).
-		"SiegedFriend - MineTime Default Mode" = "MULTIPLIER"
+		"SiegedFriend - MineTime Default Mode" = "FIXED"
 		#Default value for the chosen mode: a time multiplier for MULTIPLIER, or a break time in seconds for FIXED.
 		#Range: 0.0 ~ 100000.0
-		"SiegedFriend - MineTime Default Value" = 5.0
+		"SiegedFriend - MineTime Default Value" = 9.375
 		#Blocks that MineTime always slows in this profile (even when disabled above), optionally with a per-entry override. Each entry is a pattern, optionally followed by '=' and a value spec. Patterns: exact id ('gregtech:steam_macerator'), '*' globs ('gregtech:*', 'minecraft:*_ore') or block tags ('#forge:ores'). Value specs: 'x10' or '10' = 10x time, '30s' = fixed 30 seconds; omit to use the default mode/value. Example: 'gregtech:*=x20' slows every GregTech block to 20x break time.
-		"SiegedFriend - MineTime Whitelist" = []
+		"SiegedFriend - MineTime Whitelist" = ["gtceu:*"]
 		#Blocks excluded from MineTime in this profile (they keep full, uncancellable protection when the system is enabled). Same pattern syntax as the whitelist; no value spec. Whitelist entries win over the blacklist.
 		"SiegedFriend - MineTime Blacklist" = []
 
@@ -755,14 +755,14 @@
 
 	[SiegedFoe.MineTime]
 		#If enabled, breaking a block this profile would normally block is slowed down rather than cancelled in Inner sieged zone, attacker or other faction (chunk protection disabled). Whitelisted per-block values below still apply even when this is false.
-		"SiegedFoe - MineTime Enabled" = false
+		"SiegedFoe - MineTime Enabled" = true
 		#Default slow-down mode: MULTIPLIER (break time = natural time x value) or FIXED (break time = value seconds).
-		"SiegedFoe - MineTime Default Mode" = "MULTIPLIER"
+		"SiegedFoe - MineTime Default Mode" = "FIXED"
 		#Default value for the chosen mode: a time multiplier for MULTIPLIER, or a break time in seconds for FIXED.
 		#Range: 0.0 ~ 100000.0
-		"SiegedFoe - MineTime Default Value" = 5.0
+		"SiegedFoe - MineTime Default Value" = 9.375
 		#Blocks that MineTime always slows in this profile (even when disabled above), optionally with a per-entry override. Each entry is a pattern, optionally followed by '=' and a value spec. Patterns: exact id ('gregtech:steam_macerator'), '*' globs ('gregtech:*', 'minecraft:*_ore') or block tags ('#forge:ores'). Value specs: 'x10' or '10' = 10x time, '30s' = fixed 30 seconds; omit to use the default mode/value. Example: 'gregtech:*=x20' slows every GregTech block to 20x break time.
-		"SiegedFoe - MineTime Whitelist" = []
+		"SiegedFoe - MineTime Whitelist" = ["*"]
 		#Blocks excluded from MineTime in this profile (they keep full, uncancellable protection when the system is enabled). Same pattern syntax as the whitelist; no value spec. Whitelist entries win over the blacklist.
 		"SiegedFoe - MineTime Blacklist" = []
 
@@ -931,11 +931,11 @@
 	#Range: 0 ~ 1024
 	"Days Between Citadel Moves" = 7
 	#Applies claim limits that require upgrading to extend your faction's claim limit
-	"Enable Citadel Upgrade System" = false
+	"Enable Citadel Upgrade System" = true
 	#If true, forces all newly placed claim blocks, excluding siege blocks and citadels, to be directly adjacent to a pre-existing claim.
 	"Enabled Isolated Claims" = true
 	#Registry-id patterns blocked from the faction insurance stash. Supports '*' wildcards, for example 'minecraft:*shulker_box' or 'appliedenergistics2:*cell*'.
-	"Insurance Blacklist" = ["minecraft:*shulker_box", "appliedenergistics2:*cell*"]
+	"Insurance Blacklist" = ["minecraft:*shulker_box", "ae2:*cell*", "expandedae:*cell*", "sophisticatedbackpacks:*backpack", "gtceu:*_crate"]
 	#Default built-in flags that can be chosen by factions. Each id is rendered client-side as a solid colour square/rectangle. Use a vanilla dye colour name (e.g. red, light_blue) or a 6-digit hex colour (e.g. ff8800).
 	"Available Default Flags" = ["white", "light_gray", "gray", "black", "red", "orange", "yellow", "lime", "green", "cyan", "light_blue", "blue", "purple", "magenta", "pink", "brown"]
 	#Custom server-side flags allowed from resources/warforge/flags. Use '*' to allow all validated custom flags or list exact ids without extension.
@@ -1016,13 +1016,13 @@
 	"Maximum Vertical Siege Radius [Inclusive]" = 40
 	#Outer 'War' zone: chunks (square radius) from each active siege camp where kills count toward the siege and foes cannot break/place blocks (WarFriend/WarFoe profiles). Should be >= the Sieged radius.
 	#Range: > 0
-	"Battle Square Chunk Radius From Siege" = 2
+	"Battle Square Chunk Radius From Siege" = 32
 	#Inner 'Sieged' zone: chunks (square radius) from each active siege camp where chunk protection is fully disabled - anyone may breach (SiegedFriend/SiegedFoe profiles). Kills also count here. Typically smaller than the War radius.
 	#Range: > 0
-	"Sieged Square Chunk Radius From Siege" = 1
+	"Sieged Square Chunk Radius From Siege" = 3
 	#The number of chunks in any direction from the siege block that an attacker can be in to prevent siege abandon.
 	#Range: > 0
-	"Attacker Square Chunk Radius From Siege" = 1
+	"Attacker Square Chunk Radius From Siege" = 19
 	#The number of chunks in any direction from the siege block that a defender can be in to prevent siege abandon.
 	#Range: > 0
 	"Defender Square Chunk Radius From Siege" = 15

@@ -1,0 +1,287 @@
+# WarForge citadel progression — balanced around GregTech (GTCEu) tier progression.
+#
+# Factions start at level 0 (free) and spend the listed materials at their citadel to
+# reach each subsequent level, unlocking more claims / force-loaded chunks / insurance
+# slots / FOBs.
+#
+# Layout: 6 GT tiers x 3 levels each (Steam, LV, MV, HV, EV, IV) = levels 1..18.
+#   * "increasing amount of the tier's components": the tier's plate count scales 8 -> 16 -> 24
+#     across the three levels of that tier.
+#   * Circuit gate per level within a tier: L1 uses the PREVIOUS voltage circuit, L2 the
+#     CURRENT tier circuit, L3 the NEXT tier circuit (so the third level of a tier forces you
+#     to have already reached into the tier above).
+#   * Steam is the pre-electric base tier: plates only, no circuits. Every tier above Steam
+#     adds its 8 plates + 8 circuits of the current tier as the per-level base unit.
+#
+# Caps reached at the top level (18): claim_limit 75, max_fobs 4, fob_ticket_limit 25,
+# insurance_slots 64. claim_limit is validated to never decrease between levels.
+#
+# Requirement entry: { type = "ore", id = "<item tag>", count = N }  (tag match, e.g. circuits)
+#                    { type = "item", id = "<item id>",  count = N }  (exact item, e.g. plates)
+
+# ── Base ─────────────────────────────────────────────────────────────────────────────────
+[[levels]]
+level = 0
+claim_limit = 5
+insurance_slots = 0
+loaded_chunks = 4
+fob_ticket_limit = 5
+fob_ticket_regen = 1
+max_fobs = 0
+extra_claim_cost = []
+requirements = []
+
+# ── Steam tier (pre-electric: bronze plates only, no circuits) ─────────────────────────────
+[[levels]]
+level = 1
+claim_limit = 8
+insurance_slots = 0
+loaded_chunks = 4
+fob_ticket_limit = 5
+fob_ticket_regen = 1
+max_fobs = 0
+extra_claim_cost = []
+requirements = [
+    { type = "item", id = "gtceu:bronze_plate", count = 8 },
+]
+
+[[levels]]
+level = 2
+claim_limit = 11
+insurance_slots = 0
+loaded_chunks = 4
+fob_ticket_limit = 5
+fob_ticket_regen = 1
+max_fobs = 0
+extra_claim_cost = []
+requirements = [
+    { type = "item", id = "gtceu:bronze_plate", count = 16 },
+]
+
+[[levels]]
+level = 3
+claim_limit = 14
+insurance_slots = 0
+loaded_chunks = 6
+fob_ticket_limit = 6
+fob_ticket_regen = 1
+max_fobs = 1
+extra_claim_cost = []
+requirements = [
+    { type = "item", id = "gtceu:bronze_plate", count = 24 },
+]
+
+# ── LV tier (steel plates; circuits: ULV -> LV -> MV) ──────────────────────────────────────
+[[levels]]
+level = 4
+claim_limit = 18
+insurance_slots = 4
+loaded_chunks = 8
+fob_ticket_limit = 8
+fob_ticket_regen = 1
+max_fobs = 1
+extra_claim_cost = []
+requirements = [
+    { type = "item", id = "gtceu:steel_plate", count = 8 },
+    { type = "ore", id = "gtceu:circuits/ulv", count = 8 },
+]
+
+[[levels]]
+level = 5
+claim_limit = 22
+insurance_slots = 8
+loaded_chunks = 10
+fob_ticket_limit = 9
+fob_ticket_regen = 1
+max_fobs = 1
+extra_claim_cost = []
+requirements = [
+    { type = "item", id = "gtceu:steel_plate", count = 16 },
+    { type = "ore", id = "gtceu:circuits/lv", count = 8 },
+]
+
+[[levels]]
+level = 6
+claim_limit = 26
+insurance_slots = 12
+loaded_chunks = 12
+fob_ticket_limit = 10
+fob_ticket_regen = 1
+max_fobs = 1
+extra_claim_cost = []
+requirements = [
+    { type = "item", id = "gtceu:steel_plate", count = 24 },
+    { type = "ore", id = "gtceu:circuits/mv", count = 8 },
+]
+
+# ── MV tier (aluminium plates; circuits: LV -> MV -> HV) ───────────────────────────────────
+[[levels]]
+level = 7
+claim_limit = 30
+insurance_slots = 16
+loaded_chunks = 14
+fob_ticket_limit = 13
+fob_ticket_regen = 1
+max_fobs = 2
+extra_claim_cost = []
+requirements = [
+    { type = "item", id = "gtceu:aluminium_plate", count = 8 },
+    { type = "ore", id = "gtceu:circuits/lv", count = 8 },
+]
+
+[[levels]]
+level = 8
+claim_limit = 34
+insurance_slots = 20
+loaded_chunks = 16
+fob_ticket_limit = 14
+fob_ticket_regen = 1
+max_fobs = 2
+extra_claim_cost = []
+requirements = [
+    { type = "item", id = "gtceu:aluminium_plate", count = 16 },
+    { type = "ore", id = "gtceu:circuits/mv", count = 8 },
+]
+
+[[levels]]
+level = 9
+claim_limit = 38
+insurance_slots = 24
+loaded_chunks = 18
+fob_ticket_limit = 15
+fob_ticket_regen = 1
+max_fobs = 2
+extra_claim_cost = []
+requirements = [
+    { type = "item", id = "gtceu:aluminium_plate", count = 24 },
+    { type = "ore", id = "gtceu:circuits/hv", count = 8 },
+]
+
+# ── HV tier (stainless steel plates; circuits: MV -> HV -> EV) ─────────────────────────────
+[[levels]]
+level = 10
+claim_limit = 42
+insurance_slots = 28
+loaded_chunks = 20
+fob_ticket_limit = 17
+fob_ticket_regen = 2
+max_fobs = 2
+extra_claim_cost = []
+requirements = [
+    { type = "item", id = "gtceu:stainless_steel_plate", count = 8 },
+    { type = "ore", id = "gtceu:circuits/mv", count = 8 },
+]
+
+[[levels]]
+level = 11
+claim_limit = 46
+insurance_slots = 32
+loaded_chunks = 22
+fob_ticket_limit = 18
+fob_ticket_regen = 2
+max_fobs = 3
+extra_claim_cost = []
+requirements = [
+    { type = "item", id = "gtceu:stainless_steel_plate", count = 16 },
+    { type = "ore", id = "gtceu:circuits/hv", count = 8 },
+]
+
+[[levels]]
+level = 12
+claim_limit = 50
+insurance_slots = 36
+loaded_chunks = 24
+fob_ticket_limit = 19
+fob_ticket_regen = 2
+max_fobs = 3
+extra_claim_cost = []
+requirements = [
+    { type = "item", id = "gtceu:stainless_steel_plate", count = 24 },
+    { type = "ore", id = "gtceu:circuits/ev", count = 8 },
+]
+
+# ── EV tier (titanium plates; circuits: HV -> EV -> IV) ────────────────────────────────────
+[[levels]]
+level = 13
+claim_limit = 55
+insurance_slots = 40
+loaded_chunks = 26
+fob_ticket_limit = 20
+fob_ticket_regen = 2
+max_fobs = 3
+extra_claim_cost = []
+requirements = [
+    { type = "item", id = "gtceu:titanium_plate", count = 8 },
+    { type = "ore", id = "gtceu:circuits/hv", count = 8 },
+]
+
+[[levels]]
+level = 14
+claim_limit = 60
+insurance_slots = 44
+loaded_chunks = 28
+fob_ticket_limit = 21
+fob_ticket_regen = 2
+max_fobs = 3
+extra_claim_cost = []
+requirements = [
+    { type = "item", id = "gtceu:titanium_plate", count = 16 },
+    { type = "ore", id = "gtceu:circuits/ev", count = 8 },
+]
+
+[[levels]]
+level = 15
+claim_limit = 65
+insurance_slots = 48
+loaded_chunks = 30
+fob_ticket_limit = 22
+fob_ticket_regen = 2
+max_fobs = 3
+extra_claim_cost = []
+requirements = [
+    { type = "item", id = "gtceu:titanium_plate", count = 24 },
+    { type = "ore", id = "gtceu:circuits/iv", count = 8 },
+]
+
+# ── IV tier (tungsten steel plates; circuits: EV -> IV -> LuV) — caps at level 18 ──────────
+[[levels]]
+level = 16
+claim_limit = 69
+insurance_slots = 54
+loaded_chunks = 32
+fob_ticket_limit = 23
+fob_ticket_regen = 3
+max_fobs = 4
+extra_claim_cost = []
+requirements = [
+    { type = "item", id = "gtceu:tungsten_steel_plate", count = 8 },
+    { type = "ore", id = "gtceu:circuits/ev", count = 8 },
+]
+
+[[levels]]
+level = 17
+claim_limit = 72
+insurance_slots = 60
+loaded_chunks = 34
+fob_ticket_limit = 24
+fob_ticket_regen = 3
+max_fobs = 4
+extra_claim_cost = []
+requirements = [
+    { type = "item", id = "gtceu:tungsten_steel_plate", count = 16 },
+    { type = "ore", id = "gtceu:circuits/iv", count = 8 },
+]
+
+[[levels]]
+level = 18
+claim_limit = 75
+insurance_slots = 64
+loaded_chunks = 36
+fob_ticket_limit = 25
+fob_ticket_regen = 3
+max_fobs = 4
+extra_claim_cost = []
+requirements = [
+    { type = "item", id = "gtceu:tungsten_steel_plate", count = 24 },
+    { type = "ore", id = "gtceu:circuits/luv", count = 8 },
+]

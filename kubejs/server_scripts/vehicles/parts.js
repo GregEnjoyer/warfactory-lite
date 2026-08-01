@@ -25,7 +25,7 @@ ServerEvents.recipes(event => {
         .inputFluids(Fluid.of('gtceu:glue',500))
         .itemOutputs(Item.of('superbwarfare:propeller', 1))
         .duration(120)
-        .EUt(500)
+        .EUt(120)
 
 
         event.recipes.gtceu.assembler('kubejs:large_propeller')
@@ -93,6 +93,4 @@ ServerEvents.recipes(event => {
         .itemOutputs(Item.of('kubejs:solid_rocket_fuel'))
         .duration(200)
         .EUt(30)
-
-
  })   

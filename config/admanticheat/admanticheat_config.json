@@ -37,7 +37,32 @@
   // Check resourcepack IDs only (default: false)
   "enableResourcePackIdValidation": true,
   // Mod IDs to always ignore. Don't add comma after last item!
-  "ignoredModIds": [],
+  // These are CLIENT-ONLY mods absent from the dedicated server, so they would otherwise be flagged as
+  // extra mods and hard-kick legit players. wfcore soft-audits them instead (hashes vs wfcore-modmanifest.json,
+  // flags drift without kicking). Server-SHARED mods are intentionally NOT here so the anticheat still checks them.
+  // Regenerate this list when the client/server mod split changes (see WF pack docs).
+  "ignoredModIds": [
+    "acceleratedrendering",
+    "borderlesswindow",
+    "configured",
+    "cyanide",
+    "embeddium",
+    "fancymenu",
+    "jei",
+    "journeymap",
+    "mcgltf",
+    "melody",
+    "minemenu",
+    "oculus",
+    "particle_core",
+    "playeranimator",
+    "reforgedplaymod",
+    "replaymod",
+    "rubidium",
+    "searchables",
+    "sound_physics_remastered",
+    "taczpackreplacer"
+  ],
   // Resource pack IDs to always ignore. Don't add comma after last item!
   "ignoredPackIds": [],
   // Player UUIDs to skip ID checks for. Don't add comma after last item!
@@ -79,7 +104,7 @@
   // Check if packets arrive in the right order
   "validatePacketSequencing": true,
   // Max packets per second before flagging (default: 50)
-  "maxPacketRatePerSecond": 50,
+  "maxPacketRatePerSecond": 75,
   // Max packet size in bytes (default: 32KB)
   "maxPacketSizeBytes": 32767,
   // How old packets can be before flagging (default: 5 seconds)

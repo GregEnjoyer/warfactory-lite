@@ -4,483 +4,110 @@
 // GATING: the five GROUND-vehicle parts (vehicle_frame, engine, track, cannon_barrel,
 // weapons_system) at LV/MV/HV/EV are each gated on their own node in the independent
 // component tree — WFResearch.condition('veh_comp_<tier>_<part>'), defined in
-// server_scripts/vehicle_research.js on the "Ground vehicles" tab.
-// The AVIATION parts (air_frame, wing, rotor, cockpit) and the whole IV tier still carry a
-// condition on the retired 'veh_<tier>' ids, which no longer exist -> they FAIL OPEN
+// startup_scripts/vehicle_research.js on the "Ground vehicles" tab.
+// The AVIATION parts (air_frame, wing, rotor, cockpit) gate on 'air_comp_<tier>_<part>'.
+// EVERY IV recipe gates on the retired-but-present 'veh_iv' node -> those FAIL OPEN
 // (ungated). Intentional: they'll be re-homed under a future Aviation-page component tree;
-// no ground vehicle needs them.
+// no ground vehicle needs the ungated ones.
 //
-// Each part is assembled from its tier's plate + a component-flavour ingredient. Inputs/
-// duration/EUt are simple tunable placeholders — only pure gtceu:/minecraft: ids are used so
-// these resolve in any instance. The per-part circuit number keeps each of a tier's 9 recipes
-// uniquely selectable in the assembler.
+// Each part is assembled from its tier's plate + a component-flavour ingredient. Only pure
+// gtceu:/minecraft:/wfcore: ids are used so these resolve in any instance. The per-part
+// circuit number keeps each of a tier's recipes uniquely selectable in the assembler.
+//
+// ── COST SCALING (mild pass — everything pricier, steeper the higher the tier) ───────────
+// Vehicles were made more expensive; lower tiers stay relatively cheap while higher tiers
+// grow disproportionately (infrastructure demand). Component *material* is scaled here by a
+// per-tier factor; the per-vehicle *assembly* cost (circuits/cable/time) is scaled in
+// server_scripts/vehicle_factory.js by the SAME factor. Item counts scale capped at a 64
+// stack; fluids scale uncapped. Retune by editing TIER_COST alone.
+const TIER_COST = { lv: 1.1, mv: 1.25, hv: 1.5, ev: 1.8, iv: 2.2 }
+const EUT       = { lv: 32,  mv: 128,  hv: 512, ev: 2048, iv: 8192 } // tier voltage (NOT scaled)
+const sc  = (tier, n) => Math.min(64, Math.round(n * TIER_COST[tier])) // item count, 64-stack cap
+const scF = (tier, n) => Math.round(n * TIER_COST[tier])               // fluid mB, uncapped
+
+// Ground parts gate on veh_comp_<tier>_<part>; aviation parts on air_comp_<tier>_<part>;
+// EVERY iv recipe gates on veh_iv (see header). Per-part circuit selector is tier-constant.
+const GROUND = ['vehicle_frame', 'engine', 'track', 'cannon_barrel', 'weapons_system']
+const CIRC   = { vehicle_frame: 23, air_frame: 23, engine: 23, wing: 31, rotor: 23, cockpit: 31, track: 29, cannon_barrel: 25, weapons_system: 30 }
+const condOf = (tier, part) => tier === 'iv' ? 'veh_iv'
+    : (GROUND.indexOf(part) >= 0 ? 'veh_comp_' : 'air_comp_') + tier + '_' + part
+
+// PARTS[part][tier] = { items: [[count, id], …], fluid: [id, mB] | null }
+const PARTS = {
+    vehicle_frame: {
+        lv: { items: [[8, 'gtceu:steel_block'], [32, 'wfcore:double_galvanized_steel_plate'], [32, 'gtceu:black_steel_frame'], [32, 'gtceu:wrought_iron_plate'], [64, 'gtceu:tin_bolt']], fluid: ['gtceu:tin', 32 * 144] },
+        mv: { items: [[8, 'gtceu:aluminium_block'], [32, 'gtceu:double_cobalt_brass_plate'], [32, 'gtceu:aluminium_frame'], [32, 'gtceu:magnalium_plate'], [64, 'gtceu:bronze_bolt']], fluid: ['gtceu:tin', 32 * 144] },
+        hv: { items: [[8, 'gtceu:stainless_steel_block'], [32, 'gtceu:double_blue_steel_plate'], [32, 'gtceu:ultimet_frame'], [32, 'gtceu:black_bronze_plate'], [64, 'gtceu:steel_bolt']], fluid: ['gtceu:soldering_alloy', 32 * 144] },
+        ev: { items: [[8, 'gtceu:titanium_block'], [32, 'gtceu:double_hastelloy_c_276_plate'], [32, 'gtceu:hastelloy_x_frame'], [32, 'gtceu:hssg_plate'], [64, 'gtceu:stainless_steel_bolt']], fluid: ['gtceu:soldering_alloy', 32 * 144] },
+        iv: { items: [[16, 'gtceu:tungsten_steel_plate'], [32, 'gtceu:double_tungsten_steel_plate'], [32, 'gtceu:hsse_rod']], fluid: ['gtceu:soldering_alloy', 32 * 144] },
+    },
+    air_frame: {
+        lv: { items: [[8, 'minecraft:iron_block'], [16, 'gtceu:double_steel_plate'], [32, 'gtceu:black_steel_frame'], [32, 'gtceu:invar_frame']], fluid: ['gtceu:tin', 32 * 144] },
+        mv: { items: [[8, 'gtceu:cobalt_brass_block'], [16, 'gtceu:double_aluminium_plate'], [32, 'gtceu:aluminium_frame'], [32, 'gtceu:magnalium_plate']], fluid: ['gtceu:tin', 32 * 144] },
+        hv: { items: [[8, 'gtceu:blue_steel_block'], [16, 'gtceu:double_stainless_steel_plate'], [32, 'gtceu:ultimet_frame'], [32, 'gtceu:black_bronze_plate']], fluid: ['gtceu:soldering_alloy', 64 * 144] },
+        ev: { items: [[8, 'gtceu:stellite_100_block'], [16, 'gtceu:double_titanium_plate'], [32, 'gtceu:hastelloy_x_frame'], [32, 'gtceu:hssg_plate']], fluid: ['gtceu:soldering_alloy', 64 * 144] },
+    },
+    engine: {
+        lv: { items: [[16, 'gtceu:black_steel_gear'], [32, 'gtceu:small_steel_gear'], [32, 'gtceu:lv_electric_motor'], [16, 'gtceu:lv_electric_piston'], [24, 'wfcore:galvanized_steel_rod']], fluid: ['gtceu:lubricant', 8000] },
+        mv: { items: [[16, 'gtceu:cobalt_brass_gear'], [32, 'gtceu:small_aluminium_gear'], [32, 'gtceu:mv_electric_motor'], [16, 'gtceu:mv_electric_piston'], [24, 'gtceu:magnalium_rod']], fluid: ['gtceu:lubricant', 8000] },
+        hv: { items: [[16, 'gtceu:black_bronze_gear'], [32, 'gtceu:small_stainless_steel_gear'], [32, 'gtceu:hv_electric_motor'], [16, 'gtceu:hv_electric_piston'], [24, 'gtceu:ultimet_rod']], fluid: ['gtceu:lubricant', 8000] },
+        ev: { items: [[16, 'gtceu:hssg_gear'], [32, 'gtceu:small_titanium_gear'], [32, 'gtceu:ev_electric_motor'], [16, 'gtceu:ev_electric_piston'], [24, 'gtceu:hastelloy_x_rod']], fluid: ['gtceu:lubricant', 8000] },
+        iv: { items: [[16, 'gtceu:hsse_gear'], [32, 'gtceu:small_tungsten_steel_gear'], [32, 'gtceu:iv_electric_motor'], [16, 'gtceu:iv_electric_piston'], [24, 'gtceu:hsse_rod']], fluid: ['gtceu:lubricant', 8000] },
+    },
+    wing: {
+        lv: { items: [[16, 'gtceu:double_black_steel_plate'], [16, 'wfcore:galvanized_steel_plate']], fluid: ['gtceu:tin', 16 * 144] },
+        mv: { items: [[16, 'gtceu:double_aluminium_plate'], [16, 'gtceu:magnalium_plate']], fluid: ['gtceu:tin', 16 * 144] },
+        hv: { items: [[16, 'gtceu:double_stainless_steel_plate'], [16, 'gtceu:ultimet_plate']], fluid: ['gtceu:tin', 32 * 144] },
+        ev: { items: [[16, 'gtceu:double_titanium_plate'], [16, 'gtceu:hssg_plate']], fluid: ['gtceu:tin', 64 * 144] },
+        iv: { items: [[16, 'gtceu:double_tungsten_steel_plate'], [16, 'gtceu:hsss_plate']], fluid: ['gtceu:tin', 64 * 144] },
+    },
+    rotor: {
+        mv: { items: [[24, 'gtceu:cobalt_brass_turbine_blade']], fluid: null },
+        hv: { items: [[24, 'gtceu:black_bronze_turbine_blade']], fluid: null },
+        ev: { items: [[24, 'gtceu:hssg_turbine_blade']], fluid: null },
+    },
+    cockpit: {
+        lv: { items: [[64, 'gtceu:tempered_glass'], [16, '#gtceu:circuits/lv'], [32, 'gtceu:rubber_plate'], [16, 'minecraft:leather']], fluid: null },
+        mv: { items: [[64, 'gtceu:cleanroom_glass'], [16, '#gtceu:circuits/mv'], [32, 'gtceu:polyethylene_plate']], fluid: null },
+        hv: { items: [[64, 'gtceu:laminated_glass'], [16, '#gtceu:circuits/hv'], [32, 'gtceu:polytetrafluoroethylene_plate']], fluid: null },
+        ev: { items: [[64, 'gtceu:laminated_glass'], [16, '#gtceu:circuits/ev'], [64, 'gtceu:polytetrafluoroethylene_plate']], fluid: null },
+        iv: { items: [[64, 'gtceu:laminated_glass'], [16, '#gtceu:circuits/iv'], [64, 'gtceu:polytetrafluoroethylene_plate']], fluid: null },
+    },
+    track: {
+        lv: { items: [[64, 'gtceu:rubber_plate'], [32, 'gtceu:small_steel_gear'], [32, 'gtceu:invar_rod'], [48, 'gtceu:wrought_iron_ring'], [32, 'gtceu:black_steel_plate']], fluid: null },
+        mv: { items: [[64, 'gtceu:silicone_rubber_plate'], [32, 'gtceu:small_aluminium_gear'], [32, 'gtceu:magnalium_rod'], [48, 'gtceu:rose_gold_ring'], [32, 'gtceu:cobalt_brass_plate']], fluid: null },
+        hv: { items: [[64, 'gtceu:silicone_rubber_plate'], [32, 'gtceu:small_stainless_steel_gear'], [32, 'gtceu:ultimet_rod'], [48, 'gtceu:stainless_steel_ring'], [32, 'gtceu:black_bronze_plate']], fluid: null },
+        ev: { items: [[64, 'gtceu:styrene_butadiene_rubber_plate'], [32, 'gtceu:small_titanium_gear'], [32, 'gtceu:hastelloy_x_rod'], [48, 'gtceu:titanium_ring'], [32, 'gtceu:hssg_plate']], fluid: null },
+        iv: { items: [[64, 'gtceu:styrene_butadiene_rubber_plate'], [32, 'gtceu:small_tungsten_steel_gear'], [32, 'gtceu:hsse_rod'], [32, 'gtceu:tungsten_steel_plate']], fluid: null },
+    },
+    cannon_barrel: {
+        lv: { items: [[16, 'gtceu:steel_block']], fluid: ['gtceu:tin_alloy', 8 * 144] },
+        mv: { items: [[16, 'gtceu:aluminium_block']], fluid: ['gtceu:tin_alloy', 8 * 144] },
+        hv: { items: [[16, 'gtceu:stainless_steel_block']], fluid: ['gtceu:tin_alloy', 8 * 144] },
+        ev: { items: [[16, 'gtceu:titanium_block']], fluid: ['gtceu:tin_alloy', 16 * 144] },
+    },
+    weapons_system: {
+        lv: { items: [[32, 'gtceu:steel_plate'], [16, '#gtceu:circuits/lv'], [32, 'wfcore:galvanized_steel_rod'], [16, 'gtceu:steel_spring'], [32, 'gtceu:red_alloy_single_cable']], fluid: null },
+        mv: { items: [[32, 'gtceu:aluminium_plate'], [16, '#gtceu:circuits/mv'], [32, 'gtceu:magnalium_rod'], [16, 'gtceu:aluminium_spring'], [32, 'gtceu:annealed_copper_single_cable']], fluid: null },
+        hv: { items: [[32, 'gtceu:stainless_steel_plate'], [16, '#gtceu:circuits/hv'], [32, 'gtceu:ultimet_rod'], [16, 'gtceu:aluminium_spring'], [32, 'gtceu:electrum_single_cable']], fluid: null },
+        ev: { items: [[32, 'gtceu:titanium_plate'], [16, '#gtceu:circuits/ev'], [32, 'gtceu:hastelloy_x_rod'], [16, 'gtceu:hssg_spring'], [32, 'gtceu:black_steel_single_cable']], fluid: null },
+        iv: { items: [[32, 'gtceu:tungsten_steel_plate'], [16, '#gtceu:circuits/iv'], [32, 'gtceu:hsse_rod'], [16, 'gtceu:tungsten_spring'], [32, 'gtceu:platinum_single_cable']], fluid: null },
+    },
+}
+
 ServerEvents.recipes(event => {
-    // tier -> main plate + assembler voltage (kept under each tier's EU/t cap)
-
-
-
-            event.recipes.gtceu
-
-
-            event.recipes.gtceu.assembler('veh_' + 'lv' + '_' + 'vehicle_frame')
-                .itemInputs("8x gtceu:steel_block")
-                .itemInputs("32x wfcore:double_galvanized_steel_plate")
-                .itemInputs("32x gtceu:black_steel_frame")
-                .itemInputs("32x gtceu:wrought_iron_plate")
-                .itemInputs("64x gtceu:tin_bolt")
-                .inputFluids(Fluid.of('gtceu:tin', 32*144))
-                .itemOutputs('kubejs:lv_vehicle_frame')
-                .circuit(23)
+    Object.keys(PARTS).forEach(part => {
+        const tiers = PARTS[part]
+        Object.keys(tiers).forEach(tier => {
+            const spec = tiers[tier]
+            const r = event.recipes.gtceu.assembler('veh_' + tier + '_' + part)
+            spec.items.forEach(([n, id]) => r.itemInputs(sc(tier, n) + 'x ' + id))
+            if (spec.fluid) r.inputFluids(Fluid.of(spec.fluid[0], scF(tier, spec.fluid[1])))
+            r.itemOutputs('kubejs:' + tier + '_' + part)
+                .circuit(CIRC[part])
                 .duration(200)
-                .EUt(32)
-                .addCondition(WFResearch.condition('veh_comp_' + 'lv' + '_' + 'vehicle_frame'))
-
-
-            event.recipes.gtceu.assembler('veh_' + 'mv' + '_' + 'vehicle_frame')
-                            .itemInputs("8x gtceu:aluminium_block")
-                            .itemInputs("32x gtceu:double_cobalt_brass_plate")
-                            .itemInputs("32x gtceu:aluminium_frame")
-                            .itemInputs("32x gtceu:magnalium_plate")
-                            .itemInputs("64x gtceu:bronze_bolt")
-                            .inputFluids(Fluid.of('gtceu:tin', 32*144))
-                            .itemOutputs('kubejs:mv_vehicle_frame')
-                            .circuit(23)
-                            .duration(200)
-                            .EUt(128)
-                            .addCondition(WFResearch.condition('veh_comp_' + 'mv' + '_' + 'vehicle_frame'))
-
-
-            event.recipes.gtceu.assembler('veh_' + 'hv' + '_' + 'vehicle_frame')
-                                        .itemInputs("8x gtceu:stainless_steel_block")
-                                        .itemInputs("32x gtceu:double_blue_steel_plate")
-                                        .itemInputs("32x gtceu:ultimet_frame")
-                                        .itemInputs("32x gtceu:black_bronze_plate")
-                                        .itemInputs("64x gtceu:steel_bolt")
-                                        .inputFluids(Fluid.of('gtceu:soldering_alloy', 32*144))
-                                        .itemOutputs('kubejs:hv_vehicle_frame')
-                                        .circuit(23)
-                                        .duration(200)
-                                        .EUt(128*4)
-                                        .addCondition(WFResearch.condition('veh_comp_' + 'hv' + '_' + 'vehicle_frame'))
-
-
-            event.recipes.gtceu.assembler('veh_' + 'ev' + '_' + 'vehicle_frame')
-                                                    .itemInputs("8x gtceu:titanium_block")
-                                                    .itemInputs("32x gtceu:double_hastelloy_c_276_plate")
-                                                    .itemInputs("32x gtceu:hastelloy_x_frame")
-                                                    .itemInputs("32x gtceu:hssg_plate")
-                                                    .itemInputs("64x gtceu:stainless_steel_bolt")
-                                                    .inputFluids(Fluid.of('gtceu:soldering_alloy', 32*144))
-                                                    .itemOutputs('kubejs:ev_vehicle_frame')
-                                                    .circuit(23)
-                                                    .duration(200)
-                                                    .EUt(128*4*4)
-                                                    .addCondition(WFResearch.condition('veh_comp_' + 'ev' + '_' + 'vehicle_frame'))
-
-            event.recipes.gtceu.assembler('veh_' + 'iv' + '_' + 'vehicle_frame')
-                                                    .itemInputs("16x gtceu:tungsten_steel_plate")
-                                                    .itemInputs("32x gtceu:double_tungsten_steel_plate")
-                                                    .itemInputs("32x gtceu:hsse_rod")
-                                                    .inputFluids(Fluid.of('gtceu:soldering_alloy', 32*144))
-                                                    .itemOutputs('kubejs:iv_vehicle_frame')
-                                                    .circuit(23)
-                                                    .duration(200)
-                                                    .EUt(128*4*4*4)
-                                                    .addCondition(WFResearch.condition('veh_' + 'iv'))
-
-            event.recipes.gtceu.assembler('veh_' + 'lv' + '_' + 'air_frame')
-                                                                .itemInputs("8x minecraft:iron_block")
-                                                                .itemInputs("16x gtceu:double_steel_plate")
-                                                                .itemInputs("32x gtceu:black_steel_frame")
-                                                                .itemInputs("32x gtceu:invar_frame")
-                                                                .inputFluids(Fluid.of('gtceu:tin', 32*144))
-                                                                .itemOutputs('kubejs:lv_air_frame')
-                                                                .circuit(23)
-                                                                .duration(200)
-                                                                .EUt(32)
-                                                                .addCondition(WFResearch.condition('veh_' + 'lv'))
-
-
-            event.recipes.gtceu.assembler('veh_' + 'mv' + '_' + 'air_frame')
-                  .itemInputs("8x gtceu:cobalt_brass_block")
-                  .itemInputs("16x gtceu:double_aluminium_plate")
-                  .itemInputs("32x gtceu:aluminium_frame")
-                  .itemInputs("32x gtceu:magnalium_plate")
-                  .inputFluids(Fluid.of('gtceu:tin', 32*144))
-                  .itemOutputs('kubejs:mv_air_frame')
-                  .circuit(23)
-                  .duration(200)
-                  .EUt(32*4)
-                  .addCondition(WFResearch.condition('veh_' + 'mv'))
-
-            event.recipes.gtceu.assembler('veh_' + 'hv' + '_' + 'air_frame')
-                   .itemInputs("8x gtceu:blue_steel_block")
-                   .itemInputs("16x gtceu:double_stainless_steel_plate")
-                   .itemInputs("32x gtceu:ultimet_frame")
-                   .itemInputs("32x gtceu:black_bronze_plate")
-                   .inputFluids(Fluid.of('gtceu:soldering_alloy', 64*144))
-                   .itemOutputs('kubejs:hv_air_frame')
-                   .circuit(23)
-                   .duration(200)
-                   .EUt(32*4*4)
-                   .addCondition(WFResearch.condition('veh_' + 'hv'))
-
-            event.recipes.gtceu.assembler('veh_' + 'ev' + '_' + 'air_frame')
-                    .itemInputs("8x gtceu:stellite_100_block")
-                    .itemInputs("16x gtceu:double_titanium_plate")
-                    .itemInputs("32x gtceu:hastelloy_x_frame")
-                    .itemInputs("32x gtceu:hssg_plate")
-                    .inputFluids(Fluid.of('gtceu:soldering_alloy', 64*144))
-                    .itemOutputs('kubejs:ev_air_frame')
-                    .circuit(23)
-                    .duration(200)
-                    .EUt(32*4*4*4)
-                    .addCondition(WFResearch.condition('veh_' + 'ev'))
-
-            event.recipes.gtceu.assembler('veh_' + 'lv' + '_' + 'engine')
-                     .itemInputs("16x gtceu:black_steel_gear")
-                     .itemInputs("32x gtceu:small_steel_gear")
-                     .itemInputs("32x gtceu:lv_electric_motor")
-                     .itemInputs("16x gtceu:lv_electric_piston")
-                     .itemInputs("24x wfcore:galvanized_steel_rod")
-                     .inputFluids(Fluid.of('gtceu:lubricant', 8000))
-                     .itemOutputs('kubejs:lv_engine')
-                     .circuit(23)
-                     .duration(200)
-                     .EUt(32)
-                     .addCondition(WFResearch.condition('veh_comp_' + 'lv' + '_' + 'engine'))
-
-            event.recipes.gtceu.assembler('veh_' + 'mv' + '_' + 'engine')
-                      .itemInputs("16x gtceu:cobalt_brass_gear")
-                      .itemInputs("32x gtceu:small_aluminium_gear")
-                      .itemInputs("32x gtceu:mv_electric_motor")
-                      .itemInputs("16x gtceu:mv_electric_piston")
-                      .itemInputs("24x gtceu:magnalium_rod")
-                      .inputFluids(Fluid.of('gtceu:lubricant', 8000))
-                      .itemOutputs('kubejs:mv_engine')
-                      .circuit(23)
-                      .duration(200)
-                      .EUt(32*4)
-                      .addCondition(WFResearch.condition('veh_comp_' + 'mv' + '_' + 'engine'))
-
-            event.recipes.gtceu.assembler('veh_' + 'hv' + '_' + 'engine')
-                                  .itemInputs("16x gtceu:black_bronze_gear")
-                                  .itemInputs("32x gtceu:small_stainless_steel_gear")
-                                  .itemInputs("32x gtceu:hv_electric_motor")
-                                  .itemInputs("16x gtceu:hv_electric_piston")
-                                  .itemInputs("24x gtceu:ultimet_rod")
-                                  .inputFluids(Fluid.of('gtceu:lubricant', 8000))
-                                  .itemOutputs('kubejs:hv_engine')
-                                  .circuit(23)
-                                  .duration(200)
-                                  .EUt(32*4*4)
-                                  .addCondition(WFResearch.condition('veh_comp_' + 'hv' + '_' + 'engine'))
-
-
-            event.recipes.gtceu.assembler('veh_' + 'ev' + '_' + 'engine')
-                    .itemInputs("16x gtceu:hssg_gear")
-                    .itemInputs("32x gtceu:small_titanium_gear")
-                    .itemInputs("32x gtceu:ev_electric_motor")
-                    .itemInputs("16x gtceu:ev_electric_piston")
-                    .itemInputs("24x gtceu:hastelloy_x_rod")
-                    .inputFluids(Fluid.of('gtceu:lubricant', 8000))
-                    .itemOutputs('kubejs:ev_engine')
-                    .circuit(23)
-                    .duration(200)
-                    .EUt(32*4*4*4)
-                    .addCondition(WFResearch.condition('veh_comp_' + 'ev' + '_' + 'engine'))
-
-            event.recipes.gtceu.assembler('veh_' + 'iv' + '_' + 'engine')
-                    .itemInputs("16x gtceu:hsse_gear")
-                    .itemInputs("32x gtceu:small_tungsten_steel_gear")
-                    .itemInputs("32x gtceu:iv_electric_motor")
-                    .itemInputs("16x gtceu:iv_electric_piston")
-                    .itemInputs("24x gtceu:hsse_rod")
-                    .inputFluids(Fluid.of('gtceu:lubricant', 8000))
-                    .itemOutputs('kubejs:iv_engine')
-                    .circuit(23)
-                    .duration(200)
-                    .EUt(32*4*4*4*4)
-                    .addCondition(WFResearch.condition('veh_' + 'iv'))
-
-            event.recipes.gtceu.assembler('veh_' + 'lv' + '_' + 'wing')
-                     .itemInputs("16x gtceu:double_black_steel_plate")
-                     .itemInputs("16x wfcore:galvanized_steel_plate")
-                     .inputFluids(Fluid.of('gtceu:tin', 16*144))
-                     .itemOutputs('kubejs:lv_wing')
-                     .circuit(31)
-                     .duration(200)
-                     .EUt(32)
-                     .addCondition(WFResearch.condition('veh_' + 'lv'))
-
-            event.recipes.gtceu.assembler('veh_' + 'mv' + '_' + 'wing')
-                     .itemInputs("16x gtceu:double_aluminium_plate")
-                     .itemInputs("16x gtceu:magnalium_plate")
-                     .inputFluids(Fluid.of('gtceu:tin', 16*144))
-                     .itemOutputs('kubejs:mv_wing')
-                     .circuit(31)
-                     .duration(200)
-                     .EUt(32*4)
-                     .addCondition(WFResearch.condition('veh_' + 'mv'))
-
-            event.recipes.gtceu.assembler('veh_' + 'hv' + '_' + 'wing')
-                     .itemInputs("16x gtceu:double_stainless_steel_plate")
-                     .itemInputs("16x gtceu:ultimet_plate")
-                     .inputFluids(Fluid.of('gtceu:tin', 32*144))
-                     .itemOutputs('kubejs:hv_wing')
-                     .circuit(31)
-                     .duration(200)
-                     .EUt(32*4*4)
-                     .addCondition(WFResearch.condition('veh_' + 'hv'))
-
-            event.recipes.gtceu.assembler('veh_' + 'ev' + '_' + 'wing')
-                     .itemInputs("16x gtceu:double_titanium_plate")
-                     .itemInputs("16x gtceu:hssg_plate")
-                     .inputFluids(Fluid.of('gtceu:tin', 64*144))
-                     .itemOutputs('kubejs:ev_wing')
-                     .circuit(31)
-                     .duration(200)
-                     .EUt(32*4*4*4)
-                     .addCondition(WFResearch.condition('veh_' + 'ev'))
-
-            event.recipes.gtceu.assembler('veh_' + 'iv' + '_' + 'wing')
-                     .itemInputs("16x gtceu:double_tungsten_steel_plate")
-                     .itemInputs("16x gtceu:hsss_plate")
-                     .inputFluids(Fluid.of('gtceu:tin', 64*144))
-                     .itemOutputs('kubejs:iv_wing')
-                     .circuit(31)
-                     .duration(200)
-                     .EUt(32*4*4*4*4)
-                     .addCondition(WFResearch.condition('veh_' + 'iv'))
-
-            event.recipes.gtceu.assembler('veh_' + 'mv' + '_' + 'rotor')
-                     .itemInputs("24x gtceu:cobalt_brass_turbine_blade")
-                     .itemOutputs('kubejs:mv_rotor')
-                     .circuit(23)
-                     .duration(200)
-                     .EUt(32*4)
-                     .addCondition(WFResearch.condition('veh_' + 'mv'))
-
-            event.recipes.gtceu.assembler('veh_' + 'hv' + '_' + 'rotor')
-                     .itemInputs("24x gtceu:black_bronze_turbine_blade")
-                     .itemOutputs('kubejs:hv_rotor')
-                     .circuit(23)
-                     .duration(200)
-                     .EUt(32*4*4)
-                     .addCondition(WFResearch.condition('veh_' + 'hv'))
-
-            event.recipes.gtceu.assembler('veh_' + 'ev' + '_' + 'rotor')
-                     .itemInputs("24x gtceu:hssg_turbine_blade")
-                     .itemOutputs('kubejs:ev_rotor')
-                     .circuit(23)
-                     .duration(200)
-                     .EUt(32*4*4*4)
-                     .addCondition(WFResearch.condition('veh_' + 'ev'))
-
-            event.recipes.gtceu.assembler('veh_' + 'lv' + '_' + 'cockpit')
-                     .itemInputs("64x gtceu:tempered_glass")
-                     .itemInputs("16x #gtceu:circuits/lv")
-                     .itemInputs("32x gtceu:rubber_plate")
-                     .itemInputs("16x minecraft:leather")
-                     .itemOutputs('kubejs:lv_cockpit')
-                     .circuit(31)
-                     .duration(200)
-                     .EUt(32)
-                     .addCondition(WFResearch.condition('veh_' + 'lv'))
-
-            event.recipes.gtceu.assembler('veh_' + 'mv' + '_' + 'cockpit')
-                     .itemInputs("64x gtceu:cleanroom_glass")
-                     .itemInputs("16x #gtceu:circuits/mv")
-                     .itemInputs("32x gtceu:polyethylene_plate")
-                     .itemOutputs('kubejs:mv_cockpit')
-                     .circuit(31)
-                     .duration(200)
-                     .EUt(32*4)
-                     .addCondition(WFResearch.condition('veh_' + 'mv'))
-
-            event.recipes.gtceu.assembler('veh_' + 'hv' + '_' + 'cockpit')
-                     .itemInputs("64x gtceu:laminated_glass")
-                     .itemInputs("16x #gtceu:circuits/hv")
-                     .itemInputs("32x gtceu:polytetrafluoroethylene_plate")
-                     .itemOutputs('kubejs:hv_cockpit')
-                     .circuit(31)
-                     .duration(200)
-                     .EUt(32*4*4)
-                     .addCondition(WFResearch.condition('veh_' + 'hv'))
-
-            event.recipes.gtceu.assembler('veh_' + 'ev' + '_' + 'cockpit')
-                     .itemInputs("64x gtceu:laminated_glass")
-                     .itemInputs("16x #gtceu:circuits/ev")
-                     .itemInputs("64x gtceu:polytetrafluoroethylene_plate")
-                     .itemOutputs('kubejs:ev_cockpit')
-                     .circuit(31)
-                     .duration(200)
-                     .EUt(32*4*4*4)
-                     .addCondition(WFResearch.condition('veh_' + 'ev'))
-
-            event.recipes.gtceu.assembler('veh_' + 'iv' + '_' + 'cockpit')
-                     .itemInputs("64x gtceu:laminated_glass")
-                     .itemInputs("16x #gtceu:circuits/iv")
-                     .itemInputs("64x gtceu:polytetrafluoroethylene_plate")
-                     .itemOutputs('kubejs:iv_cockpit')
-                     .circuit(31)
-                     .duration(200)
-                     .EUt(32*4*4*4*4)
-                     .addCondition(WFResearch.condition('veh_' + 'iv'))
-
-            event.recipes.gtceu.assembler('veh_' + 'lv' + '_' + 'track')
-                     .itemInputs("64x gtceu:rubber_plate")
-                     .itemInputs("32x gtceu:small_steel_gear")
-                     .itemInputs("32x gtceu:invar_rod")
-                     .itemInputs("48x gtceu:wrought_iron_ring")
-                     .itemInputs("32x gtceu:black_steel_plate")
-                     .itemOutputs('kubejs:lv_track')
-                     .circuit(29)
-                     .duration(200)
-                     .EUt(32)
-                     .addCondition(WFResearch.condition('veh_comp_' + 'lv' + '_' + 'track'))
-
-            event.recipes.gtceu.assembler('veh_' + 'mv' + '_' + 'track')
-                     .itemInputs("64x gtceu:silicone_rubber_plate")
-                     .itemInputs("32x gtceu:small_aluminium_gear")
-                     .itemInputs("32x gtceu:magnalium_rod")
-                     .itemInputs("48x gtceu:rose_gold_ring")
-                     .itemInputs("32x gtceu:cobalt_brass_plate")
-                     .itemOutputs('kubejs:mv_track')
-                     .circuit(29)
-                     .duration(200)
-                     .EUt(32*4)
-                     .addCondition(WFResearch.condition('veh_comp_' + 'mv' + '_' + 'track'))
-
-            event.recipes.gtceu.assembler('veh_' + 'hv' + '_' + 'track')
-                     .itemInputs("64x gtceu:silicone_rubber_plate")
-                     .itemInputs("32x gtceu:small_stainless_steel_gear")
-                     .itemInputs("32x gtceu:ultimet_rod")
-                     .itemInputs("48x gtceu:stainless_steel_ring")
-                     .itemInputs("32x gtceu:black_bronze_plate")
-                     .itemOutputs('kubejs:hv_track')
-                     .circuit(29)
-                     .duration(200)
-                     .EUt(32*4*4)
-                     .addCondition(WFResearch.condition('veh_comp_' + 'hv' + '_' + 'track'))
-
-            event.recipes.gtceu.assembler('veh_' + 'ev' + '_' + 'track')
-                     .itemInputs("64x gtceu:styrene_butadiene_rubber_plate")
-                     .itemInputs("32x gtceu:small_titanium_gear")
-                     .itemInputs("32x gtceu:hastelloy_x_rod")
-                     .itemInputs("48x gtceu:titanium_ring")
-                     .itemInputs("32x gtceu:hssg_plate")
-                     .itemOutputs('kubejs:ev_track')
-                     .circuit(29)
-                     .duration(200)
-                     .EUt(32*4*4*4)
-                     .addCondition(WFResearch.condition('veh_comp_' + 'ev' + '_' + 'track'))
-
-            event.recipes.gtceu.assembler('veh_' + 'iv' + '_' + 'track')
-                     .itemInputs("64x gtceu:styrene_butadiene_rubber_plate")
-                     .itemInputs("32x gtceu:small_tungsten_steel_gear")
-                     .itemInputs("32x gtceu:hsse_rod")
-                     .itemInputs("32x gtceu:tungsten_steel_plate")
-                     .itemOutputs('kubejs:iv_track')
-                     .circuit(29)
-                     .duration(200)
-                     .EUt(32*4*4*4*4)
-                     .addCondition(WFResearch.condition('veh_' + 'iv'))
-
-            event.recipes.gtceu.assembler('veh_' + 'lv' + '_' + 'cannon_barrel')
-                     .itemInputs("16x gtceu:steel_block")
-                     .inputFluids(Fluid.of('gtceu:tin_alloy', 8*144))
-                     .itemOutputs('kubejs:lv_cannon_barrel')
-                     .circuit(25)
-                     .duration(200)
-                     .EUt(32)
-                     .addCondition(WFResearch.condition('veh_comp_' + 'lv' + '_' + 'cannon_barrel'))
-
-            event.recipes.gtceu.assembler('veh_' + 'mv' + '_' + 'cannon_barrel')
-                     .itemInputs("16x gtceu:aluminium_block")
-                     .inputFluids(Fluid.of('gtceu:tin_alloy', 8*144))
-                     .itemOutputs('kubejs:mv_cannon_barrel')
-                     .circuit(25)
-                     .duration(200)
-                     .EUt(32*4)
-                     .addCondition(WFResearch.condition('veh_comp_' + 'mv' + '_' + 'cannon_barrel'))
-
-            event.recipes.gtceu.assembler('veh_' + 'hv' + '_' + 'cannon_barrel')
-                     .itemInputs("16x gtceu:stainless_steel_block")
-                     .inputFluids(Fluid.of('gtceu:tin_alloy', 8*144))
-                     .itemOutputs('kubejs:hv_cannon_barrel')
-                     .circuit(25)
-                     .duration(200)
-                     .EUt(32*4*4)
-                     .addCondition(WFResearch.condition('veh_comp_' + 'hv' + '_' + 'cannon_barrel'))
-
-            event.recipes.gtceu.assembler('veh_' + 'ev' + '_' + 'cannon_barrel')
-                     .itemInputs("16x gtceu:titanium_block")
-                     .inputFluids(Fluid.of('gtceu:tin_alloy', 16*144))
-                     .itemOutputs('kubejs:ev_cannon_barrel')
-                     .circuit(25)
-                     .duration(200)
-                     .EUt(32*4*4*4)
-                     .addCondition(WFResearch.condition('veh_comp_' + 'ev' + '_' + 'cannon_barrel'))
-
-            event.recipes.gtceu.assembler('veh_' + 'lv' + '_' + 'weapons_system')
-                     .itemInputs("32x gtceu:steel_plate")
-                     .itemInputs("16x #gtceu:circuits/lv")
-                     .itemInputs("32x wfcore:galvanized_steel_rod")
-                     .itemInputs("16x gtceu:steel_spring")
-                     .itemInputs("32x gtceu:red_alloy_single_cable")
-                     .itemOutputs('kubejs:lv_weapons_system')
-                     .circuit(30)
-                     .duration(200)
-                     .EUt(32)
-                     .addCondition(WFResearch.condition('veh_comp_' + 'lv' + '_' + 'weapons_system'))
-
-            event.recipes.gtceu.assembler('veh_' + 'mv' + '_' + 'weapons_system')
-                     .itemInputs("32x gtceu:aluminium_plate")
-                     .itemInputs("16x #gtceu:circuits/mv")
-                     .itemInputs("32x gtceu:magnalium_rod")
-                     .itemInputs("16x gtceu:aluminium_spring")
-                     .itemInputs("32x gtceu:annealed_copper_single_cable")
-                     .itemOutputs('kubejs:mv_weapons_system')
-                     .circuit(30)
-                     .duration(200)
-                     .EUt(32*4)
-                     .addCondition(WFResearch.condition('veh_comp_' + 'mv' + '_' + 'weapons_system'))
-
-            event.recipes.gtceu.assembler('veh_' + 'hv' + '_' + 'weapons_system')
-                     .itemInputs("32x gtceu:stainless_steel_plate")
-                     .itemInputs("16x #gtceu:circuits/hv")
-                     .itemInputs("32x gtceu:ultimet_rod")
-                     .itemInputs("16x gtceu:aluminium_spring")
-                     .itemInputs("32x gtceu:electrum_single_cable")
-                     .itemOutputs('kubejs:hv_weapons_system')
-                     .circuit(30)
-                     .duration(200)
-                     .EUt(32*4*4)
-                     .addCondition(WFResearch.condition('veh_comp_' + 'hv' + '_' + 'weapons_system'))
-
-            event.recipes.gtceu.assembler('veh_' + 'ev' + '_' + 'weapons_system')
-                     .itemInputs("32x gtceu:titanium_plate")
-                     .itemInputs("16x #gtceu:circuits/ev")
-                     .itemInputs("32x gtceu:hastelloy_x_rod")
-                     .itemInputs("16x gtceu:hssg_spring")
-                     .itemInputs("32x gtceu:black_steel_single_cable")
-                     .itemOutputs('kubejs:ev_weapons_system')
-                     .circuit(30)
-                     .duration(200)
-                     .EUt(32*4*4*4)
-                     .addCondition(WFResearch.condition('veh_comp_' + 'ev' + '_' + 'weapons_system'))
-
-            event.recipes.gtceu.assembler('veh_' + 'iv' + '_' + 'weapons_system')
-                     .itemInputs("32x gtceu:tungsten_steel_plate")
-                     .itemInputs("16x #gtceu:circuits/iv")
-                     .itemInputs("32x gtceu:hsse_rod")
-                     .itemInputs("16x gtceu:tungsten_spring")
-                     .itemInputs("32x gtceu:platinum_single_cable")
-                     .itemOutputs('kubejs:iv_weapons_system')
-                     .circuit(30)
-                     .duration(200)
-                     .EUt(32*4*4*4*4)
-                     .addCondition(WFResearch.condition('veh_' + 'iv'))
+                .EUt(EUT[tier])
+                .addCondition(WFResearch.condition(condOf(tier, part)))
         })
-
+    })
+})

@@ -51,6 +51,7 @@ ServerEvents.recipes(event => {
         'handgun_ammo_box', 'rifle_ammo_box', 'sniper_ammo_box', 'shotgun_ammo_box',
         'heavy_ammo', 'small_shell_ap', 'small_shell_he', 'small_shell_gs', 'small_shell_aa',
         'large_shell_ap', 'large_shell_he', 'large_shell_cm', 'large_shell_gs', 'large_shell_wp',
+        'he_head', 'ap_head', 'gs_head', 'cm_head', 'wp_head',
         'grenade_40mm', 'hand_grenade', 'rgo_grenade', 'm18_smoke_grenade',
         'claymore_mine', 'tm_62', 'ptkm_1r', 'lunge_mine',
         'mortar_shell', 'mortar_shell_wp',
@@ -135,6 +136,51 @@ ServerEvents.recipes(event => {
         .circuit(3)
         .duration(100)
         .EUt(30);
+
+    // Missile Engine — solid-propellant rocket motor (casing + propellant + nozzle). The propulsion core
+    // consumed by every rocket / guided missile / drone recipe here + in missiles.js / drones.js /
+    // emplacements.js. Gated on the "Missile Engines" ballistics node (WFResearch.js). Had NO craft route
+    // before — SBW's vanilla recipe is stripped by cleanup/remove_crafting.js.
+    event.recipes.gtceu.assembler('kubejs:sw_missile_engine')
+        .itemInputs(Item.of('gtceu:steel_plate', 2), Item.of('kubejs:solid_rocket_fuel', 1), Item.of('gtceu:steel_rod', 2))
+        .itemOutputs(Item.of('superbwarfare:missile_engine', 2))
+        .circuit(4)
+        .duration(200)
+        .EUt(128)
+        .addCondition(WFResearch.condition('missile_engines'));
+
+    // Seeker — IR/radar guidance head (sensor + emitter + optics). The guidance core consumed by every guided
+    // missile / SAM / smart-mine recipe. Gated on the "Guidance Seekers" ballistics node (WFResearch.js).
+    event.recipes.gtceu.assembler('kubejs:sw_seeker')
+        .itemInputs(Item.of('gtceu:lv_sensor', 1), Item.of('gtceu:lv_emitter', 1), Item.of('gtceu:tempered_glass', 1), Item.of('gtceu:basic_electronic_circuit', 1))
+        .itemOutputs(Item.of('superbwarfare:seeker', 1))
+        .circuit(5)
+        .duration(200)
+        .EUt(128)
+        .addCondition(WFResearch.condition('seekers'));
+
+    // ---- Warhead heads (the explosive payload core consumed by every round) ----
+    // Each superbwarfare:*_head is the warhead slotted into its munition family
+    // (shells / rockets / bombs / guided missiles / WP mortar). Gated on the matching
+    // Ballistics warhead node so the payload tech is researched BEFORE the round.
+    // SBW's own crafting recipes for the heads are stripped (removal list above);
+    // these GT assembler routes are the only way to make them. Inputs are ungated
+    // raws (no bootstrap loop with the warhead research itself).
+    [
+        { out: 'he_head', circuit: 1, research: 'he_warheads',        inputs: [Item.of('superbwarfare:high_energy_explosives', 2), Item.of('gtceu:steel_plate', 1)] },
+        { out: 'ap_head', circuit: 2, research: 'ap_warheads',        inputs: [Item.of('superbwarfare:high_energy_explosives', 1), Item.of('gtceu:steel_plate', 1), Item.of('gtceu:tungsten_plate', 1)] },
+        { out: 'gs_head', circuit: 3, research: 'grapeshot_warheads', inputs: [Item.of('gtceu:steel_plate', 1), Item.of('gtceu:lead_nugget', 6), Item.of('gtceu:small_gunpowder_dust', 2)] },
+        { out: 'cm_head', circuit: 4, research: 'cluster_warheads',   inputs: [Item.of('gtceu:steel_plate', 1), Item.of('gtceu:dynamite', 2), Item.of('gtceu:small_gunpowder_dust', 2)] },
+        { out: 'wp_head', circuit: 5, research: 'pyrotechnics',       inputs: [Item.of('gtceu:steel_plate', 1), Item.of('gtceu:small_white_phosphorus_dust', 2), Item.of('gtceu:small_gunpowder_dust', 1)] },
+    ].forEach(h => {
+        event.recipes.gtceu.assembler(`kubejs:sw_${h.out}`)
+            .itemInputs(h.inputs)
+            .itemOutputs(Item.of(`superbwarfare:${h.out}`, 1))
+            .circuit(h.circuit)
+            .duration(120)
+            .EUt(128)
+            .addCondition(WFResearch.condition(h.research));
+    });
 
     // =======================================================================
     // 3. PRESSED CARTRIDGES  (one casing + core + propellant, on the ammo press)
@@ -227,21 +273,23 @@ ServerEvents.recipes(event => {
         .duration(60)
         .EUt(30);
 
-    // ---- Small vehicle shells (steel bullet casing + type-specific payload) ----
-    // Each of the four types is gated behind its own MV ballistics node (AP/HE/
-    // GS/AA fan out under "Large Casings" in WFResearch.js). The steel casing
-    // itself unlocks at Large Casings, so having the casing already implies the
-    // parent research is done. Distinct payloads: AP = vanadium-steel penetrator,
-    // HE = high-energy explosives, GS = lead shot, AA = HE + magnesium tracer.
+    // ---- Small vehicle shells (steel bullet casing + warhead head + propellant) ----
+    // Each type is gated on its own MV ballistics node (armor_piercing_1 / high_
+    // explosive_1 / grapeshot_1 / anti_air_1), which in turn requires the matching
+    // warhead research. The payload is now the superbwarfare:*_head warhead
+    // (unlocked by that warhead node), so warhead tech comes first. AA = HE head +
+    // a magnesium proximity/tracer charge.
     [
-        { out: 'superbwarfare:small_shell_ap', research: 'armor_piercing_1', circuit: 1, inputs: [Item.of(CASING_STEEL, 2), Item.of('gtceu:vanadium_steel_bolt', 2), Item.of('gtceu:small_gunpowder_dust', 4)] },
-        { out: 'superbwarfare:small_shell_he', research: 'high_explosive_1', circuit: 2, inputs: [Item.of(CASING_STEEL, 2), Item.of('superbwarfare:high_energy_explosives', 2), Item.of('gtceu:small_gunpowder_dust', 4)] },
-        { out: 'superbwarfare:small_shell_gs', research: 'grapeshot_1',      circuit: 3, inputs: [Item.of(CASING_STEEL, 2), Item.of('gtceu:lead_nugget', 12), Item.of('gtceu:small_gunpowder_dust', 4)] },
-        { out: 'superbwarfare:small_shell_aa', research: 'anti_air_1',       circuit: 4, inputs: [Item.of(CASING_STEEL, 2), Item.of('superbwarfare:high_energy_explosives', 2), Item.of('gtceu:magnesium_dust', 2)] },
+        { out: 'superbwarfare:small_shell_ap', research: 'armor_piercing_1', head: 'ap_head', circuit: 1, extra: [] },
+        { out: 'superbwarfare:small_shell_he', research: 'high_explosive_1', head: 'he_head', circuit: 2, extra: [] },
+        { out: 'superbwarfare:small_shell_gs', research: 'grapeshot_1',      head: 'gs_head', circuit: 3, extra: [] },
+        { out: 'superbwarfare:small_shell_aa', research: 'anti_air_1',       head: 'he_head', circuit: 4, extra: [Item.of('gtceu:magnesium_dust', 2)] },
     ].forEach(s => {
+        const inputs = [Item.of(CASING_STEEL, 2), Item.of(`superbwarfare:${s.head}`, 1), Item.of('gtceu:small_gunpowder_dust', 2)];
+        s.extra.forEach(e => inputs.push(e));
         event.recipes.gtceu.ammo_press(`kubejs:ammo_${s.out.split(':')[1]}`)
-            .itemInputs(s.inputs)
-            .itemOutputs(Item.of(s.out, 1))
+            .itemInputs(inputs)
+            .itemOutputs(Item.of(s.out, 2))
             .circuit(s.circuit)
             .duration(60)
             .EUt(30)
@@ -254,21 +302,23 @@ ServerEvents.recipes(event => {
     // fills (the two 40mm, the three rockets) can't collide.
     // =======================================================================
 
-    // ---- Large tank/artillery shells (fill varies per type) ----
+    // ---- Large tank/artillery shells (XL casing + warhead head + grain) ----
+    // One EV node per shell (large_shell_he/ap/gs/cm/wp), each requiring its warhead
+    // research. The head IS the payload (matches SBW's native large-shell recipe).
     [
-        { out: 'superbwarfare:large_shell_ap', circuit: 1, inputs: [Item.of(CASING_XL, 2), Item.of('gtceu:steel_plate', 2), Item.of('superbwarfare:grain', 3)] }, // AP: hard steel core, pricier than standard
-        { out: 'superbwarfare:large_shell_he', circuit: 2, inputs: [Item.of(CASING_XL, 1), Item.of('gtceu:dynamite', 2), Item.of('superbwarfare:grain', 2)] }, // standard HE
-        { out: 'superbwarfare:large_shell_cm', circuit: 3, inputs: [Item.of(CASING_XL, 2), Item.of('gtceu:dynamite', 3), Item.of('superbwarfare:grain', 2)] }, // cluster: double casing
-        { out: 'superbwarfare:large_shell_gs', circuit: 4, inputs: [Item.of(CASING_XL, 1), Item.of('gtceu:lead_nugget', 12), Item.of('superbwarfare:grain', 2)] }, // grapeshot: lots of shot
-        { out: 'superbwarfare:large_shell_wp', circuit: 5, inputs: [Item.of(CASING_XL, 2), Item.of('gtceu:small_white_phosphorus_dust', 2), Item.of('superbwarfare:grain', 3)] }, // WP: white phosphorus, pricier than standard
+        { out: 'superbwarfare:large_shell_ap', head: 'ap_head', circuit: 1, cas: 2, grain: 3 }, // AP: harder head, double casing
+        { out: 'superbwarfare:large_shell_he', head: 'he_head', circuit: 2, cas: 1, grain: 2 }, // standard HE
+        { out: 'superbwarfare:large_shell_cm', head: 'cm_head', circuit: 3, cas: 2, grain: 2 }, // cluster: double casing
+        { out: 'superbwarfare:large_shell_gs', head: 'gs_head', circuit: 4, cas: 1, grain: 2 }, // grapeshot
+        { out: 'superbwarfare:large_shell_wp', head: 'wp_head', circuit: 5, cas: 2, grain: 3 }, // WP: white phosphorus (Pyrotechnics)
     ].forEach(s => {
         event.recipes.gtceu.ammo_press(`kubejs:ammo_${s.out.split(':')[1]}`)
-            .itemInputs(s.inputs)
+            .itemInputs(Item.of(CASING_XL, s.cas), Item.of(`superbwarfare:${s.head}`, 1), Item.of('superbwarfare:grain', s.grain))
             .itemOutputs(Item.of(s.out, 1))
             .circuit(s.circuit)
             .duration(60)
             .EUt(30)
-            .addCondition(WFResearch.condition('large_caliber_shells'));   // EV tank/artillery gate
+            .addCondition(WFResearch.condition(s.out.split(':')[1]));   // per-shell EV node (== output id)
     });
 
     // ---- 40mm grenade rounds (xl casing + dynamite) ----
@@ -311,18 +361,22 @@ ServerEvents.recipes(event => {
     // =======================================================================
     // 5. MORTAR BOMBS  (muzzle-loaded — no casing)
     // =======================================================================
+    // HE mortar bomb — LV, no warhead (keeps the LV Mortar emplacement fed). Gated on the LV 'mortar_shell' node.
     event.recipes.gtceu.ammo_press('kubejs:ammo_mortar_shell')
         .itemInputs('minecraft:gunpowder', 'gtceu:steel_plate')
         .itemOutputs(Item.of('superbwarfare:mortar_shell', 4))
         .duration(40)
-        .EUt(30);
+        .EUt(30)
+        .addCondition(WFResearch.condition('mortar_shell'));
 
+    // WP mortar bomb — a fire round: consumes the WP head, gated on the Pyrotechnics-branch 'mortar_shell_wp' node.
     event.recipes.gtceu.ammo_press('kubejs:ammo_mortar_shell_wp')
-        .itemInputs('gtceu:steel_plate', 'gtceu:small_white_phosphorus_dust', 'gtceu:small_gunpowder_dust') // mortar = lower tier -> gunpowder propellant
+        .itemInputs('gtceu:steel_plate', Item.of('superbwarfare:wp_head', 1), 'gtceu:small_gunpowder_dust') // mortar = lower tier -> gunpowder propellant
         .itemOutputs(Item.of('superbwarfare:mortar_shell_wp', 2))
         .circuit(1)
         .duration(60)
-        .EUt(30);
+        .EUt(30)
+        .addCondition(WFResearch.condition('mortar_shell_wp'));
 
     // =======================================================================
     // 6. AMMO BOXES  (assembler packs loose rounds into a crate; steel = the tin)
@@ -391,44 +445,49 @@ ServerEvents.recipes(event => {
     // 8. ROCKETS & GUIDED MISSILES  (assembler — engine/seeker driven)
     // =======================================================================
 
-    // Small unguided rocket — steel tube + motor + dynamite warhead
+    // Small unguided rocket — steel tube + motor + HE head. Gated on its own MV node.
     event.recipes.gtceu.assembler('kubejs:sw_small_rocket')
-        .itemInputs(Item.of('gtceu:steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of('gtceu:dynamite', 1))
+        .itemInputs(Item.of('gtceu:steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of('superbwarfare:he_head', 1))
         .itemOutputs(Item.of('superbwarfare:small_rocket', 2))
-        .circuit(1).duration(200).EUt(32);
+        .circuit(1).duration(200).EUt(32)
+        .addCondition(WFResearch.condition('small_rocket'));
 
-    // Medium unguided rockets — same motor, warhead fill varies
+    // Medium unguided rockets — same motor, warhead head varies. One MV node per type.
     [
-        { out: 'superbwarfare:medium_rocket_ap', circuit: 2, inputs: [Item.of('gtceu:steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of('gtceu:steel_nugget', 4), Item.of('gtceu:small_gunpowder_dust', 1)] },
-        { out: 'superbwarfare:medium_rocket_he', circuit: 3, inputs: [Item.of('gtceu:steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of('gtceu:dynamite', 1)] },
-        { out: 'superbwarfare:medium_rocket_cm', circuit: 4, inputs: [Item.of('gtceu:steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of('gtceu:dynamite', 2)] },
+        { out: 'superbwarfare:medium_rocket_ap', head: 'ap_head', circuit: 2 },
+        { out: 'superbwarfare:medium_rocket_he', head: 'he_head', circuit: 3 },
+        { out: 'superbwarfare:medium_rocket_cm', head: 'cm_head', circuit: 4 },
     ].forEach(r => {
         event.recipes.gtceu.assembler(`kubejs:${r.out.split(':')[1]}`)
-            .itemInputs(r.inputs)
+            .itemInputs(Item.of('gtceu:steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of(`superbwarfare:${r.head}`, 1))
             .itemOutputs(Item.of(r.out, 1))
-            .circuit(r.circuit).duration(300).EUt(128);
+            .circuit(r.circuit).duration(300).EUt(128)
+            .addCondition(WFResearch.condition(r.out.split(':')[1]));   // per-rocket MV node (== output id)
     });
 
-    // Guided missiles (seeker required)
+    // Guided missiles (seeker + warhead head required). Anti-air = HE (frag) head; anti-ground = AP (HEAT) head.
     event.recipes.gtceu.assembler('kubejs:sw_medium_anti_air_missile')
-        .itemInputs(Item.of('gtceu:stainless_steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of('gtceu:dynamite', 1), Item.of('superbwarfare:seeker', 1))
+        .itemInputs(Item.of('gtceu:stainless_steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of('superbwarfare:he_head', 1), Item.of('superbwarfare:seeker', 1))
         .itemOutputs(Item.of('superbwarfare:medium_anti_air_missile', 1))
         .circuit(5).duration(400).EUt(128)
         .addCondition(WFResearch.condition('anti_air_missiles'));   // LAV-AD air-defence gate
 
     event.recipes.gtceu.assembler('kubejs:sw_medium_anti_ground_missile')
-        .itemInputs(Item.of('gtceu:stainless_steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of('gtceu:dynamite', 2), Item.of('superbwarfare:seeker', 1))
+        .itemInputs(Item.of('gtceu:stainless_steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of('superbwarfare:ap_head', 1), Item.of('superbwarfare:seeker', 1))
         .itemOutputs(Item.of('superbwarfare:medium_anti_ground_missile', 1))
         .circuit(6).duration(400).EUt(128)
         .addCondition(WFResearch.condition('anti_ground_missiles'));   // TOW-class gate (armed trucks, Bradley)
 
     event.recipes.gtceu.assembler('kubejs:sw_large_anti_ground_missile')
-        .itemInputs(Item.of('gtceu:titanium_plate', 2), Item.of('superbwarfare:large_motor', 1), Item.of('gtceu:dynamite', 4), Item.of('superbwarfare:seeker', 1))
+        .itemInputs(Item.of('gtceu:titanium_plate', 2), Item.of('superbwarfare:large_motor', 1), Item.of('superbwarfare:ap_head', 2), Item.of('superbwarfare:seeker', 1))
         .itemOutputs(Item.of('superbwarfare:large_anti_ground_missile', 1))
-        .circuit(7).duration(600).EUt(512);
+        .circuit(7).duration(600).EUt(512)
+        .addCondition(WFResearch.condition('heavy_anti_ground_missiles'));   // Ballistics: Heavy Anti-Ground Missiles (Mi-28)
 
+    // Javelin — infantry top-attack AT. No dedicated node, but consuming an AP head means it can't be built
+    // until Armor Piercing Warheads is researched (warhead-before-missile still holds).
     event.recipes.gtceu.assembler('kubejs:sw_javelin_missile')
-        .itemInputs(Item.of('gtceu:stainless_steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of('gtceu:dynamite', 2), Item.of('superbwarfare:seeker', 1))
+        .itemInputs(Item.of('gtceu:stainless_steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of('superbwarfare:ap_head', 1), Item.of('superbwarfare:seeker', 1))
         .itemOutputs(Item.of('superbwarfare:javelin_missile', 1))
         .circuit(8).duration(400).EUt(128);
 
@@ -436,14 +495,31 @@ ServerEvents.recipes(event => {
     // 9. AERIAL BOMBS  (gravity-delivered; steel ring = stabiliser fin ring)
     // =======================================================================
     event.recipes.gtceu.assembler('kubejs:sw_small_aerial_bomb')
-        .itemInputs(Item.of('gtceu:steel_plate', 3), Item.of('gtceu:dynamite', 2), Item.of('gtceu:steel_ring', 1))
+        .itemInputs(Item.of('gtceu:steel_plate', 3), Item.of('superbwarfare:he_head', 1), Item.of('gtceu:steel_ring', 1))
         .itemOutputs(Item.of('superbwarfare:small_aerial_bomb', 2))
-        .circuit(1).duration(300).EUt(32);
+        .circuit(1).duration(300).EUt(32)
+        .addCondition(WFResearch.condition('small_aerial_bomb'));   // Ballistics: Small Aerial Bombs (Ju-87)
 
     event.recipes.gtceu.assembler('kubejs:sw_medium_aerial_bomb')
-        .itemInputs(Item.of('gtceu:steel_plate', 5), Item.of('gtceu:dynamite', 4), Item.of('gtceu:steel_ring', 1))
+        .itemInputs(Item.of('gtceu:steel_plate', 5), Item.of('superbwarfare:he_head', 2), Item.of('gtceu:steel_ring', 1))
         .itemOutputs(Item.of('superbwarfare:medium_aerial_bomb', 1))
-        .circuit(2).duration(400).EUt(32);
+        .circuit(2).duration(400).EUt(32)
+        .addCondition(WFResearch.condition('medium_aerial_bomb'));   // Ballistics: Medium Aerial Bombs (Ju-87)
+
+    // Nuclear Bomb (IV apex) — the B-2 Spirit's fissile gravity bomb (AshVehicle item). Implosion HE lenses
+    // (he_head) around a U-235 pit + beryllium neutron reflector in a heavy HSS-S casing. Gated on the IV
+    // 'nuclear_bomb' node — by far the most expensive round in the pack.
+    event.remove({ output: 'ashvehicle:nuclearbombitem' });
+    event.recipes.gtceu.assembler('kubejs:av_nuclear_bomb')
+        .itemInputs(
+            Item.of('gtceu:hsss_plate', 6),
+            Item.of('gtceu:uranium_235_block', 2),
+            Item.of('gtceu:double_beryllium_plate', 4),
+            Item.of('superbwarfare:he_head', 4),
+            Item.of('gtceu:advanced_integrated_circuit', 2))
+        .itemOutputs(Item.of('ashvehicle:nuclearbombitem', 1))
+        .circuit(1).duration(2400).EUt(8192)
+        .addCondition(WFResearch.condition('nuclear_bomb'));   // Ballistics: Nuclear Bomb (IV apex, B-2)
 
     // =======================================================================
     // 10. DRONES
@@ -452,13 +528,15 @@ ServerEvents.recipes(event => {
     event.recipes.gtceu.assembler('kubejs:sw_drone')
         .itemInputs(Item.of('superbwarfare:motor', 4), Item.of('superbwarfare:propeller', 4), Item.of('gtceu:basic_electronic_circuit', 1), Item.of('gtceu:polyethylene_plate', 2))
         .itemOutputs(Item.of('superbwarfare:drone', 1))
-        .circuit(1).duration(400).EUt(128);
+        .circuit(1).duration(400).EUt(128)
+        .addCondition(WFResearch.condition('drone_tactics'));   // Aviation: Drone Tactics (Monitor + base Drone)
 
     // Swarm (kamikaze) drone — base drone + seeker + dynamite warhead
     event.recipes.gtceu.assembler('kubejs:sw_swarm_drone')
         .itemInputs(Item.of('superbwarfare:drone', 1), Item.of('superbwarfare:seeker', 1), Item.of('gtceu:dynamite', 1))
         .itemOutputs(Item.of('superbwarfare:swarm_drone', 1))
-        .circuit(2).duration(400).EUt(128);
+        .circuit(2).duration(400).EUt(128)
+        .addCondition(WFResearch.condition('drone_swarm'));   // Aviation: Swarm Drones
 });
 
 // ============================================================================

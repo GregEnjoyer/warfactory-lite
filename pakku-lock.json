@@ -419,6 +419,42 @@
             ]
         },
         {
+            "pakku_id": "80FE7AWcnlnPjEZH",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "boxy"
+            },
+            "name": {
+                "curseforge": "Boxy"
+            },
+            "id": {
+                "curseforge": "1632584"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "boxy-1.0.0.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/8543/880/boxy-1.0.0.jar",
+                    "id": "8543880",
+                    "parent_id": "1632584",
+                    "hashes": {
+                        "sha1": "3020362202d4b5361ca9893b5d4928cb6ab6490c",
+                        "md5": "4df8bfc9d0b80245d46dae1c124021f5"
+                    },
+                    "required_dependencies": [],
+                    "size": 4908187,
+                    "date_published": "2026-07-30T23:18:46.113Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "iyS7n3Nhc35HUSU4",
             "type": "MOD",
             "slug": {
@@ -1749,44 +1785,6 @@
             ]
         },
         {
-            "pakku_id": "B6QksKvCwLyImzEQ",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "gunfire-overhaul-echoes-of-the-battlefield"
-            },
-            "name": {
-                "curseforge": "Gunfire Overhaul: Echoes of the Battlefield"
-            },
-            "id": {
-                "curseforge": "1324526"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "Gunfire Overhaul-0.1.6-a.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "beta",
-                    "url": "https://edge.forgecdn.net/files/8062/389/Gunfire Overhaul-0.1.6-a.jar",
-                    "id": "8062389",
-                    "parent_id": "1324526",
-                    "hashes": {
-                        "sha1": "bb8d566f5258dab512022346bcdf86f7f8c06b40",
-                        "md5": "85e361d97cf30e7aaaf1c1ec14c33912"
-                    },
-                    "required_dependencies": [
-                        "348521"
-                    ],
-                    "size": 6125997,
-                    "date_published": "2026-05-09T10:27:42.027Z"
-                }
-            ]
-        },
-        {
             "pakku_id": "SWldxwch8FUG6Jol",
             "type": "MOD",
             "slug": {
@@ -2842,6 +2840,43 @@
                     "required_dependencies": [],
                     "size": 77732,
                     "date_published": "2024-04-23T06:56:49.313Z"
+                }
+            ]
+        },
+        {
+            "pakku_id": "WnN9WCgnJ1s6nsHV",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "security-craft"
+            },
+            "name": {
+                "curseforge": "Security Craft"
+            },
+            "id": {
+                "curseforge": "64760"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "[1.20.1] SecurityCraft v1.10.2.1.jar",
+                    "mc_versions": [
+                        "1.20.1"
+                    ],
+                    "loaders": [
+                        "forge",
+                        "neoforge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/8336/490/[1.20.1] SecurityCraft v1.10.2.1.jar",
+                    "id": "8336490",
+                    "parent_id": "64760",
+                    "hashes": {
+                        "sha1": "6184ca6af68a0a4e8ca4dd28a542b5d1a6c2e3ab",
+                        "md5": "07c5b4516075755002d7af62eb4f8fdd"
+                    },
+                    "required_dependencies": [],
+                    "size": 4995865,
+                    "date_published": "2026-06-28T19:23:01.343Z"
                 }
             ]
         },

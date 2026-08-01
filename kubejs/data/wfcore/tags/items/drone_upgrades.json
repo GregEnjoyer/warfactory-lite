@@ -1,0 +1,6 @@
+{
+  "replace": false,
+  "values": [
+    { "id": "#gtceu:batteries", "required": false }
+  ]
+}

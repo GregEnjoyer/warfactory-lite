@@ -22,6 +22,10 @@
 
 import com.norwood.wfcore.integration.kubejs
 
+// IIFE-wrapped: KubeJS server scripts share one global scope, so this file's short consts
+// (P, HV, EV, TNT, CIRC…) would collide with other files' top-level consts (redeclaration
+// errors). Wrapping the body keeps them file-local. Keep the import above at top level.
+;(function () {
 const HV = 512
 const EV = 2048
 const IV = 8192
@@ -34,7 +38,6 @@ const RDX  = 'gtceu:rdx_dust'          // verify: gtceu rdx material or wfcore:r
 const POW  = 'minecraft:gunpowder'
 const FUSE = 'superbwarfare:fusee'
 const ENG  = 'superbwarfare:missile_engine'
-const CIRC = 'gtceu:advanced_integrated_circuit'
 const WP        = 'gtceu:white_phosphorus_dust'
 const LAPO      = 'gtceu:lapotron_crystal'
 const LAPO_DUST = 'gtceu:lapotron_dust' // milled crystal — verify dust form exists in this gtceu version
@@ -68,8 +71,8 @@ const MISSILES = [
     ['icbm_heavy',  'icbm_heavy', IV, 24000, ['gtceu:rocket_fuel', 18000],  [[P+'double_tungsten_steel_plate',64],[P+'stainless_steel_plate',32],[ENG,24],[SRF,48],[C_IV, 10], [RDX, 100],[EV_RAM,3]]],
 
     // ── Bunker busters (shaped charge; explosive-heavy) ──────────────────────────────────────────
-    ['bunker_buster',       'shaped_charges',      HV, 12000, ['gtceu:diesel', 4000],  [[P+'stainless_steel_plate',48],[P+'blue_steel_plate', 24],[POW,48],[TNT,48],[CIRC,4],[FUSE,1]]],
-    ['bunker_buster_heavy', 'bunker_buster_heavy', EV, 14000, ['gtceu:diesel', 10000], [[P+'titanium_plate',54],[P+'ultimet_plate',32],[POW,56],[RDX,32],[CIRC,6],[FUSE,1]]],
+    ['bunker_buster',       'shaped_charges',      HV, 12000, ['gtceu:diesel', 4000],  [[P+'stainless_steel_plate',48],[P+'blue_steel_plate', 24],[POW,48],[TNT,48],[C_HV,4],[FUSE,1]]],
+    ['bunker_buster_heavy', 'bunker_buster_heavy', EV, 14000, ['gtceu:diesel', 10000], [[P+'titanium_plate',54],[P+'ultimet_plate',32],[POW,56],[RDX,32],[C_HV,6],[FUSE,1]]],
     ['bunker_tunneller',    'bunker_tunneller',    IV, 18000, ['gtceu:diesel', 14000],  [[P+'tungsten_steel_plate',64],[P+'hsss_plate',32],[POW,64],[RDX,64],[C_IV,6],[FUSE,1]]],
 
     // ── Cluster (frame + iron_round metal sink; lower-tier explosives) ───────────────────────────
@@ -96,9 +99,9 @@ const MISSILES = [
     ['interceptor_cluster', 'interceptor_cluster', IV, 10000, ['gtceu:rocket_fuel', 3500], [[P+'titanium_plate',22],[P+'aluminium_plate',14],[C_IV,10],[HV_RAM,6],['gtceu:hsss_round',32],[TNT,12]]],
 
     // ── Drones (cheapest class: ~80% of HV plate floor, more engines than original) ─────────────
-    ['strike_drone', 'missile_systems', HV, 6000, ['gtceu:diesel', 4000], [[P+'aluminium_plate',80],[ENG,4],[C_HV,6],[TNT,40],['gtceu:stainless_steel_rotor',2]]],
-    ['gas_drone',    'missile_systems', HV, 6000, ['gtceu:diesel', 4000], [[P+'aluminium_plate',80],[ENG,4],[C_HV,6],['gtceu:stainless_steel_rotor',2]], [['gtceu:mustard_gas', 4000]]],
-    ['loiter_drone', 'missile_systems', HV, 6000, ['gtceu:diesel', 4000], [[P+'aluminium_plate',80],[ENG,4],[C_HV,6],[POW,16]]],
+    ['strike_drone', 'drone_loitering', HV, 6000, ['gtceu:diesel', 4000], [[P+'aluminium_plate',80],[ENG,4],[C_HV,6],[TNT,40],['gtceu:stainless_steel_rotor',2]]],
+    ['gas_drone',    'drone_loitering', HV, 6000, ['gtceu:diesel', 4000], [[P+'aluminium_plate',80],[ENG,4],[C_HV,6],['gtceu:stainless_steel_rotor',2]], [['gtceu:mustard_gas', 4000]]],
+    ['loiter_drone', 'drone_loitering', HV, 6000, ['gtceu:diesel', 4000], [[P+'aluminium_plate',80],[ENG,4],[C_HV,6],[POW,16]]],
 ]
 
 ServerEvents.recipes(event => {
@@ -118,3 +121,4 @@ ServerEvents.recipes(event => {
     })
 
 })
+})();

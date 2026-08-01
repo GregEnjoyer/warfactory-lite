@@ -25,8 +25,14 @@ ServerEvents.recipes(event => {
         { entity: 'superbwarfare:sodayo_pick_up_hmg', factory: 'light_ground_vehicle_factory', items: [['kubejs:mv_vehicle_frame', 1], ['superbwarfare:wheel', 4], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_cannon_barrel', 1]], tags: [['#gtceu:circuits/mv', 8]], circuit: 5, eut: 120, duration: 400, research: 'veh_sodayo_hmg' },
         { entity: 'superbwarfare:sodayo_pick_up_rocket', factory: 'light_ground_vehicle_factory', items: [['kubejs:mv_vehicle_frame', 1], ['superbwarfare:wheel', 4], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_weapons_system', 1]], tags: [['#gtceu:circuits/mv', 8]], circuit: 9, eut: 120, duration: 400, research: 'veh_sodayo_mlrs' },
         // DISABLED (not in progression): { entity: 'superbwarfare:sodayo_pick_up_tow', factory: 'light_ground_vehicle_factory', items: [['kubejs:mv_vehicle_frame', 1], ['superbwarfare:wheel', 4], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['superbwarfare:tow_deployer', 1]], tags: [['#gtceu:circuits/mv', 8]], circuit: 6, eut: 120, duration: 400, research: 'veh_armed_trucks' },
-        // Light Plane assembler
-        { entity: 'superbwarfare:ju_87',          factory: 'light_plane_assembler', items: [['kubejs:lv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:lv_engine', 1], ['gtceu:tin_single_cable', 32], ['kubejs:lv_cockpit', 1], ['kubejs:lv_weapons_system', 1], ['kubejs:lv_wing', 1]],circuit: 1, eut: 70, duration: 200 },
+        // Light Plane assembler — Ju-87 (fixed-wing) + AH-6 (rotary): the two MV entry aircraft (Aviation tab).
+        { entity: 'superbwarfare:ju_87',          factory: 'light_plane_assembler', items: [['kubejs:lv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:lv_engine', 1], ['gtceu:tin_single_cable', 32], ['kubejs:lv_cockpit', 1], ['kubejs:lv_weapons_system', 1], ['kubejs:lv_wing', 1]],circuit: 1, eut: 70, duration: 200, research: 'air_ju_87' },
+        // AH-6 Little Bird — MV rotary entry: a rotor (not a wing) helicopter with a light weapons station.
+        { entity: 'superbwarfare:ah_6',           factory: 'light_plane_assembler', items: [['kubejs:mv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_cockpit', 1], ['kubejs:mv_weapons_system', 1], ['kubejs:mv_rotor', 2]], circuit: 2, eut: 120, duration: 400, research: 'air_ah_6' },
+        // MH-60M Black Hawk — HV rotary transport/gunship (ashvehicle entity).
+        { entity: 'ashvehicle:mh_60m',            factory: 'heavy_plane_assembler', items: [['kubejs:hv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_rotor', 2], ['kubejs:hv_weapons_system', 1], ['kubejs:hv_cockpit', 1]], circuit: 20, eut: 450*4, duration: 6000, research: 'air_mh_60' },
+        // Mi-28 Attack Helicopter — EV rotary tank-hunter: rotor + a 30mm cannon barrel + a missile weapons station.
+        { entity: 'superbwarfare:mi_28',          factory: 'heavy_plane_assembler', items: [['kubejs:ev_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:ev_engine', 1], ['gtceu:aluminium_single_cable', 32], ['kubejs:ev_rotor', 2], ['kubejs:ev_weapons_system', 1], ['kubejs:ev_cannon_barrel', 1], ['kubejs:ev_cockpit', 1]], circuit: 21, eut: 450*4*4, duration: 6000, research: 'air_mi_28' },
 
         // DISABLED (ungated, tier TBD): { entity: 'superbwarfare:m_1a_2',          factory: 'heavy_vehicle_depot', items: [['kubejs:mv_vehicle_frame', 1], ['kubejs:mv_track', 2], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_cannon_barrel', 1]], tags: [['#gtceu:circuits/mv', 16]],circuit: 1, eut: 450, duration: 6000 },
         { entity: 'superbwarfare:lav_150', factory: 'heavy_vehicle_depot', items: [['kubejs:hv_vehicle_frame', 1], ['superbwarfare:wheel', 4], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_cannon_barrel', 1]], tags: [['#gtceu:circuits/hv', 16]], circuit: 2, eut: 450*4, duration: 6000, research: 'veh_lav' },
@@ -38,20 +44,11 @@ ServerEvents.recipes(event => {
         // DISABLED (ungated, tier TBD): { entity: 'superbwarfare:lav_25',          factory: 'heavy_vehicle_depot', items: [['kubejs:mv_vehicle_frame', 1], ['superbwarfare:wheel', 8], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_cannon_barrel', 1], ['kubejs:mv_weapons_system', 1]], tags: [['#gtceu:circuits/mv', 16]],circuit: 8, eut: 450, duration: 6000 },
         { entity: 'mcsp:humvee_mk19', factory: 'light_ground_vehicle_factory', items: [['kubejs:mv_vehicle_frame', 1], ['superbwarfare:wheel', 4], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_cannon_barrel', 1], ['kubejs:mv_weapons_system', 1]], tags: [['#gtceu:circuits/mv', 8]], circuit: 7, eut: 120, duration: 400, research: 'veh_humvee_mk19' },
         { entity: 'mcsp:humvee_sand', factory: 'light_ground_vehicle_factory', items: [['kubejs:mv_vehicle_frame', 1], ['superbwarfare:wheel', 4], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_cannon_barrel', 1]], tags: [['#gtceu:circuits/mv', 8]], circuit: 8, eut: 120, duration: 400, research: 'veh_humvee_mg' },
-        { entity: 'superbwarfare:a_10a',          factory: 'heavy_plane_assembler', items: [['kubejs:mv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_wing', 2], ['kubejs:mv_weapons_system', 1],['kubejs:mv_cockpit', 1]],circuit: 1, eut: 450, duration: 6000 },
-        { entity: 'ashvehicle:f-4',          factory: 'heavy_plane_assembler', items: [['kubejs:mv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_wing', 2], ['kubejs:mv_weapons_system', 1],['kubejs:mv_cockpit', 1]],circuit: 2, eut: 450, duration: 6000 },
-        { entity: 'ashvehicle:f14',          factory: 'heavy_plane_assembler', items: [['kubejs:mv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_wing', 2], ['kubejs:mv_weapons_system', 1],['kubejs:mv_cockpit', 1]],circuit: 3, eut: 450, duration: 6000 },
-        { entity: 'ashvehicle:f_15',          factory: 'heavy_plane_assembler', items: [['kubejs:mv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_wing', 2], ['kubejs:mv_weapons_system', 1],['kubejs:mv_cockpit', 1]],circuit: 4, eut: 450, duration: 6000 },
-        { entity: 'ashvehicle:f_16',          factory: 'heavy_plane_assembler', items: [['kubejs:mv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_wing', 2], ['kubejs:mv_weapons_system', 1],['kubejs:mv_cockpit', 1]],circuit: 5, eut: 450, duration: 6000 },
-        { entity: 'ashvehicle:f-18',          factory: 'heavy_plane_assembler', items: [['kubejs:mv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_wing', 2], ['kubejs:mv_weapons_system', 1],['kubejs:mv_cockpit', 1]],circuit: 6, eut: 450, duration: 6000 },
-        { entity: 'ashvehicle:su-25',          factory: 'heavy_plane_assembler', items: [['kubejs:mv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_wing', 2], ['kubejs:mv_weapons_system', 1],['kubejs:mv_cockpit', 1]],circuit: 7, eut: 450, duration: 6000 },
-        { entity: 'ashvehicle:su-27',          factory: 'heavy_plane_assembler', items: [['kubejs:mv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_wing', 2], ['kubejs:mv_weapons_system', 1],['kubejs:mv_cockpit', 1]],circuit: 8, eut: 450, duration: 6000 },
-        { entity: 'ashvehicle:su-33',          factory: 'heavy_plane_assembler', items: [['kubejs:mv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_wing', 2], ['kubejs:mv_weapons_system', 1],['kubejs:mv_cockpit', 1]],circuit: 9, eut: 450, duration: 6000 },
-        { entity: 'ashvehicle:mig_29',          factory: 'heavy_plane_assembler', items: [['kubejs:mv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_wing', 2], ['kubejs:mv_weapons_system', 1],['kubejs:mv_cockpit', 1]],circuit: 10, eut: 450, duration: 6000 },
-        { entity: 'ashvehicle:ac130u',          factory: 'heavy_plane_assembler', items: [['kubejs:mv_air_frame', 2], ['superbwarfare:wheel', 5], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_wing', 2], ['kubejs:mv_cannon_barrel', 2],['kubejs:mv_cockpit', 1],['kubejs:mv_rotor', 4]],circuit: 11, eut: 450, duration: 6000 },
-        { entity: 'ashvehicle:c130',          factory: 'heavy_plane_assembler', items: [['kubejs:mv_air_frame', 2], ['superbwarfare:wheel', 5], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_wing', 2],['kubejs:mv_cockpit', 1],['kubejs:mv_rotor', 4]],circuit: 12, eut: 450, duration: 6000 },
-        { entity: 'ashvehicle:b52',          factory: 'heavy_plane_assembler', items: [['kubejs:mv_air_frame', 3], ['superbwarfare:wheel', 6], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_wing', 2],['kubejs:mv_cockpit', 1],['kubejs:mv_weapons_system', 1]],circuit: 13, eut: 450, duration: 6000 },
-        { entity: 'ashvehicle:f-117',          factory: 'heavy_plane_assembler', items: [['kubejs:mv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_wing', 2],['kubejs:mv_cockpit', 1],['kubejs:mv_weapons_system', 1]],circuit: 13, eut: 450, duration: 6000 },
+        { entity: 'superbwarfare:a_10a',          factory: 'heavy_plane_assembler', items: [['kubejs:mv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_wing', 2], ['kubejs:mv_weapons_system', 1],['kubejs:mv_cockpit', 1]],circuit: 1, eut: 450, duration: 6000, research: 'air_a_10' },
+        // AC-130U Spooky II — EV gunship (Hercules airframe + side-firing cannons), research veh air_spooky.
+        { entity: 'ashvehicle:ac130u',          factory: 'heavy_plane_assembler', items: [['kubejs:ev_air_frame', 2], ['superbwarfare:wheel', 5], ['kubejs:ev_engine', 1], ['gtceu:aluminium_single_cable', 32], ['kubejs:ev_wing', 2], ['kubejs:ev_cannon_barrel', 2],['kubejs:ev_cockpit', 1],['kubejs:ev_rotor', 4]],circuit: 11, eut: 450*4*4, duration: 6000, research: 'air_spooky' },
+        // C-130 Hercules — EV heavy transport, the EV step of the fixed-wing line (research air_hercules).
+        { entity: 'ashvehicle:c130',          factory: 'heavy_plane_assembler', items: [['kubejs:ev_air_frame', 2], ['superbwarfare:wheel', 5], ['kubejs:ev_engine', 1], ['gtceu:aluminium_single_cable', 32], ['kubejs:ev_wing', 2],['kubejs:ev_cockpit', 1],['kubejs:ev_rotor', 4]],circuit: 12, eut: 450*4*4, duration: 6000, research: 'air_hercules' },
         //hv tank
         // DISABLED (ungated, tier TBD): { entity: 'superbwarfare:t_90a',          factory: 'heavy_vehicle_depot', items: [['kubejs:hv_vehicle_frame', 1], ['kubejs:hv_track', 2], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_cannon_barrel', 1]], tags: [['#gtceu:circuits/hv', 16]],circuit: 1, eut: 450*4, duration: 6000 },
         { entity: 'superbwarfare:ztz_99a', factory: 'heavy_vehicle_depot', items: [['kubejs:ev_vehicle_frame', 1], ['kubejs:ev_track', 2], ['kubejs:ev_engine', 1], ['gtceu:aluminium_single_cable', 32], ['kubejs:ev_cannon_barrel', 1]], tags: [['#gtceu:circuits/ev', 16]], circuit: 2, eut: 450*4*4, duration: 6000, research: 'veh_tank' },
@@ -65,20 +62,9 @@ ServerEvents.recipes(event => {
         // DISABLED (ungated, tier TBD): { entity: 'mcsp:sprut',          factory: 'heavy_vehicle_depot', items: [['kubejs:hv_vehicle_frame', 1], ['kubejs:hv_track', 2], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_cannon_barrel', 1]], tags: [['#gtceu:circuits/hv', 16]],circuit: 7, eut: 450*4, duration: 6000 },
         // DISABLED (ungated, tier TBD): { entity: 'ashvehicle:pa_pantsir',          factory: 'heavy_vehicle_depot', items: [['kubejs:hv_vehicle_frame', 1], ['superbwarfare:wheel', 8], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_weapons_system', 1]], tags: [['#gtceu:circuits/hv', 16]],circuit: 8, eut: 450*4, duration: 6000 },
         // DISABLED (ungated, tier TBD): { entity: 'ashvehicle:pa_pantsir',          factory: 'heavy_vehicle_depot', items: [['kubejs:hv_vehicle_frame', 1], ['superbwarfare:wheel', 4], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_cannon_barrel', 1]], tags: [['#gtceu:circuits/hv', 16]],circuit: 9, eut: 450*4, duration: 6000 },
-        //hv plane
-        { entity: 'ashvehicle:eurofighter',          factory: 'heavy_plane_assembler', items: [['kubejs:hv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_wing', 2], ['kubejs:hv_weapons_system', 1],['kubejs:hv_cockpit', 1]],circuit: 1, eut: 450*4, duration: 6000 },
-        { entity: 'ashvehicle:f_2',          factory: 'heavy_plane_assembler', items: [['kubejs:hv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_wing', 2], ['kubejs:hv_weapons_system', 1],['kubejs:hv_cockpit', 1]],circuit: 2, eut: 450*4, duration: 6000 },
-        { entity: 'ashvehicle:f-22',          factory: 'heavy_plane_assembler', items: [['kubejs:hv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_wing', 2], ['kubejs:hv_weapons_system', 1],['kubejs:hv_cockpit', 1]],circuit: 3, eut: 450*4, duration: 6000 },
-        { entity: 'ashvehicle:f-22',          factory: 'heavy_plane_assembler', items: [['kubejs:hv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_wing', 2], ['kubejs:hv_weapons_system', 1],['kubejs:hv_cockpit', 1]],circuit: 4, eut: 450*4, duration: 6000 },
-        { entity: 'ashvehicle:f-22',          factory: 'heavy_plane_assembler', items: [['kubejs:hv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_wing', 2], ['kubejs:hv_weapons_system', 1],['kubejs:hv_cockpit', 1]],circuit: 5, eut: 450*4, duration: 6000 },
-        { entity: 'ashvehicle:su-34',          factory: 'heavy_plane_assembler', items: [['kubejs:hv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_wing', 2], ['kubejs:hv_weapons_system', 1],['kubejs:hv_cockpit', 1]],circuit: 6, eut: 450*4, duration: 6000 },
-        { entity: 'ashvehicle:f-35b',          factory: 'heavy_plane_assembler', items: [['kubejs:hv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_wing', 2], ['kubejs:hv_weapons_system', 1],['kubejs:hv_cockpit', 1]],circuit: 7, eut: 450*4, duration: 6000 },
-        { entity: 'ashvehicle:f-35a',          factory: 'heavy_plane_assembler', items: [['kubejs:hv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_wing', 2], ['kubejs:hv_weapons_system', 1],['kubejs:hv_cockpit', 1]],circuit: 8, eut: 450*4, duration: 6000 },
-        { entity: 'ashvehicle:f-39e',          factory: 'heavy_plane_assembler', items: [['kubejs:hv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_wing', 2], ['kubejs:hv_weapons_system', 1],['kubejs:hv_cockpit', 1]],circuit: 9, eut: 450*4, duration: 6000 },
-        { entity: 'ashvehicle:j-20',          factory: 'heavy_plane_assembler', items: [['kubejs:hv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_wing', 2], ['kubejs:hv_weapons_system', 1],['kubejs:hv_cockpit', 1]],circuit: 10, eut: 450*4, duration: 6000 },
-        { entity: 'ashvehicle:su-57',          factory: 'heavy_plane_assembler', items: [['kubejs:hv_air_frame', 1], ['superbwarfare:wheel', 3], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_wing', 2], ['kubejs:hv_weapons_system', 1],['kubejs:hv_cockpit', 1]],circuit: 11, eut: 450*4, duration: 6000 },
-        //ev plane
-        { entity: 'ashvehicle:b-2',          factory: 'heavy_plane_assembler', items: [['kubejs:ev_air_frame', 2], ['superbwarfare:wheel', 3], ['kubejs:ev_engine', 1], ['gtceu:aluminium_single_cable', 32], ['kubejs:ev_wing', 2], ['kubejs:ev_weapons_system', 2],['kubejs:ev_cockpit', 1]],circuit: 1, eut: 450*4*4, duration: 6000 },
+        // B-2 Spirit — IV flying-wing stealth bomber, the apex of the fixed-wing line (research air_b2). Uses IV
+        // parts where they exist; air_frame caps at EV (there is no iv_air_frame), so it keeps ev_air_frame.
+        { entity: 'ashvehicle:b-2',          factory: 'heavy_plane_assembler', items: [['kubejs:ev_air_frame', 2], ['superbwarfare:wheel', 3], ['kubejs:iv_engine', 1], ['gtceu:platinum_single_cable', 32], ['kubejs:iv_wing', 2], ['kubejs:iv_weapons_system', 2],['kubejs:iv_cockpit', 1]],circuit: 1, eut: 450*4*4, duration: 6000, research: 'air_b2' },
             ]
     // NOTE: TOW (superbwarfare:tow_deployer) was dropped from this list — it outputs a plain item, not a
     // packaged-vehicle entity, so it doesn't fit WFVehicles.recipe. Ask if you want raw-item-output support.
@@ -97,18 +83,40 @@ ServerEvents.recipes(event => {
     //     MLRS: ashvehicle:tos · IFVs/APCs: bmp_2, lav_25, mcsp:zbd04a_sand, mcsp:bmd_4, mcsp:sprut
     //   (planes are aviation — handled on the future Aviation page, not here.)
 
+    // ── Cost scaling (mild pass; mirrors the component scaling in vehicles/components.js) ──
+    // A vehicle's tier = the highest-tier kubejs part it consumes. Scale the *consumed*
+    // circuits, cable, and craft time by that tier's factor (item counts capped at a 64
+    // stack). Frame/engine COUNTS stay as authored — their extra cost already rides on the
+    // now-pricier component sub-recipes — so a vehicle's total lands at ~factor, not factor².
+    // Lower tiers stay relatively cheap; higher tiers grow as infrastructure demands. Keep
+    // TIER_COST in sync with components.js.
+    const TIER_RANK = { lv: 0, mv: 1, hv: 2, ev: 3, iv: 4 }
+    const TIER_COST = { lv: 1.1, mv: 1.25, hv: 1.5, ev: 1.8, iv: 2.2 }
+    const cap64 = n => Math.min(64, Math.max(1, Math.round(n)))
+    const tierOf = v => {
+        var best = 'lv', rank = -1
+        ;(v.items || []).forEach(it => {
+            var m = /^kubejs:(lv|mv|hv|ev|iv)_/.exec(it[0])
+            if (m && TIER_RANK[m[1]] > rank) { rank = TIER_RANK[m[1]]; best = m[1] }
+        })
+        return best
+    }
+
     VEHICLES.forEach((v, i) => {
         try {
             // NB: var (not const/let) — Rhino throws "redeclaration of var r" on later
             // iterations once an earlier iteration's initializer throws (e.g. a removed halo
             // entity), which silently killed every recipe after the first failure.
+            var f = TIER_COST[tierOf(v)];
             var r = WFVehicles.recipe('kubejs:veh_' + i, v.entity, v.factory);
-            (v.items || []).forEach(it => r.item(it[0], it[1]));
-            (v.tags || []).forEach(tg => r.tag(tg[0], tg[1]));
+            // Cable (…_single_cable) is bulk consumed material -> scale it; the other items are
+            // single components whose cost rises via their sub-recipe, so keep their counts.
+            (v.items || []).forEach(it => r.item(it[0], /_single_cable$/.test(it[0]) ? cap64(it[1] * f) : it[1]));
+            (v.tags || []).forEach(tg => r.tag(tg[0], cap64(tg[1] * f)));   // consumed circuit boards
             (v.fluids || []).forEach(fl => r.fluid(fl[0], fl[1]));
             if (v.circuit !== undefined && v.circuit !== null) r.circuit(v.circuit);
             if (v.research) r.research(v.research);   // gate the build behind a research node (WFVehicleBindings)
-            r.EUt(v.eut).duration(v.duration);
+            r.EUt(v.eut).duration(Math.round(v.duration * f));   // longer craft -> total EU scales ~f
             event.custom(r.build());
         } catch (e) {
             console.warn('[WF] skipped vehicle recipe #' + i + ' (' + v.entity + ' @ ' + v.factory + '): ' + e);

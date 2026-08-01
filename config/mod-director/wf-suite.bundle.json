@@ -5,6 +5,10 @@
       "fileName": "wfcore-1.2.0.jar"
     },
     {
+      "url": "https://github.com/Warfactory-Official/AshVehicle/releases/download/1.20.1-4.5.3-8.9/ashvehicle-1.20.1-4.5.3-8.9-div.jar",
+      "fileName": "ashvehicle-1.20.1-4.5.3-8.9-div.jar"
+    },
+    {
       "url": "https://github.com/Warfactory-Official/WFMedical/releases/download/v0.3.1/wfmedical-0.3.1.jar",
       "fileName": "wfmedical-0.3.1.jar"
     },
@@ -19,10 +23,6 @@
     {
       "url": "https://github.com/Warfactory-Official/WarForge-Remaintained/releases/download/v2.4.1/warforge-remaintained-2.4.1.jar",
       "fileName": "warforge-remaintained-2.4.1.jar"
-    },
-    {
-      "url": "https://github.com/Warfactory-Official/Boxy/releases/download/v1.0.0/boxy-1.0.0.jar",
-      "fileName": "boxy-1.0.0.jar"
     },
     {
       "url": "https://github.com/TheVirtualizedG/voxy/releases/download/v1.0.0/voxy-0.2.14-alpha.jar",

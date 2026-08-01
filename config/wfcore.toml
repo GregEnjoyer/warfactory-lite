@@ -72,3 +72,18 @@ foliageBreakers = []
 	#Show the vanity [Tag] before ranked players' names in the tab list.
 	showTabTags = true
 
+#Soft client-mod integrity audit. On join the server asks the client to hash its mods-folder jars and
+#compares them to config/wfcore-modmanifest.json (fileName -> sha256, regenerated per pack build).
+#Anything unknown or modified is FLAGGED (log + operator message + optional Discord webhook) but NEVER
+#kicked - a newer build is plausible, so an admin reviews. Hard mod validation stays with the anticheat.
+[clientModAudit]
+	#Master switch. When off, no request is sent on join and inbound reports are ignored.
+	enabled = true
+	#Discord webhook URL for flag notifications. Leave blank to log + notify in-game operators only.
+	webhookUrl = ""
+	#How long (seconds) to wait for a client's mod report before flagging that it never arrived.
+	#Range: 1 ~ 300
+	reportTimeoutSeconds = 20
+	#Also flag manifest jars a client did NOT report (stripped mods). Off by default to reduce noise.
+	flagMissing = false
+

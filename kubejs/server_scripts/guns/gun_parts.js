@@ -133,41 +133,14 @@ ServerEvents.recipes(event => {
         });
     }
 
-    // Grips & stocks (LV) - basic ergonomic parts, no electronics or optics involved
-    attachmentGroup('grip_stock', [
-        'tacz:grip_cobra', 'tacz:grip_cqr', 'tacz:grip_magpul_afg_2', 'tacz:grip_osovets_black',
-        'tacz:grip_rk0', 'tacz:grip_rk1_b25u', 'tacz:grip_rk6', 'tacz:grip_se_5', 'tacz:grip_td',
-        'tacz:grip_vertical_military', 'tacz:grip_vertical_ranger', 'tacz:grip_vertical_talon',
-        'tacz:oem_stock_heavy', 'tacz:oem_stock_light', 'tacz:oem_stock_tactical',
-        'tacz:stock_ak12', 'tacz:stock_carbon_bone_c5', 'tacz:stock_heavy_spas_12',
-        'tacz:stock_hk_slim_line', 'tacz:stock_m4ss', 'tacz:stock_militech_b5', 'tacz:stock_moe',
-        'tacz:stock_ripstock', 'tacz:stock_sba3', 'tacz:stock_tactical_ar', 'tacz:stock_tactical_spas_12',
-        'ronmc:angled_grip', 'ronmc:combat_grip', 'ronmc:mp5a2_grip', 'ronmc:side_angle_grip',
-        'ronmc:stock_tactical_tan',
-    ], [Item.of('gtceu:treated_wood_plate', 1), Item.of('gtceu:small_steel_gear', 1)], 100, 32, null);
-
-    // Extended magazines (LV) - just more sheet steel and a stronger spring
-    attachmentGroup('mag', [
-        'tacz:extended_mag_1', 'tacz:extended_mag_2', 'tacz:extended_mag_3',
-        'tacz:light_extended_mag_1', 'tacz:light_extended_mag_2', 'tacz:light_extended_mag_3',
-        'tacz:shotgun_extended_mag_1', 'tacz:shotgun_extended_mag_2', 'tacz:shotgun_extended_mag_3',
-        'tacz:sniper_extended_mag_1', 'tacz:sniper_extended_mag_2', 'tacz:sniper_extended_mag_3',
-    ], [Item.of('gtceu:steel_plate', 1), Item.of('gtceu:small_steel_spring', 1)], 100, 32, null);
-
-    // Muzzle devices - brakes/chokes/compensators (LV) - simple machined steel, no optics/explosives
-    attachmentGroup('muzzle', [
-        'tacz:muzzle_brake_cthulhu', 'tacz:muzzle_brake_cyclone_d2', 'tacz:muzzle_brake_mastiff_sg',
-        'tacz:muzzle_brake_pioneer', 'tacz:muzzle_brake_timeless50', 'tacz:muzzle_brake_trex',
-        'tacz:muzzle_choke_sg', 'tacz:muzzle_compensator_trident', 'tacz:muzzle_duckbill_sg',
-        'tacz:deagle_golden_long_barrel',
-        'ronmc:12ga_brake', 'ronmc:357_snub', 'ronmc:snub', 'ronmc:spread_choke',
-    ], [Item.of('gtceu:steel_plate', 1)], 100, 32, null);
-
-    // Bayonets (LV) - just a fitted steel blade
-    attachmentGroup('bayonet', [
-        'tacz:bayonet_6h3', 'tacz:bayonet_m9',
-        'ww:bayonet_m1884', 'ww:bayonet_m1930', 'ww:bayonet_no4',
-    ], [Item.of('gtceu:steel_plate', 2)], 100, 32, null);
+    // Grips & stocks, extended magazines, muzzle devices, bayonets, sights,
+    // scopes, suppressors, lasers/lights and ammo mods now all live in
+    // zz_attachment_tiers.js (tiered materials + fixed the circuit-collision
+    // bug this attachmentGroup helper has whenever a group has 2+ items with
+    // identical inputs). Moved out of here rather than left duplicated,
+    // because KubeJS's event.remove() can't remove a recipe added by another
+    // KubeJS script in the same event, so keeping both copies around would
+    // just mean two competing recipes for the same output.
 
     // WW-era optics (LV, tied to the same era as the WW1/WW2 guns they mount to) -
     // simple ground-glass scopes, not the precision MV/HV tacz line below
@@ -175,55 +148,7 @@ ServerEvents.recipes(event => {
         'ww:m82', 'ww:no32', 'ww:peyu', 'ww:pyu', 'ww:zf39', 'ww:zf4',
     ], [Item.of('gtceu:glass_lens', 1), Item.of('gtceu:treated_wood_plate', 1), Item.of('gtceu:steel_screw', 1)], 150, 32, null);
 
-    // Iron/red-dot sights (MV) - needs a proper glass lens, gated behind guns2 like the
-    // rest of the Cold War pistol/SMG line these mostly mount to
-    attachmentGroup('sight', [
-        'tacz:sight_552', 'tacz:sight_acro_pistol', 'tacz:sight_acro_rifle', 'tacz:sight_coyote',
-        'tacz:sight_deltapoint_pistol', 'tacz:sight_deltapoint_rifle', 'tacz:sight_exp3',
-        'tacz:sight_fastfire_pistol', 'tacz:sight_fastfire_rifle', 'tacz:sight_okp7', 'tacz:sight_p90',
-        'tacz:sight_pk06_pistol', 'tacz:sight_pk06_rifle', 'tacz:sight_rmr_dot', 'tacz:sight_sro_dot',
-        'tacz:sight_srs_02', 'tacz:sight_t1', 'tacz:sight_t2', 'tacz:sight_uh1',
-        'ronmc:canted', 'ronmc:rmr_dot', 'ronmc:sro_dot',
-    ], [Item.of('gtceu:steel_plate', 1), Item.of('gtceu:glass_lens', 1)], 100, 4, 'guns2');
-
-    // Magnified scopes, basic tier (MV) - same materials the pre-existing `scopes` array
-    // above already uses, so this one has a loose in-pack precedent
-    attachmentGroup('scope_basic', [
-        'tacz:scope_1873_6x', 'tacz:scope_98k', 'tacz:scope_aug_default', 'tacz:scope_contender',
-        'tacz:scope_retro_2x', 'tacz:scope_scout', 'tacz:scope_standard_8x',
-    ], [Item.of('gtceu:glass_lens', 2), Item.of('gtceu:steel_screw', 2), Item.of('gtceu:aluminium_plate', 1)], 150, 4, 'guns2');
-
-    // Magnified scopes, advanced tier (HV) - same formula, doubled optics for the
-    // higher-end glass, ungated to match how HV.js's own gun recipes are ungated
-    attachmentGroup('scope_advanced', [
-        'tacz:scope_acog_ta31', 'tacz:scope_elcan_4x', 'tacz:scope_hamr', 'tacz:scope_lpvo_1_6',
-        'tacz:scope_mk5hd', 'tacz:scope_qmk152', 'tacz:scope_vudu',
-    ], [Item.of('gtceu:glass_lens', 2), Item.of('gtceu:steel_screw', 2), Item.of('gtceu:aluminium_plate', 2)], 150, 512, null);
-
-    // Suppressors (MV) - needs precision-machined parts, gated same as MV pistols/SMGs
-    attachmentGroup('suppressor', [
-        'tacz:muzzle_silencer_knight_qd', 'tacz:muzzle_silencer_mirage', 'tacz:muzzle_silencer_phantom_s1',
-        'tacz:muzzle_silencer_ptilopsis', 'tacz:muzzle_silencer_sg', 'tacz:muzzle_silencer_ursus',
-        'tacz:muzzle_silencer_vulture', 'tacz:muzzle_silencer_wraith',
-        'ww:silence', 'ww:silencep',
-    ], [Item.of('gtceu:steel_plate', 1), Item.of('gtceu:steel_screw', 2)], 150, 4, 'guns2');
-
-    // Lasers & lights (MV) - needs an actual electronic circuit, so it can't be earlier than MV
-    attachmentGroup('laser_light', [
-        'tacz:laser_compact', 'tacz:laser_lopro', 'tacz:laser_nightstick', 'tacz:laser_peq15', 'tacz:laser_peq6',
-        'ronmc:custom_laser', 'ronmc:flashlight_1', 'ronmc:flashlight_2', 'ronmc:laser_peq15',
-        'ronmc:laser_pointer', 'ronmc:tac_laser',
-    ], [Item.of('gtceu:polyethylene_plate', 1), Item.of('gtceu:basic_electronic_circuit', 1)], 150, 4, 'guns2');
-
-    // Standard ammo mods - FMJ/HP/AP/slug (MV) - just a different bullet material, same
-    // tier as the rest of Cold War ammo
-    attachmentGroup('ammo_mod', [
-        'tacz:ammo_mod_fmj', 'tacz:ammo_mod_hp', 'tacz:ammo_mod_i', 'tacz:ammo_mod_slug',
-    ], [Item.of('gtceu:lead_nugget', 2), Item.of('gtceu:steel_nugget', 1)], 100, 4, 'guns2');
-
-    // Explosive ammo mods - HE (HV) - needs an actual explosive-chain input, like the
-    // grenade launchers in HV.js
-    attachmentGroup('ammo_mod_explosive', [
-        'tacz:ammo_mod_he', 'ronmc:m32a1_he',
-    ], [Item.of('gtceu:dynamite', 1), Item.of('gtceu:steel_nugget', 1)], 150, 512, null);
+    // Sights, scopes, suppressors, lasers/lights and ammo mods: see the note
+    // above the attachmentGroup calls at the top of this file - all moved to
+    // zz_attachment_tiers.js.
 });

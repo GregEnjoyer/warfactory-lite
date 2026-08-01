@@ -9,6 +9,37 @@ limits:
   fullScanIntervalTicks: 600
 rules:
   exact:
+    sbwdroneconfig:lucas_drone: 5.0
+    sbwdroneconfig:cubed_fpv_drone: 5.0
+    superbwarfare:claymore_mines: 2.0
+    superbwarfare:mortar_shell: 4.0
+    superbwarfare:mortar_shell_wp: 4.0
+    superbwarfare:small_rocket: 5.0
+    superbwarfare:medium_rocket_ap: 20.0
+    superbwarfare:medium_rocket_he: 20.0
+    superbwarfare:medium_rocket_cm: 20.0
+    superbwarfare:medium_anti_air_missile: 20.0
+    superbwarfare:large_anti_ground_missile: 25.0
+    superbwarfare:small_aeriel_bomb: 5.0
+    superbwarfare:medium_aeriel_bomb: 10.0
+    ashvehicle:gbu57item: 20.0
+    superbwarfare:c4_bomb: 3.0
+    superbwarfare:tm_62: 5.0
+    superbwarfare:ptkm_1r: 5.0
+    superbwarfare:m18_smoke_grenade: 0.5
+    superbwarfare:hand_grenade: 0.5
+    superbwarfare:rgo_grenade: 0.5
+    superbwarfare:small_rocket: 1.0
+    superbwarfare:small_shell_he: 0.5
+    superbwarfare:small_shell_gs: 0.5
+    superbwarfare:small_shell_aa: 0.5
+    superbwarfare:large_shell_ap: 2.0
+    superbwarfare:large_shell_he: 2.0
+    superbwarfare:large_shell_cm: 2.0
+    superbwarfare:large_shell_gs: 2.0
+    superbwarfare:large_shell_wp: 2.0
+    superbwarfare:small_shell_ap: 0.5
+    superbwarfare:monitor: 2.5
     tacz:aa12: 4.0
     tacz:ai_awp: 7.0
     tacz:ak47: 5.0
@@ -17,9 +48,9 @@ rules:
     tacz:cz75: 2.0
     tacz:db_long: 4.0
     tacz:db_short: 4.0
-    tacz:deagle: 2.0
-    tacz:deagle_golden: 2.0
-    tacz:fn_evolys: 10.0
+    tacz:deagle: 5.0
+    tacz:deagle_golden: 5.0
+    tacz:fn_evolys: 15.0
     tacz:fn_fal: 5.0
     tacz:g36k: 5.0
     tacz:glock_17: 2.0
@@ -34,14 +65,14 @@ rules:
     tacz:m16a1: 5.0
     tacz:m16a4: 5.0
     tacz:m1911: 2.0
-    tacz:m249: 10.0
+    tacz:m249: 15.0
     tacz:m320: 10.0
     tacz:m4a1: 5.0
     tacz:m700: 7.0
     tacz:m870: 4.0
     tacz:m95: 7.0
     tacz:m9a4: 2.0
-    tacz:minigun: 10.0
+    tacz:minigun: 50.0
     tacz:mk14: 5.0
     tacz:p320: 2.0
     tacz:p90: 3.0
@@ -49,7 +80,7 @@ rules:
     tacz:qbz_95: 5.0
     tacz:rhino357: 2.0
     tacz:rpg7: 10.0
-    tacz:rpk: 10.0
+    tacz:rpk: 15.0
     tacz:scar_h: 5.0
     tacz:scar_l: 5.0
     tacz:sks_tactical: 5.0
@@ -63,7 +94,7 @@ rules:
     tacz:ump45: 3.0
     tacz:uzi: 3.0
     tacz:vector45: 3.0
-    ww:anm2: 10.0
+    ww:anm2: 25.0
     ww:as44: 5.0
     ww:avt_40: 5.0
     ww:c96: 2.0
@@ -77,10 +108,10 @@ rules:
     ww:m1903: 7.0
     ww:m1911a1: 2.0
     ww:m1912: 4.0
-    ww:m1918: 10.0
-    ww:m1918a1: 10.0
-    ww:m1918a2: 10.0
-    ww:m1919: 10.0
+    ww:m1918: 15.0
+    ww:m1918a1: 15.0
+    ww:m1918a2: 15.0
+    ww:m1919: 25.0
     ww:m1921: 3.0
     ww:m1928a1: 3.0
     ww:m1a1: 3.0
@@ -92,8 +123,8 @@ rules:
     ww:m50: 3.0
     ww:m712: 2.0
     ww:m91: 7.0
-    ww:mg34: 10.0
-    ww:mg42: 10.0
+    ww:mg34: 20.0
+    ww:mg42: 20.0
     ww:mp28: 3.0
     ww:mp34: 3.0
     ww:mp38: 3.0
@@ -187,7 +218,7 @@ rules:
     tacz:46x30: 0.1
     tacz:500mag: 0.1
     tacz:50ae: 0.1
-    tacz:50bmg: 0.15
+    tacz:50bmg: 0.35
     tacz:545x39: 0.1
     tacz:556x45: 0.1
     tacz:57x28: 0.1

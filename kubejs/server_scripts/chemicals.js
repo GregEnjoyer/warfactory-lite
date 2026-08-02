@@ -59,4 +59,13 @@ ServerEvents.recipes(event => {
         .itemOutputs('4x gtceu:rdx_dust')
         .outputFluids('gtceu:diluted_sulfuric_acid 1000')
         .duration(400).EUt(2048)
+
+
+    event.recipes.gtceu.large_chemical_reactor("kubejs:nether_star_dust")
+        .itemInputs('15x gtceu:lapotron_dust', '32x minecraft:glowstone_dust', '5x gtceu:ender_pearl_dust')
+        .inputFluids('gtceu:aqua_regia 3000')
+        .itemOutputs('1x gtceu:nether_star_dust')
+        .duration(1800)
+        .EUt(1920)
+
 })

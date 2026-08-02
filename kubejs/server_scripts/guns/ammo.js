@@ -102,14 +102,9 @@ ServerEvents.recipes(event => {
     // =======================================================================
     // 2. AMMO COMPONENTS
     // =======================================================================
-    // Solid rocket fuel — cheap assembler route (a chemical-reactor route also
-    // exists in vehicles/parts.js). Consumed by the RPG/rocket rounds below.
-    event.recipes.gtceu.assembler('kubejs:solid_rocket_fuel')
-        .itemInputs('gtceu:sulfur_dust', 'gtceu:saltpeter_dust', 'gtceu:charcoal_dust')
-        .itemOutputs('kubejs:solid_rocket_fuel')
-        .circuit(1)
-        .duration(400)
-        .EUt(30);
+    // Solid Rocket Propellant (kubejs:solid_rocket_fuel) is made via the MV Ammonium
+    // Perchlorate Composite Propellant (APCP) chemical chain in vehicles/parts.js —
+    // it has no assembler route. Consumed by the RPG/rocket rounds + missile engine below.
 
     // Superb Warfare crafting components — primer, high-energy explosives, grain.
     // Their vanilla crafting recipes are stripped by cleanup/remove_crafting.js
@@ -154,7 +149,7 @@ ServerEvents.recipes(event => {
     // Seeker — IR/radar guidance head (sensor + emitter + optics). The guidance core consumed by every guided
     // missile / SAM / smart-mine recipe. Gated on the "Guidance Seekers" ballistics node (WFResearch.js).
     event.recipes.gtceu.assembler('kubejs:sw_seeker')
-        .itemInputs(Item.of('gtceu:lv_sensor', 1), Item.of('gtceu:lv_emitter', 1), Item.of('gtceu:tempered_glass', 1), Item.of('gtceu:basic_electronic_circuit', 1))
+        .itemInputs(Item.of('gtceu:lv_sensor', 1), Item.of('gtceu:lv_emitter', 1), Item.of('gtceu:tempered_glass', 1), '#gtceu:circuits/lv')
         .itemOutputs(Item.of('superbwarfare:seeker', 1))
         .circuit(5)
         .duration(400)
@@ -417,13 +412,8 @@ ServerEvents.recipes(event => {
     event.recipes.gtceu.assembler('kubejs:sw_hand_grenade')
         .itemInputs(Item.of('gtceu:steel_plate', 2), Item.of('gtceu:dynamite', 1), Item.of('gtceu:small_steel_spring', 1))
         .itemOutputs(Item.of('superbwarfare:hand_grenade', 2))
-        .circuit(1).duration(400).EUt(32);
+        .circuit(1).duration(600).EUt(2);
 
-    // RGO grenade — fragmentation body; screws = segmented outer sleeve
-    event.recipes.gtceu.assembler('kubejs:sw_rgo_grenade')
-        .itemInputs(Item.of('gtceu:steel_plate', 2), Item.of('gtceu:dynamite', 1), Item.of('gtceu:steel_screw', 4))
-        .itemOutputs(Item.of('superbwarfare:rgo_grenade', 2))
-        .circuit(2).duration(400).EUt(32);
 
     // M18 smoke grenade — non-lethal; dye = colored smoke agent
     event.recipes.gtceu.assembler('kubejs:sw_m18_smoke_grenade')
@@ -433,9 +423,27 @@ ServerEvents.recipes(event => {
 
     // Claymore mine — directional; basic circuit for the fuze board
     event.recipes.gtceu.assembler('kubejs:sw_claymore_mine')
-        .itemInputs(Item.of('gtceu:steel_plate', 3), Item.of('gtceu:dynamite', 2), Item.of('gtceu:basic_electronic_circuit', 1))
+        .itemInputs(Item.of('gtceu:polyvinyl_chloride_plate', 5), Item.of('gtceu:dynamite', 2), '#gtceu:circuits/lv')
         .itemOutputs(Item.of('superbwarfare:claymore_mine', 1))
-        .circuit(1).duration(600).EUt(32);
+        .circuit(1).duration(600).EUt(128);
+
+    // entry denial device
+    event.recipes.gtceu.assembler('kubejs:sw_edd')
+        .itemInputs(Item.of('gtceu:aluminium_plate', 8), Item.of('gtceu:dynamite', 4), '2x #gtceu:circuits/mv')
+        .itemOutputs(Item.of('superbwarfare:edd', 1))
+        .circuit(2).duration(300).EUt(128);
+
+    // dragontooth
+    event.recipes.gtceu.assembler('kubejs:sw_dragon_teeth')
+        .itemInputs(Item.of('gtceu:double_stainless_steel_plate', 4), Item.of('gtceu:dynamite', 16), '2x #gtceu:circuits/hv')
+        .itemOutputs(Item.of('superbwarfare:blu_43_mine', 1))
+        .circuit(3).duration(600).EUt(512);
+
+    // c4
+    event.recipes.gtceu.assembler('kubejs:sw_c4_bomb')
+        .itemInputs(Item.of('gtceu:stainless_steel_plate', 8), Item.of('gtceu:dynamite', 6), '#gtceu:circuits/hv')
+        .itemOutputs(Item.of('superbwarfare:c4_bomb', 1))
+        .circuit(4).duration(300).EUt(512);
 
     // TM-62 anti-tank mine — HE fill, heavy pressure plate
     event.recipes.gtceu.assembler('kubejs:sw_tm_62')
@@ -449,11 +457,7 @@ ServerEvents.recipes(event => {
         .itemOutputs(Item.of('superbwarfare:ptkm_1r', 1))
         .circuit(3).duration(800).EUt(128);
 
-    // Lunge mine — suicide contact fuze on a pole (long rod = the pole)
-    event.recipes.gtceu.assembler('kubejs:sw_lunge_mine')
-        .itemInputs(Item.of('gtceu:steel_plate', 2), Item.of('gtceu:dynamite', 3), Item.of('gtceu:long_steel_rod', 1))
-        .itemOutputs(Item.of('superbwarfare:lunge_mine', 1))
-        .circuit(4).duration(400).EUt(32);
+
 
     // =======================================================================
     // 8. ROCKETS & GUIDED MISSILES  (assembler — engine/seeker driven)
@@ -530,7 +534,7 @@ ServerEvents.recipes(event => {
             Item.of('gtceu:uranium_235_block', 2),
             Item.of('gtceu:double_beryllium_plate', 4),
             Item.of('superbwarfare:he_head', 4),
-            Item.of('gtceu:advanced_integrated_circuit', 2))
+            '2x #gtceu:circuits/hv')
         .itemOutputs(Item.of('ashvehicle:nuclearbombitem', 1))
         .circuit(1).duration(4800).EUt(8192)   // IV — nuclear_bomb
         .addCondition(WFResearch.condition('nuclear_bomb'));   // Ballistics: Nuclear Bomb (IV apex, B-2)
@@ -540,7 +544,7 @@ ServerEvents.recipes(event => {
     // =======================================================================
     // Base drone — 4 motors + 4 propellers + circuit + poly housing
     event.recipes.gtceu.assembler('kubejs:sw_drone')
-        .itemInputs(Item.of('superbwarfare:motor', 4), Item.of('superbwarfare:propeller', 4), Item.of('gtceu:basic_electronic_circuit', 1), Item.of('gtceu:polyethylene_plate', 2))
+        .itemInputs(Item.of('superbwarfare:motor', 4), Item.of('superbwarfare:propeller', 4), '#gtceu:circuits/lv', Item.of('gtceu:polyethylene_plate', 2))
         .itemOutputs(Item.of('superbwarfare:drone', 1))
         .circuit(1).duration(800).EUt(128)
         .addCondition(WFResearch.condition('drone_tactics'));   // Aviation: Drone Tactics (Monitor + base Drone)

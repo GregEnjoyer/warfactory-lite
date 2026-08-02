@@ -68,6 +68,20 @@ GTCEuStartupEvents.registry("gtceu:material", (event) => {
     .iconSet(GTMaterialIconSet.DULL);
 });
 
+// Ammonium Perchlorate (NH4ClO4) — the crystalline oxidizer of composite solid
+// rocket propellant (APCP); off-white dust. Synthesised in a Chemical Reactor
+// (saltpeter + hydrogen peroxide) then blended with aluminium fuel + molten
+// rubber binder in a Mixer into kubejs:solid_rocket_fuel — see
+// server_scripts/vehicles/parts.js. MV-tier chain.
+GTCEuStartupEvents.registry("gtceu:material", (event) => {
+    event
+    .create("ammonium_perchlorate")
+    .components("1x nitrogen", "4x hydrogen", "1x chlorine", "4x oxygen")
+    .dust()
+    .color(0xEAF0F5)
+    .iconSet(GTMaterialIconSet.DULL);
+});
+
 // ---- Generic fluids -------------------------------------------------------
 GTCEuStartupEvents.registry('gtceu:material', event => {
     event.create('early_rocket_fuel')

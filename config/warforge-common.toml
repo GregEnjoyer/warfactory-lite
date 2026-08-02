@@ -1104,7 +1104,7 @@
 	#Turns the in-world border rendering on/off for ally chunks
 	"Show Ally Chunk Borders" = true
 	#Prevent players from opening ender chests
-	"Disable Ender Chest" = false
+	"Disable Ender Chest" = true
 	#Allow players to craft and consume /tpa and /tpaccept style potions
 	"Enable TPA Potions" = false
 	#https://github.com/Chikachi/DiscordIntegration/wiki/IMC-Feature

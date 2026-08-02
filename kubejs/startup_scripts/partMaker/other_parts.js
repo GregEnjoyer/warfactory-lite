@@ -1,5 +1,5 @@
 StartupEvents.registry('item', event => {
-event.create('solid_rocket_fuel').texture('kubejs:item/stock_plastic').maxStackSize(64).displayName('Solid Rocket Fuel')
+event.create('solid_rocket_fuel').texture('kubejs:item/propellant').maxStackSize(64).displayName('Solid Rocket Propellant')
 event.create('tank_icon').texture('kubejs:item/medium_tank_cropped').maxStackSize(64).displayName('Tank Icon')
 event.create('plane_icon').texture('kubejs:item/fighter').maxStackSize(64).displayName('Plane Icon')
 event.create('infantry_icon').texture('kubejs:item/techtree_infantry_tab').maxStackSize(64).displayName('Infantry Icon')

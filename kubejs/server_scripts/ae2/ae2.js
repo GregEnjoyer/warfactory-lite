@@ -54,14 +54,10 @@ ServerEvents.recipes((event) => {
   })
   */
 
-  // Quantum Ring
+  // Quantum Ring — crafting DISABLED. The Quantum Network Bridge (ring + link) is an unlimited-range,
+  // cross-dimension ME item bridge = combat-supply teleportation, which the pack's logistics rules forbid.
+  // Removing the ring's recipe (and adding no replacement) makes the bridge unbuildable.
   event.remove({ id: "ae2:network/blocks/quantum_ring" });
-  event.shaped("2x ae2:quantum_ring", ["PLP", "EHE", "PLP"], {
-    P: "gtceu:titanium_plate",
-    L: "ae2:logic_processor",
-    E: "ae2:engineering_processor",
-    H: "gtceu:hv_field_generator",
-  });
 
   // Quantum Link Chamber
   event.remove({ id: "ae2:network/blocks/quantum_link" });

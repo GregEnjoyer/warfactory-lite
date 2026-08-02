@@ -5,7 +5,7 @@ ServerEvents.recipes(event => {
   event.replaceInput({}, 'superbwarfare:steel_ingot', 'gtceu:steel_ingot')
   event.shapeless(
     Item.of('gtceu:programmed_circuit', '{Configuration:0}'),
-                  ['gtceu:vacuum_tube']
+                  ['#gtceu:circuits/ulv']
   )
 
   // Wrought Iron smelting recipe

@@ -53,4 +53,22 @@ ServerEvents.recipes(event => {
         .itemInputs('3x gtceu:stainless_steel_plate', '6x gtceu:mv_emitter', 'superbwarfare:seeker', '4x #gtceu:circuits/hv')
         .itemOutputs('sbwdroneconfig:drone_jammer')
         .circuit(3).duration(300).EUt(512), 'drone_fpv_jammer');
+
+    // --- Anti-drone nets — passive counter-drone defences. Woven from reinforced fabric
+    //     (heavy-duty fabric sheet) + string; ungated so bases can defend from the start.
+    //     Carpet + panel variants fold out of the finished net (still fabric + string). ---
+    event.recipes.gtceu.assembler('kubejs:anti_drone_net')
+        .itemInputs('3x gtceu:heavy_duty_fabric_plate', '6x minecraft:string')
+        .itemOutputs('4x sbwdroneconfig:anti_drone_net')
+        .circuit(1).duration(200).EUt(16);
+
+    event.recipes.gtceu.assembler('kubejs:anti_drone_net_carpet')
+        .itemInputs('sbwdroneconfig:anti_drone_net', 'minecraft:string')
+        .itemOutputs('4x sbwdroneconfig:anti_drone_net_carpet')
+        .circuit(2).duration(100).EUt(16);
+
+    event.recipes.gtceu.assembler('kubejs:anti_drone_net_panel')
+        .itemInputs('sbwdroneconfig:anti_drone_net', '2x minecraft:string')
+        .itemOutputs('4x sbwdroneconfig:anti_drone_net_panel')
+        .circuit(3).duration(100).EUt(16);
 });

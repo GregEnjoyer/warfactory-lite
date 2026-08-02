@@ -41,4 +41,8 @@ ServerEvents.recipes(event => {
     // GTCEu jetpacks — removed from progression; all recipe types (crafting + assembler).
     ;['gtceu:liquid_fuel_jetpack', 'gtceu:electric_jetpack', 'gtceu:advanced_electric_jetpack']
         .forEach(id => event.remove({ output: id }))
+
+    // Ender Chest — a shared cross-location inventory = free item teleport, which the pack's logistics rules
+    // forbid. Crafting is removed here; opening is blocked via warforge-common.toml "Disable Ender Chest".
+    event.remove({ output: 'minecraft:ender_chest' })
 })

@@ -48,13 +48,13 @@ ServerEvents.recipes(event => {
     asm('brimm_ratnik_h', [
         Item.of('kubejs:ballistic_panel_mv', 3),
         Item.of('gtceu:polyethylene_plate', 2),
-        Item.of('gtceu:good_electronic_circuit', 1),
+        '#gtceu:circuits/mv',
     ], 'brimm:ratnik_h', 1, 400, 120)
 
     asm('brimm_nato_h', [
         Item.of('kubejs:ballistic_panel_mv', 3),
         Item.of('gtceu:polyethylene_plate', 2),
-        Item.of('gtceu:good_electronic_circuit', 1),
+        '#gtceu:circuits/mv',
         Item.of('minecraft:blue_dye', 1),
     ], 'brimm:nato_h', 2, 400, 120)
 
@@ -74,7 +74,7 @@ ServerEvents.recipes(event => {
     asm('brimm_veteran_h', [
         Item.of('brimm:nato_h', 1),
         Item.of('kubejs:ballistic_panel_hv', 3),
-        Item.of('gtceu:advanced_integrated_circuit', 1),
+        '#gtceu:circuits/hv',
     ], 'brimm:veteran_h', 2, 500, 480)
 
     // EV (EUt 1920) — top of the ladder
@@ -82,6 +82,6 @@ ServerEvents.recipes(event => {
         Item.of('brimm:nato_ii', 1),
         Item.of('kubejs:ballistic_panel_ev', 4),
         Item.of('gtceu:carbon_fiber_plate', 2),
-        Item.of('gtceu:advanced_integrated_circuit', 1),
+        '#gtceu:circuits/hv',
     ], 'brimm:veteran', 1, 600, 1920)
 })

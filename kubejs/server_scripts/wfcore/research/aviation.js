@@ -282,28 +282,28 @@ ServerEvents.recipes(event => {
         .category('air').pos(2, 1).nodeColor(BLUE)
         .name('MV Air Frame').description('Assembler blueprint for the MV-tier Air Frame used in aircraft assembly.')
         .runs(8).ticksPerRun(200).eut(EU_MV).cwuPerRun(12800)
-        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemPerRun(Item.of('gtceu:good_electronic_circuit', 1))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemTagPerRun('gtceu:circuits/mv', 1)
         .unlock(Item.of('kubejs:mv_air_frame')).icon(Item.of('kubejs:mv_air_frame')).register()
 
     WFResearch.builder('air_comp_mv_wing')
         .category('air').pos(3, 1).nodeColor(BLUE)
         .name('MV Wing').description('Assembler blueprint for the MV-tier Wing used in aircraft assembly.')
         .runs(8).ticksPerRun(200).eut(EU_MV).cwuPerRun(12800)
-        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemPerRun(Item.of('gtceu:good_electronic_circuit', 1))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemTagPerRun('gtceu:circuits/mv', 1)
         .unlock(Item.of('kubejs:mv_wing')).icon(Item.of('kubejs:mv_wing')).register()
 
     WFResearch.builder('air_comp_mv_rotor')
         .category('air').pos(4, 1).nodeColor(BLUE)
         .name('MV Rotor').description('Assembler blueprint for the MV-tier Rotor used in aircraft assembly.')
         .runs(8).ticksPerRun(200).eut(EU_MV).cwuPerRun(12800)
-        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemPerRun(Item.of('gtceu:good_electronic_circuit', 1))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemTagPerRun('gtceu:circuits/mv', 1)
         .unlock(Item.of('kubejs:mv_rotor')).icon(Item.of('kubejs:mv_rotor')).register()
 
     WFResearch.builder('air_comp_mv_cockpit')
         .category('air').pos(5, 1).nodeColor(BLUE)
         .name('MV Cockpit').description('Assembler blueprint for the MV-tier Cockpit used in aircraft assembly.')
         .runs(8).ticksPerRun(200).eut(EU_MV).cwuPerRun(12800)
-        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemPerRun(Item.of('gtceu:good_electronic_circuit', 1))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemTagPerRun('gtceu:circuits/mv', 1)
         .unlock(Item.of('kubejs:mv_cockpit')).icon(Item.of('kubejs:mv_cockpit')).register()
 
     // ---- HV tier — anyOf any MV aviation component ----
@@ -312,7 +312,7 @@ ServerEvents.recipes(event => {
         .name('HV Air Frame').description('Assembler blueprint for the HV-tier Air Frame used in aircraft assembly.')
         .anyOf('air_comp_mv_air_frame', 'air_comp_mv_wing', 'air_comp_mv_rotor', 'air_comp_mv_cockpit')
         .runs(10).ticksPerRun(200).eut(EU_HV).cwuPerRun(51200)
-        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemPerRun(Item.of('gtceu:basic_integrated_circuit', 1))
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemTagPerRun('gtceu:circuits/lv', 1)
         .unlock(Item.of('kubejs:hv_air_frame')).icon(Item.of('kubejs:hv_air_frame')).register()
 
     WFResearch.builder('air_comp_hv_wing')
@@ -320,7 +320,7 @@ ServerEvents.recipes(event => {
         .name('HV Wing').description('Assembler blueprint for the HV-tier Wing used in aircraft assembly.')
         .anyOf('air_comp_mv_air_frame', 'air_comp_mv_wing', 'air_comp_mv_rotor', 'air_comp_mv_cockpit')
         .runs(10).ticksPerRun(200).eut(EU_HV).cwuPerRun(51200)
-        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemPerRun(Item.of('gtceu:basic_integrated_circuit', 1))
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemTagPerRun('gtceu:circuits/lv', 1)
         .unlock(Item.of('kubejs:hv_wing')).icon(Item.of('kubejs:hv_wing')).register()
 
     WFResearch.builder('air_comp_hv_rotor')
@@ -328,7 +328,7 @@ ServerEvents.recipes(event => {
         .name('HV Rotor').description('Assembler blueprint for the HV-tier Rotor used in aircraft assembly.')
         .anyOf('air_comp_mv_air_frame', 'air_comp_mv_wing', 'air_comp_mv_rotor', 'air_comp_mv_cockpit')
         .runs(10).ticksPerRun(200).eut(EU_HV).cwuPerRun(51200)
-        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemPerRun(Item.of('gtceu:basic_integrated_circuit', 1))
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemTagPerRun('gtceu:circuits/lv', 1)
         .unlock(Item.of('kubejs:hv_rotor')).icon(Item.of('kubejs:hv_rotor')).register()
 
     WFResearch.builder('air_comp_hv_cockpit')
@@ -336,7 +336,7 @@ ServerEvents.recipes(event => {
         .name('HV Cockpit').description('Assembler blueprint for the HV-tier Cockpit used in aircraft assembly.')
         .anyOf('air_comp_mv_air_frame', 'air_comp_mv_wing', 'air_comp_mv_rotor', 'air_comp_mv_cockpit')
         .runs(10).ticksPerRun(200).eut(EU_HV).cwuPerRun(51200)
-        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemPerRun(Item.of('gtceu:basic_integrated_circuit', 1))
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemTagPerRun('gtceu:circuits/lv', 1)
         .unlock(Item.of('kubejs:hv_cockpit')).icon(Item.of('kubejs:hv_cockpit')).register()
 
     // ---- EV tier — anyOf any HV aviation component ----
@@ -345,7 +345,7 @@ ServerEvents.recipes(event => {
         .name('EV Air Frame').description('Assembler blueprint for the EV-tier Air Frame used in aircraft assembly.')
         .anyOf('air_comp_hv_air_frame', 'air_comp_hv_wing', 'air_comp_hv_rotor', 'air_comp_hv_cockpit')
         .runs(12).ticksPerRun(200).eut(EU_EV).cwuPerRun(204800)
-        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemPerRun(Item.of('gtceu:good_integrated_circuit', 1))
+        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemTagPerRun('gtceu:circuits/mv', 1)
         .unlock(Item.of('kubejs:ev_air_frame')).icon(Item.of('kubejs:ev_air_frame')).register()
 
     WFResearch.builder('air_comp_ev_wing')
@@ -353,7 +353,7 @@ ServerEvents.recipes(event => {
         .name('EV Wing').description('Assembler blueprint for the EV-tier Wing used in aircraft assembly.')
         .anyOf('air_comp_hv_air_frame', 'air_comp_hv_wing', 'air_comp_hv_rotor', 'air_comp_hv_cockpit')
         .runs(12).ticksPerRun(200).eut(EU_EV).cwuPerRun(204800)
-        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemPerRun(Item.of('gtceu:good_integrated_circuit', 1))
+        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemTagPerRun('gtceu:circuits/mv', 1)
         .unlock(Item.of('kubejs:ev_wing')).icon(Item.of('kubejs:ev_wing')).register()
 
     WFResearch.builder('air_comp_ev_rotor')
@@ -361,7 +361,7 @@ ServerEvents.recipes(event => {
         .name('EV Rotor').description('Assembler blueprint for the EV-tier Rotor used in aircraft assembly.')
         .anyOf('air_comp_hv_air_frame', 'air_comp_hv_wing', 'air_comp_hv_rotor', 'air_comp_hv_cockpit')
         .runs(12).ticksPerRun(200).eut(EU_EV).cwuPerRun(204800)
-        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemPerRun(Item.of('gtceu:good_integrated_circuit', 1))
+        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemTagPerRun('gtceu:circuits/mv', 1)
         .unlock(Item.of('kubejs:ev_rotor')).icon(Item.of('kubejs:ev_rotor')).register()
 
     WFResearch.builder('air_comp_ev_cockpit')
@@ -369,7 +369,7 @@ ServerEvents.recipes(event => {
         .name('EV Cockpit').description('Assembler blueprint for the EV-tier Cockpit used in aircraft assembly.')
         .anyOf('air_comp_hv_air_frame', 'air_comp_hv_wing', 'air_comp_hv_rotor', 'air_comp_hv_cockpit')
         .runs(12).ticksPerRun(200).eut(EU_EV).cwuPerRun(204800)
-        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemPerRun(Item.of('gtceu:good_integrated_circuit', 1))
+        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemTagPerRun('gtceu:circuits/mv', 1)
         .unlock(Item.of('kubejs:ev_cockpit')).icon(Item.of('kubejs:ev_cockpit')).register()
 
 })

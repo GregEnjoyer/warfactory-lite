@@ -2623,6 +2623,25 @@
 			x: 2.25d
 			y: 1.5d
 		}
+		{
+			dependencies: [
+				"7567E885B7166603"
+				"0DBC148D92A9F69F"
+			]
+			description: ["You have probably noticed that no mobs spawn. This allows you to farm mob drops."]
+			icon: "minecraft:zombie_head"
+			id: "01B6947861AF81F9"
+			shape: "square"
+			size: 0.75d
+			tasks: [{
+				id: "4A9138E3D9C3F5FD"
+				item: "wfcore:mob_farmer"
+				type: "item"
+			}]
+			title: "Mob Farmer"
+			x: 1.125d
+			y: -1.875d
+		}
 	]
 	subtitle: ["Venture into petrochemistry and refine electronics"]
 	title: "&bMV&r - Medium Voltage"

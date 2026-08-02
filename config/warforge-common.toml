@@ -927,9 +927,12 @@
 	#How many hours a newly created faction stays unsiegeable. Disabling the feature above removes grace from all existing factions immediately.
 	#Range: 0 ~ 8760
 	"New Faction Siege Grace Hours" = 24
-	#How many days a faction has to wait to move their citadel again
-	#Range: 0 ~ 1024
-	"Days Between Citadel Moves" = 7
+	#How many real-world seconds a faction has to wait before moving their citadel across chunks again.
+	#Range: 0 ~ 2147483647
+	"Citadel Move Cooldown Seconds" = 28800
+	#The minimum Y level a citadel can be placed or moved to. Placement below this is rejected. Defaults to sea level (63). Set at or below the world floor to disable.
+	#Range: -2048 ~ 2048
+	"Citadel Minimum Y" = 63
 	#Applies claim limits that require upgrading to extend your faction's claim limit
 	"Enable Citadel Upgrade System" = true
 	#If true, forces all newly placed claim blocks, excluding siege blocks and citadels, to be directly adjacent to a pre-existing claim.
@@ -1108,9 +1111,23 @@
 	"Discord Bot Channel ID" = "799595436154683422"
 
 [Yields]
-	#The length of time between yields, in real-world hours.
-	#Range: 1.0E-4 ~ 100000.0
-	"Yield Day Length" = 1.0
+	#The length of time between yields, in real-world seconds.
+	#Range: 1 ~ 2147483647
+	"Yield Day Length" = 1800
+	#Passive yield cycle. If true, this timer advances on server ticks (game time that pauses while the server is stopped or not ticking) instead of real-world wall-clock time. Each timer is independent. Do not change on an existing world that has active factions; stored timestamps are not converted.
+	"Tick-Based Yield Timer" = false
+	#Siege day advance, siege end-timer countdown, siege start cooldown, and conquered-chunk revert. If true, this timer advances on server ticks (game time that pauses while the server is stopped or not ticking) instead of real-world wall-clock time. Each timer is independent. Do not change on an existing world that has active factions; stored timestamps are not converted.
+	"Tick-Based Siege Timers" = true
+	#Siege momentum expiry. If true, this timer advances on server ticks (game time that pauses while the server is stopped or not ticking) instead of real-world wall-clock time. Each timer is independent. Do not change on an existing world that has active factions; stored timestamps are not converted.
+	"Tick-Based Siege Momentum" = true
+	#Offline raid protection window. If true, this timer advances on server ticks (game time that pauses while the server is stopped or not ticking) instead of real-world wall-clock time. Each timer is independent. Do not change on an existing world that has active factions; stored timestamps are not converted.
+	"Tick-Based Offline Raid Protection" = false
+	#New-faction siege grace period. If true, this timer advances on server ticks (game time that pauses while the server is stopped or not ticking) instead of real-world wall-clock time. Each timer is independent. Do not change on an existing world that has active factions; stored timestamps are not converted.
+	"Tick-Based Siege Grace" = true
+	#Citadel move cooldown. If true, this timer advances on server ticks (game time that pauses while the server is stopped or not ticking) instead of real-world wall-clock time. Each timer is independent. Do not change on an existing world that has active factions; stored timestamps are not converted.
+	"Tick-Based Citadel Move Cooldown" = false
+	#Truce durations. If true, this timer advances on server ticks (game time that pauses while the server is stopped or not ticking) instead of real-world wall-clock time. Each timer is independent. Do not change on an existing world that has active factions; stored timestamps are not converted.
+	"Tick-Based Truces" = false
 	#The global multiplier for POOR quality veins which all veins fall back to if they do not have an override.
 	#Range: 0.0 ~ 512.0
 	"Global Poor Quality Multiplier" = 0.5
@@ -1205,7 +1222,7 @@
 	"Allow /spawn across dimensions" = false
 	#How many ticks must the player stand still for a warp command to take effect
 	#Range: 0 ~ 6000
-	"Num Ticks for Warps" = 400
+	"Num Ticks for Warps" = 600
 	#If enabled, bed and respawn-anchor spawn points are disabled and players respawn in their faction citadel's chunk, at the citadel's Y level. Players not in a faction fall back to the world spawn.
 	"Respawn At Citadel" = true
 

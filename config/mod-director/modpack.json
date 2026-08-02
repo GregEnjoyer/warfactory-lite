@@ -1,4 +1,4 @@
 {
   "packName": "Warfactory-lite",
-  "requiresRestart": true
+  "requiresRestart": false
 }

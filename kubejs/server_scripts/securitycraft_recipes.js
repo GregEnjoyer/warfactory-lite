@@ -15,9 +15,9 @@
 // SecurityCraft v1.10.2.1 — no item model, no recipe, empty loot table — so it cannot be a
 // recipe output. Ask if a later SC version makes it a real item and it can be added.
 
-const P  = 'gtceu:'
-const CL = '#gtceu:circuits/lv'      // consumed LV circuit board
-const CE = '#gtceu:circuits/ev'      // consumed EV circuit board (codebreaker only)
+var P  = 'gtceu:'
+var CL = '#gtceu:circuits/lv'      // consumed LV circuit board
+var CE = '#gtceu:circuits/ev'      // consumed EV circuit board (codebreaker only)
 const SC = 'securitycraft:'
 const LV = 32, EV = 2048             // assembler EU/t (voltage tier)
 

@@ -10,23 +10,24 @@
 	quests: [
 		{
 			description: [
-				"The &bComputation Mainframe&r is Warfactory's supercomputer. It supplies &bcomputation&r — measured in &bCWU/t&r (Compute Work Units per tick) — to machines that need to think: the &6Research Unit&r and the &6Radar&r."
+				"The &bComputation Mainframe&r is Warfactory's supercomputer. It supplies &bcomputation&r - measured in &bCWU/t&r (Compute Work Units per tick) - to machines that need to think: the &6Research Unit&r and the &6Radar&r."
 				""
-				"It is &edemand-driven&r: it only computes as much as a consumer requests, and only then draws power and makes heat."
+				"It is &edemand-driven&r: it only produces as much CWU as much as is being requested, and only then draws power and makes heat."
 				""
-				"Three kinds of part decide what it can do:"
-				"&b• CPUs&r make the compute."
-				"&b• RAM&r caps how much compute can flow (the throughput ceiling)."
-				"&b• Coolers&r fight the heat the CPUs make."
+				"Three kinds of parts decide what it can do:"
+				"&bCPUs&r make the compute."
+				"&bRAM&r caps how much compute can flow (the throughput ceiling)."
+				"&bCoolers&r fight the heat the CPUs make."
 				""
 				"&7Provided CWU = min( total CPU compute , total RAM throughput ), minus any heat penalty.&r"
 				""
-				"Deliver it with a &fComputation Data Transmission Hatch&r on the mainframe and a &fReception Hatch&r on the consumer, wired together with optical pipes."
+				"Deliver it with a &fComputation Data Transmission Hatch&r on the mainframe and a &fReception Hatch&r on the consumer, wired together with &6copper network cable&r."
 			]
 			icon: "wfcore:mainframe"
 			id: "1064385592420A72"
+			shape: "octagon"
 			size: 1.5d
-			subtitle: "Warfactory's supercomputer — CWU for research & radar"
+			subtitle: "Start of computation"
 			tasks: [{
 				id: "70674227B124B833"
 				item: "wfcore:mainframe"
@@ -39,35 +40,34 @@
 		{
 			dependencies: ["1064385592420A72"]
 			description: [
+				"&cmaxPower&r = power fed in"
+				""
 				"CPUs turn &epower into compute&r. At full load each CPU makes:"
 				"&b  CWU = maxPower x (efficiency - 0.2)&r"
 				"and draws &emaxPower EU/t&r. Higher efficiency = more compute per EU and &aless heat&r."
 				""
-				"Every tier has two picks — an efficient &aStandard&r and a hotter, thirstier &cHigh-output&r — so you are never locked to one chip. Older CPUs keep working, just weaker:"
+				"Every tier has two picks - an efficient &aStandard&r and a hotter, thirstier &cHigh-output&r - so you are never locked to one chip. Older CPUs keep working, just weaker."
 				""
-				"&2MV&r  Good Integrated Circuit ~19  (entry: Basic IC ~10)"
-				"&2HV&r  Nanoprocessor ~33  ·  &cAdvanced IC ~40&r"
-				"&2EV&r  Quantum Processor ~64  ·  &cNanoprocessor Assembly ~66&r"
-				"&2IV&r  Crystal Processor ~179  ·  &cQuantum Proc. Assembly ~160&r"
+				"Look at the &etooltip&r below circuits, some will have extra &bmainframe&r statistics, which tell you the value of the &cefficiency stat&r in the aforementioned equation."
 				""
 				"Slot one CPU into each &fMainframe CPU Socket&r."
 			]
 			icon: "wfcore:cpu_slot"
-			id: "F492B527B60E953A"
+			id: "50DE46B419C8CC91"
 			subtitle: "CWU = maxPower x (efficiency - 0.2)"
 			tasks: [{
-				id: "EF1666512E452CBD"
+				id: "7781C6BC6BB39B7B"
 				item: "wfcore:cpu_slot"
 				type: "item"
 			}]
 			title: "CPUs — the compute"
-			x: -3.0d
+			x: -1.5d
 			y: 1.5d
 		}
 		{
 			dependencies: ["1064385592420A72"]
 			description: [
-				"RAM does not make compute — it &bcaps&r it. A mainframe can never provide more CWU/t than its total RAM throughput, no matter how many CPUs you cram in."
+				"RAM does not make compute - it &bcaps&r it. A mainframe can never provide more CWU/t than its total RAM throughput, no matter how many CPUs you cram in."
 				""
 				"Each &fMainframe RAM Socket&r holds &e4 sticks&r. A full socket is that tier's ceiling:"
 				"&2• MV RAM&r   24 each  ->  full socket &b96&r"
@@ -75,7 +75,7 @@
 				"&2• EV RAM&r   48 each  ->  full socket &b192&r"
 				"&2• IV RAM&r  128 each  ->  full socket &b512&r"
 				""
-				"Want more than one socket's worth? Add a second RAM socket — but that costs a part slot, more CPUs and more cooling. That escalating cost is the by-design nudge to &7build another mainframe&r instead of megasizing one."
+				"Want more than one socket's worth? Add a second RAM socket - but that costs a part slot, more CPUs and more cooling. That escalating cost is the by-design nudge to &7build another mainframe&r instead of megasizing one."
 			]
 			icon: "wfcore:ram_slot"
 			id: "3E40F0CE6F768144"
@@ -93,10 +93,10 @@
 			dependencies: ["1064385592420A72"]
 			description: [
 				"CPUs turn wasted power into &6heat&r. Let the mainframe get too hot and it &cthrottles&r, then &4detonates&r:"
-				"&e• 90 C&r   performance sag begins — you lose CWU"
+				"&e• 90 C&r   performance sag begins - you lose CWU"
 				"&c• 105 C&r  explosion"
 				""
-				"&9Passive:&r a &fMainframe Copper Heatsink&r vents heat to the air — stronger the hotter you run, but weak on its own. Bolt a &bCooling Fan Cover&r (LV–EV) onto its exposed face to multiply it up to &b5x&r (EV cover)."
+				"&9Passive:&r a &fMainframe Copper Heatsink&r vents heat to the air - stronger the hotter you run, but weak on its own. Bolt a &bCooling Fan Cover&r (LV–EV) onto its exposed face to multiply it up to &b5x&r (EV cover)."
 				""
 				"Through &2EV&r a comfortable build sits well under 90 C on heatsinks alone. &cAt IV&r the CPUs run so hot that passive fans stop being enough — see Liquid Cooling."
 			]
@@ -108,8 +108,8 @@
 				item: "wfcore:copper_heatsink"
 				type: "item"
 			}]
-			title: "Cooling & Heat"
-			x: 3.0d
+			title: "Mainframe Copper Heatsink"
+			x: 1.5d
 			y: 1.5d
 		}
 		{
@@ -120,43 +120,43 @@
 				"Colder coolant carries more heat:"
 				"&fWater&r < &bOxygen&r < &bHelium&r < &bLiquid Nitrogen&r."
 				""
-				"Its cooling is &bflat&r — it does not weaken as the frame cools — so one cooler on cold coolant will hold almost any single mainframe under the sag point."
+				"Its cooling is &bflat&r - it does not weaken as the frame cools - so one cooler on cold coolant will hold almost any single mainframe under the sag point."
 				""
-				"&cAt IV this stops being optional.&r Crystal-tier CPUs run hot enough that holding a comfortable frame passively would take most of the frame filled with heatsinks — a Liquid Cooler on &bLiquid Nitrogen&r is the practical build. Below IV it stays a luxury."
+				"&cAt IV this stops being optional"
+				"&aHigh-Tier CPUs&r require &4tremendous&r amounts of cooling, which is where &9liquid cooling&r comes in. &3Liquid nitrogen&r is recommended at this stage. At &5EV&r and before this is a luxury."
 				""
 				"&7Needs a coolant supply via a fluid input hatch.&r"
 			]
 			icon: "wfcore:cooling_liquid"
 			id: "11D5579559CD4022"
-			subtitle: "active cooling with nitrogen & friends"
+			subtitle: "Stronger cooling"
 			tasks: [{
-				id: "99C5014D78DE9C04"
+				id: "0655335A5DAF1D91"
 				item: "wfcore:cooling_liquid"
 				type: "item"
 			}]
-			title: "Liquid Cooling"
-			x: 3.0d
+			title: "Mainframe Liquid Cooler"
+			x: 1.5d
 			y: 3.0d
 		}
 		{
-			dependencies: ["F492B527B60E953A"]
 			description: [
 				"The &6Research Unit&r is the mainframe's main customer. It runs research projects from &fmaterials + power + computation&r, writing finished research to a data stick."
 				""
 				"Wire its &fComputation Data Reception Hatch&r to the mainframe's &fTransmission Hatch&r with optical pipes. A project lists a &bCWU/t&r demand; meet it and research runs at full speed, starve it and it crawls."
 				""
-				"&7Rule of thumb — a stage's research wants about half that tier's voltage in CWU/t: MV ~64, HV ~256, EV ~1024, IV ~4096.&r"
+				"&7Rule of thumb - a stage's research wants about half that tier's voltage in CWU/t: MV ~64, HV ~256, EV ~1024, IV ~4096.&r"
 			]
 			icon: "wfcore:research_unit"
 			id: "2A3E44DDC97E2DBF"
-			subtitle: "what the compute is actually for"
+			subtitle: "New recipes..."
 			tasks: [{
-				id: "9934EBF2909B35D1"
+				id: "5AACF3BB62DA01D8"
 				item: "wfcore:research_unit"
 				type: "item"
 			}]
 			title: "The Research Unit"
-			x: -3.0d
+			x: -1.5d
 			y: 3.0d
 		}
 		{
@@ -165,14 +165,14 @@
 				"One mainframe rarely feeds a whole base. The &bMV Network Switch&r bridges optical computation networks: it &fpools&r every attached Reception Hatch and re-serves the combined CWU/t out of every Transmission Hatch."
 				""
 				"Use it to:"
-				"&b•&r gang several mainframes into one big compute pool, or"
-				"&b•&r fan a single mainframe's output out to many machines."
+				"&b&rbring several mainframes into one big compute pool, or"
+				"&b&rfan a single mainframe's output out to many machines."
 				""
-				"&7Draws a little EU per connected computation hatch. Mainframes cannot bridge on their own — the switch is what lets them share.&r"
+				"&7Draws a little EU per connected computation hatch. Mainframes cannot bridge on their own - the switch is what lets them share.&r"
 			]
 			icon: "wfcore:mv_network_switch"
-			id: "E8D733915E63E30C"
-			subtitle: "pool many mainframes into one compute grid"
+			id: "5AC0238D1A9F09D5"
+			subtitle: "Pool many mainframes into one compute grid"
 			tasks: [{
 				id: "782D180309270B0A"
 				item: "wfcore:mv_network_switch"

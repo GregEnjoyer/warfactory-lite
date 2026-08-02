@@ -1,73 +1,119 @@
 // Emplacements research — all category('defense') nodes (emp_*).
-// Crew-served / static weapons on the 'defense' tab. Unlike vehicles these deploy from ITEMS (SBW
-// blueprints / deployers) and, once placed, CANNOT be recovered — EXCEPT the Mortar and TOW, which are
-// GT-crowbar recoverable via the wfcore:gt_crowbar_pickup_allowed entity tag.
-// The projectiles they fire are researched on the BALLISTICS tab, never here.
+// Runs in ServerEvents.recipes (fires on server start AND /reload).
 //
 // Tree:  Mortar -> {CIWS, MLRS};  CIWS -> {TOW, BL-132};  BL-132 -> {Mk42, Mle1934}.
-//
-// Runs in ServerEvents.recipes (fires on server start AND /reload).
+
+var BLUE  = 0xFF2F6BD8
+var EU_LV = 32
+var EU_MV = 128
+var EU_HV = 512
+var EU_EV = 2048
+
+var emp_model = e => Item.of('wfcore:packaged_vehicle', '{entity:"' + e + '"}')
+
 ServerEvents.recipes(event => {
 
-    // Item-cost helper: a leading '#' marks a TAG, otherwise an exact item.
-    const addCost = (b, id, count) => (typeof id === 'string' && id.charAt(0) === '#')
-        ? b.itemTagPerRun(id, count)
-        : b.itemPerRun(Item.of(id, count))
+    // ---- Mortar — LV root, crowbar-recoverable ----
+    WFResearch.builder('emp_mortar')
+        .category('defense').pos(0, 0)
+        .nodeColor(BLUE)
+        .name('Mortar')
+        .description('A man-portable mortar built from a barrel, bipod and base plate; lobs HE and white-phosphorus shells. Deploys from an item and is one of only two emplacements recoverable with a GT crowbar.')
+        .runs(20).ticksPerRun(300).eut(EU_LV).cwuPerRun(0)
+        .itemPerRun(Item.of('gtceu:steel_plate', 6))
+        .itemPerRun(Item.of('minecraft:gunpowder', 4))
+        .unlock(Item.of('superbwarfare:mortar_deployer'))
+        .icon(Item.of('superbwarfare:mortar_deployer'))
+        .register()
 
-    const pv = e => Item.of('wfcore:packaged_vehicle', '{entity:"' + e + '"}')
+    // ---- H/PJ-11 CIWS — MV, off Mortar ----
+    WFResearch.builder('emp_ciws')
+        .category('defense').pos(-1, 1)
+        .nodeColor(BLUE)
+        .name('H/PJ-11 CIWS')
+        .description('A radar-directed close-in weapon system: a rotary autocannon that shreds incoming aircraft and munitions. Fires small-calibre anti-air shells (Ballistics tab).')
+        .requires('emp_mortar')
+        .runs(30).ticksPerRun(300).eut(EU_MV).cwuPerRun(19200)
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 6))
+        .itemTagPerRun('gtceu:circuits/mv', 2)
+        .itemPerRun(Item.of('superbwarfare:seeker', 1))
+        .unlock(emp_model('superbwarfare:hpj_11'))
+        .icon(emp_model('superbwarfare:hpj_11'))
+        .register()
 
-    // tier -> [runs, eut, cwuPerRun] over ticksPerRun(300): LV 0 / MV ~64 / HV ~256 / EV ~1024 CWU/t
-    const ET = {
-        lv: [20, 32,   0],
-        mv: [30, 128,  19200],
-        hv: [40, 512,  76800],
-        ev: [50, 2048, 307200],
-    }
+    // ---- Type-63 MLRS — MV, off Mortar ----
+    WFResearch.builder('emp_mlrs')
+        .category('defense').pos(1, 1)
+        .nodeColor(BLUE)
+        .name('Type-63 MLRS')
+        .description('The Type-63 107mm multiple rocket launcher: twelve tubes of area-saturation rocketry, built up from mortar barrels.')
+        .requires('emp_mortar')
+        .runs(30).ticksPerRun(300).eut(EU_MV).cwuPerRun(19200)
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 6))
+        .itemPerRun(Item.of('superbwarfare:mortar_barrel', 4))
+        .itemPerRun(Item.of('minecraft:gunpowder', 8))
+        .unlock(emp_model('superbwarfare:type_63'))
+        .icon(emp_model('superbwarfare:type_63'))
+        .register()
 
-    // The naval guns unlock from BLUEPRINT items, Mortar/TOW from DEPLOYER items; the Type-63 MLRS assembles
-    // straight to an entity (no item), so it shows the packaged-vehicle model via pv().
-    ;[
-        { id: 'emp_mortar',   tier: 'lv', x: 0,  y: 0, req: null,        name: 'Mortar',
-          unlock: Item.of('superbwarfare:mortar_deployer'),
-          desc: 'A man-portable mortar built from a barrel, bipod and base plate; lobs HE and white-phosphorus shells. Deploys from an item and is one of only two emplacements recoverable with a GT crowbar.',
-          items: [['gtceu:steel_plate', 6], ['minecraft:gunpowder', 4]] },
-        { id: 'emp_ciws',     tier: 'mv', x: -1, y: 1, req: 'emp_mortar', name: 'H/PJ-11 CIWS',
-          unlock: pv('superbwarfare:hpj_11'),
-          desc: 'A radar-directed close-in weapon system: a rotary autocannon that shreds incoming aircraft and munitions. Fires small-calibre anti-air shells (Ballistics tab).',
-          items: [['gtceu:stainless_steel_plate', 6], ['#gtceu:circuits/mv', 2], ['superbwarfare:seeker', 1]] },
-        { id: 'emp_mlrs',     tier: 'mv', x: 1,  y: 1, req: 'emp_mortar', name: 'Type-63 MLRS',
-          unlock: pv('superbwarfare:type_63'),
-          desc: 'The Type-63 107mm multiple rocket launcher: twelve tubes of area-saturation rocketry, built up from mortar barrels.',
-          items: [['gtceu:stainless_steel_plate', 6], ['superbwarfare:mortar_barrel', 4], ['minecraft:gunpowder', 8]] },
-        { id: 'emp_tow',      tier: 'hv', x: -2, y: 2, req: 'emp_ciws',   name: 'TOW Launcher',
-          unlock: Item.of('superbwarfare:tow_deployer'),
-          desc: 'A tripod-mounted wire-guided anti-tank missile launcher. Deploys from an item and is one of only two emplacements recoverable with a GT crowbar.',
-          items: [['gtceu:stainless_steel_plate', 6], ['superbwarfare:missile_engine', 2], ['superbwarfare:seeker', 1]] },
-        { id: 'emp_bl_132',   tier: 'hv', x: 0,  y: 2, req: 'emp_ciws',   name: '130mm/58 BL-132',
-          unlock: pv('superbwarfare:bl_132'),
-          desc: 'A rapid-fire naval mount firing small-calibre armour-piercing shells (Ballistics tab).',
-          items: [['gtceu:stainless_steel_plate', 8], ['superbwarfare:cannon_core', 1], ['#gtceu:circuits/hv', 2]] },
-        { id: 'emp_mk_42',    tier: 'ev', x: -1, y: 3, req: 'emp_bl_132', name: '5"/54 Mk42',
-          unlock: pv('superbwarfare:mk_42'),
-          desc: 'A 5-inch dual-purpose naval gun firing large-calibre HE / AP / cluster / white-phosphorus shells (Ballistics tab).',
-          items: [['gtceu:titanium_plate', 8], ['superbwarfare:cannon_core', 2], ['#gtceu:circuits/ev', 2]] },
-        { id: 'emp_mle_1934', tier: 'ev', x: 1,  y: 3, req: 'emp_bl_132', name: '138.6mm Mle1934',
-          unlock: pv('superbwarfare:mle_1934'),
-          desc: 'A 138.6mm heavy naval gun firing large-calibre HE / AP / cluster / white-phosphorus shells (Ballistics tab).',
-          items: [['gtceu:titanium_plate', 8], ['superbwarfare:cannon_core', 2], ['#gtceu:circuits/ev', 2]] },
-    ].forEach(n => {
-        const t = ET[n.tier]
-        const b = WFResearch.builder(n.id)
-            .category('defense').pos(n.x, n.y)
-            .nodeColor(0xFF2F6BD8)
-            .name(n.name)
-            .description(n.desc)
-            .runs(t[0]).ticksPerRun(300).eut(t[1]).cwuPerRun(t[2])
-            .icon(n.unlock)
-            .unlock(n.unlock)
-        n.items.forEach(it => addCost(b, it[0], it[1]))
-        if (n.req) b.requires(n.req)
-        b.register()
-    })
+    // ---- TOW Launcher — HV, off CIWS, crowbar-recoverable ----
+    WFResearch.builder('emp_tow')
+        .category('defense').pos(-2, 2)
+        .nodeColor(BLUE)
+        .name('TOW Launcher')
+        .description('A tripod-mounted wire-guided anti-tank missile launcher. Deploys from an item and is one of only two emplacements recoverable with a GT crowbar.')
+        .requires('emp_ciws')
+        .runs(40).ticksPerRun(300).eut(EU_HV).cwuPerRun(76800)
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 6))
+        .itemPerRun(Item.of('superbwarfare:missile_engine', 2))
+        .itemPerRun(Item.of('superbwarfare:seeker', 1))
+        .unlock(Item.of('superbwarfare:tow_deployer'))
+        .icon(Item.of('superbwarfare:tow_deployer'))
+        .register()
+
+    // ---- 130mm/58 BL-132 — HV naval mount, off CIWS ----
+    WFResearch.builder('emp_bl_132')
+        .category('defense').pos(0, 2)
+        .nodeColor(BLUE)
+        .name('130mm/58 BL-132')
+        .description('A rapid-fire naval mount firing small-calibre armour-piercing shells (Ballistics tab).')
+        .requires('emp_ciws')
+        .runs(40).ticksPerRun(300).eut(EU_HV).cwuPerRun(76800)
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 8))
+        .itemPerRun(Item.of('superbwarfare:cannon_core', 1))
+        .itemTagPerRun('gtceu:circuits/hv', 2)
+        .unlock(emp_model('superbwarfare:bl_132'))
+        .icon(emp_model('superbwarfare:bl_132'))
+        .register()
+
+    // ---- 5"/54 Mk42 — EV naval gun, off BL-132 ----
+    WFResearch.builder('emp_mk_42')
+        .category('defense').pos(-1, 3)
+        .nodeColor(BLUE)
+        .name('5"/54 Mk42')
+        .description('A 5-inch dual-purpose naval gun firing large-calibre HE / AP / cluster / white-phosphorus shells (Ballistics tab).')
+        .requires('emp_bl_132')
+        .runs(50).ticksPerRun(300).eut(EU_EV).cwuPerRun(307200)
+        .itemPerRun(Item.of('gtceu:titanium_plate', 8))
+        .itemPerRun(Item.of('superbwarfare:cannon_core', 2))
+        .itemTagPerRun('gtceu:circuits/ev', 2)
+        .unlock(emp_model('superbwarfare:mk_42'))
+        .icon(emp_model('superbwarfare:mk_42'))
+        .register()
+
+    // ---- 138.6mm Mle1934 — EV heavy naval gun, off BL-132 ----
+    WFResearch.builder('emp_mle_1934')
+        .category('defense').pos(1, 3)
+        .nodeColor(BLUE)
+        .name('138.6mm Mle1934')
+        .description('A 138.6mm heavy naval gun firing large-calibre HE / AP / cluster / white-phosphorus shells (Ballistics tab).')
+        .requires('emp_bl_132')
+        .runs(50).ticksPerRun(300).eut(EU_EV).cwuPerRun(307200)
+        .itemPerRun(Item.of('gtceu:titanium_plate', 8))
+        .itemPerRun(Item.of('superbwarfare:cannon_core', 2))
+        .itemTagPerRun('gtceu:circuits/ev', 2)
+        .unlock(emp_model('superbwarfare:mle_1934'))
+        .icon(emp_model('superbwarfare:mle_1934'))
+        .register()
 
 })

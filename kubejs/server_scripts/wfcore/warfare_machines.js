@@ -37,7 +37,9 @@ ServerEvents.recipes(event => {
     asm('wfcore:heavy_vehicle_depot', 'gtceu:mv_machine_casing', MV)
         .itemInputs('6x gtceu:steel_gearbox', '6x #gtceu:circuits/mv', '8x gtceu:aluminium_plate') // TODO
     asm('wfcore:tank_assembly', 'gtceu:hv_machine_casing', HV)
-        .itemInputs('8x gtceu:steel_gearbox', '6x #gtceu:circuits/hv', '8x gtceu:tank_grade_metal_plate') // TODO
+        .itemInputs('8x gtceu:steel_gearbox', '6x #gtceu:circuits/hv', '8x gtceu:stainless_steel_plate') // TODO
+    asm('wfcore:helicopter_assembler', 'gtceu:mv_machine_casing', MV)
+        .itemInputs('8x gtceu:steel_gearbox', '6x #gtceu:circuits/mv', '8x gtceu:magnalium_plate') // TODO
     asm('wfcore:heavy_plane_assembler', 'gtceu:ev_machine_casing', EV)
-        .itemInputs('8x #gtceu:circuits/ev', '8x gtceu:aircraft_grade_metal_plate', 'gtceu:ev_emitter') // TODO
+        .itemInputs('8x #gtceu:circuits/ev', '8x gtceu:hssg_plate', 'gtceu:ev_emitter') // TODO
 })

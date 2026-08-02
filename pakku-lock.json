@@ -316,36 +316,9 @@
             ]
         },
         {
-            "pakku_id": "X2kgajj5lrLudT8K",
-            "type": "MOD",
-            "slug": {
-                "github": "Warfactory-Official/AshVehicle"
-            },
-            "name": {
-                "github": "AshVehicle"
-            },
-            "id": {
-                "github": "1304506862"
-            },
-            "files": [
-                {
-                    "type": "github",
-                    "file_name": "ashvehicle-1.20.1-4.5.3-8.9-div.jar",
-                    "release_type": "release",
-                    "url": "https://github.com/Warfactory-Official/AshVehicle/releases/download/1.20.1-4.5.3-8.9/ashvehicle-1.20.1-4.5.3-8.9-div.jar",
-                    "id": "481011293",
-                    "parent_id": "1304506862",
-                    "hashes": {
-                        "sha256": "39fc4fdc7c2b6f3111c5a6f562e4c72b7ae0762067fecd8080e8197a157aa4e0"
-                    },
-                    "size": 18691596,
-                    "date_published": "2026-07-18T01:37:07Z"
-                }
-            ]
-        },
-        {
             "pakku_id": "QQUYHYhIHPqijiM4",
             "type": "MOD",
+            "side": "CLIENT",
             "slug": {
                 "curseforge": "asyncparticles"
             },
@@ -358,7 +331,7 @@
             "files": [
                 {
                     "type": "curseforge",
-                    "file_name": "AsyncParticles-20.1.3.0-beta.4+1.20.1.jar",
+                    "file_name": "AsyncParticles-20.1.3.1+1.20.1.jar",
                     "mc_versions": [
                         "1.20.1"
                     ],
@@ -367,16 +340,16 @@
                         "forge"
                     ],
                     "release_type": "beta",
-                    "url": "https://edge.forgecdn.net/files/8485/674/AsyncParticles-20.1.3.0-beta.4+1.20.1.jar",
-                    "id": "8485674",
+                    "url": "https://edge.forgecdn.net/files/8551/952/AsyncParticles-20.1.3.1+1.20.1.jar",
+                    "id": "8551952",
                     "parent_id": "1215753",
                     "hashes": {
-                        "sha1": "e2377f34815fac0254a22f0066767be365197ca1",
-                        "md5": "4a279dcccfdce76ea73e4830ad08006c"
+                        "sha1": "b9b2c6d741d3a0653908891502e6e1aa3b4bc4a1",
+                        "md5": "401546f389d3702d2d500b036bcf8f50"
                     },
                     "required_dependencies": [],
-                    "size": 1964089,
-                    "date_published": "2026-07-22T11:13:45.463Z"
+                    "size": 1969229,
+                    "date_published": "2026-08-01T05:23:45.123Z"
                 }
             ]
         },
@@ -585,7 +558,7 @@
             "files": [
                 {
                     "type": "curseforge",
-                    "file_name": "c2meforge-0.2.0-forge.2-all.jar",
+                    "file_name": "c2meforge-0.2.0-forge.3-all.jar",
                     "mc_versions": [
                         "1.20.1"
                     ],
@@ -593,16 +566,16 @@
                         "forge"
                     ],
                     "release_type": "beta",
-                    "url": "https://edge.forgecdn.net/files/8439/296/c2meforge-0.2.0-forge.2-all.jar",
-                    "id": "8439296",
+                    "url": "https://edge.forgecdn.net/files/8529/175/c2meforge-0.2.0-forge.3-all.jar",
+                    "id": "8529175",
                     "parent_id": "1610389",
                     "hashes": {
-                        "sha1": "8ef6ffbc027323a5e39fad1bea9cc303730cbf07",
-                        "md5": "2d04491f1b603ce1e0924e890513b700"
+                        "sha1": "1849f7de5bcce41d316b900204c3208d4d404c30",
+                        "md5": "02108a553747101ca7a8f5a23844f57c"
                     },
                     "required_dependencies": [],
-                    "size": 1171445,
-                    "date_published": "2026-07-15T18:20:53.913Z"
+                    "size": 1173492,
+                    "date_published": "2026-07-28T19:45:19.537Z"
                 }
             ]
         },
@@ -718,48 +691,6 @@
                     "required_dependencies": [],
                     "size": 10052,
                     "date_published": "2023-06-24T16:15:56.900Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "Y7VaMdOFiAohEnhc",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "contents-director"
-            },
-            "name": {
-                "curseforge": "Contents Director"
-            },
-            "id": {
-                "curseforge": "1587715"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "ContentsDirector-1.0.0-all.jar",
-                    "mc_versions": [
-                        "1.20.2",
-                        "1.20.5",
-                        "1.20.1",
-                        "1.20",
-                        "1.20.6",
-                        "1.20.4",
-                        "1.20.3"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/8319/172/ContentsDirector-1.0.0-all.jar",
-                    "id": "8319172",
-                    "parent_id": "1587715",
-                    "hashes": {
-                        "sha1": "e203636d3119a0580b8b17892ee62b41ff22d751",
-                        "md5": "75b64cca1384a88141c6c5e784217b4e"
-                    },
-                    "required_dependencies": [],
-                    "size": 3466302,
-                    "date_published": "2026-06-25T17:02:17.347Z"
                 }
             ]
         },
@@ -1456,7 +1387,7 @@
             "files": [
                 {
                     "type": "curseforge",
-                    "file_name": "fancymenu_forge_3.9.8_MC_1.20.1.jar",
+                    "file_name": "fancymenu_forge_3.9.9_MC_1.20.1.jar",
                     "mc_versions": [
                         "1.20.1"
                     ],
@@ -1464,19 +1395,57 @@
                         "forge"
                     ],
                     "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/8440/196/fancymenu_forge_3.9.8_MC_1.20.1.jar",
-                    "id": "8440196",
+                    "url": "https://edge.forgecdn.net/files/8544/939/fancymenu_forge_3.9.9_MC_1.20.1.jar",
+                    "id": "8544939",
                     "parent_id": "367706",
                     "hashes": {
-                        "sha1": "38d9f5c56d5d2075264e3997b534b4709026088b",
-                        "md5": "dca0c09e29c6b2fc6bcdffd258da22ea"
+                        "sha1": "dffd6e4bbead32f51da04f02010b16c5a4ec6ff7",
+                        "md5": "056da7efc4f31d264dafca410e214358"
                     },
                     "required_dependencies": [
-                        "410295",
-                        "938643"
+                        "938643",
+                        "410295"
                     ],
-                    "size": 25772373,
-                    "date_published": "2026-07-15T20:51:45.497Z"
+                    "size": 26174014,
+                    "date_published": "2026-07-31T03:40:54.297Z"
+                }
+            ]
+        },
+        {
+            "pakku_id": "9E93Rm4rLdNtWj2g",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "fast-leaf-decay"
+            },
+            "name": {
+                "curseforge": "Fast Leaf Decay"
+            },
+            "id": {
+                "curseforge": "230976"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "FastLeafDecay-32.jar",
+                    "mc_versions": [
+                        "1.20.2",
+                        "1.20.1",
+                        "1.20.4"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/5375/681/FastLeafDecay-32.jar",
+                    "id": "5375681",
+                    "parent_id": "230976",
+                    "hashes": {
+                        "sha1": "4a76af4ca71dd9939d3c21206792c0d5f75b93a7",
+                        "md5": "20df3e3525622d6ea38a243be828ef38"
+                    },
+                    "required_dependencies": [],
+                    "size": 9835,
+                    "date_published": "2024-05-27T10:44:41.997Z"
                 }
             ]
         },
@@ -1947,7 +1916,7 @@
             "files": [
                 {
                     "type": "curseforge",
-                    "file_name": "jei-1.20.1-forge-15.21.0.138.jar",
+                    "file_name": "jei-1.20.1-forge-15.21.0.148.jar",
                     "mc_versions": [
                         "1.20.1"
                     ],
@@ -1955,16 +1924,16 @@
                         "forge"
                     ],
                     "release_type": "beta",
-                    "url": "https://edge.forgecdn.net/files/8500/5/jei-1.20.1-forge-15.21.0.138.jar",
-                    "id": "8500005",
+                    "url": "https://edge.forgecdn.net/files/8526/990/jei-1.20.1-forge-15.21.0.148.jar",
+                    "id": "8526990",
                     "parent_id": "238222",
                     "hashes": {
-                        "sha1": "c3e1b369da852f4fbcd2d4fc55da6819be1eff6a",
-                        "md5": "fc6800c6b8d0378e89bf8b23a2766a1b"
+                        "sha1": "87b8f17235fbc5e782ec329ade0d740cfce16f90",
+                        "md5": "88c6f7003cadf3ec3559b95cd2ceaa80"
                     },
                     "required_dependencies": [],
-                    "size": 1420159,
-                    "date_published": "2026-07-24T13:55:07.017Z"
+                    "size": 1426211,
+                    "date_published": "2026-07-28T14:06:28.170Z"
                 }
             ]
         },
@@ -2538,6 +2507,46 @@
             ]
         },
         {
+            "pakku_id": "bS1gw0eSG1zmtsQS",
+            "type": "MOD",
+            "slug": {
+                "curseforge": "pack-launcher"
+            },
+            "name": {
+                "curseforge": "Pack Launcher"
+            },
+            "id": {
+                "curseforge": "1632808"
+            },
+            "files": [
+                {
+                    "type": "curseforge",
+                    "file_name": "modpack-director-1.1.jar",
+                    "mc_versions": [
+                        "1.20.2",
+                        "1.20.1",
+                        "1.20",
+                        "1.20.4",
+                        "1.20.3"
+                    ],
+                    "loaders": [
+                        "forge"
+                    ],
+                    "release_type": "release",
+                    "url": "https://edge.forgecdn.net/files/8545/3/modpack-director-1.1.jar",
+                    "id": "8545003",
+                    "parent_id": "1632808",
+                    "hashes": {
+                        "sha1": "e999c487d6f0192db413bebb8e88bb53123e9eff",
+                        "md5": "603470cb9a512cb7943fb94fb3879820"
+                    },
+                    "required_dependencies": [],
+                    "size": 120705,
+                    "date_published": "2026-07-31T03:55:10.733Z"
+                }
+            ]
+        },
+        {
             "pakku_id": "LX3qQxDpp9H5RsX2",
             "pakku_links": [
                 "8FKIacURzh25i6RC"
@@ -2633,7 +2642,7 @@
             "files": [
                 {
                     "type": "curseforge",
-                    "file_name": "Programmed Circuit Card-1.20.1-1.2.11.jar",
+                    "file_name": "Programmed Circuit Card-1.20.1-1.3.1.jar",
                     "mc_versions": [
                         "1.20.1"
                     ],
@@ -2642,20 +2651,20 @@
                         "neoforge"
                     ],
                     "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/8500/847/Programmed Circuit Card-1.20.1-1.2.11.jar",
-                    "id": "8500847",
+                    "url": "https://edge.forgecdn.net/files/8560/90/Programmed Circuit Card-1.20.1-1.3.1.jar",
+                    "id": "8560090",
                     "parent_id": "1150540",
                     "hashes": {
-                        "sha1": "8b50dd1e95ea3eeb760f93f3f4551000feaf9307",
-                        "md5": "7fe6e4b74250b7accccd49d10c7edee0"
+                        "sha1": "14667353e073c0daa77848476e6037e3e896ab95",
+                        "md5": "9f2337592659bd420adfd6246af25858"
                     },
                     "required_dependencies": [
+                        "890405",
                         "223794",
-                        "1173950",
-                        "890405"
+                        "1173950"
                     ],
-                    "size": 715325,
-                    "date_published": "2026-07-24T15:50:32.343Z"
+                    "size": 737989,
+                    "date_published": "2026-08-02T08:53:50.753Z"
                 }
             ]
         },
@@ -3210,7 +3219,7 @@
                         "forge"
                     ],
                     "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/7973/072/immersive_ballistic-1.3.jar",
+                    "url": "https://edge.forgecdn.net/files/7973/72/immersive_ballistic-1.3.jar",
                     "id": "7973072",
                     "parent_id": "1505041",
                     "hashes": {
@@ -3480,7 +3489,7 @@
             "files": [
                 {
                     "type": "curseforge",
-                    "file_name": "komodo-1.20.1-Forge-1.2.1.jar",
+                    "file_name": "komodo-1.20.1-Forge-1.2.3.jar",
                     "mc_versions": [
                         "1.20.1"
                     ],
@@ -3488,18 +3497,18 @@
                         "forge"
                     ],
                     "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/8506/902/komodo-1.20.1-Forge-1.2.1.jar",
-                    "id": "8506902",
+                    "url": "https://edge.forgecdn.net/files/8545/181/komodo-1.20.1-Forge-1.2.3.jar",
+                    "id": "8545181",
                     "parent_id": "1616090",
                     "hashes": {
-                        "sha1": "3a99e5904ffab85e1fe714e2ba9a558b4d7ba228",
-                        "md5": "496adc6d7c5ea6bd3284a2b5f43f53ae"
+                        "sha1": "09051155ff678cc46c6316de488b8cb78e023b0d",
+                        "md5": "e6ad35f71bcd1c0a5e27a97850b694a8"
                     },
                     "required_dependencies": [
                         "1218165"
                     ],
-                    "size": 874987,
-                    "date_published": "2026-07-25T14:39:37.793Z"
+                    "size": 878174,
+                    "date_published": "2026-07-31T04:49:08.847Z"
                 }
             ]
         },
@@ -3518,7 +3527,7 @@
             "files": [
                 {
                     "type": "curseforge",
-                    "file_name": "MCSP-1.20.1-V1.0.9.jar",
+                    "file_name": "MCSP-1.20.1-V1.0.10.jar",
                     "mc_versions": [
                         "1.20.1"
                     ],
@@ -3526,18 +3535,18 @@
                         "forge"
                     ],
                     "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/8268/959/MCSP-1.20.1-V1.0.9.jar",
-                    "id": "8268959",
+                    "url": "https://edge.forgecdn.net/files/8556/484/MCSP-1.20.1-V1.0.10.jar",
+                    "id": "8556484",
                     "parent_id": "1270418",
                     "hashes": {
-                        "sha1": "8693b2f16a1948401f997f46b0640843f601f7ab",
-                        "md5": "10c6d871144f65ad9ddc0638e7585cee"
+                        "sha1": "eaafa84f188153f64fe8171c0a4c1878da899d71",
+                        "md5": "69a2702be70272259a2add8f8c48d6cd"
                     },
                     "required_dependencies": [
                         "1218165"
                     ],
-                    "size": 5791616,
-                    "date_published": "2026-06-17T21:24:40.893Z"
+                    "size": 5791908,
+                    "date_published": "2026-08-01T19:30:46.323Z"
                 }
             ]
         },

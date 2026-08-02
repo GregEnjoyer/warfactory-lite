@@ -294,63 +294,6 @@
 			y: -3.0d
 		}
 		{
-			dependencies: ["0EAF2C5B5EB755C5"]
-			description: [
-				"Were you aware that &aGregTech&r comes with its own set of tools? If not, you may also be pleasantly surprised to hear that they &6&lsurpass&r their vanilla equivalents."
-				""
-				"Let's use the GregTech Axe as an example. If you use one to mine a log in a tree, it'll fell the &2entire tree&r for you. Timber!"
-				""
-				"Constant \"lumberjacking\" will eat through your Axe's &9durability&r in seconds, so you may want to make your Axe out of a &estronger material&r such as &bDiamond&r. Just be careful you don't make a vanilla Diamond Axe."
-				""
-				"As a reward, take these &2Spruce saplings&r and use them to make some big trees. You'll need to do a lot of smelting in the near future, and planks will tide you over as an &deffective&r fuel source!"
-			]
-			icon: {
-				Count: 1
-				id: "gtceu:steel_axe"
-				tag: {
-					Damage: 0
-					GT.Tool: { }
-				}
-			}
-			id: "13354F24F80F65FB"
-			rewards: [{
-				count: 8
-				id: "60E07F9D0763E8E1"
-				item: "minecraft:spruce_sapling"
-				type: "item"
-			}]
-			shape: "rsquare"
-			size: 0.66d
-			subtitle: "Who needs Veinminer?"
-			tasks: [{
-				id: "3880A08A72884627"
-				item: {
-					Count: 1
-					id: "gtceu:iron_axe"
-					tag: {
-						Damage: 0
-						DisallowContainerItem: 0b
-						GT.Behaviours: {
-							DisableShields: 1b
-							TreeFelling: 1b
-						}
-						GT.Tool: {
-							DefaultEnchantments: [ ]
-							HarvestLevel: 2
-							MaxDamage: 255
-							ToolSpeed: 4.0f
-						}
-						HideFlags: 2
-					}
-				}
-				title: "Grab an Iron Lumber Axe!"
-				type: "item"
-			}]
-			title: "Lumbering On"
-			x: -2.25d
-			y: -4.5d
-		}
-		{
 			dependencies: ["1ECBA1CBFFB9F625"]
 			description: [
 				"Alright - your first &oproper&r &aGregTech&r tool. The first of &dmany&r."
@@ -1046,52 +989,52 @@
 			x: 1.5d
 			y: -0.5d
 		}
-			{
-				dependencies: ["13E9DF7E980CFC5B"]
-				description: [
-					"&cThird person is disabled while on foot.&r There's no toggling it back - the &6F5&r perspective key won't do anything while you're walking around."
-					""
-					"The &2only&r time you'll get a third-person camera is when you're &bsitting in a vehicle&r. Hop in a car, tank, or aircraft and the view opens up; step out and it snaps back to first person."
-					""
-					"&8This keeps infantry combat honest - no peeking around corners or over cover in third person.&r"
-				]
-				icon: "minecraft:spyglass"
-				id: "7F3A1C9D2E4B6058"
-				shape: "circle"
-				size: 0.75d
-				subtitle: "F5 only works inside vehicles"
-				tasks: [{
-					id: "7F3A1C9D2E4B6059"
-					title: "Understood - first person on foot"
-					type: "checkmark"
-				}]
-				title: "No Third Person on Foot"
-				x: -3.75d
-				y: -1.5d
-			}
-			{
-				dependencies: ["008ABF78E56209F7"]
-				description: [
-					"&cPlayer nametags never render through walls&r - no matter what. There's no setting to switch this on, so don't go looking for one."
-					""
-					"If you can't &2directly see&r a player, you won't see their name floating above them either. Line of sight is everything."
-					""
-					"&8Effectively a built-in anti-wallhack: you can't track people through solid blocks by their tags.&r"
-				]
-				icon: "minecraft:name_tag"
-				id: "7F3A1C9D2E4B6060"
-				shape: "circle"
-				size: 0.75d
-				subtitle: "No seeing names through solid blocks"
-				tasks: [{
-					id: "7F3A1C9D2E4B6061"
-					title: "Got it - names need line of sight"
-					type: "checkmark"
-				}]
-				title: "Nametags Won't Show Through Walls"
-				x: -3.75d
-				y: -0.75d
-			}
+		{
+			dependencies: ["13E9DF7E980CFC5B"]
+			description: [
+				"&cThird person is disabled while on foot.&r There's no toggling it back - the &6F5&r perspective key won't do anything while you're walking around."
+				""
+				"The &2only&r time you'll get a third-person camera is when you're &bsitting in a vehicle&r. Hop in a car, tank, or aircraft and the view opens up; step out and it snaps back to first person."
+				""
+				"&8This keeps infantry combat honest - no peeking around corners or over cover in third person.&r"
+			]
+			icon: "minecraft:spyglass"
+			id: "7F3A1C9D2E4B6058"
+			shape: "circle"
+			size: 0.75d
+			subtitle: "F5 only works inside vehicles"
+			tasks: [{
+				id: "7F3A1C9D2E4B6059"
+				title: "Understood - first person on foot"
+				type: "checkmark"
+			}]
+			title: "No Third Person on Foot"
+			x: -3.75d
+			y: -1.5d
+		}
+		{
+			dependencies: ["008ABF78E56209F7"]
+			description: [
+				"&cPlayer nametags never render through walls&r - no matter what. There's no setting to switch this on, so don't go looking for one."
+				""
+				"If you can't &2directly see&r a player, you won't see their name floating above them either. Line of sight is everything."
+				""
+				"&8Effectively a built-in anti-wallhack: you can't track people through solid blocks by their tags.&r"
+			]
+			icon: "minecraft:name_tag"
+			id: "7F3A1C9D2E4B6060"
+			shape: "circle"
+			size: 0.75d
+			subtitle: "No seeing names through solid blocks"
+			tasks: [{
+				id: "7F3A1C9D2E4B6061"
+				title: "Got it - names need line of sight"
+				type: "checkmark"
+			}]
+			title: "Nametags Won't Show Through Walls"
+			x: -3.75d
+			y: -0.75d
+		}
 	]
 	subtitle: ["Welcome to &4Warfactory&r!"]
 	title: "Introduction"

@@ -32,10 +32,10 @@ const IV = 8192
 const C_HV = '#gtceu:circuits/hv'
 const C_EV = '#gtceu:circuits/ev'
 const C_IV = '#gtceu:circuits/iv'
-const P    = 'gtceu:'
+var P    = 'gtceu:'
 const TNT  = 'gtceu:gelled_toluene'
 const RDX  = 'gtceu:rdx_dust'          // verify: gtceu rdx material or wfcore:rdx_dust
-const POW  = 'minecraft:gunpowder'
+var POW  = 'minecraft:gunpowder'
 const FUSE = 'superbwarfare:fusee'
 const ENG  = 'superbwarfare:missile_engine'
 const WP        = 'gtceu:white_phosphorus_dust'
@@ -56,18 +56,18 @@ const MISSILES = [
     // ── Demolition ───────────────────────────────────────────────────────────────────────────────
     ['he',          'missile_systems',     HV, 12000, ['gtceu:diesel', 3000],       [[P+'aluminium_plate',96],[P+'blue_steel_frame',8],[C_HV,8],[ENG,4],[FUSE,1],[TNT,85]]],
     ['dummy',       'missile_systems',     HV, 10000, ['gtceu:diesel', 2000],       [[P+'aluminium_plate',96],[P+'blue_steel_frame',5],[ENG,2]]],
-    ['thermobaric', 'demolition_ordnance', EV, 16000, ['gtceu:rocket_fuel', 12000], [[P+'titanium_plate',128],[P+'hssg_frame',4],[ENG,12],[FUSE,1],[C_EV,8],[RDX,64]]],
+    ['thermobaric', 'demolition_ordnance', EV, 14000, ['gtceu:rocket_fuel', 12000], [[P+'titanium_plate',96],[P+'hssg_frame',4],[ENG,12],[FUSE,1],[C_EV,8],[RDX,48]]],
     ['mininuke',    'tactical_nuclear',    IV, 22000, ['gtceu:rocket_fuel', 20000], [[P+'hsss_plate',128],[P+'titanium_plate',8],[ENG,32],[RDX,16],[P+'double_beryllium_plate', 32],['gtceu:uranium_235_block', 8] ,[C_IV,16]]],
 
     // ── Penetrators (engine-heavy; light airframe; rocket → jet fuel) ────────────────────────────
     // Floor: fewer plates than demolition, compensated by engine count and explosive load.
     ['penetrator',            'penetrator_missiles',   EV, 12000, ['gtceu:rocket_fuel', 3500],  [[P+'titanium_plate',64],[P+'ultimet_frame',8],[ENG,16],[FUSE,1],[C_HV,10],[TNT,64]]],
     ['penetrator_supersonic', 'penetrator_supersonic', EV, 14000, ['gtceu:rocket_fuel', 10000], [[P+'incoloy_ma_956_plate',96],[P+'hssg_frame',8],[ENG,32],[FUSE,1],[C_EV,12],[TNT,96]]],
-    ['penetrator_hypersonic', 'penetrator_hypersonic', IV, 16000, ['gtceu:jet_fuel', 10000],    [[P+'hsss_plate',96],['gtceu:incoloy_ma_956_frame',8],[ENG,64],[FUSE,1],[C_IV,16],[TNT,128]]],
+    ['penetrator_hypersonic', 'penetrator_hypersonic', IV, 22000, ['gtceu:jet_fuel', 12000],    [[P+'hsss_plate',128],['gtceu:incoloy_ma_956_frame',8],[ENG,80],[FUSE,1],[C_IV,28],[TNT,128]]],
 
     // ── ICBMs (RAM + SRF heavy; stainless_steel → ultimet) ───────────────────────────────────────
     ['long_range',  'missile_systems',     HV, 14000, ['gtceu:rocket_fuel', 6000],[[P+'double_stainless_steel_plate',48],[P+'stainless_steel_frame',12],[C_HV,10],[ENG,8],[FUSE,1],[TNT,72]]],
-    ['icbm',        'icbm',       EV, 18000, ['gtceu:rocket_fuel', 10000],  [[P+'double_titanium_plate',64],[ENG,16],[SRF,24],[C_EV,10],[HV_RAM,2],[FUSE,1],[RDX,85]]],
+    ['icbm',        'icbm',       EV, 16000, ['gtceu:rocket_fuel', 10000],  [[P+'double_titanium_plate',48],[ENG,16],[SRF,24],[C_EV,10],[HV_RAM,2],[FUSE,1],[RDX,64]]],
     ['icbm_heavy',  'icbm_heavy', IV, 24000, ['gtceu:rocket_fuel', 18000],  [[P+'double_tungsten_steel_plate',64],[P+'stainless_steel_plate',32],[ENG,24],[SRF,48],[C_IV, 10], [RDX, 100],[EV_RAM,3]]],
 
     // ── Bunker busters (shaped charge; explosive-heavy) ──────────────────────────────────────────
@@ -84,9 +84,9 @@ const MISSILES = [
 
     // ── EMP (lapotron cost replaces explosive load; plates scale to floor) ───────────────────────
     ['emp',         'emp_warheads', HV, 10000, ['gtceu:diesel',      4000],  [[P+'blue_steel_plate',40],[P+'aluminium_plate',24],[LAPO_DUST,8],[C_HV,6]]],
-    ['emp_heavy',   'emp_heavy',    EV, 12000, ['gtceu:rocket_fuel', 8000],  [[P+'blue_steel_plate',48],[P+'titanium_plate',32],[LAPO,2, '{"Charge":25000000L}'],[C_EV,8]]],
-    ['emp_cluster', 'emp_cluster',  EV, 11000, ['gtceu:rocket_fuel', 8000],  [[P+'blue_steel_plate',64],[LEAD_ROUND,48],[LAPO,1,'{"Charge":25000000L}'],[POW,32],[C_EV,6]]],
-    ['emp_lance',   'emp_lance',    EV, 14000, ['gtceu:rocket_fuel', 10000], [[P+'tungsten_plate',80],[P+'titanium_plate',24],[LAPO,2,'{"Charge":25000000L}'],[C_IV,8]]],
+    ['emp_heavy',   'emp_heavy',    EV, 9000, ['gtceu:rocket_fuel', 8000],  [[P+'blue_steel_plate',48],[P+'titanium_plate',32],[LAPO,2, '{"Charge":25000000L}'],[C_EV,8]]],
+    ['emp_cluster', 'emp_cluster',  EV, 9000, ['gtceu:rocket_fuel', 8000],  [[P+'blue_steel_plate',64],[LEAD_ROUND,48],[LAPO,1,'{"Charge":25000000L}'],[POW,32],[C_EV,6]]],
+    ['emp_lance',   'emp_lance',    EV, 11000, ['gtceu:rocket_fuel', 10000], [[P+'tungsten_plate',80],[P+'titanium_plate',24],[LAPO,2,'{"Charge":25000000L}'],[C_IV,8]]],
 
     // ── Interceptors (the premium class: circuit + RAM heavy; ~1.2–1.4× mainline missile cost) ────
     // The guidance package (high circuit count + RAM) is the cost driver, NOT the airframe: plates

@@ -9,6 +9,13 @@ limits:
   fullScanIntervalTicks: 600
 rules:
   exact:
+    # --- Neutralize the mod's built-in hardcoded defaults (WeightConfigLoader1201.defaults()).
+    # Those defaults are merged in on every load and can't be deleted via YAML, only overridden,
+    # so we pin them to 0 to keep generic/vanilla items weightless (only explicit rules below count).
+    minecraft:water_bucket: 0
+    minecraft:lava_bucket: 0
+    minecraft:shield: 0
+    minecraft:elytra: 0
     sbwdroneconfig:lucas_drone: 5.0
     sbwdroneconfig:cubed_fpv_drone: 5.0
     superbwarfare:claymore_mines: 2.0
@@ -455,8 +462,23 @@ rules:
   superbwarfare:armor_plate: 20
     }
   tags:
+    # Neutralized built-in default tag weights (iron/copper/gold/diamond/emerald/redstone/coal +
+    # logs/planks) — see the note in rules.exact. Pinned to 0 so raw materials carry no weight.
     minecraft:logs: 0
     minecraft:planks: 0
+    c:ingots/iron: 0
+    forge:ingots/iron: 0
+    c:ingots/copper: 0
+    forge:ingots/copper: 0
+    c:ingots/gold: 0
+    forge:ingots/gold: 0
+    c:gems/diamond: 0
+    forge:gems/diamond: 0
+    c:gems/emerald: 0
+    forge:gems/emerald: 0
+    c:dusts/redstone: 0
+    forge:dusts/redstone: 0
+    minecraft:coals: 0
 
 groupLimits: {
   }
@@ -489,7 +511,7 @@ stamina:
   totalStamina: 100.0
   sprintStaminaLossRate: 0.1
   jumpStaminaLoss: 2.0
-  staminaGainRate: 0.08
+  staminaGainRate: 0.092
   exhaustionThreshold: 1.0
   recoveryPercent: 0.3
   drainWhileRunning: true

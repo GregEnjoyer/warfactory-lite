@@ -81,6 +81,9 @@
         "embeddium": {
             "side": "CLIENT"
         },
+        "asyncparticles": {
+            "side": "CLIENT"
+        },
         "observable": {
             "side": "SERVER"
         },

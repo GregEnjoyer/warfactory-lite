@@ -1,38 +1,35 @@
 // Aviation research — the whole "Aviation" tab (category 'air').
-// Contains:
-//   - Aviation vehicle GRAPH (air_propellers, air_ju_87, air_a_10, air_ah_6, air_mh_60, air_mi_28)
-//   - Drone Tactics sub-tree (drone_tactics, drone_swarm, drone_lucas, drone_loitering, drone_fpv, …)
-//   - Aviation component tree (air_comp_<tier>_<part>) — MV through EV only.
-//     The LV tier (air_comp_lv_air_frame / _wing / _cockpit) has been REMOVED because aviation is
-//     an MV-and-up branch. MV component nodes are roots (no anyOf); HV anyOf's MV, EV anyOf's HV.
-//
 // Runs in ServerEvents.recipes (fires on server start AND /reload).
+//
+// Sections:
+//   - Root: air_propellers
+//   - Fixed-wing line: Ju-87 -> A-10 -> Hercules -> {Spooky, B-2}
+//   - Rotary-wing line: AH-6 -> MH-60 -> Mi-28
+//   - Drone sub-tree: drone_tactics hub -> swarm / LUCAS / loitering / FPV (+ FPV modules)
+//   - Aviation component tree: air_comp_<tier>_<part>, MV root -> HV -> EV
+
+var BLUE  = 0xFF2F6BD8
+var EU_MV = 128
+var EU_HV = 512
+var EU_EV = 2048
+var EU_IV = 8192
+
+// CWU per run at tier midpoint (@300t vehicle/drone nodes, @200t component nodes):
+//   @300t  MV 19200  HV 76800  EV 307200  IV 1228800
+//   @200t  MV 12800  HV 51200  EV 204800
+
+var pv = e => Item.of('wfcore:packaged_vehicle', '{entity:"' + e + '"}')
+
 ServerEvents.recipes(event => {
 
-    // Item-cost helper: leading '#' => item TAG, else exact item.
-    const addCost = (b, id, ct) => (typeof id === 'string' && id.charAt(0) === '#')
-        ? b.itemTagPerRun(id, ct)
-        : b.itemPerRun(Item.of(id, ct))
-    const title = s => s.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
-    const pv = e => Item.of('wfcore:packaged_vehicle', '{entity:"' + e + '"}')
+    // ======================= AVIATION ROOT =======================
 
-    // ======================= AVIATION VEHICLE GRAPH =======================
-    // tier -> [runs, eut, cwuPerRun(@300t), [itemPerRun...]]  (midpoints: MV ~64, HV ~256, EV ~1024 CWU/t)
-    const AVT = {
-        mv: [52, 128,  19200,  [['gtceu:aluminium_plate', 6],       ['superbwarfare:propeller', 4],       ['#gtceu:circuits/mv', 2]]],
-        hv: [80, 512,  76800,  [['gtceu:stainless_steel_plate', 6], ['superbwarfare:large_propeller', 2], ['#gtceu:circuits/hv', 2]]],
-        ev: [88, 2048, 307200, [['gtceu:titanium_plate', 6],        ['gtceu:ev_electric_motor', 2],       ['#gtceu:circuits/ev', 2]]],
-        iv: [96, 8192, 1228800,[['gtceu:tungsten_steel_plate', 6],  ['superbwarfare:large_propeller', 2], ['#gtceu:circuits/iv', 2]]],  // ~4096 CWU/t = IV midpoint
-    }
-
-    // Central ROOT: every aircraft (and the drone tree) stems from Propeller research. Unlocks the small +
-    // large propeller cutter/assembler recipes (vehicles/parts.js) and splits the fixed-/rotary-wing lines.
     WFResearch.builder('air_propellers')
         .category('air').pos(-3, 0)
-        .nodeColor(0xFF2F6BD8)
+        .nodeColor(BLUE)
         .name('Propellers')
-        .description('Small and large aircraft propellers — the foundation every airframe is built on. Splits into the fixed-wing and rotary-wing lines.')
-        .runs(40).ticksPerRun(300).eut(128).cwuPerRun(19200)
+        .description('Small and large aircraft propellers – the foundation every airframe is built on.')
+        .runs(40).ticksPerRun(300).eut(EU_MV).cwuPerRun(19200)
         .itemPerRun(Item.of('gtceu:aluminium_plate', 6))
         .itemPerRun(Item.of('gtceu:polytetrafluoroethylene_plate', 2))
         .itemTagPerRun('gtceu:circuits/mv', 2)
@@ -40,53 +37,133 @@ ServerEvents.recipes(event => {
         .icon(Item.of('superbwarfare:large_propeller'))
         .register()
 
-    ;[
-        // Fixed-wing line (bombers / attack jets)
-        { id: 'air_ju_87', ent: 'superbwarfare:ju_87', tier: 'mv', x: -5, y: 1, req: 'air_propellers', name: 'Ju-87 Stuka',
-          desc: 'The Ju-87 "Stuka" dive bomber: 2 crew, 250 HP. Carries rifle ammunition plus small and medium aerial bombs. The MV entry of the fixed-wing line.' },
-        { id: 'air_a_10',  ent: 'superbwarfare:a_10a', tier: 'hv', x: -5, y: 2, req: 'air_ju_87', name: 'A-10 Thunderbolt II',
-          desc: 'The A-10 close-air-support attack jet: a heavy autocannon plus a wing of ordnance. The HV step past the Stuka.' },
-        { id: 'air_hercules', ent: 'ashvehicle:c130',   tier: 'ev', x: -5, y: 3, req: 'air_a_10',    name: 'C-130 Hercules',
-          desc: 'The C-130 Hercules heavy transport: a four-engine turboprop hauler and the EV step of the fixed-wing line. Upgrades into the AC-130U Spooky II gunship.' },
-        { id: 'air_spooky',   ent: 'ashvehicle:ac130u', tier: 'ev', x: -6, y: 4, req: 'air_hercules', name: 'AC-130U Spooky II',
-          desc: 'The AC-130U Spooky II gunship: a Hercules airframe bristling with side-firing cannons — the gunship upgrade of the C-130.' },
-        { id: 'air_b2',       ent: 'ashvehicle:b-2',     tier: 'iv', x: -5, y: 4, req: 'air_hercules', name: 'B-2 Spirit',
-          desc: 'The B-2 Spirit stealth bomber: a flying-wing strategic bomber and the IV-tier apex of the fixed-wing line.' },
-        // Rotary-wing line (helicopters)
-        { id: 'air_ah_6',  ent: 'superbwarfare:ah_6',  tier: 'mv', x: -3, y: 1, req: 'air_propellers', name: 'AH-6 Little Bird',
-          desc: 'The AH-6 Little Bird light attack helicopter: 4 crew, 250 HP. Armed with a 20mm cannon (Small Caliber HE Shell) and Small Caliber Rockets. The MV entry of the rotary line.' },
-        { id: 'air_mh_60', ent: 'ashvehicle:mh_60m',   tier: 'hv', x: -3, y: 2, req: 'air_ah_6', name: 'MH-60M Black Hawk',
-          desc: 'The MH-60M Black Hawk transport/gunship: 7 crew, 250 HP. Door guns firing Small Caliber AP Shells plus Small Caliber Rockets.' },
-        { id: 'air_mi_28', ent: 'superbwarfare:mi_28', tier: 'ev', x: -3, y: 3, req: 'air_mh_60', name: 'Mi-28 Attack Helicopter',
-          desc: 'The Mi-28 dedicated tank-hunter: 2 crew, 350 HP. A 30mm cannon, rockets and up to large anti-ground / anti-air missiles — the apex of the rotary line.' },
-    ].forEach(n => {
-        const t = AVT[n.tier]
-        const b = WFResearch.builder(n.id)
-            .category('air').pos(n.x, n.y)
-            .nodeColor(0xFF2F6BD8)
-            .name(n.name)
-            .description(n.desc)
-            .runs(t[0]).ticksPerRun(300).eut(t[1]).cwuPerRun(t[2])
-            .icon(pv(n.ent))
-            .unlock(pv(n.ent))
-            .requires(n.req)
-        t[3].forEach(it => addCost(b, it[0], it[1]))
-        b.register()
-    })
+    // ======================= FIXED-WING LINE =======================
 
-    // ======================= DRONE TACTICS SUB-TREE =======================
-    // Hub gate: needs Propellers AND at least one MV aircraft (Ju-87 OR AH-6). Unlocks the Monitor control
-    // tablet + the base recon Drone (gated in guns/ammo.js). Its children unlock the swarm / LUCAS / Shahed /
-    // FPV lines. All drone recipes are added in wfcore/drones.js (Monitor/LUCAS/FPV/upgrades) and ammo.js
-    // (base Drone / Swarm Drone), gated on these ids.
+    // MV: Ju-87 Stuka
+    WFResearch.builder('air_ju_87')
+        .category('air').pos(-5, 1)
+        .nodeColor(BLUE)
+        .name('Ju-87 Stuka')
+        .description('The Ju-87 "Stuka" dive bomber: 2 crew, 250 HP. Carries rifle ammunition plus small and medium aerial bombs. The MV entry of the fixed-wing line.')
+        .requires('air_propellers')
+        .runs(52).ticksPerRun(300).eut(EU_MV).cwuPerRun(19200)
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 6))
+        .itemPerRun(Item.of('superbwarfare:propeller', 4))
+        .itemTagPerRun('gtceu:circuits/mv', 2)
+        .unlock(pv('superbwarfare:ju_87')).icon(pv('superbwarfare:ju_87'))
+        .register()
+
+    // HV: A-10 Thunderbolt II
+    WFResearch.builder('air_a_10')
+        .category('air').pos(-5, 2)
+        .nodeColor(BLUE)
+        .name('A-10 Thunderbolt II')
+        .description('The A-10 close-air-support attack jet: a heavy autocannon plus a wing of ordnance.')
+        .requires('air_ju_87')
+        .runs(80).ticksPerRun(300).eut(EU_HV).cwuPerRun(76800)
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 6))
+        .itemPerRun(Item.of('superbwarfare:large_propeller', 2))
+        .itemTagPerRun('gtceu:circuits/hv', 2)
+        .unlock(pv('superbwarfare:a_10a')).icon(pv('superbwarfare:a_10a'))
+        .register()
+
+    // EV: C-130 Hercules
+    WFResearch.builder('air_hercules')
+        .category('air').pos(-5, 3)
+        .nodeColor(BLUE)
+        .name('C-130 Hercules')
+        .description('The C-130 Hercules heavy transport: a four-engine turboprop hauler and the EV step of the fixed-wing line.')
+        .requires('air_a_10')
+        .runs(88).ticksPerRun(300).eut(EU_EV).cwuPerRun(307200)
+        .itemPerRun(Item.of('gtceu:titanium_plate', 6))
+        .itemPerRun(Item.of('gtceu:ev_electric_motor', 2))
+        .itemTagPerRun('gtceu:circuits/ev', 2)
+        .unlock(pv('ashvehicle:c130')).icon(pv('ashvehicle:c130'))
+        .register()
+
+    // EV: AC-130U Spooky II (gunship upgrade, also off Hercules)
+    WFResearch.builder('air_spooky')
+        .category('air').pos(-6, 4)
+        .nodeColor(BLUE)
+        .name('AC-130U Spooky II')
+        .description('The AC-130U Spooky II gunship: a Hercules airframe bristling with side-firing cannons.')
+        .requires('air_hercules')
+        .runs(88).ticksPerRun(300).eut(EU_EV).cwuPerRun(307200)
+        .itemPerRun(Item.of('gtceu:titanium_plate', 6))
+        .itemPerRun(Item.of('gtceu:ev_electric_motor', 2))
+        .itemTagPerRun('gtceu:circuits/ev', 2)
+        .unlock(pv('ashvehicle:ac130u')).icon(pv('ashvehicle:ac130u'))
+        .register()
+
+    // IV: B-2 Spirit (apex of fixed-wing, also off Hercules)
+    WFResearch.builder('air_b2')
+        .category('air').pos(-5, 4)
+        .nodeColor(BLUE)
+        .name('B-2 Spirit')
+        .description('The B-2 Spirit stealth bomber: a flying-wing strategic bomber.')
+        .requires('air_hercules')
+        .runs(96).ticksPerRun(300).eut(EU_IV).cwuPerRun(1228800)
+        .itemPerRun(Item.of('gtceu:tungsten_steel_plate', 6))
+        .itemPerRun(Item.of('superbwarfare:large_propeller', 2))
+        .itemTagPerRun('gtceu:circuits/iv', 2)
+        .unlock(pv('ashvehicle:b-2')).icon(pv('ashvehicle:b-2'))
+        .register()
+
+    // ======================= ROTARY-WING LINE =======================
+
+    // MV: AH-6 Little Bird
+    WFResearch.builder('air_ah_6')
+        .category('air').pos(-3, 1)
+        .nodeColor(BLUE)
+        .name('AH-6 Little Bird')
+        .description('The AH-6 Little Bird light attack helicopter. Armed with a 20mm cannon (Small Caliber HE Shell) and Small Caliber Rockets.')
+        .requires('air_propellers')
+        .runs(52).ticksPerRun(300).eut(EU_MV).cwuPerRun(19200)
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 6))
+        .itemPerRun(Item.of('superbwarfare:propeller', 4))
+        .itemTagPerRun('gtceu:circuits/mv', 2)
+        .unlock(pv('superbwarfare:ah_6')).icon(pv('superbwarfare:ah_6'))
+        .register()
+
+    // HV: MH-60M Black Hawk
+    WFResearch.builder('air_mh_60')
+        .category('air').pos(-3, 2)
+        .nodeColor(BLUE)
+        .name('MH-60M Black Hawk')
+        .description('The MH-60M Black Hawk transport/gunship. Door guns firing Small Caliber AP Shells plus Small Caliber Rockets.')
+        .requires('air_ah_6')
+        .runs(80).ticksPerRun(300).eut(EU_HV).cwuPerRun(76800)
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 6))
+        .itemPerRun(Item.of('superbwarfare:large_propeller', 2))
+        .itemTagPerRun('gtceu:circuits/hv', 2)
+        .unlock(pv('ashvehicle:mh_60m')).icon(pv('ashvehicle:mh_60m'))
+        .register()
+
+    // EV: Mi-28 Attack Helicopter (apex of rotary line)
+    WFResearch.builder('air_mi_28')
+        .category('air').pos(-3, 3)
+        .nodeColor(BLUE)
+        .name('Mi-28 Attack Helicopter')
+        .description('The Mi-28 dedicated tank-hunter. A 30mm cannon, rockets and up to large anti-ground / anti-air missiles.')
+        .requires('air_mh_60')
+        .runs(88).ticksPerRun(300).eut(EU_EV).cwuPerRun(307200)
+        .itemPerRun(Item.of('gtceu:titanium_plate', 6))
+        .itemPerRun(Item.of('gtceu:ev_electric_motor', 2))
+        .itemTagPerRun('gtceu:circuits/ev', 2)
+        .unlock(pv('superbwarfare:mi_28')).icon(pv('superbwarfare:mi_28'))
+        .register()
+
+    // ======================= DRONE TACTICS HUB =======================
+    // Requires Propellers AND at least one MV aircraft (Ju-87 OR AH-6).
+
     WFResearch.builder('drone_tactics')
         .category('air').pos(-1, 1)
-        .nodeColor(0xFF2F6BD8)
+        .nodeColor(BLUE)
         .name('Drone Tactics')
-        .description('Remote-piloting doctrine: the Monitor control tablet and the base reconnaissance Drone. Opens the fixed-wing (LUCAS, Shahed) and FPV drone lines. FPV and base drones charge from GregTech batteries or the WFCore Vehicle Charger.')
+        .description('Remote-piloting doctrine: the Monitor control tablet and the base reconnaissance Drone.')
         .requires('air_propellers')
         .anyOf('air_ju_87', 'air_ah_6')
-        .runs(30).ticksPerRun(300).eut(128).cwuPerRun(19200)   // MV hub (~64 CWU/t)
+        .runs(30).ticksPerRun(300).eut(EU_MV).cwuPerRun(19200)
         .itemPerRun(Item.of('gtceu:aluminium_plate', 4))
         .itemPerRun(Item.of('superbwarfare:propeller', 4))
         .itemTagPerRun('gtceu:circuits/mv', 2)
@@ -94,98 +171,205 @@ ServerEvents.recipes(event => {
         .icon(Item.of('superbwarfare:monitor'))
         .register()
 
-    // Drone leaf/branch nodes.
-    // Mostly HV (~256 CWU/t) — drones are an HV-grade doctrine once the Monitor exists.
-    const C_MV = '#gtceu:circuits/mv', C_HV = '#gtceu:circuits/hv'
-    ;[
-        ['drone_swarm', -2, 2, 'drone_tactics', 512, 76800, 40, 'Swarm Drones',
-            'Kamikaze quadcopters that dive onto a marked target and detonate. Built from a base Drone plus a seeker and a warhead.',
-            'superbwarfare:swarm_drone', ['superbwarfare:swarm_drone'],
-            [['gtceu:aluminium_plate', 4], ['superbwarfare:seeker', 1], [C_HV, 2]]],
-        ['drone_lucas', 0, 3, 'drone_tactics', 512, 76800, 40, 'LUCAS Attack Drone',
-            'A low-cost one-way fixed-wing attack drone. Runs on gasoline through the WFCore fuel override (drop a GT fuel cell in its bay), and shares the Monitor / fiber-optic / spotlight stack.',
-            'sbwdroneconfig:lucas_drone', ['sbwdroneconfig:lucas_drone'],
-            [['gtceu:aluminium_plate', 6], ['superbwarfare:large_propeller', 1], [C_HV, 2]]],
-        ['drone_loitering', 0, 2, 'drone_tactics', 512, 76800, 45, 'Shahed Loitering Drones',
-            'The Shahed family of cheap long-range loitering munitions: strike (HE), gas and inert loiter variants. Built at the Missile Factory; also surfaced on the Missiles tab (Missile Systems).',
-            'wfcore:missile_strike_drone',
-            ['wfcore:missile_strike_drone', 'wfcore:missile_gas_drone', 'wfcore:missile_loiter_drone'],
-            [['gtceu:aluminium_plate', 8], ['superbwarfare:missile_engine', 2], [C_HV, 2]]],
-        ['drone_fpv', -1, 3, 'drone_tactics', 512, 76800, 45, 'FPV Drones',
-            'Hover-capable first-person-view scout drones with precise low-speed control. Charged by GregTech batteries or the WFCore Vehicle Charger. Splits into the FPV upgrade modules.',
-            'sbwdroneconfig:cubed_fpv_drone', ['sbwdroneconfig:cubed_fpv_drone'],
-            [['gtceu:aluminium_plate', 4], ['superbwarfare:motor', 4], [C_MV, 2]]],
-        // FPV upgrade modules (children of drone_fpv) — the drone-inventory / countermeasure kit.
-        ['drone_fpv_spotlight', -2, 4, 'drone_fpv', 512, 76800, 24, 'FPV Spotlight',
-            'A spotlight module for the FPV drone inventory — lights up night search missions at the cost of extra battery drain.',
-            'sbwdroneconfig:spotlight_module', ['sbwdroneconfig:spotlight_module'],
-            [['gtceu:aluminium_plate', 2], ['minecraft:glowstone_dust', 4], [C_HV, 1]]],
-        ['drone_fpv_fiber', -1, 4, 'drone_fpv', 512, 76800, 24, 'Fiber-Optic Link',
-            'A fiber-optic spool upgrade that switches the FPV link from wireless to cable — immune to jammers, but the link drops if the cable snaps.',
-            'sbwdroneconfig:fiber_optic_spool_upgrade', ['sbwdroneconfig:fiber_optic_spool_upgrade'],
-            [['gtceu:polytetrafluoroethylene_plate', 2], ['gtceu:copper_single_cable', 8], [C_HV, 1]]],
-        ['drone_fpv_jammer', 0, 4, 'drone_fpv', 512, 76800, 30, 'Drone Jammer',
-            'A handheld drone radar / RF jammer — scan for hostile FPV, LUCAS and Superb Warfare drones, then jam their control link.',
-            'sbwdroneconfig:drone_jammer', ['sbwdroneconfig:drone_jammer'],
-            [['gtceu:stainless_steel_plate', 3], ['superbwarfare:seeker', 1], [C_HV, 2]]],
-    ].forEach(n => {
-        const [id, x, y, req, eut, cwu, runs, name, desc, icon, unlocks, cost] = n
-        const b = WFResearch.builder(id)
-            .category('air').pos(x, y)
-            .nodeColor(0xFF2F6BD8)
-            .name(name)
-            .description(desc)
-            .requires(req)
-            .runs(runs).ticksPerRun(300).eut(eut).cwuPerRun(cwu)
-            .icon(Item.of(icon))
-        unlocks.forEach(u => b.unlock(Item.of(u)))
-        cost.forEach(it => addCost(b, it[0], it[1]))
-        b.register()
-    })
+    // ======================= DRONE LEAVES =======================
+
+    // Swarm Drones — HV kamikaze quadcopters
+    WFResearch.builder('drone_swarm')
+        .category('air').pos(-2, 2)
+        .nodeColor(BLUE)
+        .name('Swarm Drones')
+        .description('Kamikaze quadcopters that dive onto a marked target and detonate.')
+        .requires('drone_tactics')
+        .runs(40).ticksPerRun(300).eut(EU_HV).cwuPerRun(76800)
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 4))
+        .itemPerRun(Item.of('superbwarfare:seeker', 1))
+        .itemTagPerRun('gtceu:circuits/hv', 2)
+        .unlock(Item.of('superbwarfare:swarm_drone')).icon(Item.of('superbwarfare:swarm_drone'))
+        .register()
+
+    // LUCAS Attack Drone — HV fixed-wing, runs on gasoline
+    WFResearch.builder('drone_lucas')
+        .category('air').pos(0, 3)
+        .nodeColor(BLUE)
+        .name('LUCAS Attack Drone')
+        .description('A low-cost one-way fixed-wing attack drone. Runs on gasoline. Can be upgraded')
+        .requires('drone_tactics')
+        .runs(40).ticksPerRun(300).eut(EU_HV).cwuPerRun(76800)
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 6))
+        .itemPerRun(Item.of('superbwarfare:large_propeller', 1))
+        .itemTagPerRun('gtceu:circuits/hv', 2)
+        .unlock(Item.of('sbwdroneconfig:lucas_drone')).icon(Item.of('sbwdroneconfig:lucas_drone'))
+        .register()
+
+    // Shahed Loitering Drones — HV, strike / gas / inert variants
+    WFResearch.builder('drone_loitering')
+        .category('air').pos(0, 2)
+        .nodeColor(BLUE)
+        .name('Shahed Loitering Drones')
+        .description('The Shahed family of cheap long-range loitering munitions: strike (HE), gas and inert loiter variants.')
+        .requires('drone_tactics')
+        .runs(45).ticksPerRun(300).eut(EU_HV).cwuPerRun(76800)
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 8))
+        .itemPerRun(Item.of('superbwarfare:missile_engine', 2))
+        .itemTagPerRun('gtceu:circuits/hv', 2)
+        .unlocks(Item.of('wfcore:missile_strike_drone'), Item.of('wfcore:missile_gas_drone'), Item.of('wfcore:missile_loiter_drone'))
+        .icon(Item.of('wfcore:missile_strike_drone'))
+        .register()
+
+    // FPV Drones — HV, charged by GT batteries / Vehicle Charger
+    WFResearch.builder('drone_fpv')
+        .category('air').pos(-1, 3)
+        .nodeColor(BLUE)
+        .name('FPV Drones')
+        .description('Hover-capable first-person-view scout drones with precise low-speed control.')
+        .requires('drone_tactics')
+        .runs(45).ticksPerRun(300).eut(EU_HV).cwuPerRun(76800)
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 4))
+        .itemPerRun(Item.of('superbwarfare:motor', 4))
+        .itemTagPerRun('gtceu:circuits/mv', 2)
+        .unlock(Item.of('sbwdroneconfig:cubed_fpv_drone')).icon(Item.of('sbwdroneconfig:cubed_fpv_drone'))
+        .register()
+
+    // FPV Spotlight upgrade module
+    WFResearch.builder('drone_fpv_spotlight')
+        .category('air').pos(-2, 4)
+        .nodeColor(BLUE)
+        .name('FPV Spotlight')
+        .description('A spotlight module for the FPV drone inventory. Lights up night search missions at the cost of extra battery drain.')
+        .requires('drone_fpv')
+        .runs(24).ticksPerRun(300).eut(EU_HV).cwuPerRun(76800)
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 2))
+        .itemPerRun(Item.of('minecraft:glowstone_dust', 4))
+        .itemTagPerRun('gtceu:circuits/hv', 1)
+        .unlock(Item.of('sbwdroneconfig:spotlight_module')).icon(Item.of('sbwdroneconfig:spotlight_module'))
+        .register()
+
+    // Fiber-Optic Link upgrade module
+    WFResearch.builder('drone_fpv_fiber')
+        .category('air').pos(-1, 4)
+        .nodeColor(BLUE)
+        .name('Fiber-Optic Link')
+        .description('A fiber-optic spool upgrade that switches the FPV link from wireless to cable. Immune to jammers, but the link drops if the cable snaps.')
+        .requires('drone_fpv')
+        .runs(24).ticksPerRun(300).eut(EU_HV).cwuPerRun(76800)
+        .itemPerRun(Item.of('gtceu:polytetrafluoroethylene_plate', 2))
+        .itemPerRun(Item.of('gtceu:copper_single_cable', 8))
+        .itemTagPerRun('gtceu:circuits/hv', 1)
+        .unlock(Item.of('sbwdroneconfig:fiber_optic_spool_upgrade')).icon(Item.of('sbwdroneconfig:fiber_optic_spool_upgrade'))
+        .register()
+
+    // Drone Jammer
+    WFResearch.builder('drone_fpv_jammer')
+        .category('air').pos(0, 4)
+        .nodeColor(BLUE)
+        .name('Drone Jammer')
+        .description('A handheld drone radar / RF jammer – deals with FPV and LUCAS drones.')
+        .requires('drone_fpv')
+        .runs(30).ticksPerRun(300).eut(EU_HV).cwuPerRun(76800)
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 3))
+        .itemPerRun(Item.of('superbwarfare:seeker', 1))
+        .itemTagPerRun('gtceu:circuits/hv', 2)
+        .unlock(Item.of('sbwdroneconfig:drone_jammer')).icon(Item.of('sbwdroneconfig:drone_jammer'))
+        .register()
 
     // ======================= AVIATION COMPONENT TREE =======================
-    // Independent per-part tree to the RIGHT of the graph. Aviation-exclusive parts only:
-    // air_frame / wing / rotor / cockpit. Engine / weapons_system / cannon_barrel are SHARED with ground
-    // vehicles and stay gated on the ground veh_comp_* nodes.
-    // Node id = air_comp_<tier>_<part>; gates that part's assembler recipe in vehicles/components.js.
-    //
-    // LV tier REMOVED — aviation is MV-and-up. MV nodes are ROOTS (no anyOf).
-    // HV anyOf's MV parts; EV anyOf's HV parts — unchanged.
-    // Rotor has no LV recipe (it entered at MV even before), so all four parts exist from MV up.
-    const AIR_PARTS_BY_TIER = {
-        mv: ['air_frame', 'wing', 'rotor', 'cockpit'],
-        hv: ['air_frame', 'wing', 'rotor', 'cockpit'],
-        ev: ['air_frame', 'wing', 'rotor', 'cockpit'],
-    }
-    const COLX = { air_frame: 2, wing: 3, rotor: 4, cockpit: 5 }
-    // [ tier, y, runs, eut, cwuPerRun(@200t), prevTier, plate, circuit ]
-    // MV prevTier = null -> root nodes (no anyOf). HV prevTier = 'mv', EV prevTier = 'hv'.
-    const CTIERS = [
-        ['mv', 1, 8,  128,  12800,  null, 'gtceu:aluminium_plate',       'gtceu:good_electronic_circuit'],
-        ['hv', 2, 10, 512,  51200,  'mv', 'gtceu:stainless_steel_plate', 'gtceu:basic_integrated_circuit'],
-        ['ev', 3, 12, 2048, 204800, 'hv', 'gtceu:titanium_plate',        'gtceu:good_integrated_circuit'],
-    ]
-    CTIERS.forEach(row => {
-        const tier = row[0], y = row[1], runs = row[2], eut = row[3], cwu = row[4]
-        const prev = row[5], plate = row[6], circuit = row[7]
-        AIR_PARTS_BY_TIER[tier].forEach(part => {
-            const item = 'kubejs:' + tier + '_' + part
-            const node = WFResearch.builder('air_comp_' + tier + '_' + part)
-                .category('air').pos(COLX[part], y)
-                .nodeColor(0xFF2F6BD8)
-                .runs(runs).ticksPerRun(200).eut(eut).cwuPerRun(cwu)
-                .itemPerRun(Item.of(plate, 4))
-                .itemPerRun(Item.of(circuit, 1))
-                .unlock(Item.of(item))
-                .icon(Item.of(item))
-                .name(tier.toUpperCase() + ' ' + title(part))
-                .description('Assembler blueprint for the ' + tier.toUpperCase() + '-tier ' + title(part)
-                    + ' used in aircraft assembly.')
-            // Any ONE aviation component of the previous tier unlocks this tier's components.
-            // MV has no prev (null), so MV nodes are roots.
-            if (prev) node.anyOf(AIR_PARTS_BY_TIER[prev].map(p => 'air_comp_' + prev + '_' + p))
-            node.register()
-        })
-    })
+    // Parts: air_frame (x=2), wing (x=3), rotor (x=4), cockpit (x=5).
+    // MV = roots (no anyOf); HV anyOf's MV; EV anyOf's HV.
+    // cwuPerRun @200t: MV 12800 / HV 51200 / EV 204800.
+
+    // ---- MV tier — roots ----
+    WFResearch.builder('air_comp_mv_air_frame')
+        .category('air').pos(2, 1).nodeColor(BLUE)
+        .name('MV Air Frame').description('Assembler blueprint for the MV-tier Air Frame used in aircraft assembly.')
+        .runs(8).ticksPerRun(200).eut(EU_MV).cwuPerRun(12800)
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemPerRun(Item.of('gtceu:good_electronic_circuit', 1))
+        .unlock(Item.of('kubejs:mv_air_frame')).icon(Item.of('kubejs:mv_air_frame')).register()
+
+    WFResearch.builder('air_comp_mv_wing')
+        .category('air').pos(3, 1).nodeColor(BLUE)
+        .name('MV Wing').description('Assembler blueprint for the MV-tier Wing used in aircraft assembly.')
+        .runs(8).ticksPerRun(200).eut(EU_MV).cwuPerRun(12800)
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemPerRun(Item.of('gtceu:good_electronic_circuit', 1))
+        .unlock(Item.of('kubejs:mv_wing')).icon(Item.of('kubejs:mv_wing')).register()
+
+    WFResearch.builder('air_comp_mv_rotor')
+        .category('air').pos(4, 1).nodeColor(BLUE)
+        .name('MV Rotor').description('Assembler blueprint for the MV-tier Rotor used in aircraft assembly.')
+        .runs(8).ticksPerRun(200).eut(EU_MV).cwuPerRun(12800)
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemPerRun(Item.of('gtceu:good_electronic_circuit', 1))
+        .unlock(Item.of('kubejs:mv_rotor')).icon(Item.of('kubejs:mv_rotor')).register()
+
+    WFResearch.builder('air_comp_mv_cockpit')
+        .category('air').pos(5, 1).nodeColor(BLUE)
+        .name('MV Cockpit').description('Assembler blueprint for the MV-tier Cockpit used in aircraft assembly.')
+        .runs(8).ticksPerRun(200).eut(EU_MV).cwuPerRun(12800)
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemPerRun(Item.of('gtceu:good_electronic_circuit', 1))
+        .unlock(Item.of('kubejs:mv_cockpit')).icon(Item.of('kubejs:mv_cockpit')).register()
+
+    // ---- HV tier — anyOf any MV aviation component ----
+    WFResearch.builder('air_comp_hv_air_frame')
+        .category('air').pos(2, 2).nodeColor(BLUE)
+        .name('HV Air Frame').description('Assembler blueprint for the HV-tier Air Frame used in aircraft assembly.')
+        .anyOf('air_comp_mv_air_frame', 'air_comp_mv_wing', 'air_comp_mv_rotor', 'air_comp_mv_cockpit')
+        .runs(10).ticksPerRun(200).eut(EU_HV).cwuPerRun(51200)
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemPerRun(Item.of('gtceu:basic_integrated_circuit', 1))
+        .unlock(Item.of('kubejs:hv_air_frame')).icon(Item.of('kubejs:hv_air_frame')).register()
+
+    WFResearch.builder('air_comp_hv_wing')
+        .category('air').pos(3, 2).nodeColor(BLUE)
+        .name('HV Wing').description('Assembler blueprint for the HV-tier Wing used in aircraft assembly.')
+        .anyOf('air_comp_mv_air_frame', 'air_comp_mv_wing', 'air_comp_mv_rotor', 'air_comp_mv_cockpit')
+        .runs(10).ticksPerRun(200).eut(EU_HV).cwuPerRun(51200)
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemPerRun(Item.of('gtceu:basic_integrated_circuit', 1))
+        .unlock(Item.of('kubejs:hv_wing')).icon(Item.of('kubejs:hv_wing')).register()
+
+    WFResearch.builder('air_comp_hv_rotor')
+        .category('air').pos(4, 2).nodeColor(BLUE)
+        .name('HV Rotor').description('Assembler blueprint for the HV-tier Rotor used in aircraft assembly.')
+        .anyOf('air_comp_mv_air_frame', 'air_comp_mv_wing', 'air_comp_mv_rotor', 'air_comp_mv_cockpit')
+        .runs(10).ticksPerRun(200).eut(EU_HV).cwuPerRun(51200)
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemPerRun(Item.of('gtceu:basic_integrated_circuit', 1))
+        .unlock(Item.of('kubejs:hv_rotor')).icon(Item.of('kubejs:hv_rotor')).register()
+
+    WFResearch.builder('air_comp_hv_cockpit')
+        .category('air').pos(5, 2).nodeColor(BLUE)
+        .name('HV Cockpit').description('Assembler blueprint for the HV-tier Cockpit used in aircraft assembly.')
+        .anyOf('air_comp_mv_air_frame', 'air_comp_mv_wing', 'air_comp_mv_rotor', 'air_comp_mv_cockpit')
+        .runs(10).ticksPerRun(200).eut(EU_HV).cwuPerRun(51200)
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemPerRun(Item.of('gtceu:basic_integrated_circuit', 1))
+        .unlock(Item.of('kubejs:hv_cockpit')).icon(Item.of('kubejs:hv_cockpit')).register()
+
+    // ---- EV tier — anyOf any HV aviation component ----
+    WFResearch.builder('air_comp_ev_air_frame')
+        .category('air').pos(2, 3).nodeColor(BLUE)
+        .name('EV Air Frame').description('Assembler blueprint for the EV-tier Air Frame used in aircraft assembly.')
+        .anyOf('air_comp_hv_air_frame', 'air_comp_hv_wing', 'air_comp_hv_rotor', 'air_comp_hv_cockpit')
+        .runs(12).ticksPerRun(200).eut(EU_EV).cwuPerRun(204800)
+        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemPerRun(Item.of('gtceu:good_integrated_circuit', 1))
+        .unlock(Item.of('kubejs:ev_air_frame')).icon(Item.of('kubejs:ev_air_frame')).register()
+
+    WFResearch.builder('air_comp_ev_wing')
+        .category('air').pos(3, 3).nodeColor(BLUE)
+        .name('EV Wing').description('Assembler blueprint for the EV-tier Wing used in aircraft assembly.')
+        .anyOf('air_comp_hv_air_frame', 'air_comp_hv_wing', 'air_comp_hv_rotor', 'air_comp_hv_cockpit')
+        .runs(12).ticksPerRun(200).eut(EU_EV).cwuPerRun(204800)
+        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemPerRun(Item.of('gtceu:good_integrated_circuit', 1))
+        .unlock(Item.of('kubejs:ev_wing')).icon(Item.of('kubejs:ev_wing')).register()
+
+    WFResearch.builder('air_comp_ev_rotor')
+        .category('air').pos(4, 3).nodeColor(BLUE)
+        .name('EV Rotor').description('Assembler blueprint for the EV-tier Rotor used in aircraft assembly.')
+        .anyOf('air_comp_hv_air_frame', 'air_comp_hv_wing', 'air_comp_hv_rotor', 'air_comp_hv_cockpit')
+        .runs(12).ticksPerRun(200).eut(EU_EV).cwuPerRun(204800)
+        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemPerRun(Item.of('gtceu:good_integrated_circuit', 1))
+        .unlock(Item.of('kubejs:ev_rotor')).icon(Item.of('kubejs:ev_rotor')).register()
+
+    WFResearch.builder('air_comp_ev_cockpit')
+        .category('air').pos(5, 3).nodeColor(BLUE)
+        .name('EV Cockpit').description('Assembler blueprint for the EV-tier Cockpit used in aircraft assembly.')
+        .anyOf('air_comp_hv_air_frame', 'air_comp_hv_wing', 'air_comp_hv_rotor', 'air_comp_hv_cockpit')
+        .runs(12).ticksPerRun(200).eut(EU_EV).cwuPerRun(204800)
+        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemPerRun(Item.of('gtceu:good_integrated_circuit', 1))
+        .unlock(Item.of('kubejs:ev_cockpit')).icon(Item.of('kubejs:ev_cockpit')).register()
 
 })

@@ -33,4 +33,17 @@ ServerEvents.recipes(event => {
         C: 'gtceu:bronze_machine_casing',
         G: 'gtceu:steel_gearbox'
     })
+
+    // --- High-Pressure Steam Ammo Press (steam age, HP upgrade) — hand-crafted -
+    // Mirrors the LP recipe with HP-tier (steel) components: solid steel casing +
+    // steel plates. Was registered in custom_machines.js but shipped without a recipe.
+    event.shaped('gtceu:hp_steam_ammo_press', [
+        'PPP',
+        'PCP',
+        'PGP'
+    ], {
+        P: 'gtceu:steel_plate',
+        C: 'gtceu:steel_machine_casing',
+        G: 'gtceu:steel_gearbox'
+    })
 })

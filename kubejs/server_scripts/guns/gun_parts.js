@@ -54,6 +54,17 @@ ServerEvents.recipes(event => {
         .duration(s.duration)
         .EUt(s.eut)
     });
+    // Early-game hand-craft for the wooden stock — mirrors the wooden grip above.
+    // The Assembler recipe is fine for automation, but the very first questline gun
+    // (Springfield 1873, ../guns/early_guns.js) needs this before an Assembler exists.
+    event.shaped(
+        Item.of("kubejs:stock_wooden"),
+            ["AA ",
+             "AA ",
+             "  A"
+            ],
+        {A : '#forge:plates/treated_wood' }
+    );
 
     // =========================
     // HEAVY LAUNCHERS (the weapons; their ammunition lives in ammo.js)

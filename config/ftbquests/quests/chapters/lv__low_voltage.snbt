@@ -2110,6 +2110,21 @@
 			x: 9.0d
 			y: 5.625d
 		}
+		{
+			dependencies: ["648BCF486E16CCB2"]
+			description: ["This multiblock allows you to duplicate your crops with the input of fertilizer."]
+			id: "4A8DA5689CEB5579"
+			size: 0.75d
+			subtitle: "Crops..."
+			tasks: [{
+				id: "64B3E089CFC0B0A4"
+				item: "wfcore:greenhouse"
+				type: "item"
+			}]
+			title: "Greenhouse"
+			x: 1.5d
+			y: 6.0d
+		}
 	]
 	subtitle: ["Tame electricity and make your first machines"]
 	title: "&7LV&r - Low Voltage"

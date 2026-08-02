@@ -5,12 +5,12 @@
 	group: "539A285D299C0F64"
 	icon: "wfcore:missile_he"
 	id: "7FCE0000000000FF"
-	order_index: 10
+	order_index: 3
 	quest_links: [ ]
 	quests: [
 		{
 			description: [
-				"The &6Missile Factory&r, &6Launch Silo&r and &6Interceptor Battery&r unlock at &bHV&r — the start of Warfactory's guided-weapon program."
+				"The &6Missile Factory&r, &6Launch Silo&r and &6Interceptor Battery&r unlock at &bHV&r - the start of Warfactory's guided-weapon program."
 				""
 				"Research &6Missile Systems&r in the &dMissiles&r tab of the research tree, then assemble your first missiles: the &eHigh-Explosive&r, &eLong-Range&r and (inert) &eDummy&r, plus the cheap &eShahed drones&r."
 				""
@@ -18,7 +18,12 @@
 			]
 			icon: "wfcore:missile_he"
 			id: "7FCE010000000000"
-			tasks: [{ id: "7FCE010000000001", item: "wfcore:missile_he", type: "item" }]
+			subtitle: "BOOOUSHH!!!!"
+			tasks: [{
+				id: "7FCE010000000001"
+				item: "wfcore:missile_he"
+				type: "item"
+			}]
 			title: "Missile Systems"
 			x: 0.0d
 			y: 0.0d
@@ -28,27 +33,39 @@
 			description: ["&6Thermobaric&r (fuel-air) warheads: a modest crater but an enormous, hard-hitting overpressure blast over a wide area."]
 			icon: "wfcore:missile_thermobaric"
 			id: "7FCE020000000000"
-			tasks: [{ id: "7FCE020000000001", item: "wfcore:missile_thermobaric", type: "item" }]
+			tasks: [{
+				id: "7FCE020000000001"
+				item: "wfcore:missile_thermobaric"
+				type: "item"
+			}]
 			title: "Demolition Ordnance"
 			x: -4.0d
 			y: 1.0d
 		}
 		{
 			dependencies: ["7FCE020000000000"]
-			description: ["A compact &cnuclear earth-penetrator&r: a ~50-block devastation radius PLUS a deep shaped jet that drives through fortification. Slow and easily intercepted — get it there."]
+			description: ["A compact &cnuclear earth-penetrator&r: a ~50-block devastation radius PLUS a deep shaped jet that drives through fortification. Slow and easily intercepted."]
 			icon: "wfcore:missile_mininuke"
 			id: "7FCE030000000000"
-			tasks: [{ id: "7FCE030000000001", item: "wfcore:missile_mininuke", type: "item" }]
+			tasks: [{
+				id: "7FCE030000000001"
+				item: "wfcore:missile_mininuke"
+				type: "item"
+			}]
 			title: "Tactical Nuclear"
 			x: -4.0d
 			y: 2.0d
 		}
 		{
 			dependencies: ["7FCE010000000000"]
-			description: ["An HE payload traded for &bspeed and evasion&r. Penetrators shrug off lower-tier interceptors by out-running them — no dodging needed, just velocity."]
+			description: ["An HE payload traded for &bspeed and evasion&r. Penetrators shrug off lower-tier interceptors by out-running them. No dodging needed, just velocity."]
 			icon: "wfcore:missile_penetrator"
 			id: "7FCE040000000000"
-			tasks: [{ id: "7FCE040000000001", item: "wfcore:missile_penetrator", type: "item" }]
+			tasks: [{
+				id: "7FCE040000000001"
+				item: "wfcore:missile_penetrator"
+				type: "item"
+			}]
 			title: "Penetrator Missiles"
 			x: -2.0d
 			y: 1.0d
@@ -58,7 +75,11 @@
 			description: ["A &bsupersonic&r penetrator: fast enough that only a good interceptor catches it."]
 			icon: "wfcore:missile_penetrator_supersonic"
 			id: "7FCE050000000000"
-			tasks: [{ id: "7FCE050000000001", item: "wfcore:missile_penetrator_supersonic", type: "item" }]
+			tasks: [{
+				id: "7FCE050000000001"
+				item: "wfcore:missile_penetrator_supersonic"
+				type: "item"
+			}]
 			title: "Supersonic Penetrator"
 			x: -3.0d
 			y: 2.0d
@@ -68,17 +89,25 @@
 			description: ["The &bhypersonic&r penetrator: a near-sure hit against anything but a top-tier interceptor."]
 			icon: "wfcore:missile_penetrator_hypersonic"
 			id: "7FCE100000000000"
-			tasks: [{ id: "7FCE100000000001", item: "wfcore:missile_penetrator_hypersonic", type: "item" }]
+			tasks: [{
+				id: "7FCE100000000001"
+				item: "wfcore:missile_penetrator_hypersonic"
+				type: "item"
+			}]
 			title: "Hypersonic Penetrator"
 			x: -3.0d
 			y: 3.0d
 		}
 		{
 			dependencies: ["7FCE040000000000"]
-			description: ["&6ICBM&r: extreme range, high-altitude fast cruise, and a fast 90-degree descent that throws off lower-tier interceptors. Low blast radius but a strong punch — and very tanky."]
+			description: ["&6ICBM&r: extreme range, high-altitude fast cruise, and a fast 90-degree descent that throws off lower-tier interceptors. Low blast radius but a strong punch and very tanky."]
 			icon: "wfcore:missile_icbm"
 			id: "7FCE060000000000"
-			tasks: [{ id: "7FCE060000000001", item: "wfcore:missile_icbm", type: "item" }]
+			tasks: [{
+				id: "7FCE060000000001"
+				item: "wfcore:missile_icbm"
+				type: "item"
+			}]
 			title: "ICBM"
 			x: -1.0d
 			y: 2.0d
@@ -88,17 +117,25 @@
 			description: ["The &6Heavy ICBM&r: longer reach, a stronger warhead and the toughest airframe in the suite."]
 			icon: "wfcore:missile_icbm_heavy"
 			id: "7FCE110000000000"
-			tasks: [{ id: "7FCE110000000001", item: "wfcore:missile_icbm_heavy", type: "item" }]
+			tasks: [{
+				id: "7FCE110000000001"
+				item: "wfcore:missile_icbm_heavy"
+				type: "item"
+			}]
 			title: "Heavy ICBM"
 			x: -1.0d
 			y: 3.0d
 		}
 		{
 			dependencies: ["7FCE010000000000"]
-			description: ["A narrow &6shaped-charge jet&r that cracks all defences to gravel — but can't finish hardened armour alone. Follow up with an HE or demolition round."]
+			description: ["A narrow &6shaped-charge jet&r that cracks all defences to gravel - but can't finish hardened armour alone. Follow up with an HE or demolition round."]
 			icon: "wfcore:missile_bunker_buster"
 			id: "7FCE070000000000"
-			tasks: [{ id: "7FCE070000000001", item: "wfcore:missile_bunker_buster", type: "item" }]
+			tasks: [{
+				id: "7FCE070000000001"
+				item: "wfcore:missile_bunker_buster"
+				type: "item"
+			}]
 			title: "Shaped Charges"
 			x: 2.0d
 			y: 1.0d
@@ -108,7 +145,11 @@
 			description: ["A heavier, more accurate shaped charge that cracks even &btungsten-class&r plating."]
 			icon: "wfcore:missile_bunker_buster_heavy"
 			id: "7FCE080000000000"
-			tasks: [{ id: "7FCE080000000001", item: "wfcore:missile_bunker_buster_heavy", type: "item" }]
+			tasks: [{
+				id: "7FCE080000000001"
+				item: "wfcore:missile_bunker_buster_heavy"
+				type: "item"
+			}]
 			title: "Heavy Bunker Buster"
 			x: 2.0d
 			y: 2.0d
@@ -118,7 +159,11 @@
 			description: ["The &6Tunneller&r bores in up to 15 blocks (stopped early by tungsten-class shielding) and detonates &oinside&r."]
 			icon: "wfcore:missile_bunker_tunneller"
 			id: "7FCE120000000000"
-			tasks: [{ id: "7FCE120000000001", item: "wfcore:missile_bunker_tunneller", type: "item" }]
+			tasks: [{
+				id: "7FCE120000000001"
+				item: "wfcore:missile_bunker_tunneller"
+				type: "item"
+			}]
 			title: "Tunneller"
 			x: 2.0d
 			y: 3.0d
@@ -128,17 +173,25 @@
 			description: ["Anti-personnel cluster missiles: &6fragmentation&r, &6incendiary&r (white phosphorus) and &6chemical&r (mustard gas) variants. Great area coverage, minimal structural damage."]
 			icon: "wfcore:missile_cluster"
 			id: "7FCE090000000000"
-			tasks: [{ id: "7FCE090000000001", item: "wfcore:missile_cluster", type: "item" }]
+			tasks: [{
+				id: "7FCE090000000001"
+				item: "wfcore:missile_cluster"
+				type: "item"
+			}]
 			title: "Cluster Munitions"
 			x: 4.0d
 			y: 1.0d
 		}
 		{
 			dependencies: ["7FCE090000000000"]
-			description: ["The &6Fragmentation Storm&r — a two-stage saturation cascade: 9 submissiles, each throwing 4 low-yield bomblets over a wide footprint."]
+			description: ["The &6Fragmentation Storm&r. A two-stage saturation cascade: 9 submissiles, each throwing 4 low-yield bomblets over a wide footprint."]
 			icon: "wfcore:missile_frag_storm"
 			id: "7FCE0A0000000000"
-			tasks: [{ id: "7FCE0A0000000001", item: "wfcore:missile_frag_storm", type: "item" }]
+			tasks: [{
+				id: "7FCE0A0000000001"
+				item: "wfcore:missile_frag_storm"
+				type: "item"
+			}]
 			title: "Fragmentation Storm"
 			x: 4.0d
 			y: 2.0d
@@ -148,7 +201,11 @@
 			description: ["&6Skyfall&r bursts high and rains 9 entity-seeking submunitions that track their targets, then time out."]
 			icon: "wfcore:missile_skyfall"
 			id: "7FCE130000000000"
-			tasks: [{ id: "7FCE130000000001", item: "wfcore:missile_skyfall", type: "item" }]
+			tasks: [{
+				id: "7FCE130000000001"
+				item: "wfcore:missile_skyfall"
+				type: "item"
+			}]
 			title: "Skyfall"
 			x: 4.0d
 			y: 3.0d
@@ -158,7 +215,11 @@
 			description: ["Stealth, terrain-hugging &6EMP&r missiles that disable machinery instead of destroying it. Takes &blapotron crystals&r."]
 			icon: "wfcore:missile_emp"
 			id: "7FCE0B0000000000"
-			tasks: [{ id: "7FCE0B0000000001", item: "wfcore:missile_emp", type: "item" }]
+			tasks: [{
+				id: "7FCE0B0000000001"
+				item: "wfcore:missile_emp"
+				type: "item"
+			}]
 			title: "EMP Warheads"
 			x: 6.0d
 			y: 1.0d
@@ -168,7 +229,11 @@
 			description: ["A larger-radius stealth EMP for blanketing a whole base in a disable."]
 			icon: "wfcore:missile_emp_heavy"
 			id: "7FCE0C0000000000"
-			tasks: [{ id: "7FCE0C0000000001", item: "wfcore:missile_emp_heavy", type: "item" }]
+			tasks: [{
+				id: "7FCE0C0000000001"
+				item: "wfcore:missile_emp_heavy"
+				type: "item"
+			}]
 			title: "Heavy EMP"
 			x: 5.0d
 			y: 2.0d
@@ -178,7 +243,11 @@
 			description: ["A non-stealth cluster that rains &6EMP bomblets&r over a wide area."]
 			icon: "wfcore:missile_emp_cluster"
 			id: "7FCE140000000000"
-			tasks: [{ id: "7FCE140000000001", item: "wfcore:missile_emp_cluster", type: "item" }]
+			tasks: [{
+				id: "7FCE140000000001"
+				item: "wfcore:missile_emp_cluster"
+				type: "item"
+			}]
 			title: "EMP Cluster"
 			x: 7.0d
 			y: 2.0d
@@ -188,17 +257,25 @@
 			description: ["A fast, evasive penetrator that fires a pinpoint &b2x2 EMP beam&r — no terrain damage. You can trace the beam straight to what it hit; the Lance is configured to only pause (mallet) machines."]
 			icon: "wfcore:missile_emp_lance"
 			id: "7FCE150000000000"
-			tasks: [{ id: "7FCE150000000001", item: "wfcore:missile_emp_lance", type: "item" }]
+			tasks: [{
+				id: "7FCE150000000001"
+				item: "wfcore:missile_emp_lance"
+				type: "item"
+			}]
 			title: "EMP Lance"
 			x: 6.0d
 			y: 3.0d
 		}
 		{
 			dependencies: ["7FCE010000000000"]
-			description: ["Point-defence &6interceptors&r for the Interceptor Battery. Fast and guidance-heavy — they trade warhead and fuel for extra circuits."]
+			description: ["Point-defence &6interceptors&r for the Interceptor Battery. Fast and guidance-heavy - they trade warhead and fuel for extra circuits."]
 			icon: "wfcore:missile_interceptor"
 			id: "7FCE0D0000000000"
-			tasks: [{ id: "7FCE0D0000000001", item: "wfcore:missile_interceptor", type: "item" }]
+			tasks: [{
+				id: "7FCE0D0000000001"
+				item: "wfcore:missile_interceptor"
+				type: "item"
+			}]
 			title: "Interceptor Systems"
 			x: -6.0d
 			y: 1.0d
@@ -208,17 +285,25 @@
 			description: ["Faster interceptors that can run down supersonic threats before they cross clear (avoiding the crossing-shot penalty)."]
 			icon: "wfcore:missile_interceptor_mk2"
 			id: "7FCE0E0000000000"
-			tasks: [{ id: "7FCE0E0000000001", item: "wfcore:missile_interceptor_mk2", type: "item" }]
+			tasks: [{
+				id: "7FCE0E0000000001"
+				item: "wfcore:missile_interceptor_mk2"
+				type: "item"
+			}]
 			title: "Interceptor Network"
 			x: -6.0d
 			y: 2.0d
 		}
 		{
 			dependencies: ["7FCE0E0000000000"]
-			description: ["The &6Ace&r — competitive with all but the top evasive round. The premier point-defence interceptor."]
+			description: ["The &6Ace&r. Competitive with all but the top evasive round. The premier point-defence interceptor."]
 			icon: "wfcore:missile_interceptor_ace"
 			id: "7FCE0F0000000000"
-			tasks: [{ id: "7FCE0F0000000001", item: "wfcore:missile_interceptor_ace", type: "item" }]
+			tasks: [{
+				id: "7FCE0F0000000001"
+				item: "wfcore:missile_interceptor_ace"
+				type: "item"
+			}]
 			title: "Ace Interceptor"
 			x: -7.0d
 			y: 3.0d
@@ -228,7 +313,11 @@
 			description: ["The &6Cluster interceptor&r airbursts into several small interceptors on engaging, to blunt a whole barrage in one shot."]
 			icon: "wfcore:missile_interceptor_cluster"
 			id: "7FCE160000000000"
-			tasks: [{ id: "7FCE160000000001", item: "wfcore:missile_interceptor_cluster", type: "item" }]
+			tasks: [{
+				id: "7FCE160000000001"
+				item: "wfcore:missile_interceptor_cluster"
+				type: "item"
+			}]
 			title: "Cluster Interceptor"
 			x: -5.0d
 			y: 3.0d

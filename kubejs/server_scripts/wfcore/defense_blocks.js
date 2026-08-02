@@ -46,4 +46,9 @@ ServerEvents.recipes(event => {
         .inputFluids('gtceu:soldering_alloy 576') // TODO
         .itemOutputs('wfcore:tungsten_plating')
         .duration(400).EUt(1920)
+
+    g.assembler('gtceu:reinforced_stone')
+        .itemInputs('1x minecraft:stone', '4x gtceu:iron_rod', '2x gtceu:iron_plate')
+        .itemOutputs('gtceu:reinforced_stone')
+        .duration(100).EUt(32)
 })

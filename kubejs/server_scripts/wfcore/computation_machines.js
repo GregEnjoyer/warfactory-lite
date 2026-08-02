@@ -10,8 +10,7 @@ ServerEvents.recipes(event => {
     const mv = (out) => g.assembler(out).itemOutputs(out).duration(200).EUt(MV)
 
     // ---- Computation Mainframe (MV) + its four internal part blocks ----------
-    mv('wfcore:mainframe').itemInputs('gtceu:mv_machine_casing', '8x #gtceu:circuits/mv',
-        '4x gtceu:steel_frame', '4x wfcore:copper_network_cable') // TODO
+
     mv('wfcore:cpu_slot').itemInputs('gtceu:mv_machine_casing', '2x #gtceu:circuits/mv',
         '2x wfcore:copper_network_cable') // TODO
     mv('wfcore:ram_slot').itemInputs('gtceu:mv_machine_casing', '4x gtceu:ram_chip',
@@ -76,4 +75,19 @@ ServerEvents.recipes(event => {
     fan('wfcore:cooling_fan_cover_mv', 'gtceu:mv_machine_casing', 'gtceu:mv_electric_motor', 'gtceu:aluminium_plate', MV)
     fan('wfcore:cooling_fan_cover_hv', 'gtceu:hv_machine_casing', 'gtceu:hv_electric_motor', 'gtceu:stainless_steel_plate', HV)
     fan('wfcore:cooling_fan_cover_ev', 'gtceu:ev_machine_casing', 'gtceu:ev_electric_motor', 'gtceu:titanium_plate', EV)
+
+    g.assembler('wfcore:mv_network_switch')
+        .itemInputs('gtceu:mv_machine_casing', '8x #gtceu:circuits/mv','4x gtceu:aluminium_frame', '4x wfcore:copper_network_cable')
+        .itemOutputs('wfcore:mv_network_switch')
+        .duration(200).EUt(MV)
+
+    g.assembler('wfcore:mainframe')
+        .itemInputs('gtceu:mv_machine_casing', '8x #gtceu:circuits/mv','4x gtceu:steel_frame', '4x wfcore:copper_network_cable')
+        .itemOutputs('wfcore:mainframe')
+        .duration(200).EUt(MV)
+
+    g.assembler('wfcore:radar')
+        .itemInputs('gtceu:mv_machine_casing', '4x #gtceu:circuits/ev','4x gtceu:aluminium_frame', '4x wfcore:copper_network_cable')
+        .itemOutputs('wfcore:radar')
+        .duration(200).EUt(MV)
 })

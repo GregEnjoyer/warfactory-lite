@@ -551,6 +551,44 @@ ServerEvents.recipes(event => {
         .itemOutputs(Item.of('superbwarfare:swarm_drone', 1))
         .circuit(2).duration(800).EUt(128)
         .addCondition(WFResearch.condition('drone_swarm'));   // Aviation: Swarm Drones
+
+
+    event.recipes.gtceu.assembler('kubejs:mortar')
+        .itemInputs(Item.of('superbwarfare:mortar_barrel', 1), Item.of('superbwarfare:mortar_base_plate', 1), Item.of('superbwarfare:mortar_bipod', 1))
+        .itemOutputs(Item.of('superbwarfare:mortar_deployer', 1))
+        .circuit(1).duration(800).EUt(128)
+        .addCondition(WFResearch.condition('emp_mortar'));
+
+    event.recipes.gtceu.assembler('kubejs:mortar_barrel')
+        .itemInputs(Item.of('gtceu:steel_plate', 8), Item.of('gtceu:steel_ingot', 16))
+        .itemOutputs(Item.of('superbwarfare:mortar_barrel', 1))
+        .circuit(29).duration(400).EUt(128)
+
+    event.recipes.gtceu.assembler('kubejs:mortar_base_plate')
+        .itemInputs(Item.of('gtceu:double_steel_plate', 4), Item.of('gtceu:steel_plate', 16))
+        .itemOutputs(Item.of('superbwarfare:mortar_base_plate', 1))
+        .circuit(30).duration(400).EUt(128)
+
+    event.recipes.gtceu.assembler('kubejs:mortar_bipod')
+        .itemInputs(Item.of('gtceu:steel_rod', 24))
+        .itemOutputs(Item.of('superbwarfare:mortar_bipod', 1))
+        .circuit(30).duration(400).EUt(128)
+
+    event.recipes.gtceu.assembler('kubejs:artillery_indicator')
+        .itemInputs(Item.of('gtceu:stainless_steel_plate', 16), Item.of('gtceu:gold_single_cable', 24), Item.of('#gtceu:circuits/hv', 4))
+        .itemOutputs(Item.of('superbwarfare:artillery_indicator', 1))
+        .circuit(30).duration(400).EUt(128*4)
+
+    event.recipes.gtceu.assembler('kubejs:thermal_imaging_googles')
+        .itemInputs(Item.of('gtceu:nightvision_goggles', 1), Item.of('gtceu:ruby_lens', 2), Item.of('#gtceu:circuits/mv', 4))
+        .itemOutputs(Item.of('superbwarfare:thermal_imaging_goggles', 1))
+        .duration(800).EUt(128)
+
+    event.recipes.gtceu.assembler('kubejs:parachute')
+        .itemInputs(Item.of('minecraft:string', 16), Item.of('minecraft:leather', 8))
+        .itemOutputs(Item.of('superbwarfare:parachute', 1))
+        .duration(200).EUt(32)
+
 });
 
 // ============================================================================

@@ -50,7 +50,7 @@ event.shaped(
   }
 )
 event.recipes.gtceu.fluid_solidifier("kubejs:galvanized_steel")
-.inputFluids('gtceu:zinc 3000')
+.inputFluids('gtceu:zinc 36')
 .itemInputs('gtceu:steel_ingot')
 .itemOutputs('wfcore:galvanized_steel_ingot')
 .duration(200)

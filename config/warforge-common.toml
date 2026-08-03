@@ -1227,6 +1227,7 @@
 	"Num Ticks for Warps" = 600
 	#If enabled, bed and respawn-anchor spawn points are disabled and players respawn in their faction citadel's chunk, at the citadel's Y level. Players not in a faction fall back to the world spawn.
 	"Respawn At Citadel" = true
+  "Allow Bed Spawn In Claims" = true
 
 [Debug]
 	#DEBUG/diagnostic only. When enabled, logs every server-side setBlockState that lands inside a claimed chunk, together with the position, the owning claim, the block being placed and the calling code. Use this to identify mods that mutate protected terrain outside the explosion-event path (e.g. GregTech Industrial TNT, AE2 Tiny TNT). Very spammy - leave disabled in production.

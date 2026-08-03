@@ -54,10 +54,10 @@ foliageBreakers = []
 	#URL of the JSON rank manifest. Leave blank to disable downloads (cached data, if any, still loads).
 	#Shape: { "ranks": { "<uuid>": "ADMIN", "<uuid>": ["ARTIST", "SUPEROBAMA"] } }.
 	#UUIDs may be dashed or undashed; a value may be one rank or an array of ranks.
-	manifestUrl = ""
+	manifestUrl = "https://warfactory.co/ranks.json"
 	#How often (minutes) the manifest is re-downloaded after the initial fetch. 3-5 recommended.
 	#Range: 1 ~ 1440
-	refreshIntervalMinutes = 4
+	refreshIntervalMinutes = 60
 	#When true, replay playback requires a replay-granting rank (Press/Moderator/Admin).
 	#Recording is never restricted. Fails open until a manifest has loaded at least once.
 	replayRequiresRank = true

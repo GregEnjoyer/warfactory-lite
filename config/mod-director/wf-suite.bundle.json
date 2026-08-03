@@ -45,12 +45,14 @@
     {
       "repository": "Warfactory-Official/MCglTF",
       "assetName": "mcgltf.jar",
+	  "metadata": { "side": "CLIENT" },
       "prerelease": true,
       "fileName": "mcgltf.jar"
     },
     {
       "repository": "Warfactory-Official/Komodo",
       "assetName": "komodo.jar",
+	  "metadata": { "side": "CLIENT" },
       "prerelease": true,
       "fileName": "komodo.jar"
     },

@@ -2,7 +2,7 @@
   "enabled": true,
   "enable_rendering": true,
   "ingest_enabled": true,
-  "section_render_distance": 16.0,
+  "section_render_distance": 7.8125,
   "service_threads": 4,
   "sub_division_size": 64.0,
   "render_voxy_fog": true,

@@ -110,3 +110,14 @@ foliageBreakers = []
 	#Range: 0.0 ~ 1.0
 	endFog = 0.0
 
+#Server-enforced shader lock, the anti-bypass companion to [trueDarkness]. Oculus/Iris shaders
+#replace vanilla lighting entirely, so a shaderpack (or a fullbright shader) would render straight
+#through hardcore darkness. When enabled, a DEDICATED server tells each client on join to run with
+#shaders disabled (WFCore forces Iris onto the vanilla pipeline, which True Darkness then darkens);
+#the client's own shader toggle cannot re-enable them while connected. Clients without Oculus ignore
+#this, and single-player is never affected.
+[shaderControl]
+	#Block Oculus/Iris shaders on dedicated servers while True Darkness enforcement is on, so
+	#players cannot shade around hardcore darkness. Off = shaders are left to the client.
+	blockClientShaders = true
+

@@ -1,0 +1,19 @@
+{
+  "receiveServerLods": true,
+  "lodDistanceChunks": 0,
+  "offThreadSectionProcessing": true,
+  "incrementalSpiralRescan": false,
+  "extendEntityRenderDistance": true,
+  "renderedEntityTypes": [
+    "minecraft:player",
+    "superbwarfare:*",
+    "wfballistics:*",
+    "ashvehicle:*",
+    "mcsp:*"
+  ],
+  "entityRenderDistanceChunks": 32,
+  "distantEntityDepthMode": "PRECISE",
+  "conservativeHiZ": true,
+  "brightenMippedLodLight": true,
+  "fillUniformSkyLight": true
+}

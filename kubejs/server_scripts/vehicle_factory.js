@@ -143,7 +143,7 @@ ServerEvents.recipes(event => {
     // AH-6 Little Bird — MV rotary entry: a rotor (not a wing) helicopter with a light weapons station.
     // tier=mv, f=1.25 → cable cap64(32*1.25)=40, EUt=450, duration=Math.round(400*1.25)=500
     try {
-        var r = WFVehicles.recipe('kubejs:veh_6', 'superbwarfare:ah_6', 'light_plane_assembler');
+        var r = WFVehicles.recipe('kubejs:veh_6', 'superbwarfare:ah_6', 'helicopter_assembler');
         r.item('kubejs:mv_air_frame', 1);
         r.item('superbwarfare:wheel', 3);
         r.item('kubejs:mv_engine', 1);
@@ -155,12 +155,12 @@ ServerEvents.recipes(event => {
         r.research('air_ah_6');
         r.EUt(450).duration(500);
         event.custom(r.build());
-    } catch (e) { console.warn('[WF] skipped vehicle recipe #6 (superbwarfare:ah_6 @ light_plane_assembler): ' + e); }
+    } catch (e) { console.warn('[WF] skipped vehicle recipe #6 (superbwarfare:ah_6 @ helicopter_assembler): ' + e); }
 
     // MH-60M Black Hawk — HV rotary transport/gunship (ashvehicle entity).
     // tier=hv, f=1.5 → cable cap64(32*1.5)=48, EUt=1800, duration=Math.round(6000*1.5)=9000
     try {
-        var r = WFVehicles.recipe('kubejs:veh_7', 'ashvehicle:mh_60m', 'heavy_plane_assembler');
+        var r = WFVehicles.recipe('kubejs:veh_7', 'ashvehicle:mh_60m', 'helicopter_assembler');
         r.item('kubejs:hv_air_frame', 1);
         r.item('superbwarfare:wheel', 3);
         r.item('kubejs:hv_engine', 1);
@@ -172,12 +172,12 @@ ServerEvents.recipes(event => {
         r.research('air_mh_60');
         r.EUt(1800).duration(9000);
         event.custom(r.build());
-    } catch (e) { console.warn('[WF] skipped vehicle recipe #7 (ashvehicle:mh_60m @ heavy_plane_assembler): ' + e); }
+    } catch (e) { console.warn('[WF] skipped vehicle recipe #7 (ashvehicle:mh_60m @ helicopter_assembler): ' + e); }
 
     // Mi-28 Attack Helicopter — EV rotary tank-hunter: rotor + a 30mm cannon barrel + a missile weapons station.
     // tier=ev, f=1.8 → cable cap64(32*1.8)=58, EUt=7200, duration=Math.round(6000*1.8)=10800
     try {
-        var r = WFVehicles.recipe('kubejs:veh_8', 'superbwarfare:mi_28', 'heavy_plane_assembler');
+        var r = WFVehicles.recipe('kubejs:veh_8', 'superbwarfare:mi_28', 'helicopter_assembler');
         r.item('kubejs:ev_air_frame', 1);
         r.item('superbwarfare:wheel', 3);
         r.item('kubejs:ev_engine', 1);
@@ -190,7 +190,7 @@ ServerEvents.recipes(event => {
         r.research('air_mi_28');
         r.EUt(7200).duration(10800);
         event.custom(r.build());
-    } catch (e) { console.warn('[WF] skipped vehicle recipe #8 (superbwarfare:mi_28 @ heavy_plane_assembler): ' + e); }
+    } catch (e) { console.warn('[WF] skipped vehicle recipe #8 (superbwarfare:mi_28 @ helicopter_assembler): ' + e); }
 
     // DISABLED (ungated, tier TBD): { entity: 'superbwarfare:m_1a_2',          factory: 'heavy_vehicle_depot', items: [['kubejs:mv_vehicle_frame', 1], ['kubejs:mv_track', 2], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_cannon_barrel', 1]], tags: [['#gtceu:circuits/mv', 16]],circuit: 1, eut: 450, duration: 6000 },
 
@@ -280,19 +280,19 @@ ServerEvents.recipes(event => {
 
     // tier=mv, f=1.25 → cable cap64(32*1.25)=40, EUt=450, duration=Math.round(6000*1.25)=7500
     try {
-        var r = WFVehicles.recipe('kubejs:veh_14', 'superbwarfare:a_10a', 'heavy_plane_assembler');
-        r.item('kubejs:mv_air_frame', 1);
+        var r = WFVehicles.recipe('kubejs:veh_14', 'superbwarfare:a_10a', 'light_plane_assembler');
+        r.item('kubejs:hv_air_frame', 1);
         r.item('superbwarfare:wheel', 3);
-        r.item('kubejs:mv_engine', 1);
-        r.item('gtceu:copper_single_cable', 40);
-        r.item('kubejs:mv_wing', 2);
-        r.item('kubejs:mv_weapons_system', 1);
-        r.item('kubejs:mv_cockpit', 1);
+        r.item('kubejs:hv_engine', 1);
+        r.item('gtceu:gold_single_cable', 40);
+        r.item('kubejs:hv_wing', 2);
+        r.item('kubejs:hv_weapons_system', 1);
+        r.item('kubejs:hv_cockpit', 1);
         r.circuit(1);
         r.research('air_a_10');
         r.EUt(450).duration(7500);
         event.custom(r.build());
-    } catch (e) { console.warn('[WF] skipped vehicle recipe #14 (superbwarfare:a_10a @ heavy_plane_assembler): ' + e); }
+    } catch (e) { console.warn('[WF] skipped vehicle recipe #14 (superbwarfare:a_10a @ light_plane_assembler): ' + e); }
 
     // AC-130U Spooky II — EV gunship (Hercules airframe + side-firing cannons), research veh air_spooky.
     // tier=ev, f=1.8 → cable cap64(32*1.8)=58, EUt=7200, duration=Math.round(6000*1.8)=10800

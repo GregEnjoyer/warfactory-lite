@@ -55,6 +55,12 @@
       "fileName": "komodo.jar"
     },
     {
+      "repository": "MisterNorwood/ModularUI-Modern",
+      "assetName": "modularui-mc1.20.1-3.3.1-patched.jar",
+      "prerelease": true,
+      "fileName": "modularui-mc1.20.1-3.3.1-patched.jar"
+    },
+    {
       "repository": "Warfactory-Official/sbw-mavic-extender",
       "assetName": "mavic.jar",
       "prerelease": true,

@@ -1,6 +1,6 @@
 {
   "generated": "2026-08-03",
-  "note": "fileName -> sha256 of every jar a client loads from mods/. Soft-checked by wfcore on join (see clientModAudit in wfcore.toml). Regenerate after any mods/ change with tools/gen_modmanifest.py.",
+  "note": "fileName -> sha256 of every jar a client loads from mods/. Soft-checked by wfcore on join (see clientModAudit in wfcore.toml). Sources: server mods/ (shared) + client_mods/ (client-only, managed by Pack Launcher for dynamic mods). Regenerate after any jar change with tools/gen_modmanifest.py.",
   "mods": {
     "[1.20.1] SecurityCraft v1.10.2.1.jar": "f7c637b291cccd2c4a4f94048a6d08a48065c0618fec03043d6f9e15af27948a",
     "[TAGZ] Supressing-1.0.jar": "e9e8a6e783c4952b935b3c39a4e33992e8804f572401811b814976e660733193",
@@ -99,7 +99,7 @@
     "voicechat-forge-1.20.1-2.6.21.jar": "26bb5a271fbff83c39c9f956d108157db46acb868a67175176d1233693771434",
     "walkietalkie-forge-1.20.1-1.3.0.jar": "4fdba55afc3b06eb7f646527437d1233a8f556ce3ad5712d8781f37525c7189b",
     "WaT 0.3.2.jar": "a665a5aa982476c38932f0264667d4f76cd309b954f0a45a4682cb832e597a1e",
-    "wfcore-1.2.0.jar": "4d07cc09214d97c0d2328b4f8ba65631a830c7af1a5729391b75b9ad6c9d616d",
+    "wfcore-1.2.0.jar": "7eef09498befe9bd28c259c4cd93efe6be59dd0902bc0fd8cfd0d6bf8ebf6565",
     "wfcore.jar": "60a285e52d79847dc6e322234343f17cfb9214ecff76b5bd5b7a06ab53626551",
     "wfweight-1.20.1-Forge-1.2.0.jar": "154ff181226b0c60652da33a3f36aaf25d0e5c60b1c2c707a2cb90e197857e36",
     "wfweight.jar": "a1ed1646893af58b70c120bf423702205cc62b23b91342654945bc0932aafa95",

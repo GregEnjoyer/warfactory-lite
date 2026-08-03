@@ -2324,42 +2324,6 @@
             ]
         },
         {
-            "pakku_id": "pBMh7C99u3AZzRmx",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "modularui"
-            },
-            "name": {
-                "curseforge": "ModularUI"
-            },
-            "id": {
-                "curseforge": "624243"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "modularui-mc1.20.1-3.3.1.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/8339/410/modularui-mc1.20.1-3.3.1.jar",
-                    "id": "8339410",
-                    "parent_id": "624243",
-                    "hashes": {
-                        "sha1": "8e2669f456b74f97c8fa38ffac95788f1b70dce1",
-                        "md5": "395392fca20c7e609a2c020142c61d7e"
-                    },
-                    "required_dependencies": [],
-                    "size": 2388562,
-                    "date_published": "2026-06-29T07:44:51.350Z"
-                }
-            ]
-        },
-        {
             "pakku_id": "pDqGvBfbM4GfwFhz",
             "pakku_links": [
                 "FeDSKrDKzUaT602C",

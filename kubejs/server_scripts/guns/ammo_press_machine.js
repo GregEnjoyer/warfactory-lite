@@ -8,19 +8,41 @@ ServerEvents.recipes(event => {
 
     // --- Electric Ammo Press (LV -> EV) --------------------------------------
     // Tier's machine casing + an electric piston (the press ram) + circuits + plate.
-    const press = (tier, eut) => g.assembler(`kubejs:ammo_press_${tier}`)
+    g.assembler('kubejs:ammo_press_lv')
         .itemInputs(
-            `gtceu:${tier}_machine_casing`,
-            `gtceu:${tier}_electric_piston`,
-            `2x #gtceu:circuits/${tier}`,
+            'gtceu:lv_machine_casing',
+            'gtceu:lv_electric_piston',
+            '2x #gtceu:circuits/lv',
             '4x gtceu:steel_plate')
-        .itemOutputs(`gtceu:${tier}_electric_ammo_press`)
-        .duration(200).EUt(eut)
+        .itemOutputs('gtceu:lv_electric_ammo_press')
+        .duration(200).EUt(32)
 
-    press('lv', 32)
-    press('mv', 120)
-    press('hv', 480)
-    press('ev', 1920)
+    g.assembler('kubejs:ammo_press_mv')
+        .itemInputs(
+            'gtceu:mv_machine_casing',
+            'gtceu:mv_electric_piston',
+            '2x #gtceu:circuits/mv',
+            '4x gtceu:steel_plate')
+        .itemOutputs('gtceu:mv_electric_ammo_press')
+        .duration(200).EUt(120)
+
+    g.assembler('kubejs:ammo_press_hv')
+        .itemInputs(
+            'gtceu:hv_machine_casing',
+            'gtceu:hv_electric_piston',
+            '2x #gtceu:circuits/hv',
+            '4x gtceu:steel_plate')
+        .itemOutputs('gtceu:hv_electric_ammo_press')
+        .duration(200).EUt(480)
+
+    g.assembler('kubejs:ammo_press_ev')
+        .itemInputs(
+            'gtceu:ev_machine_casing',
+            'gtceu:ev_electric_piston',
+            '2x #gtceu:circuits/ev',
+            '4x gtceu:steel_plate')
+        .itemOutputs('gtceu:ev_electric_ammo_press')
+        .duration(200).EUt(1920)
     // (luv..uxv tiers also exist — add here if ever needed.)
 
     // --- Low-Pressure Steam Ammo Press (steam age) — hand-crafted -------------

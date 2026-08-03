@@ -116,8 +116,9 @@ ServerEvents.recipes((event) => {
 
   // Stonecut p2p tunnels, attunement sucks
   // Written by MatthiasMann
-  const p2p = ["redstone", "item", "fluid", "fe", "light"]
-  p2p.forEach(type => {
-    event.stonecutting("ae2:" + type + "_p2p_tunnel", "ae2:me_p2p_tunnel")
-  });
+  event.stonecutting("ae2:redstone_p2p_tunnel", "ae2:me_p2p_tunnel");
+  event.stonecutting("ae2:item_p2p_tunnel", "ae2:me_p2p_tunnel");
+  event.stonecutting("ae2:fluid_p2p_tunnel", "ae2:me_p2p_tunnel");
+  event.stonecutting("ae2:fe_p2p_tunnel", "ae2:me_p2p_tunnel");
+  event.stonecutting("ae2:light_p2p_tunnel", "ae2:me_p2p_tunnel");
 });

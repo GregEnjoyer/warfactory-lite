@@ -150,6 +150,20 @@ ServerEvents.recipes(event => {
         .icon(sbw('seeker'))
         .register()
 
+    // Fuzing Systems – precision electrical detonators consumed by every WFCore guided missile warhead.
+    WFResearch.builder('fusee')
+        .category('ballistics').pos(6, 3)
+        .nodeColor(BLUE)
+        .name('Fuzing Systems')
+        .description('Precision electrical detonators that initiate every WFCore guided missile warhead.')
+        .requires('large_casings')
+        .runs(10).ticksPerRun(300).eut(EU_MV).cwuPerRun(19200)   // ~64 CWU/t = MV midpoint (@300t)
+        .itemTagPerRun('gtceu:circuits/mv', 2)
+        .itemPerRun(Item.of('gtceu:mv_sensor', 1))
+        .unlock(sbw('fusee'))
+        .icon(sbw('fusee'))
+        .register()
+
     // ===================== WARHEAD HEADS (MV, y=3) =====================
     // The explosive payload cores. Each unlocks a superbwarfare:*_head item (GT recipe in
     // guns/ammo.js) that its munition family CONSUMES. MV midpoint compute.
@@ -162,7 +176,7 @@ ServerEvents.recipes(event => {
         .description('High-explosive filler warheads – the payload of HE shells, rockets, aerial bombs and fragmentation missiles.')
         .requires('large_casings')
         .runs(20).ticksPerRun(360).eut(EU_MV).cwuPerRun(CWU_MV)   // ~64 CWU/t = MV midpoint
-        .itemPerRun(Item.of('gtceu:steel_plate', 6))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 6))
         .itemPerRun(Item.of('minecraft:gunpowder', 12))
         .itemPerRun(Item.of('gtceu:sulfur_dust', 4))
         .unlock(sbw('he_head'))
@@ -177,7 +191,7 @@ ServerEvents.recipes(event => {
         .description('Dense tungsten-cored penetrator warheads for AP shells, AP rockets and anti-tank missiles.')
         .requires('large_casings')
         .runs(20).ticksPerRun(360).eut(EU_MV).cwuPerRun(CWU_MV)   // ~64 CWU/t = MV midpoint
-        .itemPerRun(Item.of('gtceu:steel_plate', 6))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 6))
         .itemPerRun(Item.of('gtceu:tungsten_plate', 2))
         .itemPerRun(Item.of('minecraft:gunpowder', 8))
         .unlock(sbw('ap_head'))
@@ -192,7 +206,7 @@ ServerEvents.recipes(event => {
         .description('Canister warheads that burst into a cloud of shot – the payload of small- and large-calibre grapeshot shells.')
         .requires('large_casings')
         .runs(20).ticksPerRun(360).eut(EU_MV).cwuPerRun(CWU_MV)   // ~64 CWU/t = MV midpoint
-        .itemPerRun(Item.of('gtceu:steel_plate', 6))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 6))
         .itemPerRun(Item.of('gtceu:lead_nugget', 12))
         .itemPerRun(Item.of('minecraft:gunpowder', 8))
         .unlock(sbw('gs_head'))
@@ -207,7 +221,7 @@ ServerEvents.recipes(event => {
         .description('Submunition-dispensing cluster warheads for large-calibre cluster shells and cluster rockets.')
         .requires('large_casings')
         .runs(20).ticksPerRun(360).eut(EU_MV).cwuPerRun(CWU_MV)   // ~64 CWU/t = MV midpoint
-        .itemPerRun(Item.of('gtceu:steel_plate', 8))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 8))
         .itemPerRun(Item.of('gtceu:dynamite', 4))
         .itemPerRun(Item.of('minecraft:gunpowder', 12))
         .unlock(sbw('cm_head'))
@@ -222,7 +236,7 @@ ServerEvents.recipes(event => {
         .description('White-phosphorus incendiary warheads – the payload of every fire round: WP shells and WP mortar bombs.')
         .requires('large_casings')
         .runs(20).ticksPerRun(360).eut(EU_MV).cwuPerRun(CWU_MV)   // ~64 CWU/t = MV midpoint
-        .itemPerRun(Item.of('gtceu:steel_plate', 6))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 6))
         .itemPerRun(Item.of('gtceu:white_phosphorus_dust', 2))
         .itemPerRun(Item.of('minecraft:gunpowder', 8))
         .unlock(sbw('wp_head'))
@@ -240,7 +254,7 @@ ServerEvents.recipes(event => {
         .description('Muzzle-loaded high-explosive mortar bombs for the man-portable Mortar.')
         .requires('he_warheads')
         .runs(12).ticksPerRun(300).eut(EU_MV).cwuPerRun(15000)   // ~50 CWU/t – cheap MV filler
-        .itemPerRun(Item.of('gtceu:steel_plate', 4))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 4))
         .itemPerRun(Item.of('minecraft:gunpowder', 8))
         .unlock(sbw('mortar_shell'))
         .icon(sbw('mortar_shell'))
@@ -256,7 +270,7 @@ ServerEvents.recipes(event => {
         .description('Low-velocity 40mm high-explosive grenades for grenade launchers (M79, Mk19).')
         .requires('he_warheads')
         .runs(15).ticksPerRun(300).eut(EU_MV).cwuPerRun(19200)   // ~64 CWU/t = MV midpoint (@300t)
-        .itemPerRun(Item.of('gtceu:steel_plate', 6))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 6))
         .itemPerRun(Item.of('gtceu:dynamite', 4))
         .itemPerRun(Item.of('minecraft:gunpowder', 8))
         .unlocks(sbw('grenade_40mm'), Item.of('mcsp:40mm_explosive'))
@@ -276,7 +290,7 @@ ServerEvents.recipes(event => {
         .description('High-explosive rounds for small-calibre vehicle cannons.')
         .requires('he_warheads')
         .runs(25).ticksPerRun(360).eut(EU_MV).cwuPerRun(CWU_MV)   // ~64 CWU/t = MV midpoint
-        .itemPerRun(Item.of('gtceu:steel_plate', 8))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 8))
         .itemPerRun(Item.of('superbwarfare:primer', 8))
         .unlock(sbw('small_shell_he'))
         .icon(sbw('small_shell_he'))
@@ -322,7 +336,8 @@ ServerEvents.recipes(event => {
         .register()
 
     // --- Large tank/artillery shells (EV) – XL casing + head + grain ---
-    // EV tier: the deeper large-shell nodes use vanadium steel plate (HV alloy) instead of plain steel.
+    // EV tier: the large-shell bodies use titanium plate (the EV structural material); the grapeshot
+    // shell also loads ultimet round as its shot.
     WFResearch.builder('large_shell_he')
         .category('ballistics').pos(-8, 5)
         .nodeColor(BLUE)
@@ -330,7 +345,7 @@ ServerEvents.recipes(event => {
         .description('Tank and artillery main-gun high-explosive rounds.')
         .requires('high_explosive_1')
         .runs(30).ticksPerRun(360).eut(EU_EV).cwuPerRun(CWU_EV)   // ~1024 CWU/t = EV midpoint
-        .itemPerRun(Item.of('gtceu:vanadium_steel_plate', 12))
+        .itemPerRun(Item.of('gtceu:titanium_plate', 12))
         .itemPerRun(Item.of('superbwarfare:primer', 10))
         .itemPerRun(Item.of('superbwarfare:grain', 8))
         .unlock(sbw('large_shell_he'))
@@ -344,7 +359,7 @@ ServerEvents.recipes(event => {
         .description('Tank main-gun armour-piercing rounds.')
         .requires('armor_piercing_1')
         .runs(30).ticksPerRun(360).eut(EU_EV).cwuPerRun(CWU_EV)   // ~1024 CWU/t = EV midpoint
-        .itemPerRun(Item.of('gtceu:vanadium_steel_plate', 12))
+        .itemPerRun(Item.of('gtceu:titanium_plate', 12))
         .itemPerRun(Item.of('superbwarfare:primer', 10))
         .itemPerRun(Item.of('superbwarfare:grain', 8))
         .unlock(sbw('large_shell_ap'))
@@ -372,7 +387,7 @@ ServerEvents.recipes(event => {
         .description('Large-calibre cluster-munition rounds.')
         .requires('cluster_warheads')
         .runs(30).ticksPerRun(360).eut(EU_EV).cwuPerRun(CWU_EV)   // ~1024 CWU/t = EV midpoint
-        .itemPerRun(Item.of('gtceu:vanadium_steel_plate', 12))
+        .itemPerRun(Item.of('gtceu:titanium_plate', 12))
         .itemPerRun(Item.of('superbwarfare:primer', 10))
         .itemPerRun(Item.of('superbwarfare:grain', 8))
         .unlock(sbw('large_shell_cm'))
@@ -386,7 +401,7 @@ ServerEvents.recipes(event => {
         .description('Large-calibre white-phosphorus incendiary rounds.')
         .requires('pyrotechnics')
         .runs(30).ticksPerRun(360).eut(EU_EV).cwuPerRun(CWU_EV)   // ~1024 CWU/t = EV midpoint
-        .itemPerRun(Item.of('gtceu:vanadium_steel_plate', 12))
+        .itemPerRun(Item.of('gtceu:titanium_plate', 12))
         .itemPerRun(Item.of('superbwarfare:primer', 10))
         .itemPerRun(Item.of('superbwarfare:grain', 8))
         .unlock(sbw('large_shell_wp'))
@@ -402,7 +417,7 @@ ServerEvents.recipes(event => {
         .description('Folding-fin HE rockets fired by helicopters and the Sodayo MLRS.')
         .requires('missile_engines')
         .runs(22).ticksPerRun(360).eut(EU_MV).cwuPerRun(CWU_MV)   // ~64 CWU/t = MV midpoint
-        .itemPerRun(Item.of('gtceu:steel_plate', 8))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 8))
         .itemPerRun(Item.of('superbwarfare:missile_engine', 2))
         .itemPerRun(Item.of('kubejs:solid_rocket_fuel', 2))
         .unlock(sbw('small_rocket'))
@@ -416,7 +431,7 @@ ServerEvents.recipes(event => {
         .description('Medium-calibre high-explosive rockets for the Type-63 MLRS.')
         .requires('small_rocket')
         .runs(22).ticksPerRun(360).eut(EU_MV).cwuPerRun(CWU_MV)   // ~64 CWU/t = MV midpoint
-        .itemPerRun(Item.of('gtceu:steel_plate', 8))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 8))
         .itemPerRun(Item.of('superbwarfare:missile_engine', 2))
         .itemPerRun(Item.of('kubejs:solid_rocket_fuel', 2))
         .unlock(sbw('medium_rocket_he'))
@@ -430,7 +445,7 @@ ServerEvents.recipes(event => {
         .description('Medium-calibre armour-piercing rockets for the Type-63 MLRS.')
         .requires('small_rocket')
         .runs(22).ticksPerRun(360).eut(EU_MV).cwuPerRun(CWU_MV)   // ~64 CWU/t = MV midpoint
-        .itemPerRun(Item.of('gtceu:steel_plate', 8))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 8))
         .itemPerRun(Item.of('superbwarfare:missile_engine', 2))
         .itemPerRun(Item.of('kubejs:solid_rocket_fuel', 2))
         .unlock(sbw('medium_rocket_ap'))
@@ -444,7 +459,7 @@ ServerEvents.recipes(event => {
         .description('Medium-calibre cluster-munition rockets for the Type-63 MLRS.')
         .requires('small_rocket')
         .runs(22).ticksPerRun(360).eut(EU_MV).cwuPerRun(CWU_MV)   // ~64 CWU/t = MV midpoint
-        .itemPerRun(Item.of('gtceu:steel_plate', 8))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 8))
         .itemPerRun(Item.of('superbwarfare:missile_engine', 2))
         .itemPerRun(Item.of('kubejs:solid_rocket_fuel', 2))
         .unlock(sbw('medium_rocket_cm'))
@@ -459,7 +474,7 @@ ServerEvents.recipes(event => {
         .description('Small gravity high-explosive bombs for the Ju-87 Stuka.')
         .requires('he_warheads')
         .runs(20).ticksPerRun(360).eut(EU_MV).cwuPerRun(CWU_MV)   // ~64 CWU/t = MV midpoint
-        .itemPerRun(Item.of('gtceu:steel_plate', 10))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 10))
         .itemPerRun(Item.of('gtceu:steel_ring', 2))
         .itemPerRun(Item.of('minecraft:gunpowder', 8))
         .unlock(sbw('small_aerial_bomb'))
@@ -473,7 +488,7 @@ ServerEvents.recipes(event => {
         .description('Medium gravity high-explosive bombs for the Ju-87 Stuka.')
         .requires('small_aerial_bomb')
         .runs(20).ticksPerRun(360).eut(EU_MV).cwuPerRun(CWU_MV)   // ~64 CWU/t = MV midpoint
-        .itemPerRun(Item.of('gtceu:steel_plate', 10))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 10))
         .itemPerRun(Item.of('gtceu:steel_ring', 2))
         .itemPerRun(Item.of('minecraft:gunpowder', 8))
         .unlock(sbw('medium_aerial_bomb'))
@@ -488,7 +503,7 @@ ServerEvents.recipes(event => {
         .description('White-phosphorus incendiary mortar bombs.')
         .requires('pyrotechnics')
         .runs(15).ticksPerRun(360).eut(EU_MV).cwuPerRun(CWU_MV)   // ~64 CWU/t = MV midpoint
-        .itemPerRun(Item.of('gtceu:steel_plate', 4))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 4))
         .itemPerRun(Item.of('superbwarfare:wp_head', 2))
         .itemPerRun(Item.of('minecraft:gunpowder', 6))
         .unlock(sbw('mortar_shell_wp'))
@@ -518,7 +533,7 @@ ServerEvents.recipes(event => {
         .requires('anti_ground_missiles')
         .runs(28).ticksPerRun(360).eut(EU_HV).cwuPerRun(CWU_HV)   // ~256 CWU/t = HV midpoint
         .itemPerRun(Item.of('gtceu:titanium_plate', 6))
-        .itemPerRun(Item.of('superbwarfare:large_motor', 1))
+        .itemPerRun(Item.of('gtceu:hv_electric_motor', 1))
         .itemPerRun(Item.of('superbwarfare:seeker', 2))
         .unlock(sbw('large_anti_ground_missile'))
         .icon(sbw('large_anti_ground_missile'))
@@ -536,6 +551,55 @@ ServerEvents.recipes(event => {
         .itemPerRun(Item.of('superbwarfare:seeker', 2))
         .unlock(sbw('medium_anti_air_missile'))
         .icon(sbw('medium_anti_air_missile'))
+        .register()
+
+    // ===================== RPG ROCKETS (MV) + JAVELIN MISSILE (EV) =====================
+    // Both RPG nodes stem from Fuzing Systems AND High Explosive Warheads (AND gate).
+    // Javelin stems from Anti-Ground Missiles — it's a precision guided upgrade of that line.
+    //
+    // MV cwuPerRun = 64 CWU/t × 900t = 57600    EV cwuPerRun = 1024 CWU/t × 900t = 921600
+
+    // rpg_rocket_standard (MV) — PG-7VM HEAT round, 30 runs × 45 s
+    WFResearch.builder('rpg_rocket_standard')
+        .category('ballistics').pos(7, 4)
+        .nodeColor(BLUE)
+        .name('RPG Rockets (Standard)')
+        .description('The PG-7VM HEAT rocket for the RPG-7: a shaped-charge anti-tank round for vehicles and fortifications.')
+        .requires(['fusee', 'he_warheads'])
+        .runs(30).ticksPerRun(900).eut(EU_MV).cwuPerRun(57600)
+        .itemPerRun(Item.of('superbwarfare:he_head', 3))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 3))
+        .itemPerRun(Item.of('kubejs:solid_rocket_fuel', 2))
+        .unlock(sbw('rpg_rocket_standard')).icon(sbw('rpg_rocket_standard'))
+        .register()
+
+    // rpg_rocket_yasin (MV) — Yasin 105 TBG thermobaric round, 40 runs × 45 s (more expensive)
+    WFResearch.builder('rpg_rocket_yasin')
+        .category('ballistics').pos(8, 4)
+        .nodeColor(BLUE)
+        .name('RPG Rockets (Yasin TBG)')
+        .description('The Yasin 105 TBG thermobaric rocket: a fuel-air explosive warhead that hits structures and infantry harder than HEAT.')
+        .requires(['fusee', 'he_warheads'])
+        .runs(40).ticksPerRun(900).eut(EU_MV).cwuPerRun(57600)
+        .itemPerRun(Item.of('superbwarfare:he_head', 3))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 3))
+        .itemPerRun(Item.of('kubejs:solid_rocket_fuel', 2))
+        .unlock(sbw('rpg_rocket_tbg')).icon(sbw('rpg_rocket_tbg'))
+        .register()
+
+    // javelin_missile (EV) — fire-and-forget top-attack ATGM, 30 runs × 45 s
+    WFResearch.builder('javelin_missile')
+        .category('ballistics').pos(6, 5)
+        .nodeColor(BLUE)
+        .name('Javelin Missile')
+        .description('The FGM-148 Javelin top-attack missile: a fire-and-forget ATGM that climbs and dives to strike thin top armour.')
+        .requires('anti_ground_missiles')
+        .runs(30).ticksPerRun(900).eut(EU_EV).cwuPerRun(921600)
+        .itemPerRun(Item.of('superbwarfare:seeker', 2))
+        .itemPerRun(Item.of('gtceu:ultimet_rod', 2))
+        .itemPerRun(Item.of('gtceu:titanium_plate', 8))
+        .itemTagPerRun('gtceu:circuits/ev', 1)
+        .unlock(sbw('javelin_missile')).icon(sbw('javelin_missile'))
         .register()
 
     // --- Nuclear Bomb (IV APEX) – the B-2 Spirit's strategic payload (AshVehicle: ashvehicle:nuclearbombitem).

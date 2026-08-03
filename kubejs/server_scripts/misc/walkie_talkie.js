@@ -29,14 +29,14 @@ event.recipes.gtceu.assembler("gregtech:golden_talkie")
 
 event.recipes.gtceu.assembler("gregtech:diamond_talkie")
 .itemInputs(Item.of('gtceu:fine_gold_wire'), Item.of(' 3x gtceu:polyethylene_plate'), Item.of('gtceu:flawless_quartzite_gem'))
-.itemOutputs(Item.of('walkietalkie:golden_walkietalkie', 1))
+.itemOutputs(Item.of('walkietalkie:diamond_walkietalkie', 1))
 .duration(200)
 .EUt(128)
 
 
 event.recipes.gtceu.assembler("gregtech:netherite_talkie")
 .itemInputs(Item.of('gtceu:fine_platinum_wire'), Item.of(' 3x gtceu:polyethylene_plate'), Item.of('gtceu:exquisite_quartzite_gem'))
-.itemOutputs(Item.of('walkietalkie:diamond_walkietalkie', 1))
+.itemOutputs(Item.of('walkietalkie:netherite_walkietalkie', 1))
 .duration(200)
 .EUt(256)
 })

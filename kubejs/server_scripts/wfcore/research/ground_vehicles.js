@@ -230,35 +230,35 @@ ServerEvents.recipes(event => {
         .category('armor').pos(2, 0).nodeColor(BLUE)
         .name('LV Vehicle Frame').description('Assembler blueprint for the LV-tier Vehicle Frame used in ground-vehicle assembly.')
         .runs(5).ticksPerRun(200).eut(EU_LV).cwuPerRun(0)
-        .itemPerRun(Item.of('gtceu:steel_plate', 4)).itemPerRun(Item.of('gtceu:basic_electronic_circuit', 1))
+        .itemPerRun(Item.of('gtceu:steel_plate', 4)).itemTagPerRun('gtceu:circuits/lv', 1)
         .unlock(Item.of('kubejs:lv_vehicle_frame')).icon(Item.of('kubejs:lv_vehicle_frame')).register()
 
     WFResearch.builder('veh_comp_lv_engine')
         .category('armor').pos(3, 0).nodeColor(BLUE)
         .name('LV Engine').description('Assembler blueprint for the LV-tier Engine used in ground-vehicle assembly.')
         .runs(5).ticksPerRun(200).eut(EU_LV).cwuPerRun(0)
-        .itemPerRun(Item.of('gtceu:steel_plate', 4)).itemPerRun(Item.of('gtceu:basic_electronic_circuit', 1))
+        .itemPerRun(Item.of('gtceu:steel_plate', 4)).itemTagPerRun('gtceu:circuits/lv', 1)
         .unlock(Item.of('kubejs:lv_engine')).icon(Item.of('kubejs:lv_engine')).register()
 
     WFResearch.builder('veh_comp_lv_track')
         .category('armor').pos(4, 0).nodeColor(BLUE)
         .name('LV Track').description('Assembler blueprint for the LV-tier Track used in ground-vehicle assembly.')
         .runs(5).ticksPerRun(200).eut(EU_LV).cwuPerRun(0)
-        .itemPerRun(Item.of('gtceu:steel_plate', 4)).itemPerRun(Item.of('gtceu:basic_electronic_circuit', 1))
+        .itemPerRun(Item.of('gtceu:steel_plate', 4)).itemTagPerRun('gtceu:circuits/lv', 1)
         .unlock(Item.of('kubejs:lv_track')).icon(Item.of('kubejs:lv_track')).register()
 
     WFResearch.builder('veh_comp_lv_cannon_barrel')
         .category('armor').pos(5, 0).nodeColor(BLUE)
         .name('LV Cannon Barrel').description('Assembler blueprint for the LV-tier Cannon Barrel used in ground-vehicle assembly.')
         .runs(5).ticksPerRun(200).eut(EU_LV).cwuPerRun(0)
-        .itemPerRun(Item.of('gtceu:steel_plate', 4)).itemPerRun(Item.of('gtceu:basic_electronic_circuit', 1))
+        .itemPerRun(Item.of('gtceu:steel_plate', 4)).itemTagPerRun('gtceu:circuits/lv', 1)
         .unlock(Item.of('kubejs:lv_cannon_barrel')).icon(Item.of('kubejs:lv_cannon_barrel')).register()
 
     WFResearch.builder('veh_comp_lv_weapons_system')
         .category('armor').pos(6, 0).nodeColor(BLUE)
         .name('LV Weapons System').description('Assembler blueprint for the LV-tier Weapons System used in ground-vehicle assembly.')
         .runs(5).ticksPerRun(200).eut(EU_LV).cwuPerRun(0)
-        .itemPerRun(Item.of('gtceu:steel_plate', 4)).itemPerRun(Item.of('gtceu:basic_electronic_circuit', 1))
+        .itemPerRun(Item.of('gtceu:steel_plate', 4)).itemTagPerRun('gtceu:circuits/lv', 1)
         .unlock(Item.of('kubejs:lv_weapons_system')).icon(Item.of('kubejs:lv_weapons_system')).register()
 
     // ---- MV tier — anyOf any LV component ----
@@ -267,7 +267,7 @@ ServerEvents.recipes(event => {
         .name('MV Vehicle Frame').description('Assembler blueprint for the MV-tier Vehicle Frame used in ground-vehicle assembly.')
         .anyOf('veh_comp_lv_vehicle_frame', 'veh_comp_lv_engine', 'veh_comp_lv_track', 'veh_comp_lv_cannon_barrel', 'veh_comp_lv_weapons_system')
         .runs(8).ticksPerRun(200).eut(EU_MV).cwuPerRun(12800)
-        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemPerRun(Item.of('gtceu:good_electronic_circuit', 1))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemTagPerRun('gtceu:circuits/mv', 1)
         .unlock(Item.of('kubejs:mv_vehicle_frame')).icon(Item.of('kubejs:mv_vehicle_frame')).register()
 
     WFResearch.builder('veh_comp_mv_engine')
@@ -275,7 +275,7 @@ ServerEvents.recipes(event => {
         .name('MV Engine').description('Assembler blueprint for the MV-tier Engine used in ground-vehicle assembly.')
         .anyOf('veh_comp_lv_vehicle_frame', 'veh_comp_lv_engine', 'veh_comp_lv_track', 'veh_comp_lv_cannon_barrel', 'veh_comp_lv_weapons_system')
         .runs(8).ticksPerRun(200).eut(EU_MV).cwuPerRun(12800)
-        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemPerRun(Item.of('gtceu:good_electronic_circuit', 1))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemTagPerRun('gtceu:circuits/mv', 1)
         .unlock(Item.of('kubejs:mv_engine')).icon(Item.of('kubejs:mv_engine')).register()
 
     WFResearch.builder('veh_comp_mv_track')
@@ -283,7 +283,7 @@ ServerEvents.recipes(event => {
         .name('MV Track').description('Assembler blueprint for the MV-tier Track used in ground-vehicle assembly.')
         .anyOf('veh_comp_lv_vehicle_frame', 'veh_comp_lv_engine', 'veh_comp_lv_track', 'veh_comp_lv_cannon_barrel', 'veh_comp_lv_weapons_system')
         .runs(8).ticksPerRun(200).eut(EU_MV).cwuPerRun(12800)
-        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemPerRun(Item.of('gtceu:good_electronic_circuit', 1))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemTagPerRun('gtceu:circuits/mv', 1)
         .unlock(Item.of('kubejs:mv_track')).icon(Item.of('kubejs:mv_track')).register()
 
     WFResearch.builder('veh_comp_mv_cannon_barrel')
@@ -291,7 +291,7 @@ ServerEvents.recipes(event => {
         .name('MV Cannon Barrel').description('Assembler blueprint for the MV-tier Cannon Barrel used in ground-vehicle assembly.')
         .anyOf('veh_comp_lv_vehicle_frame', 'veh_comp_lv_engine', 'veh_comp_lv_track', 'veh_comp_lv_cannon_barrel', 'veh_comp_lv_weapons_system')
         .runs(8).ticksPerRun(200).eut(EU_MV).cwuPerRun(12800)
-        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemPerRun(Item.of('gtceu:good_electronic_circuit', 1))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemTagPerRun('gtceu:circuits/mv', 1)
         .unlock(Item.of('kubejs:mv_cannon_barrel')).icon(Item.of('kubejs:mv_cannon_barrel')).register()
 
     WFResearch.builder('veh_comp_mv_weapons_system')
@@ -299,7 +299,7 @@ ServerEvents.recipes(event => {
         .name('MV Weapons System').description('Assembler blueprint for the MV-tier Weapons System used in ground-vehicle assembly.')
         .anyOf('veh_comp_lv_vehicle_frame', 'veh_comp_lv_engine', 'veh_comp_lv_track', 'veh_comp_lv_cannon_barrel', 'veh_comp_lv_weapons_system')
         .runs(8).ticksPerRun(200).eut(EU_MV).cwuPerRun(12800)
-        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemPerRun(Item.of('gtceu:good_electronic_circuit', 1))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 4)).itemTagPerRun('gtceu:circuits/mv', 1)
         .unlock(Item.of('kubejs:mv_weapons_system')).icon(Item.of('kubejs:mv_weapons_system')).register()
 
     // ---- HV tier — anyOf any MV component ----
@@ -308,7 +308,7 @@ ServerEvents.recipes(event => {
         .name('HV Vehicle Frame').description('Assembler blueprint for the HV-tier Vehicle Frame used in ground-vehicle assembly.')
         .anyOf('veh_comp_mv_vehicle_frame', 'veh_comp_mv_engine', 'veh_comp_mv_track', 'veh_comp_mv_cannon_barrel', 'veh_comp_mv_weapons_system')
         .runs(10).ticksPerRun(200).eut(EU_HV).cwuPerRun(51200)
-        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemPerRun(Item.of('gtceu:basic_integrated_circuit', 1))
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemTagPerRun('gtceu:circuits/lv', 1)
         .unlock(Item.of('kubejs:hv_vehicle_frame')).icon(Item.of('kubejs:hv_vehicle_frame')).register()
 
     WFResearch.builder('veh_comp_hv_engine')
@@ -316,7 +316,7 @@ ServerEvents.recipes(event => {
         .name('HV Engine').description('Assembler blueprint for the HV-tier Engine used in ground-vehicle assembly.')
         .anyOf('veh_comp_mv_vehicle_frame', 'veh_comp_mv_engine', 'veh_comp_mv_track', 'veh_comp_mv_cannon_barrel', 'veh_comp_mv_weapons_system')
         .runs(10).ticksPerRun(200).eut(EU_HV).cwuPerRun(51200)
-        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemPerRun(Item.of('gtceu:basic_integrated_circuit', 1))
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemTagPerRun('gtceu:circuits/lv', 1)
         .unlock(Item.of('kubejs:hv_engine')).icon(Item.of('kubejs:hv_engine')).register()
 
     WFResearch.builder('veh_comp_hv_track')
@@ -324,7 +324,7 @@ ServerEvents.recipes(event => {
         .name('HV Track').description('Assembler blueprint for the HV-tier Track used in ground-vehicle assembly.')
         .anyOf('veh_comp_mv_vehicle_frame', 'veh_comp_mv_engine', 'veh_comp_mv_track', 'veh_comp_mv_cannon_barrel', 'veh_comp_mv_weapons_system')
         .runs(10).ticksPerRun(200).eut(EU_HV).cwuPerRun(51200)
-        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemPerRun(Item.of('gtceu:basic_integrated_circuit', 1))
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemTagPerRun('gtceu:circuits/lv', 1)
         .unlock(Item.of('kubejs:hv_track')).icon(Item.of('kubejs:hv_track')).register()
 
     WFResearch.builder('veh_comp_hv_cannon_barrel')
@@ -332,7 +332,7 @@ ServerEvents.recipes(event => {
         .name('HV Cannon Barrel').description('Assembler blueprint for the HV-tier Cannon Barrel used in ground-vehicle assembly.')
         .anyOf('veh_comp_mv_vehicle_frame', 'veh_comp_mv_engine', 'veh_comp_mv_track', 'veh_comp_mv_cannon_barrel', 'veh_comp_mv_weapons_system')
         .runs(10).ticksPerRun(200).eut(EU_HV).cwuPerRun(51200)
-        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemPerRun(Item.of('gtceu:basic_integrated_circuit', 1))
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemTagPerRun('gtceu:circuits/lv', 1)
         .unlock(Item.of('kubejs:hv_cannon_barrel')).icon(Item.of('kubejs:hv_cannon_barrel')).register()
 
     WFResearch.builder('veh_comp_hv_weapons_system')
@@ -340,7 +340,7 @@ ServerEvents.recipes(event => {
         .name('HV Weapons System').description('Assembler blueprint for the HV-tier Weapons System used in ground-vehicle assembly.')
         .anyOf('veh_comp_mv_vehicle_frame', 'veh_comp_mv_engine', 'veh_comp_mv_track', 'veh_comp_mv_cannon_barrel', 'veh_comp_mv_weapons_system')
         .runs(10).ticksPerRun(200).eut(EU_HV).cwuPerRun(51200)
-        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemPerRun(Item.of('gtceu:basic_integrated_circuit', 1))
+        .itemPerRun(Item.of('gtceu:stainless_steel_plate', 4)).itemTagPerRun('gtceu:circuits/lv', 1)
         .unlock(Item.of('kubejs:hv_weapons_system')).icon(Item.of('kubejs:hv_weapons_system')).register()
 
     // ---- EV tier — anyOf any HV component ----
@@ -349,7 +349,7 @@ ServerEvents.recipes(event => {
         .name('EV Vehicle Frame').description('Assembler blueprint for the EV-tier Vehicle Frame used in ground-vehicle assembly.')
         .anyOf('veh_comp_hv_vehicle_frame', 'veh_comp_hv_engine', 'veh_comp_hv_track', 'veh_comp_hv_cannon_barrel', 'veh_comp_hv_weapons_system')
         .runs(12).ticksPerRun(200).eut(EU_EV).cwuPerRun(204800)
-        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemPerRun(Item.of('gtceu:good_integrated_circuit', 1))
+        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemTagPerRun('gtceu:circuits/mv', 1)
         .unlock(Item.of('kubejs:ev_vehicle_frame')).icon(Item.of('kubejs:ev_vehicle_frame')).register()
 
     WFResearch.builder('veh_comp_ev_engine')
@@ -357,7 +357,7 @@ ServerEvents.recipes(event => {
         .name('EV Engine').description('Assembler blueprint for the EV-tier Engine used in ground-vehicle assembly.')
         .anyOf('veh_comp_hv_vehicle_frame', 'veh_comp_hv_engine', 'veh_comp_hv_track', 'veh_comp_hv_cannon_barrel', 'veh_comp_hv_weapons_system')
         .runs(12).ticksPerRun(200).eut(EU_EV).cwuPerRun(204800)
-        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemPerRun(Item.of('gtceu:good_integrated_circuit', 1))
+        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemTagPerRun('gtceu:circuits/mv', 1)
         .unlock(Item.of('kubejs:ev_engine')).icon(Item.of('kubejs:ev_engine')).register()
 
     WFResearch.builder('veh_comp_ev_track')
@@ -365,7 +365,7 @@ ServerEvents.recipes(event => {
         .name('EV Track').description('Assembler blueprint for the EV-tier Track used in ground-vehicle assembly.')
         .anyOf('veh_comp_hv_vehicle_frame', 'veh_comp_hv_engine', 'veh_comp_hv_track', 'veh_comp_hv_cannon_barrel', 'veh_comp_hv_weapons_system')
         .runs(12).ticksPerRun(200).eut(EU_EV).cwuPerRun(204800)
-        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemPerRun(Item.of('gtceu:good_integrated_circuit', 1))
+        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemTagPerRun('gtceu:circuits/mv', 1)
         .unlock(Item.of('kubejs:ev_track')).icon(Item.of('kubejs:ev_track')).register()
 
     WFResearch.builder('veh_comp_ev_cannon_barrel')
@@ -373,7 +373,7 @@ ServerEvents.recipes(event => {
         .name('EV Cannon Barrel').description('Assembler blueprint for the EV-tier Cannon Barrel used in ground-vehicle assembly.')
         .anyOf('veh_comp_hv_vehicle_frame', 'veh_comp_hv_engine', 'veh_comp_hv_track', 'veh_comp_hv_cannon_barrel', 'veh_comp_hv_weapons_system')
         .runs(12).ticksPerRun(200).eut(EU_EV).cwuPerRun(204800)
-        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemPerRun(Item.of('gtceu:good_integrated_circuit', 1))
+        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemTagPerRun('gtceu:circuits/mv', 1)
         .unlock(Item.of('kubejs:ev_cannon_barrel')).icon(Item.of('kubejs:ev_cannon_barrel')).register()
 
     WFResearch.builder('veh_comp_ev_weapons_system')
@@ -381,7 +381,7 @@ ServerEvents.recipes(event => {
         .name('EV Weapons System').description('Assembler blueprint for the EV-tier Weapons System used in ground-vehicle assembly.')
         .anyOf('veh_comp_hv_vehicle_frame', 'veh_comp_hv_engine', 'veh_comp_hv_track', 'veh_comp_hv_cannon_barrel', 'veh_comp_hv_weapons_system')
         .runs(12).ticksPerRun(200).eut(EU_EV).cwuPerRun(204800)
-        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemPerRun(Item.of('gtceu:good_integrated_circuit', 1))
+        .itemPerRun(Item.of('gtceu:titanium_plate', 4)).itemTagPerRun('gtceu:circuits/mv', 1)
         .unlock(Item.of('kubejs:ev_weapons_system')).icon(Item.of('kubejs:ev_weapons_system')).register()
 
 })

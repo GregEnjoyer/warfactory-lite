@@ -11,77 +11,111 @@
 ServerEvents.recipes(event => {
 
     // ---------- Stage 1: ballistic panel cores (Bending Machine) ----------
-    const panel = (id, plate, plateCount, panelId, dur, eut) =>
-        event.recipes.gtceu.bender(id)
-            .itemInputs(Item.of(plate, plateCount))
-            .itemOutputs(Item.of(panelId, 1))
-            .duration(dur).EUt(eut)
+    event.recipes.gtceu.bender('brimm_panel_lv')
+        .itemInputs(Item.of('gtceu:steel_plate', 3))
+        .itemOutputs(Item.of('kubejs:ballistic_panel_lv', 1))
+        .duration(200).EUt(30)
 
-    panel('brimm_panel_lv', 'gtceu:steel_plate',          3, 'kubejs:ballistic_panel_lv', 200, 30)
-    panel('brimm_panel_mv', 'gtceu:aluminium_plate',      3, 'kubejs:ballistic_panel_mv', 300, 120)
-    panel('brimm_panel_hv', 'gtceu:titanium_plate',       3, 'kubejs:ballistic_panel_hv', 400, 480)
-    panel('brimm_panel_ev', 'gtceu:tungsten_steel_plate', 3, 'kubejs:ballistic_panel_ev', 500, 1920)
+    event.recipes.gtceu.bender('brimm_panel_mv')
+        .itemInputs(Item.of('gtceu:aluminium_plate', 3))
+        .itemOutputs(Item.of('kubejs:ballistic_panel_mv', 1))
+        .duration(300).EUt(120)
+
+    event.recipes.gtceu.bender('brimm_panel_hv')
+        .itemInputs(Item.of('gtceu:titanium_plate', 3))
+        .itemOutputs(Item.of('kubejs:ballistic_panel_hv', 1))
+        .duration(400).EUt(480)
+
+    event.recipes.gtceu.bender('brimm_panel_ev')
+        .itemInputs(Item.of('gtceu:tungsten_steel_plate', 3))
+        .itemOutputs(Item.of('kubejs:ballistic_panel_ev', 1))
+        .duration(500).EUt(1920)
 
     // ---------- Stage 2: final assembly (Assembler) ----------
-    const asm = (id, inputs, out, circuit, dur, eut) => {
-        const r = event.recipes.gtceu.assembler(id)
-            .itemInputs(inputs)
-            .itemOutputs(Item.of(out, 1))
-        if (circuit) r.circuit(circuit)
-        return r.duration(dur).EUt(eut)
-    }
 
     // LV (EUt 30) — entry helmets
-    asm('brimm_mk_ii_h', [
-        Item.of('kubejs:ballistic_panel_lv', 2),
-        Item.of('gtceu:rubber_plate', 2),
-        Item.of('minecraft:leather', 2),
-    ], 'brimm:mk_ii_h', 1, 300, 30)
+    event.recipes.gtceu.assembler('brimm_mk_ii_h')
+        .itemInputs([
+            Item.of('kubejs:ballistic_panel_lv', 2),
+            Item.of('gtceu:rubber_plate', 2),
+            Item.of('minecraft:leather', 2),
+        ])
+        .itemOutputs(Item.of('brimm:mk_ii_h', 1))
+        .circuit(1)
+        .duration(300).EUt(30)
 
-    asm('brimm_tshfour_green_h', [
-        Item.of('kubejs:ballistic_panel_lv', 2),
-        Item.of('gtceu:silicone_rubber_plate', 2),
-        Item.of('minecraft:green_dye', 2),
-    ], 'brimm:tshfour_green_h', 2, 300, 30)
+    event.recipes.gtceu.assembler('brimm_tshfour_green_h')
+        .itemInputs([
+            Item.of('kubejs:ballistic_panel_lv', 2),
+            Item.of('gtceu:silicone_rubber_plate', 2),
+            Item.of('minecraft:green_dye', 2),
+        ])
+        .itemOutputs(Item.of('brimm:tshfour_green_h', 1))
+        .circuit(2)
+        .duration(300).EUt(30)
 
     // MV (EUt 120) — first real combat kit
-    asm('brimm_ratnik_h', [
-        Item.of('kubejs:ballistic_panel_mv', 3),
-        Item.of('gtceu:polyethylene_plate', 2),
-        Item.of('gtceu:good_electronic_circuit', 1),
-    ], 'brimm:ratnik_h', 1, 400, 120)
+    event.recipes.gtceu.assembler('brimm_ratnik_h')
+        .itemInputs([
+            Item.of('kubejs:ballistic_panel_mv', 3),
+            Item.of('gtceu:polyethylene_plate', 2),
+            '#gtceu:circuits/mv',
+        ])
+        .itemOutputs(Item.of('brimm:ratnik_h', 1))
+        .circuit(1)
+        .duration(400).EUt(120)
 
-    asm('brimm_nato_h', [
-        Item.of('kubejs:ballistic_panel_mv', 3),
-        Item.of('gtceu:polyethylene_plate', 2),
-        Item.of('gtceu:good_electronic_circuit', 1),
-        Item.of('minecraft:blue_dye', 1),
-    ], 'brimm:nato_h', 2, 400, 120)
+    event.recipes.gtceu.assembler('brimm_nato_h')
+        .itemInputs([
+            Item.of('kubejs:ballistic_panel_mv', 3),
+            Item.of('gtceu:polyethylene_plate', 2),
+            '#gtceu:circuits/mv',
+            Item.of('minecraft:blue_dye', 1),
+        ])
+        .itemOutputs(Item.of('brimm:nato_h', 1))
+        .circuit(2)
+        .duration(400).EUt(120)
 
-    asm('brimm_ratnik_advance', [
-        Item.of('kubejs:ballistic_panel_mv', 5),
-        Item.of('gtceu:polyethylene_plate', 3),
-        Item.of('gtceu:steel_plate', 2),
-    ], 'brimm:ratnik_advance', 3, 450, 120)
+    event.recipes.gtceu.assembler('brimm_ratnik_advance')
+        .itemInputs([
+            Item.of('kubejs:ballistic_panel_mv', 5),
+            Item.of('gtceu:polyethylene_plate', 3),
+            Item.of('gtceu:steel_plate', 2),
+        ])
+        .itemOutputs(Item.of('brimm:ratnik_advance', 1))
+        .circuit(3)
+        .duration(450).EUt(120)
 
     // HV (EUt 480) — upgrades from the MV pieces
-    asm('brimm_nato_ii', [
-        Item.of('brimm:ratnik_advance', 1),
-        Item.of('kubejs:ballistic_panel_hv', 4),
-        Item.of('gtceu:polytetrafluoroethylene_plate', 3),
-    ], 'brimm:nato_ii', 1, 500, 480)
+    event.recipes.gtceu.assembler('brimm_nato_ii')
+        .itemInputs([
+            Item.of('brimm:ratnik_advance', 1),
+            Item.of('kubejs:ballistic_panel_hv', 4),
+            Item.of('gtceu:polytetrafluoroethylene_plate', 3),
+        ])
+        .itemOutputs(Item.of('brimm:nato_ii', 1))
+        .circuit(1)
+        .duration(500).EUt(480)
 
-    asm('brimm_veteran_h', [
-        Item.of('brimm:nato_h', 1),
-        Item.of('kubejs:ballistic_panel_hv', 3),
-        Item.of('gtceu:advanced_integrated_circuit', 1),
-    ], 'brimm:veteran_h', 2, 500, 480)
+    event.recipes.gtceu.assembler('brimm_veteran_h')
+        .itemInputs([
+            Item.of('brimm:nato_h', 1),
+            Item.of('kubejs:ballistic_panel_hv', 3),
+            '#gtceu:circuits/hv',
+        ])
+        .itemOutputs(Item.of('brimm:veteran_h', 1))
+        .circuit(2)
+        .duration(500).EUt(480)
 
     // EV (EUt 1920) — top of the ladder
-    asm('brimm_veteran', [
-        Item.of('brimm:nato_ii', 1),
-        Item.of('kubejs:ballistic_panel_ev', 4),
-        Item.of('gtceu:carbon_fiber_plate', 2),
-        Item.of('gtceu:advanced_integrated_circuit', 1),
-    ], 'brimm:veteran', 1, 600, 1920)
+    event.recipes.gtceu.assembler('brimm_veteran')
+        .itemInputs([
+            Item.of('brimm:nato_ii', 1),
+            Item.of('kubejs:ballistic_panel_ev', 4),
+            Item.of('gtceu:carbon_fiber_plate', 2),
+            '#gtceu:circuits/hv',
+        ])
+        .itemOutputs(Item.of('brimm:veteran', 1))
+        .circuit(1)
+        .duration(600).EUt(1920)
 })

@@ -39,4 +39,5 @@ ServerEvents.recipes(event => {
     g.assembler('warforge:reinforcedclaimblock')
         .itemInputs('warforge:basicclaimblock', '4x gtceu:titanium_plate', '#gtceu:circuits/ev') // TODO
         .itemOutputs('warforge:reinforcedclaimblock').duration(300).EUt(1920)
+
 })

@@ -1438,7 +1438,7 @@
 			description: [
 				"You may have already seen the singleblock miners, this is the &4BIG one&r!"
 				""
-				"Unlike singleblock miners, this one can mine &cin&r&6fi&r&eni&r&ate&r&bly&r. You can find &8bedrock ore deposits&r in the world &o&7(the bar on the top of your screen)&r&r and put this drill above them, preferably on &6bedrock level&r. Once placed, given power, and optionally fed &edrilling fluid&r to make it faster, it will start outputting ores from that vein. Though there is a &a\"limit\"&r which gets depleted. Every hour, the bedrock ore veins get &erestocked&r, that's what the little counter on the &1bottom right&r of your screen displays."
+				"Unlike singleblock miners, this one can mine &cin&r&6fi&r&eni&r&ate&r&bly&r. You can find &8bedrock ore deposits&r in the world &o&7(there is no fast way to locate these, you have to mine until you find a cluster of them at bedrock level.)&r&r and put this drill above them, preferably on &6bedrock level&r. Once placed, given power, and optionally fed &edrilling fluid&r to make it faster, it will start outputting ores from that vein."
 			]
 			icon: "gtceu:steel_drill_head"
 			id: "62BEDF697CB9F4DC"

@@ -72,22 +72,36 @@ ServerEvents.recipes(event => {
     // MV "Large Casings" node.
     // eut tracks each casing's gating research tier: LV(32) for pistol/rifle brass,
     // MV(128) for the heavy brass, steel and vehicle (XL) casings.
-    [
-        { id: CASING_SMALL,  plates: 1, amount: 5, circuit: 1, eut: 32,  research: 'infantry_munitions_1' },
-        { id: CASING_MEDIUM, plates: 2, amount: 5, circuit: 2, eut: 32,  research: 'infantry_munitions_1' },
-        { id: CASING_LARGE,  plates: 3, amount: 5, circuit: 3, eut: 128, research: 'infantry_munitions_3' },
-        { id: CASING_XL,     plates: 4, amount: 1, circuit: 4, eut: 128, research: 'large_casings' },
-    ].forEach(c => {
-        // NOTE: cutter supports only 1 item input, so no .circuit() here — the recipes
-        // stay distinct by brass_plate count (1/2/3/4). Adding a circuit exceeded the
-        // input cap and was silently dropped by GTCEu (log spam).
-        const r = event.recipes.gtceu.cutter(c.id)
-            .itemInputs(Item.of('gtceu:brass_plate', c.plates))
-            .itemOutputs(Item.of(c.id, c.amount))
-            .duration(40)
-            .EUt(c.eut);
-        if (c.research) r.addCondition(WFResearch.condition(c.research));
-    });
+    // NOTE: cutter supports only 1 item input, so no .circuit() here — the recipes
+    // stay distinct by brass_plate count (1/2/3/4). Adding a circuit exceeded the
+    // input cap and was silently dropped by GTCEu (log spam).
+    event.recipes.gtceu.cutter(CASING_SMALL)
+        .itemInputs(Item.of('gtceu:brass_plate', 1))
+        .itemOutputs(Item.of(CASING_SMALL, 5))
+        .duration(40)
+        .EUt(32)
+        .addCondition(WFResearch.condition('infantry_munitions_1'));
+
+    event.recipes.gtceu.cutter(CASING_MEDIUM)
+        .itemInputs(Item.of('gtceu:brass_plate', 2))
+        .itemOutputs(Item.of(CASING_MEDIUM, 5))
+        .duration(40)
+        .EUt(32)
+        .addCondition(WFResearch.condition('infantry_munitions_1'));
+
+    event.recipes.gtceu.cutter(CASING_LARGE)
+        .itemInputs(Item.of('gtceu:brass_plate', 3))
+        .itemOutputs(Item.of(CASING_LARGE, 5))
+        .duration(40)
+        .EUt(128)
+        .addCondition(WFResearch.condition('infantry_munitions_3'));
+
+    event.recipes.gtceu.cutter(CASING_XL)
+        .itemInputs(Item.of('gtceu:brass_plate', 4))
+        .itemOutputs(Item.of(CASING_XL, 1))
+        .duration(40)
+        .EUt(128)
+        .addCondition(WFResearch.condition('large_casings'));
 
     // Steel bullet casing — the dedicated case for small vehicle shells (AP/HE/
     // GS/AA below). Cut from steel plate; unlocked by the MV "Large Casings"
@@ -102,14 +116,9 @@ ServerEvents.recipes(event => {
     // =======================================================================
     // 2. AMMO COMPONENTS
     // =======================================================================
-    // Solid rocket fuel — cheap assembler route (a chemical-reactor route also
-    // exists in vehicles/parts.js). Consumed by the RPG/rocket rounds below.
-    event.recipes.gtceu.assembler('kubejs:solid_rocket_fuel')
-        .itemInputs('gtceu:sulfur_dust', 'gtceu:saltpeter_dust', 'gtceu:charcoal_dust')
-        .itemOutputs('kubejs:solid_rocket_fuel')
-        .circuit(1)
-        .duration(400)
-        .EUt(30);
+    // Solid Rocket Propellant (kubejs:solid_rocket_fuel) is made via the MV Ammonium
+    // Perchlorate Composite Propellant (APCP) chemical chain in vehicles/parts.js —
+    // it has no assembler route. Consumed by the RPG/rocket rounds + missile engine below.
 
     // Superb Warfare crafting components — primer, high-energy explosives, grain.
     // Their vanilla crafting recipes are stripped by cleanup/remove_crafting.js
@@ -154,12 +163,21 @@ ServerEvents.recipes(event => {
     // Seeker — IR/radar guidance head (sensor + emitter + optics). The guidance core consumed by every guided
     // missile / SAM / smart-mine recipe. Gated on the "Guidance Seekers" ballistics node (WFResearch.js).
     event.recipes.gtceu.assembler('kubejs:sw_seeker')
-        .itemInputs(Item.of('gtceu:lv_sensor', 1), Item.of('gtceu:lv_emitter', 1), Item.of('gtceu:tempered_glass', 1), Item.of('gtceu:basic_electronic_circuit', 1))
+        .itemInputs(Item.of('gtceu:lv_sensor', 1), Item.of('gtceu:lv_emitter', 1), Item.of('gtceu:tempered_glass', 1), '#gtceu:circuits/lv')
         .itemOutputs(Item.of('superbwarfare:seeker', 1))
         .circuit(5)
         .duration(400)
         .EUt(128)
         .addCondition(WFResearch.condition('seekers'));
+
+    // Fusee — precision electrical detonator for WFCore guided missiles. Gated on 'fusee' ballistics node.
+    event.recipes.gtceu.assembler('kubejs:sw_fusee')
+        .itemInputs(Item.of('gtceu:copper_plate', 1), Item.of('gtceu:small_gunpowder_dust', 2), '#gtceu:circuits/lv')
+        .itemOutputs(Item.of('superbwarfare:fusee', 4))
+        .circuit(6)
+        .duration(200)
+        .EUt(128)
+        .addCondition(WFResearch.condition('fusee'));
 
     // ---- Warhead heads (the explosive payload core consumed by every round) ----
     // Each superbwarfare:*_head is the warhead slotted into its munition family
@@ -168,104 +186,365 @@ ServerEvents.recipes(event => {
     // SBW's own crafting recipes for the heads are stripped (removal list above);
     // these GT assembler routes are the only way to make them. Inputs are ungated
     // raws (no bootstrap loop with the warhead research itself).
-    [
-        { out: 'he_head', circuit: 1, research: 'he_warheads',        inputs: [Item.of('superbwarfare:high_energy_explosives', 2), Item.of('gtceu:steel_plate', 1)] },
-        { out: 'ap_head', circuit: 2, research: 'ap_warheads',        inputs: [Item.of('superbwarfare:high_energy_explosives', 1), Item.of('gtceu:steel_plate', 1), Item.of('gtceu:tungsten_plate', 1)] },
-        { out: 'gs_head', circuit: 3, research: 'grapeshot_warheads', inputs: [Item.of('gtceu:steel_plate', 1), Item.of('gtceu:lead_nugget', 6), Item.of('gtceu:small_gunpowder_dust', 2)] },
-        { out: 'cm_head', circuit: 4, research: 'cluster_warheads',   inputs: [Item.of('gtceu:steel_plate', 1), Item.of('gtceu:dynamite', 2), Item.of('gtceu:small_gunpowder_dust', 2)] },
-        { out: 'wp_head', circuit: 5, research: 'pyrotechnics',       inputs: [Item.of('gtceu:steel_plate', 1), Item.of('gtceu:small_white_phosphorus_dust', 2), Item.of('gtceu:small_gunpowder_dust', 1)] },
-    ].forEach(h => {
-        event.recipes.gtceu.assembler(`kubejs:sw_${h.out}`)
-            .itemInputs(h.inputs)
-            .itemOutputs(Item.of(`superbwarfare:${h.out}`, 1))
-            .circuit(h.circuit)
-            .duration(240)
-            .EUt(128)
-            .addCondition(WFResearch.condition(h.research));
-    });
+    event.recipes.gtceu.assembler('kubejs:sw_he_head')
+        .itemInputs(Item.of('superbwarfare:high_energy_explosives', 2), Item.of('gtceu:steel_plate', 1))
+        .itemOutputs(Item.of('superbwarfare:he_head', 1))
+        .circuit(1)
+        .duration(240)
+        .EUt(128)
+        .addCondition(WFResearch.condition('he_warheads'));
+
+    event.recipes.gtceu.assembler('kubejs:sw_ap_head')
+        .itemInputs(Item.of('superbwarfare:high_energy_explosives', 1), Item.of('gtceu:steel_plate', 1), Item.of('gtceu:tungsten_plate', 1))
+        .itemOutputs(Item.of('superbwarfare:ap_head', 1))
+        .circuit(2)
+        .duration(240)
+        .EUt(128)
+        .addCondition(WFResearch.condition('ap_warheads'));
+
+    event.recipes.gtceu.assembler('kubejs:sw_gs_head')
+        .itemInputs(Item.of('gtceu:steel_plate', 1), Item.of('gtceu:lead_nugget', 6), Item.of('gtceu:small_gunpowder_dust', 2))
+        .itemOutputs(Item.of('superbwarfare:gs_head', 1))
+        .circuit(3)
+        .duration(240)
+        .EUt(128)
+        .addCondition(WFResearch.condition('grapeshot_warheads'));
+
+    event.recipes.gtceu.assembler('kubejs:sw_cm_head')
+        .itemInputs(Item.of('gtceu:steel_plate', 1), Item.of('gtceu:dynamite', 2), Item.of('gtceu:small_gunpowder_dust', 2))
+        .itemOutputs(Item.of('superbwarfare:cm_head', 1))
+        .circuit(4)
+        .duration(240)
+        .EUt(128)
+        .addCondition(WFResearch.condition('cluster_warheads'));
+
+    event.recipes.gtceu.assembler('kubejs:sw_wp_head')
+        .itemInputs(Item.of('gtceu:steel_plate', 1), Item.of('gtceu:small_white_phosphorus_dust', 2), Item.of('gtceu:small_gunpowder_dust', 1))
+        .itemOutputs(Item.of('superbwarfare:wp_head', 1))
+        .circuit(5)
+        .duration(240)
+        .EUt(128)
+        .addCondition(WFResearch.condition('pyrotechnics'));
 
     // =======================================================================
     // 3. PRESSED CARTRIDGES  (one casing + core + propellant, on the ammo press)
-    // Helper: every entry in a batch shares `inputs`, so each needs a unique
-    // circuit. `count` is per-press yield for the whole batch.
     // =======================================================================
-    function cartridgeBatch(prefix, inputs, count, duration, eut, entries) {
-        entries.forEach(e => {
-            const r = event.recipes.gtceu.ammo_press(`kubejs:${prefix}_${e.circuit}`)
-                .itemInputs(inputs)
-                .itemOutputs(e.nbt ? Item.of(e.out, count, e.nbt) : Item.of(e.out, count))
-                .circuit(e.circuit)
-                .duration(duration)
-                .EUt(eut);
-            if (e.research) r.addCondition(WFResearch.condition(e.research));
-        });
-    }
 
     // ---- PISTOL / handgun rounds  (small casing, lead nugget, tiny gunpowder) ----
-    cartridgeBatch('ammo_pistol',
-        [Item.of(CASING_SMALL, 1), 'gtceu:lead_nugget', 'gtceu:tiny_gunpowder_dust'], 6, 40, 32, [
-            { out: 'tacz:ammo', nbt: tacz('tacz:762x25'),      circuit: 1 },
-            { out: 'tacz:ammo', nbt: tacz('tacz:45acp'),       circuit: 2 },
-            { out: 'tacz:ammo', nbt: tacz('ww:8mm'),           circuit: 3,  research: 'infantry_munitions_2' },
-            { out: 'tacz:ammo', nbt: tacz('tacz:9mm'),         circuit: 4,  research: 'infantry_munitions_2' },
-            { out: 'tacz:ammo', nbt: tacz('ww:765'),           circuit: 5,  research: 'infantry_munitions_2' },
-            { out: 'tacz:ammo', nbt: tacz('tacz:357mag'),      circuit: 6 },
-            { out: 'tacz:ammo', nbt: tacz('ronmc:10mm'),       circuit: 7 },
-            { out: 'tacz:ammo', nbt: tacz('tacz:22wmr'),       circuit: 8 },  // was "vehicle" casing
-            { out: 'tacz:ammo', nbt: tacz('tacz:500mag'),      circuit: 9 },  // was "vehicle" casing
-            { out: 'tacz:ammo', nbt: tacz('tacz:50ae'),        circuit: 10 }, // was "vehicle" casing
-            { out: 'tacz:ammo', nbt: tacz('ww:763'),           circuit: 11, research: 'infantry_munitions_2' }, // was "vehicle" casing
-            { out: 'tacz:ammo', nbt: tacz('ronmc:68pepperball'), circuit: 12 }, // non-lethal, was "vehicle" casing
-            { out: 'tacz:ammo', nbt: tacz('ronmc:train_9mm'),  circuit: 13 }, // was "vehicle" casing
-            { out: 'superbwarfare:handgun_ammo',               circuit: 14 },
-        ]);
+    event.recipes.gtceu.ammo_press('kubejs:ammo_pistol_1')
+        .itemInputs(Item.of(CASING_SMALL, 1), 'gtceu:lead_nugget', 'gtceu:tiny_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 6, tacz('tacz:762x25')))
+        .circuit(1)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_pistol_2')
+        .itemInputs(Item.of(CASING_SMALL, 1), 'gtceu:lead_nugget', 'gtceu:tiny_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 6, tacz('tacz:45acp')))
+        .circuit(2)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_pistol_3')
+        .itemInputs(Item.of(CASING_SMALL, 1), 'gtceu:lead_nugget', 'gtceu:tiny_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 6, tacz('ww:8mm')))
+        .circuit(3)
+        .duration(40)
+        .EUt(32)
+        .addCondition(WFResearch.condition('infantry_munitions_2'));
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_pistol_4')
+        .itemInputs(Item.of(CASING_SMALL, 1), 'gtceu:lead_nugget', 'gtceu:tiny_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 6, tacz('tacz:9mm')))
+        .circuit(4)
+        .duration(40)
+        .EUt(32)
+        .addCondition(WFResearch.condition('infantry_munitions_2'));
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_pistol_5')
+        .itemInputs(Item.of(CASING_SMALL, 1), 'gtceu:lead_nugget', 'gtceu:tiny_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 6, tacz('ww:765')))
+        .circuit(5)
+        .duration(40)
+        .EUt(32)
+        .addCondition(WFResearch.condition('infantry_munitions_2'));
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_pistol_6')
+        .itemInputs(Item.of(CASING_SMALL, 1), 'gtceu:lead_nugget', 'gtceu:tiny_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 6, tacz('tacz:357mag')))
+        .circuit(6)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_pistol_7')
+        .itemInputs(Item.of(CASING_SMALL, 1), 'gtceu:lead_nugget', 'gtceu:tiny_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 6, tacz('ronmc:10mm')))
+        .circuit(7)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_pistol_8')
+        .itemInputs(Item.of(CASING_SMALL, 1), 'gtceu:lead_nugget', 'gtceu:tiny_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 6, tacz('tacz:22wmr')))
+        .circuit(8)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_pistol_9')
+        .itemInputs(Item.of(CASING_SMALL, 1), 'gtceu:lead_nugget', 'gtceu:tiny_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 6, tacz('tacz:500mag')))
+        .circuit(9)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_pistol_10')
+        .itemInputs(Item.of(CASING_SMALL, 1), 'gtceu:lead_nugget', 'gtceu:tiny_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 6, tacz('tacz:50ae')))
+        .circuit(10)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_pistol_11')
+        .itemInputs(Item.of(CASING_SMALL, 1), 'gtceu:lead_nugget', 'gtceu:tiny_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 6, tacz('ww:763')))
+        .circuit(11)
+        .duration(40)
+        .EUt(32)
+        .addCondition(WFResearch.condition('infantry_munitions_2'));
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_pistol_12')
+        .itemInputs(Item.of(CASING_SMALL, 1), 'gtceu:lead_nugget', 'gtceu:tiny_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 6, tacz('ronmc:68pepperball')))
+        .circuit(12)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_pistol_13')
+        .itemInputs(Item.of(CASING_SMALL, 1), 'gtceu:lead_nugget', 'gtceu:tiny_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 6, tacz('ronmc:train_9mm')))
+        .circuit(13)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_pistol_14')
+        .itemInputs(Item.of(CASING_SMALL, 1), 'gtceu:lead_nugget', 'gtceu:tiny_gunpowder_dust')
+        .itemOutputs(Item.of('superbwarfare:handgun_ammo', 6))
+        .circuit(14)
+        .duration(40)
+        .EUt(32);
 
     // ---- RIFLE / SMG / intermediate rounds  (medium casing, lead nugget, small gunpowder) ----
-    cartridgeBatch('ammo_rifle',
-        [Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust'], 5, 40, 32, [
-            { out: 'tacz:ammo', nbt: tacz('tacz:556x45'),      circuit: 1 },
-            { out: 'tacz:ammo', nbt: tacz('tacz:45_70'),       circuit: 2 },
-            { out: 'tacz:ammo', nbt: tacz('tacz:545x39'),      circuit: 3 },
-            { out: 'tacz:ammo', nbt: tacz('tacz:30_06'),       circuit: 4 },
-            { out: 'tacz:ammo', nbt: tacz('tacz:57x28'),       circuit: 5 },  // PDW
-            { out: 'tacz:ammo', nbt: tacz('tacz:46x30'),       circuit: 6 },  // PDW
-            { out: 'tacz:ammo', nbt: tacz('ww:77a'),           circuit: 7,  research: 'infantry_munitions_2' },
-            { out: 'tacz:ammo', nbt: tacz('tacz:762x54'),      circuit: 8,  research: 'infantry_munitions_2' },
-            { out: 'tacz:ammo', nbt: tacz('tacz:762x39'),      circuit: 9 },
-            { out: 'tacz:ammo', nbt: tacz('tacz:58x42'),       circuit: 10 },
-            { out: 'tacz:ammo', nbt: tacz('ww:303'),           circuit: 11, research: 'infantry_munitions_2' },
-            { out: 'tacz:ammo', nbt: tacz('tacz:308'),         circuit: 12 },
-            { out: 'tacz:ammo', nbt: tacz('tacz:68x51fury'),   circuit: 13 },
-            { out: 'tacz:ammo', nbt: tacz('ww:30c'),           circuit: 14, research: 'infantry_munitions_2' },
-            { out: 'tacz:ammo', nbt: tacz('ronmc:762x51'),     circuit: 15 },
-            { out: 'tacz:ammo', nbt: tacz('ronmc:65x48'),      circuit: 16 },
-            { out: 'tacz:ammo', nbt: tacz('ronmc:300blk'),     circuit: 17 }, // was "vehicle" casing
-            { out: 'tacz:ammo', nbt: tacz('ronmc:train_556x45'), circuit: 18 }, // was "vehicle" casing
-            { out: 'tacz:ammo', nbt: tacz('tacz:792x57'),      circuit: 19, research: 'infantry_munitions_2' }, // was "vehicle" casing
-            { out: 'tacz:ammo', nbt: tacz('ww:65a'),           circuit: 20, research: 'infantry_munitions_2' }, // was "vehicle" casing
-            { out: 'superbwarfare:rifle_ammo',                 circuit: 21, research: 'infantry_munitions_2' },
-        ]);
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_1')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('tacz:556x45')))
+        .circuit(1)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_2')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('tacz:45_70')))
+        .circuit(2)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_3')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('tacz:545x39')))
+        .circuit(3)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_4')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('tacz:30_06')))
+        .circuit(4)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_5')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('tacz:57x28')))
+        .circuit(5)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_6')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('tacz:46x30')))
+        .circuit(6)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_7')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('ww:77a')))
+        .circuit(7)
+        .duration(40)
+        .EUt(32)
+        .addCondition(WFResearch.condition('infantry_munitions_2'));
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_8')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('tacz:762x54')))
+        .circuit(8)
+        .duration(40)
+        .EUt(32)
+        .addCondition(WFResearch.condition('infantry_munitions_2'));
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_9')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('tacz:762x39')))
+        .circuit(9)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_10')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('tacz:58x42')))
+        .circuit(10)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_11')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('ww:303')))
+        .circuit(11)
+        .duration(40)
+        .EUt(32)
+        .addCondition(WFResearch.condition('infantry_munitions_2'));
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_12')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('tacz:308')))
+        .circuit(12)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_13')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('tacz:68x51fury')))
+        .circuit(13)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_14')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('ww:30c')))
+        .circuit(14)
+        .duration(40)
+        .EUt(32)
+        .addCondition(WFResearch.condition('infantry_munitions_2'));
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_15')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('ronmc:762x51')))
+        .circuit(15)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_16')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('ronmc:65x48')))
+        .circuit(16)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_17')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('ronmc:300blk')))
+        .circuit(17)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_18')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('ronmc:train_556x45')))
+        .circuit(18)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_19')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('tacz:792x57')))
+        .circuit(19)
+        .duration(40)
+        .EUt(32)
+        .addCondition(WFResearch.condition('infantry_munitions_2'));
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_20')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('ww:65a')))
+        .circuit(20)
+        .duration(40)
+        .EUt(32)
+        .addCondition(WFResearch.condition('infantry_munitions_2'));
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_rifle_21')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), 'gtceu:lead_nugget', 'gtceu:small_gunpowder_dust')
+        .itemOutputs(Item.of('superbwarfare:rifle_ammo', 5))
+        .circuit(21)
+        .duration(40)
+        .EUt(32)
+        .addCondition(WFResearch.condition('infantry_munitions_2'));
 
     // ---- SHOTGUN / pellet rounds  (medium casing, 3x lead pellets, tiny gunpowder) ----
-    cartridgeBatch('ammo_shotgun',
-        [Item.of(CASING_MEDIUM, 1), Item.of('gtceu:lead_nugget', 3), 'gtceu:tiny_gunpowder_dust'], 5, 40, 32, [
-            { out: 'tacz:ammo', nbt: tacz('tacz:12g'),         circuit: 1,  research: 'infantry_munitions_2' },  // 12ga, was "rifle" batch
-            { out: 'tacz:ammo', nbt: tacz('ronmc:bean_bag'),   circuit: 2 },  // was "vehicle" casing
-            { out: 'tacz:ammo', nbt: tacz('ronmc:slug'),       circuit: 3 },  // was "vehicle" casing
-            { out: 'superbwarfare:shotgun_ammo',               circuit: 4 },
-        ]);
+    event.recipes.gtceu.ammo_press('kubejs:ammo_shotgun_1')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), Item.of('gtceu:lead_nugget', 3), 'gtceu:tiny_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('tacz:12g')))
+        .circuit(1)
+        .duration(40)
+        .EUt(32)
+        .addCondition(WFResearch.condition('infantry_munitions_2'));
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_shotgun_2')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), Item.of('gtceu:lead_nugget', 3), 'gtceu:tiny_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('ronmc:bean_bag')))
+        .circuit(2)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_shotgun_3')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), Item.of('gtceu:lead_nugget', 3), 'gtceu:tiny_gunpowder_dust')
+        .itemOutputs(Item.of('tacz:ammo', 5, tacz('ronmc:slug')))
+        .circuit(3)
+        .duration(40)
+        .EUt(32);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_shotgun_4')
+        .itemInputs(Item.of(CASING_MEDIUM, 1), Item.of('gtceu:lead_nugget', 3), 'gtceu:tiny_gunpowder_dust')
+        .itemOutputs(Item.of('superbwarfare:shotgun_ammo', 5))
+        .circuit(4)
+        .duration(40)
+        .EUt(32);
 
     // ---- HEAVY rifle / HMG / sniper  (heavy rifle casing + steel & copper core
     // + a lot of gunpowder) ----  Uses 4 item inputs (+circuit) — fits the
     // widened ammo-press slot count (see custom_machines.js). Superb Warfare
     // heavy + sniper ammo gate on the MV "Infantry Munitions 3" node; the .338
     // sniper round rides along (it also needs the IM3-gated heavy casing).
-    cartridgeBatch('ammo_heavy',
-        [Item.of(CASING_LARGE, 1), Item.of('gtceu:steel_nugget', 2), Item.of('gtceu:copper_nugget', 2), Item.of('minecraft:gunpowder', 3)], 3, 40, 128, [
-            { out: 'superbwarfare:heavy_ammo',                 circuit: 1, research: 'infantry_munitions_3' },
-            { out: 'tacz:ammo', nbt: tacz('tacz:338'),         circuit: 2 },  // .338 sniper, was "rifle" batch
-            { out: 'superbwarfare:sniper_ammo',                circuit: 3, research: 'infantry_munitions_3' },  // was "vehicle" casing
-        ]);
+    event.recipes.gtceu.ammo_press('kubejs:ammo_heavy_1')
+        .itemInputs(Item.of(CASING_LARGE, 1), Item.of('gtceu:steel_nugget', 2), Item.of('gtceu:copper_nugget', 2), Item.of('minecraft:gunpowder', 3))
+        .itemOutputs(Item.of('superbwarfare:heavy_ammo', 3))
+        .circuit(1)
+        .duration(40)
+        .EUt(128)
+        .addCondition(WFResearch.condition('infantry_munitions_3'));
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_heavy_2')
+        .itemInputs(Item.of(CASING_LARGE, 1), Item.of('gtceu:steel_nugget', 2), Item.of('gtceu:copper_nugget', 2), Item.of('minecraft:gunpowder', 3))
+        .itemOutputs(Item.of('tacz:ammo', 3, tacz('tacz:338')))
+        .circuit(2)
+        .duration(40)
+        .EUt(128);
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_heavy_3')
+        .itemInputs(Item.of(CASING_LARGE, 1), Item.of('gtceu:steel_nugget', 2), Item.of('gtceu:copper_nugget', 2), Item.of('minecraft:gunpowder', 3))
+        .itemOutputs(Item.of('superbwarfare:sniper_ammo', 3))
+        .circuit(3)
+        .duration(40)
+        .EUt(128)
+        .addCondition(WFResearch.condition('infantry_munitions_3'));
 
     // ---- .50 BMG  (its own heavy load: double large casing + steel plate) ----
     event.recipes.gtceu.ammo_press('kubejs:ammo_50bmg')
@@ -281,22 +560,37 @@ ServerEvents.recipes(event => {
     // warhead research. The payload is now the superbwarfare:*_head warhead
     // (unlocked by that warhead node), so warhead tech comes first. AA = HE head +
     // a magnesium proximity/tracer charge.
-    [
-        { out: 'superbwarfare:small_shell_ap', research: 'armor_piercing_1', head: 'ap_head', circuit: 1, extra: [] },
-        { out: 'superbwarfare:small_shell_he', research: 'high_explosive_1', head: 'he_head', circuit: 2, extra: [] },
-        { out: 'superbwarfare:small_shell_gs', research: 'grapeshot_1',      head: 'gs_head', circuit: 3, extra: [] },
-        { out: 'superbwarfare:small_shell_aa', research: 'anti_air_1',       head: 'he_head', circuit: 4, extra: [Item.of('gtceu:magnesium_dust', 2)] },
-    ].forEach(s => {
-        const inputs = [Item.of(CASING_STEEL, 2), Item.of(`superbwarfare:${s.head}`, 1), Item.of('gtceu:small_gunpowder_dust', 2)];
-        s.extra.forEach(e => inputs.push(e));
-        event.recipes.gtceu.ammo_press(`kubejs:ammo_${s.out.split(':')[1]}`)
-            .itemInputs(inputs)
-            .itemOutputs(Item.of(s.out, 2))
-            .circuit(s.circuit)
-            .duration(120)
-            .EUt(128)   // MV — small-shell nodes
-            .addCondition(WFResearch.condition(s.research));
-    });
+    event.recipes.gtceu.ammo_press('kubejs:ammo_small_shell_ap')
+        .itemInputs(Item.of(CASING_STEEL, 2), Item.of('superbwarfare:ap_head', 1), Item.of('gtceu:small_gunpowder_dust', 2))
+        .itemOutputs(Item.of('superbwarfare:small_shell_ap', 2))
+        .circuit(1)
+        .duration(120)
+        .EUt(128)
+        .addCondition(WFResearch.condition('armor_piercing_1'));
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_small_shell_he')
+        .itemInputs(Item.of(CASING_STEEL, 2), Item.of('superbwarfare:he_head', 1), Item.of('gtceu:small_gunpowder_dust', 2))
+        .itemOutputs(Item.of('superbwarfare:small_shell_he', 2))
+        .circuit(2)
+        .duration(120)
+        .EUt(128)
+        .addCondition(WFResearch.condition('high_explosive_1'));
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_small_shell_gs')
+        .itemInputs(Item.of(CASING_STEEL, 2), Item.of('superbwarfare:gs_head', 1), Item.of('gtceu:small_gunpowder_dust', 2))
+        .itemOutputs(Item.of('superbwarfare:small_shell_gs', 2))
+        .circuit(3)
+        .duration(120)
+        .EUt(128)
+        .addCondition(WFResearch.condition('grapeshot_1'));
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_small_shell_aa')
+        .itemInputs(Item.of(CASING_STEEL, 2), Item.of('superbwarfare:he_head', 1), Item.of('gtceu:small_gunpowder_dust', 2), Item.of('gtceu:magnesium_dust', 2))
+        .itemOutputs(Item.of('superbwarfare:small_shell_aa', 2))
+        .circuit(4)
+        .duration(120)
+        .EUt(128)
+        .addCondition(WFResearch.condition('anti_air_1'));
 
     // =======================================================================
     // 4. VEHICLE / ARTILLERY ORDNANCE  (xl casing, on the ammo press)
@@ -307,32 +601,47 @@ ServerEvents.recipes(event => {
     // ---- Large tank/artillery shells (XL casing + warhead head + grain) ----
     // One EV node per shell (large_shell_he/ap/gs/cm/wp), each requiring its warhead
     // research. The head IS the payload (matches SBW's native large-shell recipe).
-    [
-        { out: 'superbwarfare:large_shell_ap', head: 'ap_head', circuit: 1, cas: 2, grain: 3 }, // AP: harder head, double casing
-        { out: 'superbwarfare:large_shell_he', head: 'he_head', circuit: 2, cas: 1, grain: 2 }, // standard HE
-        { out: 'superbwarfare:large_shell_cm', head: 'cm_head', circuit: 3, cas: 2, grain: 2 }, // cluster: double casing
-        { out: 'superbwarfare:large_shell_gs', head: 'gs_head', circuit: 4, cas: 1, grain: 2 }, // grapeshot
-        { out: 'superbwarfare:large_shell_wp', head: 'wp_head', circuit: 5, cas: 2, grain: 3 }, // WP: white phosphorus (Pyrotechnics)
-    ].forEach(s => {
-        event.recipes.gtceu.ammo_press(`kubejs:ammo_${s.out.split(':')[1]}`)
-            .itemInputs(Item.of(CASING_XL, s.cas), Item.of(`superbwarfare:${s.head}`, 1), Item.of('superbwarfare:grain', s.grain))
-            .itemOutputs(Item.of(s.out, 1))
-            .circuit(s.circuit)
-            .duration(120)
-            .EUt(2048)   // EV — large-shell nodes
-            .addCondition(WFResearch.condition(s.out.split(':')[1]));   // per-shell EV node (== output id)
-    });
+    event.recipes.gtceu.ammo_press('kubejs:ammo_large_shell_ap')
+        .itemInputs(Item.of(CASING_XL, 2), Item.of('superbwarfare:ap_head', 1), Item.of('superbwarfare:grain', 3))
+        .itemOutputs(Item.of('superbwarfare:large_shell_ap', 1))
+        .circuit(1)
+        .duration(120)
+        .EUt(2048)
+        .addCondition(WFResearch.condition('large_shell_ap'));
 
-    // ---- 40mm grenade rounds (xl casing + dynamite) — MV; the SBW + MCSP HE grenades gate
-    //      on the 'grenade_40mm' Ballistics node (child of he_warheads). The tacz 40mm round
-    //      is left ungated (feeds tacz grenade launchers) but shares the MV voltage. ----
-    event.recipes.gtceu.ammo_press('kubejs:ammo_40mm')
-        .itemInputs(Item.of(CASING_XL, 1), Item.of('gtceu:dynamite', 1))
-        .itemOutputs(Item.of('tacz:ammo', 2, tacz('tacz:40mm')))
-        .circuit(6)
-        .duration(200)
-        .EUt(128);
+    event.recipes.gtceu.ammo_press('kubejs:ammo_large_shell_he')
+        .itemInputs(Item.of(CASING_XL, 1), Item.of('superbwarfare:he_head', 1), Item.of('superbwarfare:grain', 2))
+        .itemOutputs(Item.of('superbwarfare:large_shell_he', 1))
+        .circuit(2)
+        .duration(120)
+        .EUt(2048)
+        .addCondition(WFResearch.condition('large_shell_he'));
 
+    event.recipes.gtceu.ammo_press('kubejs:ammo_large_shell_cm')
+        .itemInputs(Item.of(CASING_XL, 2), Item.of('superbwarfare:cm_head', 1), Item.of('superbwarfare:grain', 2))
+        .itemOutputs(Item.of('superbwarfare:large_shell_cm', 1))
+        .circuit(3)
+        .duration(120)
+        .EUt(2048)
+        .addCondition(WFResearch.condition('large_shell_cm'));
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_large_shell_gs')
+        .itemInputs(Item.of(CASING_XL, 1), Item.of('superbwarfare:gs_head', 1), Item.of('superbwarfare:grain', 2))
+        .itemOutputs(Item.of('superbwarfare:large_shell_gs', 1))
+        .circuit(4)
+        .duration(120)
+        .EUt(2048)
+        .addCondition(WFResearch.condition('large_shell_gs'));
+
+    event.recipes.gtceu.ammo_press('kubejs:ammo_large_shell_wp')
+        .itemInputs(Item.of(CASING_XL, 2), Item.of('superbwarfare:wp_head', 1), Item.of('superbwarfare:grain', 3))
+        .itemOutputs(Item.of('superbwarfare:large_shell_wp', 1))
+        .circuit(5)
+        .duration(120)
+        .EUt(2048)
+        .addCondition(WFResearch.condition('large_shell_wp'));
+
+    // ---- 40mm grenade rounds (xl casing + dynamite) — MV; gated on 'grenade_40mm' node. ----
     event.recipes.gtceu.ammo_press('kubejs:ammo_grenade_40mm')
         .itemInputs(Item.of(CASING_XL, 1), Item.of('gtceu:dynamite', 1))
         .itemOutputs(Item.of('superbwarfare:grenade_40mm', 2))
@@ -351,26 +660,21 @@ ServerEvents.recipes(event => {
         .addCondition(WFResearch.condition('grenade_40mm'));
 
     // ---- RPG / rocket rounds (xl casing + explosive + solid rocket fuel) — MV (RPG tier) ----
-    event.recipes.gtceu.ammo_press('kubejs:ammo_rpg_rocket')
-        .itemInputs(Item.of(CASING_XL, 2), Item.of('gtceu:dynamite', 1), 'kubejs:solid_rocket_fuel')
-        .itemOutputs(Item.of('tacz:ammo', 1, tacz('tacz:rpg_rocket')))
-        .circuit(8)
-        .duration(400)
-        .EUt(128);
-
     event.recipes.gtceu.ammo_press('kubejs:ammo_rpg_rocket_standard')
         .itemInputs(Item.of(CASING_XL, 2), Item.of('gtceu:dynamite', 1), 'kubejs:solid_rocket_fuel')
         .itemOutputs(Item.of('superbwarfare:rpg_rocket_standard', 1))
-        .circuit(9)
+        .circuit(8)
         .duration(400)
-        .EUt(128);
+        .EUt(128)
+        .addCondition(WFResearch.condition('rpg_rocket_standard'));
 
     event.recipes.gtceu.ammo_press('kubejs:ammo_rpg_rocket_tbg')
         .itemInputs(Item.of(CASING_XL, 2), Item.of('gtceu:magnesium_dust', 2), 'kubejs:solid_rocket_fuel')
         .itemOutputs(Item.of('superbwarfare:rpg_rocket_tbg', 1))
-        .circuit(10)
+        .circuit(9)
         .duration(400)
-        .EUt(128);
+        .EUt(128)
+        .addCondition(WFResearch.condition('rpg_rocket_yasin'));
 
     // =======================================================================
     // 5. MORTAR BOMBS  (muzzle-loaded — no casing)
@@ -395,19 +699,33 @@ ServerEvents.recipes(event => {
     // =======================================================================
     // 6. AMMO BOXES  (assembler packs loose rounds into a crate; steel = the tin)
     // =======================================================================
-    [
-        { out: 'superbwarfare:handgun_ammo_box', in: 'superbwarfare:handgun_ammo', qty: 30, circuit: 1 },
-        { out: 'superbwarfare:rifle_ammo_box',   in: 'superbwarfare:rifle_ammo',   qty: 30, circuit: 2 },
-        { out: 'superbwarfare:sniper_ammo_box',  in: 'superbwarfare:sniper_ammo',  qty: 12, circuit: 3 },
-        { out: 'superbwarfare:shotgun_ammo_box', in: 'superbwarfare:shotgun_ammo', qty: 12, circuit: 4 },
-    ].forEach(b => {
-        event.recipes.gtceu.assembler(`kubejs:${b.out.split(':')[1]}`)
-            .itemInputs(Item.of(b.in, b.qty), Item.of('gtceu:steel_plate', 1))
-            .itemOutputs(Item.of(b.out, 1))
-            .circuit(b.circuit)
-            .duration(120)
-            .EUt(16);
-    });
+    event.recipes.gtceu.assembler('kubejs:handgun_ammo_box')
+        .itemInputs(Item.of('superbwarfare:handgun_ammo', 30), Item.of('gtceu:steel_plate', 1))
+        .itemOutputs(Item.of('superbwarfare:handgun_ammo_box', 1))
+        .circuit(1)
+        .duration(120)
+        .EUt(16);
+
+    event.recipes.gtceu.assembler('kubejs:rifle_ammo_box')
+        .itemInputs(Item.of('superbwarfare:rifle_ammo', 30), Item.of('gtceu:steel_plate', 1))
+        .itemOutputs(Item.of('superbwarfare:rifle_ammo_box', 1))
+        .circuit(2)
+        .duration(120)
+        .EUt(16);
+
+    event.recipes.gtceu.assembler('kubejs:sniper_ammo_box')
+        .itemInputs(Item.of('superbwarfare:sniper_ammo', 12), Item.of('gtceu:steel_plate', 1))
+        .itemOutputs(Item.of('superbwarfare:sniper_ammo_box', 1))
+        .circuit(3)
+        .duration(120)
+        .EUt(16);
+
+    event.recipes.gtceu.assembler('kubejs:shotgun_ammo_box')
+        .itemInputs(Item.of('superbwarfare:shotgun_ammo', 12), Item.of('gtceu:steel_plate', 1))
+        .itemOutputs(Item.of('superbwarfare:shotgun_ammo_box', 1))
+        .circuit(4)
+        .duration(120)
+        .EUt(16);
 
     // =======================================================================
     // 7. THROWN / PLACED ORDNANCE  (assembler — multi-component, no casing)
@@ -417,13 +735,8 @@ ServerEvents.recipes(event => {
     event.recipes.gtceu.assembler('kubejs:sw_hand_grenade')
         .itemInputs(Item.of('gtceu:steel_plate', 2), Item.of('gtceu:dynamite', 1), Item.of('gtceu:small_steel_spring', 1))
         .itemOutputs(Item.of('superbwarfare:hand_grenade', 2))
-        .circuit(1).duration(400).EUt(32);
+        .circuit(1).duration(600).EUt(2);
 
-    // RGO grenade — fragmentation body; screws = segmented outer sleeve
-    event.recipes.gtceu.assembler('kubejs:sw_rgo_grenade')
-        .itemInputs(Item.of('gtceu:steel_plate', 2), Item.of('gtceu:dynamite', 1), Item.of('gtceu:steel_screw', 4))
-        .itemOutputs(Item.of('superbwarfare:rgo_grenade', 2))
-        .circuit(2).duration(400).EUt(32);
 
     // M18 smoke grenade — non-lethal; dye = colored smoke agent
     event.recipes.gtceu.assembler('kubejs:sw_m18_smoke_grenade')
@@ -433,9 +746,27 @@ ServerEvents.recipes(event => {
 
     // Claymore mine — directional; basic circuit for the fuze board
     event.recipes.gtceu.assembler('kubejs:sw_claymore_mine')
-        .itemInputs(Item.of('gtceu:steel_plate', 3), Item.of('gtceu:dynamite', 2), Item.of('gtceu:basic_electronic_circuit', 1))
+        .itemInputs(Item.of('gtceu:polyvinyl_chloride_plate', 5), Item.of('gtceu:dynamite', 2), '#gtceu:circuits/lv')
         .itemOutputs(Item.of('superbwarfare:claymore_mine', 1))
-        .circuit(1).duration(600).EUt(32);
+        .circuit(1).duration(600).EUt(128);
+
+    // entry denial device
+    event.recipes.gtceu.assembler('kubejs:sw_edd')
+        .itemInputs(Item.of('gtceu:aluminium_plate', 8), Item.of('gtceu:dynamite', 4), '2x #gtceu:circuits/mv')
+        .itemOutputs(Item.of('superbwarfare:edd', 1))
+        .circuit(2).duration(300).EUt(128);
+
+    // dragontooth
+    event.recipes.gtceu.assembler('kubejs:sw_dragon_teeth')
+        .itemInputs(Item.of('gtceu:double_stainless_steel_plate', 4), Item.of('gtceu:dynamite', 16), '2x #gtceu:circuits/hv')
+        .itemOutputs(Item.of('superbwarfare:blu_43_mine', 1))
+        .circuit(3).duration(600).EUt(512);
+
+    // c4
+    event.recipes.gtceu.assembler('kubejs:sw_c4_bomb')
+        .itemInputs(Item.of('gtceu:stainless_steel_plate', 8), Item.of('gtceu:dynamite', 6), '#gtceu:circuits/hv')
+        .itemOutputs(Item.of('superbwarfare:c4_bomb', 1))
+        .circuit(4).duration(300).EUt(512);
 
     // TM-62 anti-tank mine — HE fill, heavy pressure plate
     event.recipes.gtceu.assembler('kubejs:sw_tm_62')
@@ -449,11 +780,7 @@ ServerEvents.recipes(event => {
         .itemOutputs(Item.of('superbwarfare:ptkm_1r', 1))
         .circuit(3).duration(800).EUt(128);
 
-    // Lunge mine — suicide contact fuze on a pole (long rod = the pole)
-    event.recipes.gtceu.assembler('kubejs:sw_lunge_mine')
-        .itemInputs(Item.of('gtceu:steel_plate', 2), Item.of('gtceu:dynamite', 3), Item.of('gtceu:long_steel_rod', 1))
-        .itemOutputs(Item.of('superbwarfare:lunge_mine', 1))
-        .circuit(4).duration(400).EUt(32);
+
 
     // =======================================================================
     // 8. ROCKETS & GUIDED MISSILES  (assembler — engine/seeker driven)
@@ -467,21 +794,28 @@ ServerEvents.recipes(event => {
         .addCondition(WFResearch.condition('small_rocket'));
 
     // Medium unguided rockets — same motor, warhead head varies. One MV node per type.
-    [
-        { out: 'superbwarfare:medium_rocket_ap', head: 'ap_head', circuit: 2 },
-        { out: 'superbwarfare:medium_rocket_he', head: 'he_head', circuit: 3 },
-        { out: 'superbwarfare:medium_rocket_cm', head: 'cm_head', circuit: 4 },
-    ].forEach(r => {
-        event.recipes.gtceu.assembler(`kubejs:${r.out.split(':')[1]}`)
-            .itemInputs(Item.of('gtceu:steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of(`superbwarfare:${r.head}`, 1))
-            .itemOutputs(Item.of(r.out, 1))
-            .circuit(r.circuit).duration(600).EUt(128)   // MV — per-rocket node
-            .addCondition(WFResearch.condition(r.out.split(':')[1]));   // per-rocket MV node (== output id)
-    });
+    event.recipes.gtceu.assembler('kubejs:medium_rocket_ap')
+        .itemInputs(Item.of('gtceu:steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of('superbwarfare:ap_head', 1))
+        .itemOutputs(Item.of('superbwarfare:medium_rocket_ap', 1))
+        .circuit(2).duration(600).EUt(128)
+        .addCondition(WFResearch.condition('medium_rocket_ap'));
+
+    event.recipes.gtceu.assembler('kubejs:medium_rocket_he')
+        .itemInputs(Item.of('gtceu:steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of('superbwarfare:he_head', 1))
+        .itemOutputs(Item.of('superbwarfare:medium_rocket_he', 1))
+        .circuit(3).duration(600).EUt(128)
+        .addCondition(WFResearch.condition('medium_rocket_he'));
+
+    event.recipes.gtceu.assembler('kubejs:medium_rocket_cm')
+        .itemInputs(Item.of('gtceu:steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of('superbwarfare:cm_head', 1))
+        .itemOutputs(Item.of('superbwarfare:medium_rocket_cm', 1))
+        .circuit(4).duration(600).EUt(128)
+        .addCondition(WFResearch.condition('medium_rocket_cm'));
 
     // Guided missiles (seeker + warhead head required). Anti-air = HE (frag) head; anti-ground = AP (HEAT) head.
     event.recipes.gtceu.assembler('kubejs:sw_medium_anti_air_missile')
         .itemInputs(Item.of('gtceu:stainless_steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of('superbwarfare:he_head', 1), Item.of('superbwarfare:seeker', 1))
+        .itemInputs('2x #gtceu:circuits/hv')
         .itemOutputs(Item.of('superbwarfare:medium_anti_air_missile', 1))
         .circuit(5).duration(800).EUt(512)   // HV — anti_air_missiles
         .addCondition(WFResearch.condition('anti_air_missiles'));   // LAV-AD air-defence gate
@@ -493,17 +827,18 @@ ServerEvents.recipes(event => {
         .addCondition(WFResearch.condition('anti_ground_missiles'));   // TOW-class gate (armed trucks, Bradley)
 
     event.recipes.gtceu.assembler('kubejs:sw_large_anti_ground_missile')
-        .itemInputs(Item.of('gtceu:titanium_plate', 2), Item.of('superbwarfare:large_motor', 1), Item.of('superbwarfare:ap_head', 2), Item.of('superbwarfare:seeker', 1))
+        .itemInputs(Item.of('gtceu:titanium_plate', 2), Item.of('gtceu:hv_electric_motor', 1), Item.of('superbwarfare:ap_head', 2), Item.of('superbwarfare:seeker', 1))
         .itemOutputs(Item.of('superbwarfare:large_anti_ground_missile', 1))
         .circuit(7).duration(1200).EUt(512)   // HV — heavy_anti_ground_missiles
         .addCondition(WFResearch.condition('heavy_anti_ground_missiles'));   // Ballistics: Heavy Anti-Ground Missiles (Mi-28)
 
-    // Javelin — infantry top-attack AT. No dedicated node, but consuming an AP head means it can't be built
-    // until Armor Piercing Warheads is researched (warhead-before-missile still holds).
+    // Javelin — infantry top-attack ATGM round. Gated on the Ballistics 'javelin_missile' research node.
     event.recipes.gtceu.assembler('kubejs:sw_javelin_missile')
         .itemInputs(Item.of('gtceu:stainless_steel_plate', 2), Item.of('superbwarfare:missile_engine', 1), Item.of('superbwarfare:ap_head', 1), Item.of('superbwarfare:seeker', 1))
+        .itemInputs('2x #gtceu:circuits/ev')
         .itemOutputs(Item.of('superbwarfare:javelin_missile', 1))
-        .circuit(8).duration(800).EUt(512);   // HV-grade top-attack ATGM round
+        .circuit(8).duration(800).EUt(512)
+        .addCondition(WFResearch.condition('javelin_missile'));
 
     // =======================================================================
     // 9. AERIAL BOMBS  (gravity-delivered; steel ring = stabiliser fin ring)
@@ -530,7 +865,7 @@ ServerEvents.recipes(event => {
             Item.of('gtceu:uranium_235_block', 2),
             Item.of('gtceu:double_beryllium_plate', 4),
             Item.of('superbwarfare:he_head', 4),
-            Item.of('gtceu:advanced_integrated_circuit', 2))
+            '2x #gtceu:circuits/hv')
         .itemOutputs(Item.of('ashvehicle:nuclearbombitem', 1))
         .circuit(1).duration(4800).EUt(8192)   // IV — nuclear_bomb
         .addCondition(WFResearch.condition('nuclear_bomb'));   // Ballistics: Nuclear Bomb (IV apex, B-2)
@@ -540,7 +875,7 @@ ServerEvents.recipes(event => {
     // =======================================================================
     // Base drone — 4 motors + 4 propellers + circuit + poly housing
     event.recipes.gtceu.assembler('kubejs:sw_drone')
-        .itemInputs(Item.of('superbwarfare:motor', 4), Item.of('superbwarfare:propeller', 4), Item.of('gtceu:basic_electronic_circuit', 1), Item.of('gtceu:polyethylene_plate', 2))
+        .itemInputs(Item.of('gtceu:mv_electric_motor', 4), Item.of('superbwarfare:propeller', 4), '#gtceu:circuits/lv', Item.of('gtceu:polyethylene_plate', 2))
         .itemOutputs(Item.of('superbwarfare:drone', 1))
         .circuit(1).duration(800).EUt(128)
         .addCondition(WFResearch.condition('drone_tactics'));   // Aviation: Drone Tactics (Monitor + base Drone)
@@ -600,54 +935,94 @@ ServerEvents.recipes(event => {
 // ============================================================================
 ServerEvents.recipes(event => {
 
-    // Helper: builds a 1:1 shapeless conversion recipe for every ordered pair
-    // in a list. Each entry can be either:
-    //   - a plain string item id, e.g. 'mcsp:25mm_ap'
-    //   - an object with an id, an optional nbt string, and a unique `key`
-    //     used to build a safe recipe id, e.g.
-    //     { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:40mm"}', key: 'tacz_ammo_40mm' }
-    function addInterconversions(list, groupName) {
-        const entries = list.map(e => {
-            if (typeof e === 'string') {
-                return { id: e, nbt: null, key: e.replace(/[:.]/g, '_') };
-            }
-            return { id: e.id, nbt: e.nbt || null, key: e.key || e.id.replace(/[:.]/g, '_') };
-        });
+    // Interconversion recipes — 1:1 shapeless conversion between equivalent ammo types.
+    // AP shells (small_shell_ap, mcsp 25mm, mcsp 30mm)
+    event.shapeless(Item.of('mcsp:25mm_ap'), [Item.of('superbwarfare:small_shell_ap')])
+        .id('kubejs:ap_shell_convert_superbwarfare_small_shell_ap_to_mcsp_25mm_ap');
+    event.shapeless(Item.of('mcsp:30mm_ap'), [Item.of('superbwarfare:small_shell_ap')])
+        .id('kubejs:ap_shell_convert_superbwarfare_small_shell_ap_to_mcsp_30mm_ap');
+    event.shapeless(Item.of('superbwarfare:small_shell_ap'), [Item.of('mcsp:25mm_ap')])
+        .id('kubejs:ap_shell_convert_mcsp_25mm_ap_to_superbwarfare_small_shell_ap');
+    event.shapeless(Item.of('mcsp:30mm_ap'), [Item.of('mcsp:25mm_ap')])
+        .id('kubejs:ap_shell_convert_mcsp_25mm_ap_to_mcsp_30mm_ap');
+    event.shapeless(Item.of('superbwarfare:small_shell_ap'), [Item.of('mcsp:30mm_ap')])
+        .id('kubejs:ap_shell_convert_mcsp_30mm_ap_to_superbwarfare_small_shell_ap');
+    event.shapeless(Item.of('mcsp:25mm_ap'), [Item.of('mcsp:30mm_ap')])
+        .id('kubejs:ap_shell_convert_mcsp_30mm_ap_to_mcsp_25mm_ap');
 
-        const makeItem = e => e.nbt ? Item.of(e.id, e.nbt) : Item.of(e.id);
+    // 40mm shell interconversions — only SBW and MCSP grenades matter
+    event.remove({ output: 'ashvehicle:40mmitem' });
+    event.shapeless(Item.of('mcsp:40mm_explosive'), [Item.of('superbwarfare:grenade_40mm')])
+        .id('kubejs:40mm_shell_convert_superbwarfare_grenade_40mm_to_mcsp_40mm_explosive');
+    event.shapeless(Item.of('superbwarfare:grenade_40mm'), [Item.of('mcsp:40mm_explosive')])
+        .id('kubejs:40mm_shell_convert_mcsp_40mm_explosive_to_superbwarfare_grenade_40mm');
 
-        entries.forEach(input => {
-            entries.forEach(output => {
-                if (input.key === output.key) return;
+    // Rifle ammo interconversion with MCSP vehicle MG ammo (Humvee .50-cal uses mcsp:bullet762)
+    event.shapeless(Item.of('mcsp:bullet762'), [Item.of('superbwarfare:rifle_ammo')])
+        .id('kubejs:ammo_convert_rifle_ammo_to_mcsp_bullet762');
+    event.shapeless(Item.of('superbwarfare:rifle_ammo'), [Item.of('mcsp:bullet762')])
+        .id('kubejs:ammo_convert_mcsp_bullet762_to_rifle_ammo');
 
-                event.shapeless(
-                    makeItem(output),
-                                [makeItem(input)]
-                ).id(`kubejs:${groupName}_convert_${input.key}_to_${output.key}`);
-            });
-        });
-    }
-
-    addInterconversions([
-        'superbwarfare:small_shell_ap',
-        'mcsp:25mm_ap',
-        'mcsp:30mm_ap',
-    ], 'ap_shell');
-
-    addInterconversions([
-        'superbwarfare:grenade_40mm',
-        'ashvehicle:40mmitem',
-        { id: 'tacz:ammo', nbt: '{AmmoId:"tacz:40mm"}', key: 'tacz_ammo_40mm' },
-        'mcsp:40mm_explosive',
-    ], '40mm_shell');
-
-    addInterconversions([
-        'ashvehicle:aim9item',
-        'ashvehicle:aim120item',
-        'ashvehicle:aim54item',
-        'ashvehicle:r60item',
-        'ashvehicle:agm114item',
-        'ashvehicle:agm158item',
-    ], 'missile');
+    // Missile interconversions (AshVehicle air-to-air and air-to-ground missiles)
+    event.shapeless(Item.of('ashvehicle:aim120item'), [Item.of('ashvehicle:aim9item')])
+        .id('kubejs:missile_convert_ashvehicle_aim9item_to_ashvehicle_aim120item');
+    event.shapeless(Item.of('ashvehicle:aim54item'), [Item.of('ashvehicle:aim9item')])
+        .id('kubejs:missile_convert_ashvehicle_aim9item_to_ashvehicle_aim54item');
+    event.shapeless(Item.of('ashvehicle:r60item'), [Item.of('ashvehicle:aim9item')])
+        .id('kubejs:missile_convert_ashvehicle_aim9item_to_ashvehicle_r60item');
+    event.shapeless(Item.of('ashvehicle:agm114item'), [Item.of('ashvehicle:aim9item')])
+        .id('kubejs:missile_convert_ashvehicle_aim9item_to_ashvehicle_agm114item');
+    event.shapeless(Item.of('ashvehicle:agm158item'), [Item.of('ashvehicle:aim9item')])
+        .id('kubejs:missile_convert_ashvehicle_aim9item_to_ashvehicle_agm158item');
+    event.shapeless(Item.of('ashvehicle:aim9item'), [Item.of('ashvehicle:aim120item')])
+        .id('kubejs:missile_convert_ashvehicle_aim120item_to_ashvehicle_aim9item');
+    event.shapeless(Item.of('ashvehicle:aim54item'), [Item.of('ashvehicle:aim120item')])
+        .id('kubejs:missile_convert_ashvehicle_aim120item_to_ashvehicle_aim54item');
+    event.shapeless(Item.of('ashvehicle:r60item'), [Item.of('ashvehicle:aim120item')])
+        .id('kubejs:missile_convert_ashvehicle_aim120item_to_ashvehicle_r60item');
+    event.shapeless(Item.of('ashvehicle:agm114item'), [Item.of('ashvehicle:aim120item')])
+        .id('kubejs:missile_convert_ashvehicle_aim120item_to_ashvehicle_agm114item');
+    event.shapeless(Item.of('ashvehicle:agm158item'), [Item.of('ashvehicle:aim120item')])
+        .id('kubejs:missile_convert_ashvehicle_aim120item_to_ashvehicle_agm158item');
+    event.shapeless(Item.of('ashvehicle:aim9item'), [Item.of('ashvehicle:aim54item')])
+        .id('kubejs:missile_convert_ashvehicle_aim54item_to_ashvehicle_aim9item');
+    event.shapeless(Item.of('ashvehicle:aim120item'), [Item.of('ashvehicle:aim54item')])
+        .id('kubejs:missile_convert_ashvehicle_aim54item_to_ashvehicle_aim120item');
+    event.shapeless(Item.of('ashvehicle:r60item'), [Item.of('ashvehicle:aim54item')])
+        .id('kubejs:missile_convert_ashvehicle_aim54item_to_ashvehicle_r60item');
+    event.shapeless(Item.of('ashvehicle:agm114item'), [Item.of('ashvehicle:aim54item')])
+        .id('kubejs:missile_convert_ashvehicle_aim54item_to_ashvehicle_agm114item');
+    event.shapeless(Item.of('ashvehicle:agm158item'), [Item.of('ashvehicle:aim54item')])
+        .id('kubejs:missile_convert_ashvehicle_aim54item_to_ashvehicle_agm158item');
+    event.shapeless(Item.of('ashvehicle:aim9item'), [Item.of('ashvehicle:r60item')])
+        .id('kubejs:missile_convert_ashvehicle_r60item_to_ashvehicle_aim9item');
+    event.shapeless(Item.of('ashvehicle:aim120item'), [Item.of('ashvehicle:r60item')])
+        .id('kubejs:missile_convert_ashvehicle_r60item_to_ashvehicle_aim120item');
+    event.shapeless(Item.of('ashvehicle:aim54item'), [Item.of('ashvehicle:r60item')])
+        .id('kubejs:missile_convert_ashvehicle_r60item_to_ashvehicle_aim54item');
+    event.shapeless(Item.of('ashvehicle:agm114item'), [Item.of('ashvehicle:r60item')])
+        .id('kubejs:missile_convert_ashvehicle_r60item_to_ashvehicle_agm114item');
+    event.shapeless(Item.of('ashvehicle:agm158item'), [Item.of('ashvehicle:r60item')])
+        .id('kubejs:missile_convert_ashvehicle_r60item_to_ashvehicle_agm158item');
+    event.shapeless(Item.of('ashvehicle:aim9item'), [Item.of('ashvehicle:agm114item')])
+        .id('kubejs:missile_convert_ashvehicle_agm114item_to_ashvehicle_aim9item');
+    event.shapeless(Item.of('ashvehicle:aim120item'), [Item.of('ashvehicle:agm114item')])
+        .id('kubejs:missile_convert_ashvehicle_agm114item_to_ashvehicle_aim120item');
+    event.shapeless(Item.of('ashvehicle:aim54item'), [Item.of('ashvehicle:agm114item')])
+        .id('kubejs:missile_convert_ashvehicle_agm114item_to_ashvehicle_aim54item');
+    event.shapeless(Item.of('ashvehicle:r60item'), [Item.of('ashvehicle:agm114item')])
+        .id('kubejs:missile_convert_ashvehicle_agm114item_to_ashvehicle_r60item');
+    event.shapeless(Item.of('ashvehicle:agm158item'), [Item.of('ashvehicle:agm114item')])
+        .id('kubejs:missile_convert_ashvehicle_agm114item_to_ashvehicle_agm158item');
+    event.shapeless(Item.of('ashvehicle:aim9item'), [Item.of('ashvehicle:agm158item')])
+        .id('kubejs:missile_convert_ashvehicle_agm158item_to_ashvehicle_aim9item');
+    event.shapeless(Item.of('ashvehicle:aim120item'), [Item.of('ashvehicle:agm158item')])
+        .id('kubejs:missile_convert_ashvehicle_agm158item_to_ashvehicle_aim120item');
+    event.shapeless(Item.of('ashvehicle:aim54item'), [Item.of('ashvehicle:agm158item')])
+        .id('kubejs:missile_convert_ashvehicle_agm158item_to_ashvehicle_aim54item');
+    event.shapeless(Item.of('ashvehicle:r60item'), [Item.of('ashvehicle:agm158item')])
+        .id('kubejs:missile_convert_ashvehicle_agm158item_to_ashvehicle_r60item');
+    event.shapeless(Item.of('ashvehicle:agm114item'), [Item.of('ashvehicle:agm158item')])
+        .id('kubejs:missile_convert_ashvehicle_agm158item_to_ashvehicle_agm114item');
 
 });

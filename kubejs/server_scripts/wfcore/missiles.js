@@ -48,77 +48,422 @@ const MV_RAM = 'kubejs:mv_ram'
 const HV_RAM = 'kubejs:hv_ram'
 const EV_RAM = 'kubejs:ev_ram'
 
-// [ name (w/o missile_), research node, EUt, duration(ticks), [fuelId, mB],
-//   [[itemId, count, nbt?], …], optional extraFluids [[fluidId, mB], …] ]
-//   Each input item is [itemId, count]; append a third element — an SNBT string
-//   like '{AmmoId:"tacz:50bmg"}' — to require an NBT-tagged item (strict match).
-const MISSILES = [
+ServerEvents.recipes(event => {
+
     // ── Demolition ───────────────────────────────────────────────────────────────────────────────
-    ['he',          'missile_systems',     HV, 12000, ['gtceu:diesel', 3000],       [[P+'aluminium_plate',96],[P+'blue_steel_frame',8],[C_HV,8],[ENG,4],[FUSE,1],[TNT,85]]],
-    ['dummy',       'missile_systems',     HV, 10000, ['gtceu:diesel', 2000],       [[P+'aluminium_plate',96],[P+'blue_steel_frame',5],[ENG,2]]],
-    ['thermobaric', 'demolition_ordnance', EV, 14000, ['gtceu:rocket_fuel', 12000], [[P+'titanium_plate',96],[P+'hssg_frame',4],[ENG,12],[FUSE,1],[C_EV,8],[RDX,48]]],
-    ['mininuke',    'tactical_nuclear',    IV, 22000, ['gtceu:rocket_fuel', 20000], [[P+'hsss_plate',128],[P+'titanium_plate',8],[ENG,32],[RDX,16],[P+'double_beryllium_plate', 32],['gtceu:uranium_235_block', 8] ,[C_IV,16]]],
+    // missile_he
+    event.recipes.wfcore.missile_factory('wfcore:missile_he')
+        .inputFluids(Fluid.of('gtceu:diesel', 3000))
+        .itemOutputs(Item.of('wfcore:missile_he'))
+        .EUt(HV)
+        .duration(12000)
+        .itemInputs(Item.of(P+'aluminium_plate', 96))
+        .itemInputs(Item.of(P+'blue_steel_frame', 8))
+        .itemInputs(Item.of(C_HV, 8))
+        .itemInputs(Item.of(ENG, 4))
+        .itemInputs(Item.of(FUSE, 1))
+        .itemInputs(Item.of(TNT, 85))
+        .addCondition(WFResearch.condition('missile_systems'))
+
+    // missile_dummy
+    event.recipes.wfcore.missile_factory('wfcore:missile_dummy')
+        .inputFluids(Fluid.of('gtceu:diesel', 2000))
+        .itemOutputs(Item.of('wfcore:missile_dummy'))
+        .EUt(HV)
+        .duration(10000)
+        .itemInputs(Item.of(P+'aluminium_plate', 96))
+        .itemInputs(Item.of(P+'blue_steel_frame', 5))
+        .itemInputs(Item.of(ENG, 2))
+        .addCondition(WFResearch.condition('missile_systems'))
+
+    // missile_thermobaric
+    event.recipes.wfcore.missile_factory('wfcore:missile_thermobaric')
+        .inputFluids(Fluid.of('gtceu:rocket_fuel', 12000))
+        .itemOutputs(Item.of('wfcore:missile_thermobaric'))
+        .EUt(EV)
+        .duration(14000)
+        .itemInputs(Item.of(P+'titanium_plate', 96))
+        .itemInputs(Item.of(P+'hssg_frame', 4))
+        .itemInputs(Item.of(ENG, 12))
+        .itemInputs(Item.of(FUSE, 1))
+        .itemInputs(Item.of(C_EV, 8))
+        .itemInputs(Item.of(RDX, 48))
+        .addCondition(WFResearch.condition('demolition_ordnance'))
+
+    // missile_mininuke
+    event.recipes.wfcore.missile_factory('wfcore:missile_mininuke')
+        .inputFluids(Fluid.of('gtceu:rocket_fuel', 20000))
+        .itemOutputs(Item.of('wfcore:missile_mininuke'))
+        .EUt(IV)
+        .duration(22000)
+        .itemInputs(Item.of(P+'hsss_plate', 128))
+        .itemInputs(Item.of(P+'titanium_plate', 8))
+        .itemInputs(Item.of(ENG, 32))
+        .itemInputs(Item.of(RDX, 16))
+        .itemInputs(Item.of(P+'double_beryllium_plate', 32))
+        .itemInputs(Item.of('gtceu:uranium_235_block', 8))
+        .itemInputs(Item.of(C_IV, 16))
+        .addCondition(WFResearch.condition('tactical_nuclear'))
 
     // ── Penetrators (engine-heavy; light airframe; rocket → jet fuel) ────────────────────────────
     // Floor: fewer plates than demolition, compensated by engine count and explosive load.
-    ['penetrator',            'penetrator_missiles',   EV, 12000, ['gtceu:rocket_fuel', 3500],  [[P+'titanium_plate',64],[P+'ultimet_frame',8],[ENG,16],[FUSE,1],[C_HV,10],[TNT,64]]],
-    ['penetrator_supersonic', 'penetrator_supersonic', EV, 14000, ['gtceu:rocket_fuel', 10000], [[P+'incoloy_ma_956_plate',96],[P+'hssg_frame',8],[ENG,32],[FUSE,1],[C_EV,12],[TNT,96]]],
-    ['penetrator_hypersonic', 'penetrator_hypersonic', IV, 22000, ['gtceu:jet_fuel', 12000],    [[P+'hsss_plate',128],['gtceu:incoloy_ma_956_frame',8],[ENG,80],[FUSE,1],[C_IV,28],[TNT,128]]],
+
+    // missile_penetrator
+    event.recipes.wfcore.missile_factory('wfcore:missile_penetrator')
+        .inputFluids(Fluid.of('gtceu:rocket_fuel', 3500))
+        .itemOutputs(Item.of('wfcore:missile_penetrator'))
+        .EUt(EV)
+        .duration(12000)
+        .itemInputs(Item.of(P+'titanium_plate', 64))
+        .itemInputs(Item.of(P+'ultimet_frame', 8))
+        .itemInputs(Item.of(ENG, 16))
+        .itemInputs(Item.of(FUSE, 1))
+        .itemInputs(Item.of(C_HV, 10))
+        .itemInputs(Item.of(TNT, 64))
+        .addCondition(WFResearch.condition('penetrator_missiles'))
+
+    // missile_penetrator_supersonic
+    event.recipes.wfcore.missile_factory('wfcore:missile_penetrator_supersonic')
+        .inputFluids(Fluid.of('gtceu:rocket_fuel', 10000))
+        .itemOutputs(Item.of('wfcore:missile_penetrator_supersonic'))
+        .EUt(EV)
+        .duration(14000)
+        .itemInputs(Item.of(P+'incoloy_ma_956_plate', 96))
+        .itemInputs(Item.of(P+'hssg_frame', 8))
+        .itemInputs(Item.of(ENG, 32))
+        .itemInputs(Item.of(FUSE, 1))
+        .itemInputs(Item.of(C_EV, 12))
+        .itemInputs(Item.of(TNT, 96))
+        .addCondition(WFResearch.condition('penetrator_supersonic'))
+
+    // missile_penetrator_hypersonic
+    event.recipes.wfcore.missile_factory('wfcore:missile_penetrator_hypersonic')
+        .inputFluids(Fluid.of('gtceu:jet_fuel', 12000))
+        .itemOutputs(Item.of('wfcore:missile_penetrator_hypersonic'))
+        .EUt(IV)
+        .duration(22000)
+        .itemInputs(Item.of(P+'hsss_plate', 128))
+        .itemInputs(Item.of('gtceu:incoloy_ma_956_frame', 8))
+        .itemInputs(Item.of(ENG, 80))
+        .itemInputs(Item.of(FUSE, 1))
+        .itemInputs(Item.of(C_IV, 28))
+        .itemInputs(Item.of(TNT, 128))
+        .addCondition(WFResearch.condition('penetrator_hypersonic'))
 
     // ── ICBMs (RAM + SRF heavy; stainless_steel → ultimet) ───────────────────────────────────────
-    ['long_range',  'missile_systems',     HV, 14000, ['gtceu:rocket_fuel', 6000],[[P+'double_stainless_steel_plate',48],[P+'stainless_steel_frame',12],[C_HV,10],[ENG,8],[FUSE,1],[TNT,72]]],
-    ['icbm',        'icbm',       EV, 16000, ['gtceu:rocket_fuel', 10000],  [[P+'double_titanium_plate',48],[ENG,16],[SRF,24],[C_EV,10],[HV_RAM,2],[FUSE,1],[RDX,64]]],
-    ['icbm_heavy',  'icbm_heavy', IV, 24000, ['gtceu:rocket_fuel', 18000],  [[P+'double_tungsten_steel_plate',64],[P+'stainless_steel_plate',32],[ENG,24],[SRF,48],[C_IV, 10], [RDX, 100],[EV_RAM,3]]],
+
+    // missile_long_range
+    event.recipes.wfcore.missile_factory('wfcore:missile_long_range')
+        .inputFluids(Fluid.of('gtceu:rocket_fuel', 6000))
+        .itemOutputs(Item.of('wfcore:missile_long_range'))
+        .EUt(HV)
+        .duration(14000)
+        .itemInputs(Item.of(P+'double_stainless_steel_plate', 48))
+        .itemInputs(Item.of(P+'stainless_steel_frame', 12))
+        .itemInputs(Item.of(C_HV, 10))
+        .itemInputs(Item.of(ENG, 8))
+        .itemInputs(Item.of(FUSE, 1))
+        .itemInputs(Item.of(TNT, 72))
+        .addCondition(WFResearch.condition('missile_systems'))
+
+    // missile_icbm
+    event.recipes.wfcore.missile_factory('wfcore:missile_icbm')
+        .inputFluids(Fluid.of('gtceu:rocket_fuel', 10000))
+        .itemOutputs(Item.of('wfcore:missile_icbm'))
+        .EUt(EV)
+        .duration(16000)
+        .itemInputs(Item.of(P+'double_titanium_plate', 48))
+        .itemInputs(Item.of(ENG, 16))
+        .itemInputs(Item.of(SRF, 24))
+        .itemInputs(Item.of(C_EV, 10))
+        .itemInputs(Item.of(HV_RAM, 2))
+        .itemInputs(Item.of(FUSE, 1))
+        .itemInputs(Item.of(RDX, 64))
+        .addCondition(WFResearch.condition('icbm'))
+
+    // missile_icbm_heavy
+    event.recipes.wfcore.missile_factory('wfcore:missile_icbm_heavy')
+        .inputFluids(Fluid.of('gtceu:rocket_fuel', 18000))
+        .itemOutputs(Item.of('wfcore:missile_icbm_heavy'))
+        .EUt(IV)
+        .duration(24000)
+        .itemInputs(Item.of(P+'double_tungsten_steel_plate', 64))
+        .itemInputs(Item.of(P+'stainless_steel_plate', 32))
+        .itemInputs(Item.of(ENG, 24))
+        .itemInputs(Item.of(SRF, 48))
+        .itemInputs(Item.of(C_IV, 10))
+        .itemInputs(Item.of(RDX, 100))
+        .itemInputs(Item.of(EV_RAM, 3))
+        .addCondition(WFResearch.condition('icbm_heavy'))
 
     // ── Bunker busters (shaped charge; explosive-heavy) ──────────────────────────────────────────
-    ['bunker_buster',       'shaped_charges',      HV, 12000, ['gtceu:diesel', 4000],  [[P+'stainless_steel_plate',48],[P+'blue_steel_plate', 24],[POW,48],[TNT,48],[C_HV,4],[FUSE,1]]],
-    ['bunker_buster_heavy', 'bunker_buster_heavy', EV, 14000, ['gtceu:diesel', 10000], [[P+'titanium_plate',54],[P+'ultimet_plate',32],[POW,56],[RDX,32],[C_HV,6],[FUSE,1]]],
-    ['bunker_tunneller',    'bunker_tunneller',    IV, 18000, ['gtceu:diesel', 14000],  [[P+'tungsten_steel_plate',64],[P+'hsss_plate',32],[POW,64],[RDX,64],[C_IV,6],[FUSE,1]]],
+
+    // missile_bunker_buster
+    event.recipes.wfcore.missile_factory('wfcore:missile_bunker_buster')
+        .inputFluids(Fluid.of('gtceu:diesel', 4000))
+        .itemOutputs(Item.of('wfcore:missile_bunker_buster'))
+        .EUt(HV)
+        .duration(12000)
+        .itemInputs(Item.of(P+'stainless_steel_plate', 48))
+        .itemInputs(Item.of(P+'blue_steel_plate', 24))
+        .itemInputs(Item.of(POW, 48))
+        .itemInputs(Item.of(TNT, 48))
+        .itemInputs(Item.of(C_HV, 4))
+        .itemInputs(Item.of(FUSE, 1))
+        .addCondition(WFResearch.condition('shaped_charges'))
+
+    // missile_bunker_buster_heavy
+    event.recipes.wfcore.missile_factory('wfcore:missile_bunker_buster_heavy')
+        .inputFluids(Fluid.of('gtceu:diesel', 10000))
+        .itemOutputs(Item.of('wfcore:missile_bunker_buster_heavy'))
+        .EUt(EV)
+        .duration(14000)
+        .itemInputs(Item.of(P+'titanium_plate', 54))
+        .itemInputs(Item.of(P+'ultimet_plate', 32))
+        .itemInputs(Item.of(POW, 56))
+        .itemInputs(Item.of(RDX, 32))
+        .itemInputs(Item.of(C_HV, 6))
+        .itemInputs(Item.of(FUSE, 1))
+        .addCondition(WFResearch.condition('bunker_buster_heavy'))
+
+    // missile_bunker_tunneller
+    event.recipes.wfcore.missile_factory('wfcore:missile_bunker_tunneller')
+        .inputFluids(Fluid.of('gtceu:diesel', 14000))
+        .itemOutputs(Item.of('wfcore:missile_bunker_tunneller'))
+        .EUt(IV)
+        .duration(18000)
+        .itemInputs(Item.of(P+'tungsten_steel_plate', 64))
+        .itemInputs(Item.of(P+'hsss_plate', 32))
+        .itemInputs(Item.of(POW, 64))
+        .itemInputs(Item.of(RDX, 64))
+        .itemInputs(Item.of(C_IV, 6))
+        .itemInputs(Item.of(FUSE, 1))
+        .addCondition(WFResearch.condition('bunker_tunneller'))
 
     // ── Cluster (frame + iron_round metal sink; lower-tier explosives) ───────────────────────────
-    ['cluster',      'cluster_munitions', HV, 10000, ['gtceu:diesel', 3000],  [[P+'vanadium_steel_frame',12],[LEAD_ROUND,64],[P+'stainless_steel_plate',75],[POW,48],[TNT,32],[FUSE,1]]],
-    ['cluster_fire', 'cluster_munitions', HV, 10000, ['gtceu:diesel', 3000],  [[P+'vanadium_steel_frame',12],[P+'stainless_steel_plate',75],[WP,32],[POW,48],[TNT,32],[FUSE,1]]],
-    ['cluster_gas',  'cluster_munitions', HV, 10000, ['gtceu:diesel', 3000],       [[P+'vanadium_steel_frame',12],[P+'stainless_steel_plate',75],[POW,32],[TNT,32],[FUSE,1]], [['gtceu:mustard_gas', 8000]]],
-    ['frag_storm',   'frag_storm',        EV, 14000, ['gtceu:rocket_fuel', 8000],  [[P+'ultimet_frame',16],[LEAD_ROUND,256],[P+'titanium_plate',64],[POW,64],[TNT,24],[FUSE,1]]],
-    ['skyfall',      'skyfall',           IV, 16000, ['gtceu:rocket_fuel', 12000], [[P+'stainless_steel_frame',20],['gtceu:hsss_round',96],[P+'titanium_plate',48],[C_IV,10],[POW,64],[FUSE,1]]],
+
+    // missile_cluster
+    event.recipes.wfcore.missile_factory('wfcore:missile_cluster')
+        .inputFluids(Fluid.of('gtceu:diesel', 3000))
+        .itemOutputs(Item.of('wfcore:missile_cluster'))
+        .EUt(HV)
+        .duration(10000)
+        .itemInputs(Item.of(P+'vanadium_steel_frame', 12))
+        .itemInputs(Item.of(LEAD_ROUND, 64))
+        .itemInputs(Item.of(P+'stainless_steel_plate', 75))
+        .itemInputs(Item.of(POW, 48))
+        .itemInputs(Item.of(TNT, 32))
+        .itemInputs(Item.of(FUSE, 1))
+        .addCondition(WFResearch.condition('cluster_munitions'))
+
+    // missile_cluster_fire
+    event.recipes.wfcore.missile_factory('wfcore:missile_cluster_fire')
+        .inputFluids(Fluid.of('gtceu:diesel', 3000))
+        .itemOutputs(Item.of('wfcore:missile_cluster_fire'))
+        .EUt(HV)
+        .duration(10000)
+        .itemInputs(Item.of(P+'vanadium_steel_frame', 12))
+        .itemInputs(Item.of(P+'stainless_steel_plate', 75))
+        .itemInputs(Item.of(WP, 32))
+        .itemInputs(Item.of(POW, 48))
+        .itemInputs(Item.of(TNT, 32))
+        .itemInputs(Item.of(FUSE, 1))
+        .addCondition(WFResearch.condition('cluster_munitions'))
+
+    // missile_cluster_gas
+    event.recipes.wfcore.missile_factory('wfcore:missile_cluster_gas')
+        .inputFluids(Fluid.of('gtceu:diesel', 3000))
+        .inputFluids(Fluid.of('gtceu:mustard_gas', 8000))
+        .itemOutputs(Item.of('wfcore:missile_cluster_gas'))
+        .EUt(HV)
+        .duration(10000)
+        .itemInputs(Item.of(P+'vanadium_steel_frame', 12))
+        .itemInputs(Item.of(P+'stainless_steel_plate', 75))
+        .itemInputs(Item.of(POW, 32))
+        .itemInputs(Item.of(TNT, 32))
+        .itemInputs(Item.of(FUSE, 1))
+        .addCondition(WFResearch.condition('cluster_munitions'))
+
+    // missile_frag_storm
+    event.recipes.wfcore.missile_factory('wfcore:missile_frag_storm')
+        .inputFluids(Fluid.of('gtceu:rocket_fuel', 8000))
+        .itemOutputs(Item.of('wfcore:missile_frag_storm'))
+        .EUt(EV)
+        .duration(14000)
+        .itemInputs(Item.of(P+'ultimet_frame', 16))
+        .itemInputs(Item.of(LEAD_ROUND, 256))
+        .itemInputs(Item.of(P+'titanium_plate', 64))
+        .itemInputs(Item.of(POW, 64))
+        .itemInputs(Item.of(TNT, 24))
+        .itemInputs(Item.of(FUSE, 1))
+        .addCondition(WFResearch.condition('frag_storm'))
+
+    // missile_skyfall
+    event.recipes.wfcore.missile_factory('wfcore:missile_skyfall')
+        .inputFluids(Fluid.of('gtceu:rocket_fuel', 12000))
+        .itemOutputs(Item.of('wfcore:missile_skyfall'))
+        .EUt(IV)
+        .duration(16000)
+        .itemInputs(Item.of(P+'stainless_steel_frame', 20))
+        .itemInputs(Item.of('gtceu:hsss_round', 96))
+        .itemInputs(Item.of(P+'titanium_plate', 48))
+        .itemInputs(Item.of(C_IV, 10))
+        .itemInputs(Item.of(POW, 64))
+        .itemInputs(Item.of(FUSE, 1))
+        .addCondition(WFResearch.condition('skyfall'))
 
     // ── EMP (lapotron cost replaces explosive load; plates scale to floor) ───────────────────────
-    ['emp',         'emp_warheads', HV, 10000, ['gtceu:diesel',      4000],  [[P+'blue_steel_plate',40],[P+'aluminium_plate',24],[LAPO_DUST,8],[C_HV,6]]],
-    ['emp_heavy',   'emp_heavy',    EV, 9000, ['gtceu:rocket_fuel', 8000],  [[P+'blue_steel_plate',48],[P+'titanium_plate',32],[LAPO,2, '{"Charge":25000000L}'],[C_EV,8]]],
-    ['emp_cluster', 'emp_cluster',  EV, 9000, ['gtceu:rocket_fuel', 8000],  [[P+'blue_steel_plate',64],[LEAD_ROUND,48],[LAPO,1,'{"Charge":25000000L}'],[POW,32],[C_EV,6]]],
-    ['emp_lance',   'emp_lance',    EV, 11000, ['gtceu:rocket_fuel', 10000], [[P+'tungsten_plate',80],[P+'titanium_plate',24],[LAPO,2,'{"Charge":25000000L}'],[C_IV,8]]],
+
+    // missile_emp
+    event.recipes.wfcore.missile_factory('wfcore:missile_emp')
+        .inputFluids(Fluid.of('gtceu:diesel', 4000))
+        .itemOutputs(Item.of('wfcore:missile_emp'))
+        .EUt(HV)
+        .duration(10000)
+        .itemInputs(Item.of(P+'blue_steel_plate', 40))
+        .itemInputs(Item.of(P+'aluminium_plate', 24))
+        .itemInputs(Item.of(LAPO_DUST, 8))
+        .itemInputs(Item.of(C_HV, 6))
+        .addCondition(WFResearch.condition('emp_warheads'))
+
+    // missile_emp_heavy
+    event.recipes.wfcore.missile_factory('wfcore:missile_emp_heavy')
+        .inputFluids(Fluid.of('gtceu:rocket_fuel', 8000))
+        .itemOutputs(Item.of('wfcore:missile_emp_heavy'))
+        .EUt(EV)
+        .duration(9000)
+        .itemInputs(Item.of(P+'blue_steel_plate', 48))
+        .itemInputs(Item.of(P+'titanium_plate', 32))
+        .itemInputs(Item.of(LAPO, 2, '{"Charge":25000000L}'))
+        .itemInputs(Item.of(C_EV, 8))
+        .addCondition(WFResearch.condition('emp_heavy'))
+
+    // missile_emp_cluster
+    event.recipes.wfcore.missile_factory('wfcore:missile_emp_cluster')
+        .inputFluids(Fluid.of('gtceu:rocket_fuel', 8000))
+        .itemOutputs(Item.of('wfcore:missile_emp_cluster'))
+        .EUt(EV)
+        .duration(9000)
+        .itemInputs(Item.of(P+'blue_steel_plate', 64))
+        .itemInputs(Item.of(LEAD_ROUND, 48))
+        .itemInputs(Item.of(LAPO, 1, '{"Charge":25000000L}'))
+        .itemInputs(Item.of(POW, 32))
+        .itemInputs(Item.of(C_EV, 6))
+        .addCondition(WFResearch.condition('emp_cluster'))
+
+    // missile_emp_lance
+    event.recipes.wfcore.missile_factory('wfcore:missile_emp_lance')
+        .inputFluids(Fluid.of('gtceu:rocket_fuel', 10000))
+        .itemOutputs(Item.of('wfcore:missile_emp_lance'))
+        .EUt(EV)
+        .duration(11000)
+        .itemInputs(Item.of(P+'tungsten_plate', 80))
+        .itemInputs(Item.of(P+'titanium_plate', 24))
+        .itemInputs(Item.of(LAPO, 2, '{"Charge":25000000L}'))
+        .itemInputs(Item.of(C_IV, 8))
+        .addCondition(WFResearch.condition('emp_lance'))
 
     // ── Interceptors (the premium class: circuit + RAM heavy; ~1.2–1.4× mainline missile cost) ────
     // The guidance package (high circuit count + RAM) is the cost driver, NOT the airframe: plates
     // stay light, fuel < 50% of floor, small TNT (proximity fuze). Target cost-loss vs the mainline
     // same-tier missile ≈ 1.2–1.4×; penetrators match interceptor price (hypersonic ≈ ace).
     // interceptor_cluster is the exception — kept cheap as the anti-swarm volume option.
-    ['interceptor',         'interceptor_systems', HV,  8000, ['gtceu:rocket_fuel', 2000], [[P+'aluminium_plate',64],[P+'stainless_steel_plate',16],[C_HV,38],[MV_RAM,4],[ENG,8],[TNT,12]]],
-    ['interceptor_mk2',     'interceptor_network', EV, 10000, ['gtceu:rocket_fuel', 3000], [[P+'titanium_plate',64],[P+'ultimet_plate',16],[C_EV,32],[HV_RAM,4],[ENG,16],[TNT,16]]],
-    ['interceptor_ace',     'interceptor_ace',     IV, 12000, ['gtceu:rocket_fuel', 4000], [[P+'tungsten_steel_plate',64],[P+'titanium_plate',32],[C_IV,40],[HV_RAM,6],[ENG,16],[TNT,16]]],
-    ['interceptor_cluster', 'interceptor_cluster', IV, 10000, ['gtceu:rocket_fuel', 3500], [[P+'titanium_plate',22],[P+'aluminium_plate',14],[C_IV,10],[HV_RAM,6],['gtceu:hsss_round',32],[TNT,12]]],
+
+    // missile_interceptor
+    event.recipes.wfcore.missile_factory('wfcore:missile_interceptor')
+        .inputFluids(Fluid.of('gtceu:rocket_fuel', 2000))
+        .itemOutputs(Item.of('wfcore:missile_interceptor'))
+        .EUt(HV)
+        .duration(8000)
+        .itemInputs(Item.of(P+'aluminium_plate', 64))
+        .itemInputs(Item.of(P+'stainless_steel_plate', 16))
+        .itemInputs(Item.of(C_HV, 38))
+        .itemInputs(Item.of(MV_RAM, 4))
+        .itemInputs(Item.of(ENG, 8))
+        .itemInputs(Item.of(TNT, 12))
+        .addCondition(WFResearch.condition('interceptor_systems'))
+
+    // missile_interceptor_mk2
+    event.recipes.wfcore.missile_factory('wfcore:missile_interceptor_mk2')
+        .inputFluids(Fluid.of('gtceu:rocket_fuel', 3000))
+        .itemOutputs(Item.of('wfcore:missile_interceptor_mk2'))
+        .EUt(EV)
+        .duration(10000)
+        .itemInputs(Item.of(P+'titanium_plate', 64))
+        .itemInputs(Item.of(P+'ultimet_plate', 16))
+        .itemInputs(Item.of(C_EV, 32))
+        .itemInputs(Item.of(HV_RAM, 4))
+        .itemInputs(Item.of(ENG, 16))
+        .itemInputs(Item.of(TNT, 16))
+        .addCondition(WFResearch.condition('interceptor_network'))
+
+    // missile_interceptor_ace
+    event.recipes.wfcore.missile_factory('wfcore:missile_interceptor_ace')
+        .inputFluids(Fluid.of('gtceu:rocket_fuel', 4000))
+        .itemOutputs(Item.of('wfcore:missile_interceptor_ace'))
+        .EUt(IV)
+        .duration(12000)
+        .itemInputs(Item.of(P+'tungsten_steel_plate', 64))
+        .itemInputs(Item.of(P+'titanium_plate', 32))
+        .itemInputs(Item.of(C_IV, 40))
+        .itemInputs(Item.of(HV_RAM, 6))
+        .itemInputs(Item.of(ENG, 16))
+        .itemInputs(Item.of(TNT, 16))
+        .addCondition(WFResearch.condition('interceptor_ace'))
+
+    // missile_interceptor_cluster
+    event.recipes.wfcore.missile_factory('wfcore:missile_interceptor_cluster')
+        .inputFluids(Fluid.of('gtceu:rocket_fuel', 3500))
+        .itemOutputs(Item.of('wfcore:missile_interceptor_cluster'))
+        .EUt(IV)
+        .duration(10000)
+        .itemInputs(Item.of(P+'titanium_plate', 22))
+        .itemInputs(Item.of(P+'aluminium_plate', 14))
+        .itemInputs(Item.of(C_IV, 10))
+        .itemInputs(Item.of(HV_RAM, 6))
+        .itemInputs(Item.of('gtceu:hsss_round', 32))
+        .itemInputs(Item.of(TNT, 12))
+        .addCondition(WFResearch.condition('interceptor_cluster'))
 
     // ── Drones (cheapest class: ~80% of HV plate floor, more engines than original) ─────────────
-    ['strike_drone', 'drone_loitering', HV, 6000, ['gtceu:diesel', 4000], [[P+'aluminium_plate',80],[ENG,4],[C_HV,6],[TNT,40],['gtceu:stainless_steel_rotor',2]]],
-    ['gas_drone',    'drone_loitering', HV, 6000, ['gtceu:diesel', 4000], [[P+'aluminium_plate',80],[ENG,4],[C_HV,6],['gtceu:stainless_steel_rotor',2]], [['gtceu:mustard_gas', 4000]]],
-    ['loiter_drone', 'drone_loitering', HV, 6000, ['gtceu:diesel', 4000], [[P+'aluminium_plate',80],[ENG,4],[C_HV,6],[POW,16]]],
-]
 
-ServerEvents.recipes(event => {
-    MISSILES.forEach(([name, research, eu, duration, [fuelId, fuelAmount], inputs, extraFluids]) => {
-        const recipe = event.recipes.wfcore.missile_factory('wfcore:missile_' + name)
-            .inputFluids(Fluid.of(fuelId, fuelAmount))
-            .itemOutputs(Item.of('wfcore:missile_' + name))
-            .EUt(eu)
-            .duration(duration)
-        // Input items: [itemId, count] or [itemId, count, nbtString] for an NBT-tagged
-        // input. The ternary guards the absent/empty-NBT case — passing a null NBT to
-        // Item.of resolves to the (id, count, nbt) overload and NPEs on tag merge.
-        inputs.forEach(([itemId, count, nbt]) =>
-            recipe.itemInputs(nbt ? Item.of(itemId, count, nbt) : Item.of(itemId, count)))
-        if (extraFluids) extraFluids.forEach(([fid, mb]) => recipe.inputFluids(Fluid.of(fid, mb)))
-        recipe.addCondition(WFResearch.condition(research))
-    })
+    // missile_strike_drone
+    event.recipes.wfcore.missile_factory('wfcore:missile_strike_drone')
+        .inputFluids(Fluid.of('gtceu:diesel', 4000))
+        .itemOutputs(Item.of('wfcore:missile_strike_drone'))
+        .EUt(HV)
+        .duration(6000)
+        .itemInputs(Item.of(P+'aluminium_plate', 80))
+        .itemInputs(Item.of(ENG, 4))
+        .itemInputs(Item.of(C_HV, 6))
+        .itemInputs(Item.of(TNT, 40))
+        .itemInputs(Item.of('gtceu:stainless_steel_rotor', 2))
+        .addCondition(WFResearch.condition('drone_loitering'))
+
+    // missile_gas_drone
+    event.recipes.wfcore.missile_factory('wfcore:missile_gas_drone')
+        .inputFluids(Fluid.of('gtceu:diesel', 4000))
+        .inputFluids(Fluid.of('gtceu:mustard_gas', 4000))
+        .itemOutputs(Item.of('wfcore:missile_gas_drone'))
+        .EUt(HV)
+        .duration(6000)
+        .itemInputs(Item.of(P+'aluminium_plate', 80))
+        .itemInputs(Item.of(ENG, 4))
+        .itemInputs(Item.of(C_HV, 6))
+        .itemInputs(Item.of('gtceu:stainless_steel_rotor', 2))
+        .addCondition(WFResearch.condition('drone_loitering'))
+
+    // missile_loiter_drone
+    event.recipes.wfcore.missile_factory('wfcore:missile_loiter_drone')
+        .inputFluids(Fluid.of('gtceu:diesel', 4000))
+        .itemOutputs(Item.of('wfcore:missile_loiter_drone'))
+        .EUt(HV)
+        .duration(6000)
+        .itemInputs(Item.of(P+'aluminium_plate', 80))
+        .itemInputs(Item.of(ENG, 4))
+        .itemInputs(Item.of(C_HV, 6))
+        .itemInputs(Item.of(POW, 16))
+        .addCondition(WFResearch.condition('drone_loitering'))
 
 })
 })();

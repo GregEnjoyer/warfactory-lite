@@ -1,329 +1,159 @@
-# It should be said that it is RECOMMENDED to BACKUP ANY vein config files with significant time invested into them; 
-# trying to update the file when auto-generated vein ids are present may cause data loss if a poorly timed error occurs.
-# Additionally, all comments will be removed when auto-generated vein ids are used.
+# WarFactory Lite vein configuration.
 #
-# There must be a global iteration id [-32768, 32767] ('iteration'). This is stored alongside the vein id for discovered chunks
-# and will cause the saved vein id to be overridden if the iteration id's don't match between the stored and current value.
+# Veins yield GregTech raw ore CHUNKS (gtceu:raw_<material>), the maceration input -- not ore blocks.
+# All ids below are verified against gtceu-1.20.1-7.5.3 (raw_<mat>_block storage blocks exist for each).
+# gtceu has no raw_iron/raw_copper/raw_gold (those defer to vanilla), so iron/copper/gold use minecraft:raw_*.
 #
-# There must be a global megachunk_length which is the side length [4, 180] of the regions in which the weight minimums are respected.
-# There is no guarantee of veins occurring at least once, but they are guaranteed floor(megachunk_length^2 * weight)
+# Overworld-only: this pack disables the Nether/End, so there are no dims entries for them.
+# Titanium, tungsten, platinum, uranium and naquadah are intentionally absent -- they come from the
+# drill-deposit system (kubejs/.../wfcore_drill_deposits.js), not passive WarForge veins.
 #
-# Example vein definition format (TOML). Each vein is an entry in the [[veins]] array of tables:
-# - id: An auto-generated unique identifier [0, 8191] which allows for vein properties to change;
-#       OMIT this key entirely to have one assigned automatically.
-# - key: A unique translation key used for localization or identification.
-# - wealth: An integer (default 1) added to a faction's wealth for each claimed chunk holding this vein.
-# - quals: An inline table of quality overrides for this vein, with omitted qualities using the global default in cfg
-#       quals = { <Qual Name> = <float multiplier>, ... }
-# - dims: An array of inline tables of dimension weights, where:
-#       id: The dimension ResourceLocation (e.g. minecraft:overworld, minecraft:the_nether, minecraft:the_end, or a modded dim).
-#       weight: A float between 0.0 and 1.0 indicating the relative generation chance in that dimension.
-#       mult: A float between 0.0 and 1.0 which scales the yield of a vein based on the dimension; omission => 1.
-# - components: An array of inline tables of ore components for the vein, where:
-#       item: The item ID (e.g. minecraft:iron_ore) to generate in the vein.
-#       yield: How many of this item the vein yields when selected. [float w/ decimal value contributed to bonus chance]
-#       weights: An array of { id = <dimension ResourceLocation>, weight = <float 0..1> } tables (omitted dimensions assume a weight of 1.0)
-#       mults: An array of { id = <dimension ResourceLocation>, mult = <float >= 0.0> } tables (omitted dimensions use the vein dim multiplier)
-#     NOTE: If component weights are omitted or empty, all are assumed to have a weight of 1.0.
+# Distance gradient (square/Chebyshev metric, block coordinates):
+# - gradient_radius: veins fill [0, radius] and reach zero density at the edge; nothing generates beyond it.
+#     Set to the pack's ~50k world border half-width (drill script R = 50000). If you actually run a 40k
+#     border, change this to 40000.
+# - gradient_frequency: falloff curve. 1.0 linear; >1.0 keeps the core dense with a gentle taper that only
+#     thins near the border (outer stays very feasible); <1.0 pulls harder toward the center. 1.75 = dense
+#     but not overwhelming core, viable all the way out, sparse only near the rim.
+# - gradient_center_x / gradient_center_z: block coords of the center (world origin).
 #
-# All fields are mandatory unless otherwise specified.
-#
-# iteration = 0
-# megachunk_length = 32
-#
-# [[veins]]
-# key = "warforge.veins.iron_mix"
-# wealth = 1
-# quals = { RICH = 10.0, POOR = 0.1 }
-# dims = [
-#     { id = "minecraft:the_nether", weight = 0.5, mult = 2.0 },
-#     { id = "minecraft:overworld", weight = 0.4215 },
-#     { id = "minecraft:the_end", weight = 1.0 },
-# ]
-# components = [
-#     { item = "minecraft:iron_ore", yield = 2.0, weights = [ { id = "minecraft:the_nether", weight = 0.75 }, { id = "minecraft:overworld", weight = 1.0 } ] },
-#     { item = "minecraft:coal_ore", yield = 1.0, mults = [ { id = "minecraft:the_nether", mult = 4.0 } ] },
-# ]
-#...
+# Yields are the NORMAL (FAIR) amount. Quality auto-scales POOR 0.5x / FAIR 1.0x / RICH 2.0x,
+# so a primary yield of 24 gives 12 / 24 / 48, and 6 gives 3 / 6 / 12.
 
+iteration = 1
 megachunk_length = 32
-# It should be said that it is RECOMMENDED to BACKUP ANY vein config files with significant time invested into them; 
-# trying to update the file when auto-generated vein ids are present may cause data loss if a poorly timed error occurs.
-# Additionally, all comments will be removed when auto-generated vein ids are used.
-#
-# There must be a global iteration id [-32768, 32767] ('iteration'). This is stored alongside the vein id for discovered chunks
-# and will cause the saved vein id to be overridden if the iteration id's don't match between the stored and current value.
-#
-# There must be a global megachunk_length which is the side length [4, 180] of the regions in which the weight minimums are respected.
-# There is no guarantee of veins occurring at least once, but they are guaranteed floor(megachunk_length^2 * weight)
-#
-# Example vein definition format (TOML). Each vein is an entry in the [[veins]] array of tables:
-# - id: An auto-generated unique identifier [0, 8191] which allows for vein properties to change;
-#       OMIT this key entirely to have one assigned automatically.
-# - key: A unique translation key used for localization or identification.
-# - wealth: An integer (default 1) added to a faction's wealth for each claimed chunk holding this vein.
-# - quals: An inline table of quality overrides for this vein, with omitted qualities using the global default in cfg
-#       quals = { <Qual Name> = <float multiplier>, ... }
-# - dims: An array of inline tables of dimension weights, where:
-#       id: The dimension ResourceLocation (e.g. minecraft:overworld, minecraft:the_nether, minecraft:the_end, or a modded dim).
-#       weight: A float between 0.0 and 1.0 indicating the relative generation chance in that dimension.
-#       mult: A float between 0.0 and 1.0 which scales the yield of a vein based on the dimension; omission => 1.
-# - components: An array of inline tables of ore components for the vein, where:
-#       item: The item ID (e.g. minecraft:iron_ore) to generate in the vein.
-#       yield: How many of this item the vein yields when selected. [float w/ decimal value contributed to bonus chance]
-#       weights: An array of { id = <dimension ResourceLocation>, weight = <float 0..1> } tables (omitted dimensions assume a weight of 1.0)
-#       mults: An array of { id = <dimension ResourceLocation>, mult = <float >= 0.0> } tables (omitted dimensions use the vein dim multiplier)
-#     NOTE: If component weights are omitted or empty, all are assumed to have a weight of 1.0.
-#
-# All fields are mandatory unless otherwise specified.
-#
-# iteration = 0
-# megachunk_length = 32
-#
-# [[veins]]
-# key = "warforge.veins.iron_mix"
-# wealth = 1
-# quals = { RICH = 10.0, POOR = 0.1 }
-# dims = [
-#     { id = "minecraft:the_nether", weight = 0.5, mult = 2.0 },
-#     { id = "minecraft:overworld", weight = 0.4215 },
-#     { id = "minecraft:the_end", weight = 1.0 },
-# ]
-# components = [
-#     { item = "minecraft:iron_ore", yield = 2.0, weights = [ { id = "minecraft:the_nether", weight = 0.75 }, { id = "minecraft:overworld", weight = 1.0 } ] },
-#     { item = "minecraft:coal_ore", yield = 1.0, mults = [ { id = "minecraft:the_nether", mult = 4.0 } ] },
-# ]
-#...
-# -----------------------------------------------------------------------------------------------
-# LIVE CONFIG -- Overworld-only vein set (this pack has no Nether/End access: disableNether = true
-# in config/wfcore.toml, so there is deliberately no [[veins]].dims entry for those dimensions).
-#
-# Tiered to match the rarity model already established for this pack's other GT resource systems
-# (kubejs/startup_scripts/wfcore_drill_deposits.js and warforge-common.toml's "Valuable Blocks"):
-# common industrial ores get high `weight` / low `wealth`; precious and endgame materials get the
-# opposite. `weight` is relative, not a fraction of 1.0 -- lower means rarer.
-#
-# megachunk_length = 32 chunks (512 blocks) per region; at a 50k-block world border that's roughly
-# 195 regions per side. floor(32^2 * weight) is the guaranteed minimum per region, e.g. naquadah's
-# 0.002 guarantees floor(1024 * 0.002) = 2 per region -- present but genuinely scarce.
-# -----------------------------------------------------------------------------------------------
-iteration = 0
+gradient_center_x = 0
+gradient_center_z = 0
+gradient_radius = 50000
+gradient_frequency = 1.75
 
-# --- Rarest tier -----------------------------------------------------------------------------
+# ---------- Bulk industrial ores (primary yield 24 -> 12 / 24 / 48) ----------
+
 [[veins]]
-	wealth = 1
 	id = 0
 	key = "warforge.veins.iron"
-
-	[[veins.components]]
-		item = "gtceu:iron_ore"
-		yield = 3.0
-
-	[[veins.components]]
-		item = "gtceu:pyrite_ore"
-		yield = 1.0
-
-	[[veins.dims]]
-		weight = 0.10
-		id = "minecraft:overworld"
+	wealth = 1
+	dims = [ { id = "minecraft:overworld", weight = 0.12 } ]
+	components = [
+		{ item = "minecraft:raw_iron", yield = 24.0 },
+		{ item = "gtceu:raw_pyrite", yield = 6.0 },
+	]
 
 [[veins]]
-	wealth = 1
-	id = 12
-	key = "warforge.veins.copper"
-
-	[[veins.components]]
-		item = "gtceu:chalcopyrite_ore"
-		yield = 3.0
-
-	[[veins.components]]
-		item = "gtceu:cobaltite_ore"
-		yield = 0.5
-
-	[[veins.dims]]
-		weight = 0.1
-		id = "minecraft:overworld"
-
-[[veins]]
-	wealth = 1
 	id = 1
-	key = "warforge.veins.coal"
-
-	[[veins.components]]
-		item = "gtceu:coal_ore"
-		yield = 3.0
-
-	[[veins.dims]]
-		weight = 0.1
-		id = "minecraft:overworld"
-
-[[veins]]
+	key = "warforge.veins.copper"
 	wealth = 1
-	id = 13
-	key = "warforge.veins.redstone"
-
-	[[veins.components]]
-		item = "gtceu:redstone_ore"
-		yield = 3.0
-
-	[[veins.components]]
-		item = "gtceu:cinnabar_ore"
-		yield = 0.75
-
-	[[veins.dims]]
-		weight = 0.1
-		id = "minecraft:overworld"
+	dims = [ { id = "minecraft:overworld", weight = 0.11 } ]
+	components = [
+		{ item = "minecraft:raw_copper", yield = 24.0 },
+		{ item = "gtceu:raw_cobaltite", yield = 4.0 },
+	]
 
 [[veins]]
-	wealth = 2
-	id = 3
-	key = "warforge.veins.tin_zinc"
-
-	[[veins.components]]
-		item = "gtceu:cassiterite_ore"
-		yield = 2.5
-
-	[[veins.components]]
-		item = "gtceu:sphalerite_ore"
-		yield = 1.0
-
-	[[veins.dims]]
-		weight = 0.08
-		id = "minecraft:overworld"
-
-[[veins]]
-	wealth = 2
-	id = 15
-	key = "warforge.veins.lead_silver"
-
-	[[veins.components]]
-		item = "gtceu:galena_ore"
-		yield = 2.5
-
-	[[veins.components]]
-		item = "gtceu:silver_ore"
-		yield = 0.75
-
-	[[veins.dims]]
-		weight = 0.07
-		id = "minecraft:overworld"
-
-[[veins]]
-	wealth = 2
 	id = 2
-	key = "warforge.veins.gold"
-
-	[[veins.components]]
-		item = "gtceu:gold_ore"
-		yield = 2.0
-
-	[[veins.dims]]
-		weight = 0.05
-		id = "minecraft:overworld"
+	key = "warforge.veins.tin_zinc"
+	wealth = 1
+	dims = [ { id = "minecraft:overworld", weight = 0.09 } ]
+	components = [
+		{ item = "gtceu:raw_tin", yield = 24.0 },
+		{ item = "gtceu:raw_sphalerite", yield = 8.0 },
+	]
 
 [[veins]]
-	wealth = 2
-	id = 14
-	key = "warforge.veins.quartz"
-
-	[[veins.components]]
-		item = "gtceu:nether_quartz_ore"
-		yield = 1.5
-
-	[[veins.dims]]
-		weight = 0.08
-		id = "minecraft:overworld"
+	id = 3
+	key = "warforge.veins.coal"
+	wealth = 1
+	dims = [ { id = "minecraft:overworld", weight = 0.07 } ]
+	components = [ { item = "gtceu:raw_coal", yield = 24.0 } ]
 
 [[veins]]
-	wealth = 3
-	id = 8
-	key = "warforge.veins.bauxite"
+	id = 4
+	key = "warforge.veins.redstone"
+	wealth = 1
+	dims = [ { id = "minecraft:overworld", weight = 0.05 } ]
+	components = [
+		{ item = "gtceu:raw_redstone", yield = 24.0 },
+		{ item = "gtceu:raw_cinnabar", yield = 4.0 },
+	]
 
-	[[veins.components]]
-		item = "gtceu:bauxite_ore"
-		yield = 1.5
-
-	[[veins.components]]
-		item = "gtceu:chromite_ore"
-		yield = 0.5
-
-	[[veins.dims]]
-		weight = 0.05
-		id = "minecraft:overworld"
+# ---------- Mid ores ----------
 
 [[veins]]
-	wealth = 4
-	id = 11
-	key = "warforge.veins.chromium"
-
-	[[veins.components]]
-		item = "gtceu:chromite_ore"
-		yield = 1.5
-
-	[[veins.components]]
-		item = "gtceu:magnetite_ore"
-		yield = 1.0
-
-	[[veins.dims]]
-		weight = 0.015
-		id = "minecraft:overworld"
-
-[[veins]]
-	wealth = 4
-	id = 10
-	key = "warforge.veins.ruby"
-
-	[[veins.components]]
-		item = "gtceu:ruby_ore"
-		yield = 1.5
-
-	[[veins.components]]
-		item = "gtceu:red_garnet_ore"
-		yield = 0.75
-
-	[[veins.components]]
-		item = "gtceu:pyrope_ore"
-		yield = 0.5
-
-	[[veins.dims]]
-		weight = 0.01
-		id = "minecraft:overworld"
-
-[[veins]]
-	wealth = 5
-	id = 6
-	key = "warforge.veins.sapphire_diamond"
-
-	[[veins.components]]
-		item = "gtceu:sapphire_ore"
-		yield = 1.25
-
-	[[veins.components]]
-		item = "gtceu:green_sapphire_ore"
-		yield = 0.5
-
-	[[veins.components]]
-		item = "gtceu:diamond_ore"
-		yield = 0.5
-
-	[[veins.dims]]
-		weight = 0.007
-		id = "minecraft:overworld"
-
-[[veins]]
-	wealth = 5
 	id = 5
-	key = "warforge.veins.uranium"
+	key = "warforge.veins.lead_silver"
+	wealth = 2
+	dims = [ { id = "minecraft:overworld", weight = 0.05 } ]
+	components = [
+		{ item = "gtceu:raw_galena", yield = 16.0 },
+		{ item = "gtceu:raw_silver", yield = 8.0 },
+	]
 
-	[[veins.components]]
-		item = "gtceu:pitchblende_ore"
-		yield = 1.5
+[[veins]]
+	id = 6
+	key = "warforge.veins.gold"
+	wealth = 2
+	dims = [ { id = "minecraft:overworld", weight = 0.035 } ]
+	components = [ { item = "minecraft:raw_gold", yield = 12.0 } ]
 
-	[[veins.components]]
-		item = "gtceu:uraninite_ore"
-		yield = 0.5
+[[veins]]
+	id = 7
+	key = "warforge.veins.nickel"
+	wealth = 2
+	dims = [ { id = "minecraft:overworld", weight = 0.03 } ]
+	components = [ { item = "gtceu:raw_pentlandite", yield = 12.0 } ]
 
-	[[veins.dims]]
-		weight = 0.006
-		id = "minecraft:overworld"
+# Gemstone vein: ruby + sapphire (both Al2O3) -- the accessible, higher-effort aluminium route
+# (process the gem chunks to extract aluminium). More common than bauxite below.
+[[veins]]
+	id = 8
+	key = "warforge.veins.gemstone"
+	wealth = 3
+	dims = [ { id = "minecraft:overworld", weight = 0.05 } ]
+	components = [
+		{ item = "gtceu:raw_ruby", yield = 10.0 },
+		{ item = "gtceu:raw_sapphire", yield = 8.0 },
+	]
 
+# ---------- Semi-rare ----------
+
+# Beryllium is the bulk of this vein; emerald (also beryllium-bearing) is the gem byproduct.
+[[veins]]
+	id = 9
+	key = "warforge.veins.beryllium_emerald"
+	wealth = 4
+	dims = [ { id = "minecraft:overworld", weight = 0.022 } ]
+	components = [
+		{ item = "gtceu:raw_beryllium", yield = 20.0 },
+		{ item = "gtceu:raw_emerald", yield = 6.0 },
+	]
+
+# Carbon vein: graphite bulk, diamond as the rare byproduct.
+[[veins]]
+	id = 10
+	key = "warforge.veins.graphite_diamond"
+	wealth = 3
+	dims = [ { id = "minecraft:overworld", weight = 0.028 } ]
+	components = [
+		{ item = "gtceu:raw_graphite", yield = 16.0 },
+		{ item = "gtceu:raw_diamond", yield = 3.0 },
+	]
+
+# ---------- Rare (primary yield 6 -> 3 / 6 / 12) ----------
+
+[[veins]]
+	id = 11
+	key = "warforge.veins.chromite"
+	wealth = 4
+	dims = [ { id = "minecraft:overworld", weight = 0.018 } ]
+	components = [
+		{ item = "gtceu:raw_chromite", yield = 6.0 },
+		{ item = "gtceu:raw_magnetite", yield = 4.0 },
+	]
+
+# Bauxite: the rare, low-effort aluminium shortcut vs the common gemstone route.
+[[veins]]
+	id = 12
+	key = "warforge.veins.bauxite"
+	wealth = 3
+	dims = [ { id = "minecraft:overworld", weight = 0.012 } ]
+	components = [ { item = "gtceu:raw_bauxite", yield = 18.0 } ]

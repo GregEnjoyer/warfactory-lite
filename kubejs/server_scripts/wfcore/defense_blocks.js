@@ -43,9 +43,16 @@ ServerEvents.recipes(event => {
     // --- Tungsten Plating block (EV) -----------------------------------------
     g.assembler('wfcore:tungsten_plating')
         .itemInputs('6x gtceu:tungsten_steel_plate', '3x gtceu:tungsten_carbide_plate') // attested ids (pure gtceu:tungsten_plate not confirmed)
-        .inputFluids('gtceu:soldering_alloy 576') // TODO
+        .inputFluids('gtceu:soldering_alloy 576') 
         .itemOutputs('wfcore:tungsten_plating')
         .duration(400).EUt(1920)
+
+
+    g.assembler('superbwarfare:dragon_teeth')
+        .itemInputs('6x gtceu:long_stainless_steel_rod', '2x gtceu:stainless_steel_frame')
+        .inputFluids('gtceu:concrete 1920')
+        .itemOutputs('superbwarfare:dragon_teeth')
+        .duration(400).EUt(512)
 
     g.assembler('gtceu:reinforced_stone')
         .itemInputs('1x minecraft:stone', '4x gtceu:iron_rod', '2x gtceu:iron_plate')

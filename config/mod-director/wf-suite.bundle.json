@@ -1,28 +1,44 @@
 {
   "url": [
     {
-      "url": "https://github.com/Warfactory-Official/Warfctory-Modern-Core/releases/download/latest/wfcore-1.2.0.jar",
-      "fileName": "wfcore-1.2.0.jar"
+      "url": "https://github.com/Warfactory-Official/Warfctory-Modern-Core/releases/download/wf/wfcore.jar",
+      "fileName": "wfcore.jar"
     },
     {
-      "url": "https://github.com/Warfactory-Official/AshVehicle/releases/download/1.20.1-4.5.3-8.9/ashvehicle-1.20.1-4.5.3-8.9-div.jar",
-      "fileName": "ashvehicle-1.20.1-4.5.3-8.9-div.jar"
+      "url": "https://github.com/Warfactory-Official/AshVehicle/releases/download/wf/ashvehicle.jar",
+      "fileName": "ashvehicle.jar"
     },
     {
-      "url": "https://github.com/Warfactory-Official/WFMedical/releases/download/v0.3.1/wfmedical-0.3.1.jar",
-      "fileName": "wfmedical-0.3.1.jar"
+      "url": "https://github.com/Warfactory-Official/WFMedical/releases/download/wf/wfmedical.jar",
+      "fileName": "wfmedical.jar"
     },
     {
-      "url": "https://github.com/Warfactory-Official/WF-Ballistics/releases/download/v1.1.6/wfballistics-1.1.6-all.jar",
-      "fileName": "wfballistics-1.1.6-all.jar"
+      "url": "https://github.com/Warfactory-Official/WF-Ballistics/releases/download/wf/wfballistics.jar",
+      "fileName": "wfballistics.jar"
     },
     {
-      "url": "https://github.com/Warfactory-Official/Ultimate-Weight/releases/download/v1.2.0/wfweight-1.20.1-Forge-1.2.0.jar",
-      "fileName": "wfweight-1.20.1-Forge-1.2.0.jar"
+      "url": "https://github.com/Warfactory-Official/Ultimate-Weight/releases/download/wf/wfweight.jar",
+      "fileName": "wfweight.jar"
     },
     {
-      "url": "https://github.com/Warfactory-Official/WarForge-Remaintained/releases/download/snapshots/warforge-remaintained-2.4.2.jar",
-      "fileName": "warforge-remaintained-2.4.2.jar"
+      "url": "https://github.com/Warfactory-Official/WarForge-Remaintained/releases/download/wf/warforge.jar",
+      "fileName": "warforge.jar"
+    },
+    {
+      "url": "https://github.com/Warfactory-Official/Open-Persistence/releases/download/wf/openpersistence.jar",
+      "fileName": "openpersistence.jar"
+    },
+    {
+      "url": "https://github.com/Warfactory-Official/MCglTF/releases/download/wf/mcgltf.jar",
+      "fileName": "mcgltf.jar"
+    },
+    {
+      "url": "https://github.com/Warfactory-Official/Komodo/releases/download/wf/komodo.jar",
+      "fileName": "komodo.jar"
+    },
+    {
+      "url": "https://github.com/Warfactory-Official/sbw-mavic-extender/releases/download/wf/mavic.jar",
+      "fileName": "mavic.jar"
     },
     {
       "url": "https://github.com/TheVirtualizedG/voxy/releases/download/v1.0.0/voxy-0.2.14-alpha.jar",

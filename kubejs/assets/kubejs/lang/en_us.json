@@ -48,13 +48,16 @@
 "material.gtceu.fluix": "Fluix",
 "material.gtceu.early_rocket_fuel": "Early Rocket Fuel",
 
-"material.gtceu.gun_metal": "Carbon Fibre Composite",
-"material.gtceu.aircraft_grade_metal": "Aircraft Grade Metal",
-"material.gtceu.tank_grade_metal": "Tank Grade Metal",
-"material.gtceu.tung_tung_tungsten": "Tung Tung Tungsten",
-"material.gtceu.vehicle_metal": "Vehicle Metal",
-"material.gtceu.advanced_aircraft_metal": "Advanced Aircraft Metal",
 "material.gtceu.heavy_duty_fabric": "Heavy Duty Fabric",
+"material.gtceu.ammonium_perchlorate": "Ammonium Perchlorate",
+
+"material.gtceu.white_phosphorus": "White Phosphorus",
+"material.gtceu.rdx": "RDX",
+"material.gtceu.phosgene": "Phosgene",
+"material.gtceu.mustard_gas": "Mustard Gas",
+"material.gtceu.kerosene": "Kerosene",
+"material.gtceu.napalm": "Napalm",
+"material.gtceu.jet_fuel": "Jet Fuel",
 
 "material.gtceu.poppy": "Crushed Poppy",
 "material.gtceu.blood": "Blood",
@@ -65,6 +68,11 @@
 "material.gtceu.amphetamine": "Amphetamine",
 "material.gtceu.epinephrine": "Epinephrine",
 "material.gtceu.combat_stim": "Combat Stimulant Serum",
+
+"block.wfcore.machine_casing_turbine_titanium": "Heavy Engineering Casing",
+
+"block.gtceu.lp_steam_ammo_press": "Low Pressure Steam Ammo Press",
+"block.gtceu.hp_steam_ammo_press": "High Pressure Steam Ammo Press",
 
 "block.wfcore.greenhouse": "Greenhouse",
 "block.wfcore.mob_farmer": "Mob Farmer",
@@ -96,17 +104,17 @@
 "wfcore.deposit.diamond_deposit": "Diamond Deposit",
 
 "warforge.veins.iron": "%s Iron-Pyrite Vein",
+"warforge.veins.copper": "%s Copper-Cobaltite Vein",
+"warforge.veins.tin_zinc": "%s Tin-Zinc Vein",
 "warforge.veins.coal": "%s Coal Vein",
 "warforge.veins.redstone": "%s Redstone-Cinnabar Vein",
-"warforge.veins.tin_zinc": "%s Tin-Zinc Vein",
 "warforge.veins.lead_silver": "%s Lead-Silver Vein",
-"warforge.veins.titanium": "%s Titanium Vein",
-"warforge.veins.tungsten": "%s Tungsten Vein",
-"warforge.veins.chromium": "%s Chromium Vein",
-"warforge.veins.ruby": "%s Ruby Vein",
-"warforge.veins.sapphire_diamond": "%s Sapphire-Diamond Vein",
-"warforge.veins.platinum": "%s Platinum Vein",
-"warforge.veins.uranium": "%s Uranium Vein",
-"warforge.veins.naquadah": "%s Naquadah Vein"
+"warforge.veins.gold": "%s Gold Vein",
+"warforge.veins.nickel": "%s Nickel Vein",
+"warforge.veins.gemstone": "%s Ruby-Sapphire Vein",
+"warforge.veins.beryllium_emerald": "%s Beryllium-Emerald Vein",
+"warforge.veins.graphite_diamond": "%s Graphite-Diamond Vein",
+"warforge.veins.chromite": "%s Chromite-Magnetite Vein",
+"warforge.veins.bauxite": "%s Bauxite Vein"
 }
 

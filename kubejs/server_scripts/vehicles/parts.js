@@ -35,7 +35,7 @@ ServerEvents.recipes(event => {
         )
         .itemOutputs(Item.of('superbwarfare:large_propeller'))
         .inputFluids(Fluid.of('gtceu:soldering_alloy',1000))
-        .duration(120)
+        .duration(1200)
         .EUt(480)
 
 
@@ -86,11 +86,27 @@ ServerEvents.recipes(event => {
 
 // === Processing feedstocks + light armament module (was Parts/otherParts.js) ===
  ServerEvents.recipes(event => {
- event.recipes.gtceu.chemical_reactor('kubejs:sold_rocket_fuel')
-     .itemInputs(Item.of('gtceu:aluminium_dust'), Item.of('gtceu:rubber_dust'))
-      .inputFluids(Fluid.of('gtceu:hydrogen_peroxide', 1000))
-       .inputFluids(Fluid.of('gtceu:ethanol', 1000))
-        .itemOutputs(Item.of('kubejs:solid_rocket_fuel'))
+    // ── Solid Rocket Propellant — Ammonium Perchlorate Composite Propellant (APCP) ──
+    // A simplified MV chemical chain; this is now the ONLY route (the old assembler
+    // black-powder recipe in guns/ammo.js was removed). EUt(96) forces an MV machine.
+    //
+    // Step 1 — synthesise the oxidizer. Saltpeter nitrate + hydrogen-peroxide oxidiser
+    // → ammonium perchlorate dust (material in startup_scripts/materials.js).
+    event.recipes.gtceu.chemical_reactor('kubejs:ammonium_perchlorate')
+        .itemInputs(Item.of('gtceu:saltpeter_dust', 2))
+        .inputFluids(Fluid.of('gtceu:hydrogen_peroxide', 2000))
+        .itemOutputs(Item.of('gtceu:ammonium_perchlorate_dust', 2))
+        .circuit(1)
         .duration(200)
-        .EUt(30)
- })   
+        .EUt(96)
+
+    // Step 2 — cast the composite. Oxidizer + aluminium fuel, bound in molten rubber
+    // (HTPB stand-in), mixed into the finished propellant grain.
+    event.recipes.gtceu.mixer('kubejs:solid_rocket_propellant')
+        .itemInputs(Item.of('gtceu:ammonium_perchlorate_dust', 3), Item.of('gtceu:aluminium_dust', 1))
+        .inputFluids(Fluid.of('gtceu:rubber', 144))
+        .itemOutputs(Item.of('kubejs:solid_rocket_fuel', 2))
+        .circuit(1)
+        .duration(200)
+        .EUt(96)
+ })

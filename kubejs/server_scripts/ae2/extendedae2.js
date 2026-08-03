@@ -77,19 +77,11 @@ ServerEvents.recipes((event) => {
     .duration(100)
     .EUt(600);
 
-  event.remove({ id: "expatternprovider:wireless_connector" });
-  greg
-    .assembly_line("gtceu:extended_card")
-    .itemInputs(
-      "gtceu:luv_machine_casing",
-      "2x gtceu:luv_sensor",
-      "gtceu:luv_emitter",
-      "gtceu:quantum_star"
-    )
-    .inputFluids("gtceu:radon 1000")
-    .itemOutputs("2x expatternprovider:wireless_connect")
-    .duration(200)
-    .EUt(8192);
+  // ExtendedAE Wireless Connector + Hub — a wireless ME "cable" that bridges two ME networks with no
+  // physical link (up to 1000 blocks). Crafting DISABLED for both: untethered cross-distance ME
+  // connectivity defeats the pack's physical-logistics rule, same as the AE2 quantum bridge.
+  event.remove({ output: "expatternprovider:wireless_connect" });
+  event.remove({ output: "expatternprovider:wireless_hub" });
 
   event.remove({ id: "expatternprovider:pattern_modifier" });
   event.shaped("expatternprovider:pattern_modifier", ["PDP", "AKB", "PCP"], {

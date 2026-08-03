@@ -11,6 +11,7 @@ rules:
   exact:
     sbwdroneconfig:lucas_drone: 5.0
     sbwdroneconfig:cubed_fpv_drone: 5.0
+    superbwarfare:drone: 5.0
     superbwarfare:claymore_mines: 2.0
     superbwarfare:mortar_shell: 4.0
     superbwarfare:mortar_shell_wp: 4.0
@@ -18,14 +19,16 @@ rules:
     superbwarfare:medium_rocket_ap: 20.0
     superbwarfare:medium_rocket_he: 20.0
     superbwarfare:medium_rocket_cm: 20.0
-    superbwarfare:medium_anti_air_missile: 20.0
+    superbwarfare:medium_anti_air_missile: 10.8
     superbwarfare:large_anti_ground_missile: 25.0
-    superbwarfare:small_aeriel_bomb: 5.0
-    superbwarfare:medium_aeriel_bomb: 10.0
+    superbwarfare:small_aerial_bomb: 15.0
+    superbwarfare:medium_aerial_bomb: 25.0
     ashvehicle:gbu57item: 20.0
+    ashvehicle:nuclearbombitem: 70.0
     superbwarfare:c4_bomb: 3.0
     superbwarfare:tm_62: 5.0
     superbwarfare:ptkm_1r: 5.0
+    superbwarfare:grenade_40mm: 0.6
     superbwarfare:m18_smoke_grenade: 0.5
     superbwarfare:hand_grenade: 0.5
     superbwarfare:rgo_grenade: 0.5
@@ -79,7 +82,7 @@ rules:
     tacz:qbz_191: 5.0
     tacz:qbz_95: 5.0
     tacz:rhino357: 2.0
-    tacz:rpg7: 10.0
+    # tacz:rpg7 removed — RPG-7 is superbwarfare:rpg in this pack
     tacz:rpk: 15.0
     tacz:scar_h: 5.0
     tacz:scar_l: 5.0
@@ -195,8 +198,11 @@ rules:
     ronmc:usp45: 2.0
     # --- SuperbWarfare heavy/support weapons (real-world reference weights) ---
     superbwarfare:m_79: 2.7
-    superbwarfare:javelin: 22.3
-    superbwarfare:igla_9k38: 18.0
+    superbwarfare:rpg: 7.0
+    # Launchers: empty weight. Loaded weight (launcher + missile) is handled by a
+    # wfcore compat provider that reads the GunData.Ammo NBT tag.
+    superbwarfare:javelin: 6.4
+    superbwarfare:igla_9k38: 7.1
     superbwarfare:medium_anti_ground_missile: 25.0
     # --- WarFactory emplacements (deployable crew-served weapons; all heavy, below the 70kg pickup lock).
     # The un-pickupable emplacements (CIWS, Type-63 MLRS, and the BL-132/Mk42/Mle1934 naval cannons) all
@@ -205,47 +211,65 @@ rules:
     superbwarfare:container: 60.0
     superbwarfare:tow_deployer: 50.0
     superbwarfare:mortar_deployer: 40.0
-    # --- TaCZ ammo (matched by AmmoId NBT tag on tacz:ammo) ---
-    tacz:12g: 0.1
-    tacz:22wmr: 0.1
-    tacz:30_06: 0.1
-    tacz:308: 0.1
-    tacz:338: 0.1
-    tacz:357mag: 0.1
-    tacz:40mm: 0.3
-    tacz:45_70: 0.1
-    tacz:45acp: 0.1
-    tacz:46x30: 0.1
-    tacz:500mag: 0.1
-    tacz:50ae: 0.1
-    tacz:50bmg: 0.35
-    tacz:545x39: 0.1
-    tacz:556x45: 0.1
-    tacz:57x28: 0.1
-    tacz:58x42: 0.1
-    tacz:68x51fury: 0.1
-    tacz:762x25: 0.1
-    tacz:762x39: 0.1
-    tacz:762x54: 0.1
-    tacz:792x57: 0.1
-    tacz:9mm: 0.1
-    tacz:rpg_rocket: 3.0
-    ww:303: 0.1
-    ww:30c: 0.1
-    ww:65a: 0.1
-    ww:763: 0.1
-    ww:765: 0.1
-    ww:77a: 0.1
-    ww:8mm: 0.1
-    ronmc:10mm: 0.1
-    ronmc:300blk: 0.1
-    ronmc:65x48: 0.1
-    ronmc:68pepperball: 0.1
-    ronmc:762x51: 0.1
-    ronmc:bean_bag: 0.1
-    ronmc:slug: 0.1
-    ronmc:train_556x45: 0.1
-    ronmc:train_9mm: 0.1
+    # --- MCSP vehicle ammo ---
+    mcsp:bullet762: 0.10
+    # --- SuperbWarfare generic ammo (per-item, matched by item id) ---
+    superbwarfare:handgun_ammo:     0.05
+    superbwarfare:shotgun_ammo:     0.07
+    superbwarfare:rifle_ammo:       0.10
+    superbwarfare:sniper_ammo:      0.15
+    superbwarfare:heavy_ammo:       0.25
+    superbwarfare:handgun_ammo_box: 1.5
+    superbwarfare:shotgun_ammo_box: 1.0
+    superbwarfare:rifle_ammo_box:   3.0
+    superbwarfare:sniper_ammo_box:  2.0
+    # --- TaCZ ammo (AmmoId-keyed via compat patch; rifle 0.10 is the balance reference) ---
+    # pistol calibers
+    tacz:762x25:        0.05
+    tacz:45acp:         0.05
+    tacz:9mm:           0.05
+    tacz:22wmr:         0.05
+    tacz:357mag:        0.05
+    tacz:500mag:        0.05
+    tacz:50ae:          0.05
+    ww:8mm:             0.05
+    ww:763:             0.05
+    ww:765:             0.05
+    ronmc:10mm:         0.05
+    ronmc:68pepperball: 0.05
+    ronmc:train_9mm:    0.05
+    # shotgun shells (between pistol and rifle)
+    tacz:12g:       0.07
+    ronmc:bean_bag: 0.07
+    ronmc:slug:     0.07
+    # rifle calibers (0.10 reference)
+    tacz:30_06:         0.10
+    tacz:308:           0.10
+    tacz:45_70:         0.10
+    tacz:545x39:        0.10
+    tacz:556x45:        0.10
+    tacz:57x28:         0.10
+    tacz:58x42:         0.10
+    tacz:46x30:         0.10
+    tacz:68x51fury:     0.10
+    tacz:762x39:        0.10
+    tacz:762x54:        0.10
+    tacz:792x57:        0.10
+    ww:30c:             0.10
+    ww:303:             0.10
+    ww:65a:             0.10
+    ww:77a:             0.10
+    ronmc:300blk:       0.10
+    ronmc:65x48:        0.10
+    ronmc:762x51:       0.10
+    ronmc:train_556x45: 0.10
+    # heavy sniper / ordnance
+    tacz:338:        0.15
+    tacz:50bmg:      0.35
+    tacz:40mm:       0.30
+    # tacz:rpg_rocket removed — replaced by superbwarfare:rpg_rocket_standard/tbg below
+    superbwarfare:rpg_rocket_standard: 2.3
+    superbwarfare:rpg_rocket_tbg: 3.1
     # --- Walkie-Talkies ---
     walkietalkie:wooden_walkietalkie: 1.0
     walkietalkie:stone_walkietalkie: 1.0

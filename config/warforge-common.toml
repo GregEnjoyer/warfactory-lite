@@ -943,6 +943,8 @@
 	"Available Default Flags" = ["white", "light_gray", "gray", "black", "red", "orange", "yellow", "lime", "green", "cyan", "light_blue", "blue", "purple", "magenta", "pink", "brown"]
 	#Custom server-side flags allowed from resources/warforge/flags. Use '*' to allow all validated custom flags or list exact ids without extension.
 	"Available Custom Flags" = ["*"]
+	#If true, each flag can only be used by one faction at a time: a faction cannot select a flag another faction has already taken. Admin flag overrides ('/f flag <faction> set <flagId>') bypass this check.
+	"Unique Flags" = true
 	#Maximum number of forward operating bases (FOBs) a single faction may establish. Ignored when the citadel upgrade system is enabled; the per-level 'max_fobs' value from upgrade_levels.toml is used instead.
 	#Range: 0 ~ 1024
 	"Max FOBs Per Faction" = 3

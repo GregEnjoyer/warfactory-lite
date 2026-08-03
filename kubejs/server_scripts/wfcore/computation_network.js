@@ -21,16 +21,31 @@ ServerEvents.recipes(event => {
     // Emitter = transmitter (pushes onto the net), Sensor = receiver (reads from the net).
     // Computation and data hatches share the same emitter/sensor inputs, so a programmed circuit disambiguates
     // the assembler recipes: circuit 1 = computation hatches, circuit 2 = optical-data hatches.
-    const hatch = (id, part, circuit) =>
-        greg.assembler(`wfcore:${id}`)
-            .itemInputs('4x gtceu:aluminium_plate', `gtceu:${part}`, '#gtceu:circuits/mv', '2x wfcore:copper_network_cable')
-            .itemOutputs(`wfcore:${id}`)
-            .circuit(circuit)
-            .duration(200)
-            .EUt(120) // MV
+    greg.assembler('wfcore:mv_computation_transmission_hatch')
+        .itemInputs('4x gtceu:aluminium_plate', 'gtceu:mv_emitter', '#gtceu:circuits/mv', '2x wfcore:copper_network_cable')
+        .itemOutputs('wfcore:mv_computation_transmission_hatch')
+        .circuit(1)
+        .duration(200)
+        .EUt(120) // MV
 
-    hatch('mv_computation_transmission_hatch', 'mv_emitter', 1)
-    hatch('mv_computation_reception_hatch', 'mv_sensor', 1)
-    hatch('mv_data_transmission_hatch', 'mv_emitter', 2)
-    hatch('mv_data_reception_hatch', 'mv_sensor', 2)
+    greg.assembler('wfcore:mv_computation_reception_hatch')
+        .itemInputs('4x gtceu:aluminium_plate', 'gtceu:mv_sensor', '#gtceu:circuits/mv', '2x wfcore:copper_network_cable')
+        .itemOutputs('wfcore:mv_computation_reception_hatch')
+        .circuit(1)
+        .duration(200)
+        .EUt(120) // MV
+
+    greg.assembler('wfcore:mv_data_transmission_hatch')
+        .itemInputs('4x gtceu:aluminium_plate', 'gtceu:mv_emitter', '#gtceu:circuits/mv', '2x wfcore:copper_network_cable')
+        .itemOutputs('wfcore:mv_data_transmission_hatch')
+        .circuit(2)
+        .duration(200)
+        .EUt(120) // MV
+
+    greg.assembler('wfcore:mv_data_reception_hatch')
+        .itemInputs('4x gtceu:aluminium_plate', 'gtceu:mv_sensor', '#gtceu:circuits/mv', '2x wfcore:copper_network_cable')
+        .itemOutputs('wfcore:mv_data_reception_hatch')
+        .circuit(2)
+        .duration(200)
+        .EUt(120) // MV
 })

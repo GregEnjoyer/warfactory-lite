@@ -371,6 +371,24 @@
 			x: 10.5d
 			y: 0.0d
 		}
+		{
+			dependencies: ["1A2F3B4C5D6E7001"]
+			description: [
+				"This is the earliest way to get &apassive resources&r."
+				""
+				"If you place this storage in your &bclaimed area&r it will output ores every time the timer in the bottom right of your screen &6ticks down&r."
+			]
+			id: "31AB62328B24CF24"
+			subtitle: "Resources?"
+			tasks: [{
+				id: "4F99A02A1736EAF5"
+				item: "warforge:islandcollector"
+				type: "item"
+			}]
+			title: "Faction Yield storage"
+			x: 0.0d
+			y: -1.5d
+		}
 	]
 	title: "WarForge"
 }

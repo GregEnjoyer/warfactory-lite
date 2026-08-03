@@ -59,66 +59,184 @@ event.shaped(
       I: 'gtceu:long_wrought_iron_rod',
     }
   )
+
   // WW Bolt-Action Rifles
-  const ww1rifles = [
+  event.shaped(
     Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:m1903",HasBulletInBarrel:1b}'),
-                     Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:type99",HasBulletInBarrel:1b}'),
-                     Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:10,GunFireMode:"SEMI",GunId:"ww:lee",HasBulletInBarrel:1b}'),
-                     Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:kar98k",HasBulletInBarrel:1b}'),
-                      Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:m1903",HasBulletInBarrel:1b}'),
- Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:3,GunFireMode:"SEMI",GunId:"tacz:taurus943",HasBulletInBarrel:1b}')
-]
-  ww1rifles.forEach(gun => {
-    event.shaped(gun, [
+    [
       'SII',
       'SGS',
       'PPP'
-    ], {
+    ],
+    {
       I: 'gtceu:long_steel_rod',
       G: 'gtceu:small_steel_gear',
       S: 'gtceu:steel_screw',
       P: 'gtceu:treated_wood_plate',
-    })
-  })
+    }
+  )
+
+  event.shaped(
+    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:type99",HasBulletInBarrel:1b}'),
+    [
+      'SII',
+      'SGS',
+      'PPP'
+    ],
+    {
+      I: 'gtceu:long_steel_rod',
+      G: 'gtceu:small_steel_gear',
+      S: 'gtceu:steel_screw',
+      P: 'gtceu:treated_wood_plate',
+    }
+  )
+
+  event.shaped(
+    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:10,GunFireMode:"SEMI",GunId:"ww:lee",HasBulletInBarrel:1b}'),
+    [
+      'SII',
+      'SGS',
+      'PPP'
+    ],
+    {
+      I: 'gtceu:long_steel_rod',
+      G: 'gtceu:small_steel_gear',
+      S: 'gtceu:steel_screw',
+      P: 'gtceu:treated_wood_plate',
+    }
+  )
+
+  event.shaped(
+    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:kar98k",HasBulletInBarrel:1b}'),
+    [
+      'SII',
+      'SGS',
+      'PPP'
+    ],
+    {
+      I: 'gtceu:long_steel_rod',
+      G: 'gtceu:small_steel_gear',
+      S: 'gtceu:steel_screw',
+      P: 'gtceu:treated_wood_plate',
+    }
+  )
+
+  event.shaped(
+    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:5,GunFireMode:"SEMI",GunId:"ww:m1903",HasBulletInBarrel:1b}'),
+    [
+      'SII',
+      'SGS',
+      'PPP'
+    ],
+    {
+      I: 'gtceu:long_steel_rod',
+      G: 'gtceu:small_steel_gear',
+      S: 'gtceu:steel_screw',
+      P: 'gtceu:treated_wood_plate',
+    }
+  )
+
+  event.shaped(
+    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:3,GunFireMode:"SEMI",GunId:"tacz:taurus943",HasBulletInBarrel:1b}'),
+    [
+      'SII',
+      'SGS',
+      'PPP'
+    ],
+    {
+      I: 'gtceu:long_steel_rod',
+      G: 'gtceu:small_steel_gear',
+      S: 'gtceu:steel_screw',
+      P: 'gtceu:treated_wood_plate',
+    }
+  )
 
   // WW Pistols (p08, p38 moved to short_barreled_1 gate; m712 moved to automatic_weapons_1 gate)
-  const ww1pistols = [
-Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:7,GunFireMode:"SEMI",GunId:"ww:cph",HasBulletInBarrel:1b}'),
-Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:10,GunFireMode:"SEMI",GunId:"ww:c96",HasBulletInBarrel:1b}'),
-Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:7,GunFireMode:"SEMI",GunId:"ww:m1911a1",HasBulletInBarrel:1b}'),
-                     Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:6,GunFireMode:"SEMI",GunId:"ww:m1911a1",HasBulletInBarrel:1b}')
-  ]
-  ww1pistols.forEach(gun => {
-    event.shaped(gun, [
+  event.shaped(
+    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:7,GunFireMode:"SEMI",GunId:"ww:cph",HasBulletInBarrel:1b}'),
+    [
       ' I ',
       'SG ',
       ' P '
-    ], {
+    ],
+    {
       I: 'gtceu:long_steel_rod',
       G: 'gtceu:small_steel_gear',
       S: 'gtceu:steel_screw',
       P: 'gtceu:treated_wood_plate',
-    })
-  })
+    }
+  )
+
+  event.shaped(
+    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:10,GunFireMode:"SEMI",GunId:"ww:c96",HasBulletInBarrel:1b}'),
+    [
+      ' I ',
+      'SG ',
+      ' P '
+    ],
+    {
+      I: 'gtceu:long_steel_rod',
+      G: 'gtceu:small_steel_gear',
+      S: 'gtceu:steel_screw',
+      P: 'gtceu:treated_wood_plate',
+    }
+  )
+
+  event.shaped(
+    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:7,GunFireMode:"SEMI",GunId:"ww:m1911a1",HasBulletInBarrel:1b}'),
+    [
+      ' I ',
+      'SG ',
+      ' P '
+    ],
+    {
+      I: 'gtceu:long_steel_rod',
+      G: 'gtceu:small_steel_gear',
+      S: 'gtceu:steel_screw',
+      P: 'gtceu:treated_wood_plate',
+    }
+  )
+
+  event.shaped(
+    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:6,GunFireMode:"SEMI",GunId:"ww:m1911a1",HasBulletInBarrel:1b}'),
+    [
+      ' I ',
+      'SG ',
+      ' P '
+    ],
+    {
+      I: 'gtceu:long_steel_rod',
+      G: 'gtceu:small_steel_gear',
+      S: 'gtceu:steel_screw',
+      P: 'gtceu:treated_wood_plate',
+    }
+  )
 
 
   // short_barreled_1 gated pistols (p08, p38)
-  ;[
-    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:8,GunFireMode:"SEMI",GunId:"ww:p08",HasBulletInBarrel:1b}'),
-    Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:8,GunFireMode:"SEMI",GunId:"ww:p38",HasBulletInBarrel:1b}'),
-  ].forEach(gun => {
-    event.recipes.gtceu.assembler(`short_barrel_${gun.nbt.getString('GunId').replace(':','_')}`)
-    .itemInputs(
-      Item.of('gtceu:long_steel_rod', 1),
-      Item.of('gtceu:small_steel_gear', 1),
-      Item.of('gtceu:steel_screw', 1),
-      Item.of('gtceu:treated_wood_plate', 1)
-    )
-    .itemOutputs(gun)
-    .circuit(1)
-    .duration(200)
-    .EUt(32)
-  })
+  event.recipes.gtceu.assembler('short_barrel_ww_p08')
+  .itemInputs(
+    Item.of('gtceu:long_steel_rod', 1),
+    Item.of('gtceu:small_steel_gear', 1),
+    Item.of('gtceu:steel_screw', 1),
+    Item.of('gtceu:treated_wood_plate', 1)
+  )
+  .itemOutputs(Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:8,GunFireMode:"SEMI",GunId:"ww:p08",HasBulletInBarrel:1b}'))
+  .circuit(1)
+  .duration(200)
+  .EUt(32)
+
+  event.recipes.gtceu.assembler('short_barrel_ww_p38')
+  .itemInputs(
+    Item.of('gtceu:long_steel_rod', 1),
+    Item.of('gtceu:small_steel_gear', 1),
+    Item.of('gtceu:steel_screw', 1),
+    Item.of('gtceu:treated_wood_plate', 1)
+  )
+  .itemOutputs(Item.of('tacz:modern_kinetic_gun', '{GunCurrentAmmoCount:8,GunFireMode:"SEMI",GunId:"ww:p38",HasBulletInBarrel:1b}'))
+  .circuit(1)
+  .duration(200)
+  .EUt(32)
 
   // automatic_weapons_1 gated pistol (m712 Schnellfeuer)
   event.recipes.gtceu.assembler('auto_weapons_ww_m712')

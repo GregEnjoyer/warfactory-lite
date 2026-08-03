@@ -16,29 +16,81 @@
 //   C K F     C = #gtceu:circuits/ulv        K = gtceu:ulv_machine_hull   F = family part
 //   P W P     W = gtceu:red_alloy_single_cable
 ServerEvents.recipes(event => {
-    // output part -> [direction ingredient, family ingredient]
-    const PARTS = {
-        ulv_input_bus:           ['minecraft:hopper',  '#forge:chests/wooden'],
-        ulv_output_bus:          ['minecraft:dropper', '#forge:chests/wooden'],
-        ulv_input_hatch:         ['minecraft:hopper',  '#forge:glass'],
-        ulv_output_hatch:        ['minecraft:dropper', '#forge:glass'],
-        ulv_energy_input_hatch:  ['minecraft:hopper',  'gtceu:ulv_voltage_coil'],
-        ulv_energy_output_hatch: ['minecraft:dropper', 'gtceu:ulv_voltage_coil'],
-    }
+    event.shaped('gtceu:ulv_input_bus', [
+        'PDP',
+        'CKF',
+        'PWP'
+    ], {
+        P: 'gtceu:wrought_iron_plate',
+        D: 'minecraft:hopper',
+        C: '#gtceu:circuits/ulv',
+        K: 'gtceu:ulv_machine_hull',
+        F: '#forge:chests/wooden',
+        W: 'gtceu:red_alloy_single_cable',
+    })
 
-    Object.keys(PARTS).forEach(part => {
-        const [dir, fam] = PARTS[part]
-        event.shaped('gtceu:' + part, [
-            'PDP',
-            'CKF',
-            'PWP'
-        ], {
-            P: 'gtceu:wrought_iron_plate',
-            D: dir,
-            C: '#gtceu:circuits/ulv',
-            K: 'gtceu:ulv_machine_hull',
-            F: fam,
-            W: 'gtceu:red_alloy_single_cable',
-        })
+    event.shaped('gtceu:ulv_output_bus', [
+        'PDP',
+        'CKF',
+        'PWP'
+    ], {
+        P: 'gtceu:wrought_iron_plate',
+        D: 'minecraft:dropper',
+        C: '#gtceu:circuits/ulv',
+        K: 'gtceu:ulv_machine_hull',
+        F: '#forge:chests/wooden',
+        W: 'gtceu:red_alloy_single_cable',
+    })
+
+    event.shaped('gtceu:ulv_input_hatch', [
+        'PDP',
+        'CKF',
+        'PWP'
+    ], {
+        P: 'gtceu:wrought_iron_plate',
+        D: 'minecraft:hopper',
+        C: '#gtceu:circuits/ulv',
+        K: 'gtceu:ulv_machine_hull',
+        F: '#forge:glass',
+        W: 'gtceu:red_alloy_single_cable',
+    })
+
+    event.shaped('gtceu:ulv_output_hatch', [
+        'PDP',
+        'CKF',
+        'PWP'
+    ], {
+        P: 'gtceu:wrought_iron_plate',
+        D: 'minecraft:dropper',
+        C: '#gtceu:circuits/ulv',
+        K: 'gtceu:ulv_machine_hull',
+        F: '#forge:glass',
+        W: 'gtceu:red_alloy_single_cable',
+    })
+
+    event.shaped('gtceu:ulv_energy_input_hatch', [
+        'PDP',
+        'CKF',
+        'PWP'
+    ], {
+        P: 'gtceu:wrought_iron_plate',
+        D: 'minecraft:hopper',
+        C: '#gtceu:circuits/ulv',
+        K: 'gtceu:ulv_machine_hull',
+        F: 'gtceu:ulv_voltage_coil',
+        W: 'gtceu:red_alloy_single_cable',
+    })
+
+    event.shaped('gtceu:ulv_energy_output_hatch', [
+        'PDP',
+        'CKF',
+        'PWP'
+    ], {
+        P: 'gtceu:wrought_iron_plate',
+        D: 'minecraft:dropper',
+        C: '#gtceu:circuits/ulv',
+        K: 'gtceu:ulv_machine_hull',
+        F: 'gtceu:ulv_voltage_coil',
+        W: 'gtceu:red_alloy_single_cable',
     })
 })

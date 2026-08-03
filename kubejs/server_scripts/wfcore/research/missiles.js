@@ -43,7 +43,7 @@ ServerEvents.recipes(event => {
     WFResearch.builder('missile_systems')
         .category('missiles').pos(0, 0)
         .nodeColor(ORANGE)
-        .requires('issile_engines')
+        .requires('missile_engines')
         .name('Missile Systems')
         .description('Unlocks the core missile line: the High-Explosive, Long-Range and (inert) Dummy missiles. The cheap Shahed loitering drones (strike/gas/loiter) are shown here too, but are RESEARCHED on the Aviation tab (Drone Tactics -> Shahed Loitering Drones); they still build at the Missile Factory.')
         .runs(8).ticksPerRun(2250).eut(EU_HV).cwuPerRun(576000)

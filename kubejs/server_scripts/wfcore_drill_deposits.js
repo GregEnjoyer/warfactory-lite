@@ -21,32 +21,94 @@
 // ~20k (precious sizeMin 5² * yield 70 * 12 = 21000); keep it 12 across the board to hold that ratio.
 // Byproducts keep a per-cycle chance but also carry a count, so they add up as a real (secondary) bonus.
 
-// [ depositId, EUt, duration, primaryRaw, primaryCount, [ [byproductRaw, chance/10000, count], ... ] ]
-const DRILL = [
+ServerEvents.recipes(event => {
     // --- BULK / PRECIOUS (ported verbatim from the wfcore dev run — keep in sync with it) ---
-    ['titanium_deposit', 128, 100, 'gtceu:raw_ilmenite', 12, [['gtceu:raw_chromite', 3000, 6]]],
-    ['tungsten_deposit', 128, 100, 'gtceu:raw_scheelite', 12, [['gtceu:raw_tungstate', 5000, 6], ['gtceu:raw_lithium', 2000, 4]]],
-    ['platinum_deposit', 512, 150, 'gtceu:raw_cooperite', 12, [['gtceu:raw_platinum', 4000, 6], ['gtceu:raw_palladium', 2500, 4]]],
-    ['uranium_deposit', 512, 150, 'gtceu:raw_pitchblende', 12, [['gtceu:raw_uraninite', 4000, 6]]],
-    ['naquadah_deposit', 1920, 200, 'gtceu:raw_naquadah', 12, []],
+
+    // titanium_deposit
+    event.recipes.wfcore.drilling('wfcore:drill_titanium_deposit')
+        .itemOutputs(Item.of('gtceu:raw_ilmenite', 12))
+        .EUt(128)
+        .duration(100)
+        .addCondition(WFDeposits.condition('titanium_deposit'))
+        .chancedOutput(Item.of('gtceu:raw_chromite', 6), 3000, 0)
+
+    // tungsten_deposit
+    event.recipes.wfcore.drilling('wfcore:drill_tungsten_deposit')
+        .itemOutputs(Item.of('gtceu:raw_scheelite', 12))
+        .EUt(128)
+        .duration(100)
+        .addCondition(WFDeposits.condition('tungsten_deposit'))
+        .chancedOutput(Item.of('gtceu:raw_tungstate', 6), 5000, 0)
+        .chancedOutput(Item.of('gtceu:raw_lithium', 4), 2000, 0)
+
+    // platinum_deposit
+    event.recipes.wfcore.drilling('wfcore:drill_platinum_deposit')
+        .itemOutputs(Item.of('gtceu:raw_cooperite', 12))
+        .EUt(512)
+        .duration(150)
+        .addCondition(WFDeposits.condition('platinum_deposit'))
+        .chancedOutput(Item.of('gtceu:raw_platinum', 6), 4000, 0)
+        .chancedOutput(Item.of('gtceu:raw_palladium', 4), 2500, 0)
+
+    // uranium_deposit
+    event.recipes.wfcore.drilling('wfcore:drill_uranium_deposit')
+        .itemOutputs(Item.of('gtceu:raw_pitchblende', 12))
+        .EUt(512)
+        .duration(150)
+        .addCondition(WFDeposits.condition('uranium_deposit'))
+        .chancedOutput(Item.of('gtceu:raw_uraninite', 6), 4000, 0)
+
+    // naquadah_deposit
+    event.recipes.wfcore.drilling('wfcore:drill_naquadah_deposit')
+        .itemOutputs(Item.of('gtceu:raw_naquadah', 12))
+        .EUt(1920)
+        .duration(200)
+        .addCondition(WFDeposits.condition('naquadah_deposit'))
 
     // --- RARE VARIETY (pack-specific; pairs with the RARE_DEPOSITS table) — same primaryCount 12 => same ~20k+ ratio ---
-    ['copper_deposit', 128, 100, 'gtceu:raw_chalcopyrite', 12, [['gtceu:raw_pyrite', 3500, 4], ['gtceu:raw_cobaltite', 1500, 2]]],
-    ['chromium_deposit', 128, 100, 'gtceu:raw_chromite', 12, [['gtceu:raw_magnetite', 2500, 4]]],
-    ['ruby_deposit', 512, 150, 'gtceu:raw_ruby', 12, [['gtceu:raw_red_garnet', 3500, 4], ['gtceu:raw_pyrope', 1500, 2]]],
-    ['sapphire_deposit', 512, 150, 'gtceu:raw_sapphire', 12, [['gtceu:raw_green_sapphire', 3000, 4], ['gtceu:raw_almandine', 1500, 2]]],
-    ['diamond_deposit', 512, 150, 'gtceu:raw_diamond', 12, [['gtceu:raw_graphite', 3000, 4]]],
-]
 
-ServerEvents.recipes(event => {
-    DRILL.forEach(([deposit, eut, dur, primary, primaryCount, byproducts]) => {
-        const recipe = event.recipes.wfcore.drilling('wfcore:drill_' + deposit)
-            .itemOutputs(Item.of(primary, primaryCount))
-            .EUt(eut)
-            .duration(dur)
-            .addCondition(WFDeposits.condition(deposit))
-        byproducts.forEach(([item, chance, count]) => recipe.chancedOutput(Item.of(item, count), chance, 0))
-    })
+    // copper_deposit
+    event.recipes.wfcore.drilling('wfcore:drill_copper_deposit')
+        .itemOutputs(Item.of('gtceu:raw_chalcopyrite', 12))
+        .EUt(128)
+        .duration(100)
+        .addCondition(WFDeposits.condition('copper_deposit'))
+        .chancedOutput(Item.of('gtceu:raw_pyrite', 4), 3500, 0)
+        .chancedOutput(Item.of('gtceu:raw_cobaltite', 2), 1500, 0)
+
+    // chromium_deposit
+    event.recipes.wfcore.drilling('wfcore:drill_chromium_deposit')
+        .itemOutputs(Item.of('gtceu:raw_chromite', 12))
+        .EUt(128)
+        .duration(100)
+        .addCondition(WFDeposits.condition('chromium_deposit'))
+        .chancedOutput(Item.of('gtceu:raw_magnetite', 4), 2500, 0)
+
+    // ruby_deposit
+    event.recipes.wfcore.drilling('wfcore:drill_ruby_deposit')
+        .itemOutputs(Item.of('gtceu:raw_ruby', 12))
+        .EUt(512)
+        .duration(150)
+        .addCondition(WFDeposits.condition('ruby_deposit'))
+        .chancedOutput(Item.of('gtceu:raw_red_garnet', 4), 3500, 0)
+        .chancedOutput(Item.of('gtceu:raw_pyrope', 2), 1500, 0)
+
+    // sapphire_deposit
+    event.recipes.wfcore.drilling('wfcore:drill_sapphire_deposit')
+        .itemOutputs(Item.of('gtceu:raw_sapphire', 12))
+        .EUt(512)
+        .duration(150)
+        .addCondition(WFDeposits.condition('sapphire_deposit'))
+        .chancedOutput(Item.of('gtceu:raw_green_sapphire', 4), 3000, 0)
+        .chancedOutput(Item.of('gtceu:raw_almandine', 2), 1500, 0)
+
+    // diamond_deposit
+    event.recipes.wfcore.drilling('wfcore:drill_diamond_deposit')
+        .itemOutputs(Item.of('gtceu:raw_diamond', 12))
+        .EUt(512)
+        .duration(150)
+        .addCondition(WFDeposits.condition('diamond_deposit'))
+        .chancedOutput(Item.of('gtceu:raw_graphite', 4), 3000, 0)
 })
 
 // Prospector visibility is handled in Java: ProspectorOreDepositMixin reads each deposit's block entity at the

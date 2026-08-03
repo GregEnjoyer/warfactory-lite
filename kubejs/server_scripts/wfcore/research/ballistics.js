@@ -150,6 +150,20 @@ ServerEvents.recipes(event => {
         .icon(sbw('seeker'))
         .register()
 
+    // Fuzing Systems – precision electrical detonators consumed by every WFCore guided missile warhead.
+    WFResearch.builder('fusee')
+        .category('ballistics').pos(6, 3)
+        .nodeColor(BLUE)
+        .name('Fuzing Systems')
+        .description('Precision electrical detonators that initiate every WFCore guided missile warhead.')
+        .requires('large_casings')
+        .runs(10).ticksPerRun(300).eut(EU_MV).cwuPerRun(19200)   // ~64 CWU/t = MV midpoint (@300t)
+        .itemTagPerRun('gtceu:circuits/mv', 2)
+        .itemPerRun(Item.of('gtceu:mv_sensor', 1))
+        .unlock(sbw('fusee'))
+        .icon(sbw('fusee'))
+        .register()
+
     // ===================== WARHEAD HEADS (MV, y=3) =====================
     // The explosive payload cores. Each unlocks a superbwarfare:*_head item (GT recipe in
     // guns/ammo.js) that its munition family CONSUMES. MV midpoint compute.
@@ -519,7 +533,7 @@ ServerEvents.recipes(event => {
         .requires('anti_ground_missiles')
         .runs(28).ticksPerRun(360).eut(EU_HV).cwuPerRun(CWU_HV)   // ~256 CWU/t = HV midpoint
         .itemPerRun(Item.of('gtceu:titanium_plate', 6))
-        .itemPerRun(Item.of('superbwarfare:large_motor', 1))
+        .itemPerRun(Item.of('gtceu:hv_electric_motor', 1))
         .itemPerRun(Item.of('superbwarfare:seeker', 2))
         .unlock(sbw('large_anti_ground_missile'))
         .icon(sbw('large_anti_ground_missile'))
@@ -537,6 +551,55 @@ ServerEvents.recipes(event => {
         .itemPerRun(Item.of('superbwarfare:seeker', 2))
         .unlock(sbw('medium_anti_air_missile'))
         .icon(sbw('medium_anti_air_missile'))
+        .register()
+
+    // ===================== RPG ROCKETS (MV) + JAVELIN MISSILE (EV) =====================
+    // Both RPG nodes stem from Fuzing Systems AND High Explosive Warheads (AND gate).
+    // Javelin stems from Anti-Ground Missiles — it's a precision guided upgrade of that line.
+    //
+    // MV cwuPerRun = 64 CWU/t × 900t = 57600    EV cwuPerRun = 1024 CWU/t × 900t = 921600
+
+    // rpg_rocket_standard (MV) — PG-7VM HEAT round, 30 runs × 45 s
+    WFResearch.builder('rpg_rocket_standard')
+        .category('ballistics').pos(7, 4)
+        .nodeColor(BLUE)
+        .name('RPG Rockets (Standard)')
+        .description('The PG-7VM HEAT rocket for the RPG-7: a shaped-charge anti-tank round for vehicles and fortifications.')
+        .requires(['fusee', 'he_warheads'])
+        .runs(30).ticksPerRun(900).eut(EU_MV).cwuPerRun(57600)
+        .itemPerRun(Item.of('superbwarfare:he_head', 3))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 3))
+        .itemPerRun(Item.of('kubejs:solid_rocket_fuel', 2))
+        .unlock(sbw('rpg_rocket_standard')).icon(sbw('rpg_rocket_standard'))
+        .register()
+
+    // rpg_rocket_yasin (MV) — Yasin 105 TBG thermobaric round, 40 runs × 45 s (more expensive)
+    WFResearch.builder('rpg_rocket_yasin')
+        .category('ballistics').pos(8, 4)
+        .nodeColor(BLUE)
+        .name('RPG Rockets (Yasin TBG)')
+        .description('The Yasin 105 TBG thermobaric rocket: a fuel-air explosive warhead that hits structures and infantry harder than HEAT.')
+        .requires(['fusee', 'he_warheads'])
+        .runs(40).ticksPerRun(900).eut(EU_MV).cwuPerRun(57600)
+        .itemPerRun(Item.of('superbwarfare:he_head', 3))
+        .itemPerRun(Item.of('gtceu:aluminium_plate', 3))
+        .itemPerRun(Item.of('kubejs:solid_rocket_fuel', 2))
+        .unlock(sbw('rpg_rocket_tbg')).icon(sbw('rpg_rocket_tbg'))
+        .register()
+
+    // javelin_missile (EV) — fire-and-forget top-attack ATGM, 30 runs × 45 s
+    WFResearch.builder('javelin_missile')
+        .category('ballistics').pos(6, 5)
+        .nodeColor(BLUE)
+        .name('Javelin Missile')
+        .description('The FGM-148 Javelin top-attack missile: a fire-and-forget ATGM that climbs and dives to strike thin top armour.')
+        .requires('anti_ground_missiles')
+        .runs(30).ticksPerRun(900).eut(EU_EV).cwuPerRun(921600)
+        .itemPerRun(Item.of('superbwarfare:seeker', 2))
+        .itemPerRun(Item.of('gtceu:ultimet_rod', 2))
+        .itemPerRun(Item.of('gtceu:titanium_plate', 8))
+        .itemTagPerRun('gtceu:circuits/ev', 1)
+        .unlock(sbw('javelin_missile')).icon(sbw('javelin_missile'))
         .register()
 
     // --- Nuclear Bomb (IV APEX) – the B-2 Spirit's strategic payload (AshVehicle: ashvehicle:nuclearbombitem).

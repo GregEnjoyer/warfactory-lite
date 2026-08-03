@@ -2172,35 +2172,6 @@
             ]
         },
         {
-            "pakku_id": "UsxQP71c02M7Z8bD",
-            "type": "MOD",
-            "side": "CLIENT",
-            "slug": {
-                "github": "Warfactory-Official/MCglTF"
-            },
-            "name": {
-                "github": "MCglTF"
-            },
-            "id": {
-                "github": "1280719680"
-            },
-            "files": [
-                {
-                    "type": "github",
-                    "file_name": "mcgltf-1.20.1.jar",
-                    "release_type": "release",
-                    "url": "https://github.com/Warfactory-Official/MCglTF/releases/download/snapshots/mcgltf-1.20.1.jar",
-                    "id": "463594358",
-                    "parent_id": "1280719680",
-                    "hashes": {
-                        "sha256": "9bfa5037f691971202945dbeb4ce73ba32d87fd48eb42f29ba4523fed47345fd"
-                    },
-                    "size": 569944,
-                    "date_published": "2026-07-01T20:27:29Z"
-                }
-            ]
-        },
-        {
             "pakku_id": "0fspdPbfqkjTuSO5",
             "type": "MOD",
             "side": "CLIENT",
@@ -2467,82 +2438,6 @@
                     "required_dependencies": [],
                     "size": 2851119,
                     "date_published": "2024-12-24T23:33:51.040Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "nMUj5EuvhUHIZLsX",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "open-persistence"
-            },
-            "name": {
-                "curseforge": "Open Persistence"
-            },
-            "id": {
-                "curseforge": "1339925"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "openpersistence-1.20.1-Forge-1.1.0.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/8491/577/openpersistence-1.20.1-Forge-1.1.0.jar",
-                    "id": "8491577",
-                    "parent_id": "1339925",
-                    "hashes": {
-                        "sha1": "c1b6c143488fb74828c945fc4b4b0fd8e6bfcc97",
-                        "md5": "eeabb8eda5aa01779de4057f806640c2"
-                    },
-                    "required_dependencies": [],
-                    "size": 37961,
-                    "date_published": "2026-07-23T04:13:39.827Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "bS1gw0eSG1zmtsQS",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "pack-launcher"
-            },
-            "name": {
-                "curseforge": "Pack Launcher"
-            },
-            "id": {
-                "curseforge": "1632808"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "modpack-director-1.1.jar",
-                    "mc_versions": [
-                        "1.20.2",
-                        "1.20.1",
-                        "1.20",
-                        "1.20.4",
-                        "1.20.3"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/8545/3/modpack-director-1.1.jar",
-                    "id": "8545003",
-                    "parent_id": "1632808",
-                    "hashes": {
-                        "sha1": "e999c487d6f0192db413bebb8e88bb53123e9eff",
-                        "md5": "603470cb9a512cb7943fb94fb3879820"
-                    },
-                    "required_dependencies": [],
-                    "size": 120705,
-                    "date_published": "2026-07-31T03:55:10.733Z"
                 }
             ]
         },
@@ -3475,44 +3370,6 @@
             ]
         },
         {
-            "pakku_id": "F85TM4vvqFo5XPq0",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "sbw-komodo-rendering-accelerator"
-            },
-            "name": {
-                "curseforge": "[SBW] Komodo rendering accelerator"
-            },
-            "id": {
-                "curseforge": "1616090"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "komodo-1.20.1-Forge-1.2.3.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/8545/181/komodo-1.20.1-Forge-1.2.3.jar",
-                    "id": "8545181",
-                    "parent_id": "1616090",
-                    "hashes": {
-                        "sha1": "09051155ff678cc46c6316de488b8cb78e023b0d",
-                        "md5": "e6ad35f71bcd1c0a5e27a97850b694a8"
-                    },
-                    "required_dependencies": [
-                        "1218165"
-                    ],
-                    "size": 878174,
-                    "date_published": "2026-07-31T04:49:08.847Z"
-                }
-            ]
-        },
-        {
             "pakku_id": "TPpxOkIf9JCMFZUg",
             "type": "MOD",
             "slug": {
@@ -3547,44 +3404,6 @@
                     ],
                     "size": 5791908,
                     "date_published": "2026-08-01T19:30:46.323Z"
-                }
-            ]
-        },
-        {
-            "pakku_id": "ysv6LWIPfYq32ICw",
-            "type": "MOD",
-            "slug": {
-                "curseforge": "sbw-mavic-drone-range-extender"
-            },
-            "name": {
-                "curseforge": "[SBW] Mavic Drone range extender"
-            },
-            "id": {
-                "curseforge": "1616970"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "sbw_mavic_extender-1.20.1-Forge-1.1.1.jar",
-                    "mc_versions": [
-                        "1.20.1"
-                    ],
-                    "loaders": [
-                        "forge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/8506/918/sbw_mavic_extender-1.20.1-Forge-1.1.1.jar",
-                    "id": "8506918",
-                    "parent_id": "1616970",
-                    "hashes": {
-                        "sha1": "83397fc22e18d8dc2d7bc9dc752d4c80c30f028a",
-                        "md5": "005cbea8bdcd1ef1b9fe81ce1ccfd5a6"
-                    },
-                    "required_dependencies": [
-                        "1218165"
-                    ],
-                    "size": 34152,
-                    "date_published": "2026-07-25T14:42:45.250Z"
                 }
             ]
         },

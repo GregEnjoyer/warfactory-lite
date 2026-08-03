@@ -5,7 +5,8 @@
         "config",
         "kubejs",
         "journeymap",
-        "tacz"
+        "tacz",
+        "mods/modpack-director-universal-1.1-all.jar"
     ],
     "client_overrides": [
         "fancymenu_data",

@@ -225,7 +225,7 @@ ServerEvents.recipes(event => {
         .requires('drone_tactics')
         .runs(45).ticksPerRun(300).eut(EU_HV).cwuPerRun(76800)
         .itemPerRun(Item.of('gtceu:aluminium_plate', 4))
-        .itemPerRun(Item.of('superbwarfare:motor', 4))
+        .itemPerRun(Item.of('gtceu:mv_electric_motor', 4))
         .itemTagPerRun('gtceu:circuits/mv', 2)
         .unlock(Item.of('sbwdroneconfig:cubed_fpv_drone')).icon(Item.of('sbwdroneconfig:cubed_fpv_drone'))
         .register()

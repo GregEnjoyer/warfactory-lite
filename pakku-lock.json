@@ -919,7 +919,6 @@
         {
             "pakku_id": "ru0JssBCRDKjONHD",
             "type": "MOD",
-            "side": "CLIENT",
             "slug": {
                 "curseforge": "embeddium"
             },

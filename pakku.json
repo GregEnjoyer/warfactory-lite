@@ -80,8 +80,7 @@
         "jei": {
             "side": "CLIENT"
         },
-        "embeddium": {
-        },
+        "embeddium": {},
         "asyncparticles": {
             "side": "CLIENT"
         },

@@ -1,6 +1,6 @@
 {
   "enabled": true,
-  "lodDistanceChunks": 256,
+  "lodDistanceChunks": 157,
   "bytesPerSecondLimitPerPlayer": 20971520,
   "diskReaderThreads": 5,
   "sendQueueLimitPerPlayer": 4000,

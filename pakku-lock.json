@@ -2465,10 +2465,6 @@
                     "url": "https://github.com/Warfactory-Official/Pack-Launcher/releases/download/latest/modpack-director-universal-1.1-all.jar",
                     "id": "500175131",
                     "parent_id": "1317746438",
-                    "hashes": {
-                        "sha256": "701dc51c2ec94739c95d7f67ab73b0b7f678a24698009fab5f3bf3d3a779ee5b"
-                    },
-                    "size": 3092076,
                     "date_published": "2026-08-03T14:50:27Z"
                 }
             ]

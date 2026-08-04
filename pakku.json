@@ -6,17 +6,17 @@
         "kubejs",
         "journeymap",
         "resources",
+        "datapacks",
         "tacz",
-        "mods/modpack-director-universal-1.1-all.jar"
+        "mods/modpack-director-universal-1.1-all.jar",
+        "resourcepacks"
     ],
     "server_overrides": [
         "client_mods"
     ],
     "client_overrides": [
         "fancymenu_data",
-        "datapacks",
-        "options.txt",
-        "resourcepacks"
+        "options.txt"
     ],
     "projects": {
         "tacz-tweaks": {

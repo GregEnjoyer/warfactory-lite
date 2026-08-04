@@ -763,9 +763,9 @@ ServerEvents.recipes(event => {
         .circuit(3).duration(600).EUt(512);
 
     // c4
-    event.recipes.gtceu.assembler('kubejs:sw_c4_bomb')
+    event.recipes.gtceu.assembler('kubejs:sw_c4_bomb_remote')
         .itemInputs(Item.of('gtceu:stainless_steel_plate', 8), Item.of('gtceu:dynamite', 6), '#gtceu:circuits/hv')
-        .itemOutputs(Item.of('superbwarfare:c4_bomb', 1))
+        .itemOutputs(Item.of('superbwarfare:c4_bomb', 1, '{Control:1b}'))
         .circuit(4).duration(300).EUt(512);
 
     // TM-62 anti-tank mine — HE fill, heavy pressure plate
@@ -779,6 +779,8 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of('gtceu:stainless_steel_plate', 3), Item.of('gtceu:dynamite', 3), Item.of('superbwarfare:seeker', 1))
         .itemOutputs(Item.of('superbwarfare:ptkm_1r', 1))
         .circuit(3).duration(800).EUt(128);
+
+
 
 
 

@@ -4,12 +4,19 @@ ServerEvents.recipes(event => {
 //     as the old shaped recipes, now built in the Assembler). -------------------
 
 // Detonator — the electric trigger: screws + spring striker + red-alloy signal wire.
-event.recipes.gtceu.assembler('wfcore:detonator')
-    .itemInputs('4x gtceu:wrought_iron_screw', '2x gtceu:iron_spring', '2x gtceu:red_alloy_single_wire', 'minecraft:stone_button')
-    .itemOutputs('wfcore:detonator')
-    .circuit(1)
-    .duration(200)
-    .EUt(30)
+
+
+event.shaped('wfcore:detonator', [
+        'PDP',
+        'CKC',
+        'PDP'
+    ], {
+        P: 'gtceu:wrought_iron_screw',
+        D: 'gtceu:iron_spring',
+        C: 'gtceu:red_alloy_single_wire',
+        K: 'minecraft:stone_button',
+
+    })
 
 // Mining Charge — paper-wrapped gunpowder charge.
 event.recipes.gtceu.assembler('wfcore:mining_charge')

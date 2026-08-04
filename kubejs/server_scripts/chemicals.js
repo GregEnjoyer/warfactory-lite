@@ -59,4 +59,32 @@ ServerEvents.recipes(event => {
         .itemOutputs('4x gtceu:rdx_dust')
         .outputFluids('gtceu:diluted_sulfuric_acid 1000')
         .duration(400).EUt(2048)
+
+    event.shapeless(
+  Item.of('minecraft:gunpowder', 4),
+  [
+    '3x gtceu:coal_dust',
+    '2x gtceu:saltpeter_dust',
+    'gtceu:sulfur_dust'
+],
+
+)
+    event.shapeless(
+  Item.of('minecraft:gunpowder', 4),
+  [
+    '3x gtceu:charcoal_dust',
+    '2x gtceu:saltpeter_dust',
+    'gtceu:sulfur_dust'
+],
+
+)
+    event.shapeless(
+  Item.of('minecraft:gunpowder', 4),
+  [
+    '3x gtceu:carbon_dust',
+    '2x gtceu:saltpeter_dust',
+    'gtceu:sulfur_dust'
+],
+
+)
 })

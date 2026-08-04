@@ -32,8 +32,8 @@ ServerEvents.recipes(event => {
 
     // ---- Faction Yield Storage (MV) -----------------------------------------
     g.assembler('warforge:islandcollector')
-        .itemInputs('4x gtceu:steel_plate', 'gtceu:bronze_drum', '2x #gtceu:circuits/mv') // TODO
-        .itemOutputs('warforge:islandcollector').duration(200).EUt(120)
+        .itemInputs('4x gtceu:steel_plate', 'gtceu:bronze_drum', '2x #gtceu:circuits/lv') // TODO
+        .itemOutputs('warforge:islandcollector').duration(200).EUt(30)
 
     // ---- Reinforced Claim Block (EV) ----------------------------------------
     g.assembler('warforge:reinforcedclaimblock')

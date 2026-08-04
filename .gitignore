@@ -3,6 +3,8 @@ mods/*
 # built fresh from ../Pack-Launcher (modpack-director-universal:shadowJar).
 # It cannot download itself, so it must live in the pack rather than be pulled from CurseForge.
 !mods/modpack-director-universal-1.1-all.jar
+# Client-only jars staged by tools/stage_client_mods.py (CI, into the serverpack zip); never commit.
+client_mods/
 build/
 .gradle/
 

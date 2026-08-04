@@ -67,9 +67,11 @@ foliageBreakers = []
 	showTabTags = true
 
 #Soft client-mod integrity audit. On join the server asks the client to hash its mods-folder jars and
-#compares them to config/wfcore-modmanifest.json (fileName -> sha256, regenerated per pack build).
-#Anything unknown or modified is FLAGGED (log + operator message + optional Discord webhook) but NEVER
-#kicked - a newer build is plausible, so an admin reviews. Hard mod validation stays with the anticheat.
+#compares them, by filename, to the jars the server itself carries in mods/ + client_mods/ (hashed live
+#at startup - there is no manifest file). The serverpack ships client-only jars in client_mods/ (staged
+#by tools/stage_client_mods.py). Anything unknown or modified is FLAGGED (log + operator message +
+#optional Discord webhook) but NEVER kicked - a newer build is plausible, so an admin reviews. Hard mod
+#validation stays with the anticheat.
 [clientModAudit]
 	#Master switch. When off, no request is sent on join and inbound reports are ignored.
 	enabled = true
@@ -78,7 +80,7 @@ foliageBreakers = []
 	#How long (seconds) to wait for a client's mod report before flagging that it never arrived.
 	#Range: 1 ~ 300
 	reportTimeoutSeconds = 20
-	#Also flag manifest jars a client did NOT report (stripped mods). Off by default to reduce noise.
+	#Also flag server-carried jars a client did NOT report (stripped mods). Off by default to reduce noise.
 	flagMissing = false
 
 #Server-enforced True Darkness (mod 'darkness'). True Darkness is a client-only render mod whose

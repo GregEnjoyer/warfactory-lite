@@ -38,10 +38,10 @@
 	bleedingSelfHealThreshold = 0.3
 	#Severity reduction PER TICK applied to a self-clotting wound (one at or below the self-heal threshold). Small = the wound takes a long while to close. Default 0.0003.
 	#Range: 0.0 ~ 1.0
-	bleedingSelfHealRate = 3.0E-4
+	bleedingSelfHealRate = 0.0002
 	#Real-time minutes for a full-severity fracture to knit and heal ON ITS OWN while untreated (a partial fracture heals proportionally faster). Splinting/treating it is faster. 0 = fractures never self-heal (they worsen until treated). Default 20.
 	#Range: 0.0 ~ 600.0
-	fractureSelfHealMinutes = 20.0
+	fractureSelfHealMinutes = 10.0
 
 [features]
 	#Master toggle for fracture trauma.
@@ -63,12 +63,12 @@
 	#If true, fully depleting the HEAD's health kills the player OUTRIGHT (bypasses bleed-out/downing). Default false -> a destroyed head downs the player.
 	headDepletionInstakill = false
 	#If true, fully depleting the TORSO's health kills the player OUTRIGHT (bypasses bleed-out/downing). Default false -> a destroyed torso downs the player.
-	torsoDepletionInstakill = false
+	torsoDepletionInstakill = true
 	#If true, a downed (unconscious / bleeding-out) player may HOLD the 'Give Up' key to die instantly and reach the respawn screen.
 	enableGiveUp = true
 	#How long (ticks) a downed player must HOLD the 'Give Up' key before dying (20 ticks = 1 second). Default 40 (2 seconds).
 	#Range: 1 ~ 1200
-	giveUpHoldTicks = 40
+	giveUpHoldTicks = 60
 
 [balance]
 	#Ticks a player may remain unconscious from bleeding out before dying.
@@ -168,7 +168,7 @@
 		majorTraumaFractionUnarmed = 3.0
 		#Falls -- 1.0 means a fall dealing a full health bar (~33 blocks) instant-kills; shorter falls crush/fracture legs and can bleed you out instead.
 		#Range: 0.1 ~ 100.0
-		majorTraumaFractionFall = 1.0
+		majorTraumaFractionFall = 0.7
 
 [pain]
 	#Per-limb pain diminishing-returns constant. A limb's LOCAL pain (0..1) = raw / (raw + k): a smaller k saturates a limb's pain faster, a larger k needs more/worse wounds on the SAME limb to approach that limb's share cap. Default 1.0.

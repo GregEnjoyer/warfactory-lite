@@ -9,6 +9,9 @@
         "tacz",
         "mods/modpack-director-universal-1.1-all.jar"
     ],
+    "server_overrides": [
+        "client_mods"
+    ],
     "client_overrides": [
         "fancymenu_data",
         "datapacks",
@@ -22,10 +25,6 @@
         "timeless-and-classics-zero": {
             "update_strategy": "NONE"
         },
-        "voxy": {
-            "side": "CLIENT",
-            "update_strategy": "NONE"
-        },
         "Ultimate-Weight": {
             "update_strategy": "NONE"
         },
@@ -35,12 +34,6 @@
         "sbw-drr": {
             "update_strategy": "LATEST"
         },
-        "emi": {
-            "side": "CLIENT"
-        },
-        "modern-ui": {
-            "side": "CLIENT"
-        },
         "accelerated-rendering": {
             "side": "CLIENT"
         },
@@ -48,9 +41,6 @@
             "side": "CLIENT"
         },
         "melody": {
-            "side": "CLIENT"
-        },
-        "mindful-darkness": {
             "side": "CLIENT"
         },
         "configured": {

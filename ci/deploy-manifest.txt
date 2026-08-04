@@ -16,6 +16,7 @@
 # --- directories synced in full ---
 dir config
 dir kubejs
+dir client_mods   # client-only jars the server hashes for the wfcore mod audit (--only-newer keeps it cheap)
 # dir tacz      # large gun-model overrides; uncomment only if you change them
 
 # --- Warfactory mods refreshed on every deploy ---

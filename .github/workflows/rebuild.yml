@@ -84,6 +84,18 @@ jobs:
         if: ${{ github.event.inputs.update_all == 'true' }}
         run: pakku -y update -a || true
 
+      - name: Fetch mods (materialises the client jars staging copies from)
+        run: pakku -y fetch
+
+      - name: Stage client-only mods into client_mods/
+        # Copies every side:CLIENT jar (pakku-fetched mods/ + ModDirector github releases) into
+        # client_mods/ so pakku's server_overrides packs it into the serverpack zip. wfcore's
+        # runtime audit then hashes those real jars — no wfcore-modmanifest.json needed. GH_TOKEN
+        # lets it pull the ModDirector github client mods (mcgltf, komodo) from their releases.
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 tools/stage_client_mods.py
+
       - name: Build exports
         run: pakku -y export
 

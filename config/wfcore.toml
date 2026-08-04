@@ -1,6 +1,6 @@
 #Forge energy produced per millibucket of fluid fuel consumed.
 #Range: > 1
-energyToFluidRatio = 10
+energyToFluidRatio = 512
 #How often (in ticks) a fuelled vehicle tops up from its fluid tank.
 #Range: > 1
 refuelIntervalTicks = 20

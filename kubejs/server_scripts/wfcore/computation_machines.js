@@ -62,7 +62,7 @@ ServerEvents.recipes(event => {
 
     // ---- Research Unit (MV) --------------------------------------------------
     g.assembler('wfcore:research_unit')
-        .itemInputs('gtceu:lv_machine_casing', '6x #gtceu:circuits/mv',
+        .itemInputs('gtceu:lv_machine_casing', '6x #gtceu:circuits/lv',
             'gtceu:steel_frame', '2x wfcore:copper_network_cable', '4x gtceu:lv_robot_arm')
         .itemOutputs('wfcore:research_unit')
         .duration(600).EUt(LV)

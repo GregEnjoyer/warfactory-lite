@@ -1,8 +1,13 @@
 // priority: 0
 // Visit the wiki for more info - https://kubejs.com/
 ServerEvents.recipes(event => {
-  // Removes unwanted stuff
-  event.replaceInput({}, 'superbwarfare:steel_ingot', 'gtceu:steel_ingot')
+  // NOTE: intentionally NOT doing `event.replaceInput({}, 'superbwarfare:steel_ingot', 'gtceu:steel_ingot')`.
+  // superbwarfare:steel_ingot lives in #forge:ingots/steel, and KubeJS input-matching is tag-aware
+  // (SingleItemMatch.contains -> Ingredient.test), so an unscoped {} replace rewrites the
+  // #forge:ingots/steel tag input of EVERY GregTech recipe into a hardcoded single gtceu:steel_ingot,
+  // stripping tag flexibility across the whole GT tree. SBW steel is already unobtainable (its output
+  // recipes are removed in worldgen/ore_removals.js) and no kept recipe references it, so nothing
+  // needs the swap. Same footgun class as the ore_removals.js { input: ... } removal.
   event.shapeless(
     Item.of('gtceu:programmed_circuit', '{Configuration:0}'),
                   ['#gtceu:circuits/ulv']

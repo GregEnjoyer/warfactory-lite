@@ -1,6 +1,10 @@
 #Forge energy produced per millibucket of fluid fuel consumed.
 #Range: > 1
-energyToFluidRatio = 512
+#NB: the running instance uses 10, and ALL vehicle fuel tuning in kubejs/startup_scripts/wfcore_vehicles.js
+#assumes 10 (flightTicks = maxFuel * energyToFluidRatio * fuelRatio / energyCostRate; HOG ratio 9.0 -> 90 FE/mB
+#-> ~45 min aircraft). The old default 512 here was stale — a fresh sync would have made every vehicle fly ~51x
+#longer. Keep this at 10 unless you re-tune every vehicle's maxFuel/ratios to match.
+energyToFluidRatio = 10
 #How often (in ticks) a fuelled vehicle tops up from its fluid tank.
 #Range: > 1
 refuelIntervalTicks = 20

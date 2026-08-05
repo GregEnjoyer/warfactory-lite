@@ -369,4 +369,14 @@ ServerEvents.recipes((event) => {
     .itemOutputs("4x ae2:calculation_processor")
     .duration(200)
     .EUt(30);
+
+  event.remove({ id: "gtceu:lathe/lathe_glass_plate_to_lens" });
+  greg
+    .lathe("gtceu:glass_lens")
+    .itemInputs(
+      "gtceu:glass_plate"
+    )
+    .itemOutputs("gtceu:glass_lens", "gtceu:small_glass_dust")
+    .duration(200)
+    .EUt(30);
 });

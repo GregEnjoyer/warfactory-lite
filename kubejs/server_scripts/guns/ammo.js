@@ -740,7 +740,7 @@ ServerEvents.recipes(event => {
 
     // M18 smoke grenade — non-lethal; dye = colored smoke agent
     event.recipes.gtceu.assembler('kubejs:sw_m18_smoke_grenade')
-        .itemInputs(Item.of('gtceu:steel_plate', 1), Item.of('gtceu:small_gunpowder_dust', 1), Item.of('#forge:dyes/white', 1))
+        .itemInputs(Item.of('gtceu:steel_plate', 1), Item.of('gtceu:small_gunpowder_dust', 1), '1x #forge:dyes/white')
         .itemOutputs(Item.of('superbwarfare:m18_smoke_grenade', 2))
         .circuit(3).duration(400).EUt(32);
 
@@ -912,12 +912,12 @@ ServerEvents.recipes(event => {
         .circuit(30).duration(400).EUt(128)
 
     event.recipes.gtceu.assembler('kubejs:artillery_indicator')
-        .itemInputs(Item.of('gtceu:stainless_steel_plate', 16), Item.of('gtceu:gold_single_cable', 24), Item.of('#gtceu:circuits/hv', 4))
+        .itemInputs(Item.of('gtceu:stainless_steel_plate', 16), Item.of('gtceu:gold_single_cable', 24), '4x #gtceu:circuits/hv')
         .itemOutputs(Item.of('superbwarfare:artillery_indicator', 1))
         .circuit(30).duration(400).EUt(128*4)
 
     event.recipes.gtceu.assembler('kubejs:thermal_imaging_googles')
-        .itemInputs(Item.of('gtceu:nightvision_goggles', 1), Item.of('gtceu:ruby_lens', 2), Item.of('#gtceu:circuits/mv', 4))
+        .itemInputs(Item.of('gtceu:nightvision_goggles', 1), Item.of('gtceu:ruby_lens', 2), '4x #gtceu:circuits/mv')
         .itemOutputs(Item.of('superbwarfare:thermal_imaging_goggles', 1))
         .duration(800).EUt(128)
 

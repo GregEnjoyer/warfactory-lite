@@ -58,7 +58,7 @@ ServerEvents.recipes(event => {
         r.circuit(1);
         r.research('veh_truck');
         r.EUt(112).duration(220);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #0 (superbwarfare:truck @ light_ground_vehicle_factory): ' + e); }
 
     // tier=lv, f=1.1 → cable cap64(32*1.1)=35, tag cap64(4*1.1)=4, EUt=112, duration=220
@@ -72,7 +72,7 @@ ServerEvents.recipes(event => {
         r.circuit(2);
         r.research('veh_sodayo');
         r.EUt(112).duration(220);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #1 (superbwarfare:sodayo_pick_up @ light_ground_vehicle_factory): ' + e); }
 
     // DISABLED (not in progression): { entity: 'mcsp:ural_tricolor', factory: 'light_ground_vehicle_factory', items: [['kubejs:lv_vehicle_frame', 1], ['superbwarfare:wheel', 4], ['kubejs:lv_engine', 1], ['gtceu:tin_single_cable', 32]], tags: [['#gtceu:circuits/lv', 4]], circuit: 3, eut: 70, duration: 200, research: 'veh_logistics' },
@@ -88,7 +88,7 @@ ServerEvents.recipes(event => {
         r.circuit(4);
         r.research('veh_ural');
         r.EUt(112).duration(220);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #2 (mcsp:ural_green @ light_ground_vehicle_factory): ' + e); }
 
     // tier=mv, f=1.25 → cable cap64(32*1.25)=40, tag cap64(8*1.25)=10, EUt=450, duration=Math.round(400*1.25)=500
@@ -103,7 +103,7 @@ ServerEvents.recipes(event => {
         r.circuit(5);
         r.research('veh_sodayo_hmg');
         r.EUt(450).duration(500);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #3 (superbwarfare:sodayo_pick_up_hmg @ light_ground_vehicle_factory): ' + e); }
 
     // tier=mv, f=1.25 → cable cap64(32*1.25)=40, tag cap64(8*1.25)=10, EUt=450, duration=500
@@ -118,7 +118,7 @@ ServerEvents.recipes(event => {
         r.circuit(9);
         r.research('veh_sodayo_mlrs');
         r.EUt(450).duration(500);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #4 (superbwarfare:sodayo_pick_up_rocket @ light_ground_vehicle_factory): ' + e); }
 
     // DISABLED (not in progression): { entity: 'superbwarfare:sodayo_pick_up_tow', factory: 'light_ground_vehicle_factory', items: [['kubejs:mv_vehicle_frame', 1], ['superbwarfare:wheel', 4], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['superbwarfare:tow_deployer', 1]], tags: [['#gtceu:circuits/mv', 8]], circuit: 6, eut: 120, duration: 400, research: 'veh_armed_trucks' },
@@ -137,7 +137,7 @@ ServerEvents.recipes(event => {
         r.circuit(1);
         r.research('air_ju_87');
         r.EUt(112).duration(220);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #5 (superbwarfare:ju_87 @ light_plane_assembler): ' + e); }
 
     // AH-6 Little Bird — MV rotary entry: a rotor (not a wing) helicopter with a light weapons station.
@@ -154,7 +154,7 @@ ServerEvents.recipes(event => {
         r.circuit(2);
         r.research('air_ah_6');
         r.EUt(450).duration(500);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #6 (superbwarfare:ah_6 @ helicopter_assembler): ' + e); }
 
     // MH-60M Black Hawk — HV rotary transport/gunship (ashvehicle entity).
@@ -171,7 +171,7 @@ ServerEvents.recipes(event => {
         r.circuit(20);
         r.research('air_mh_60');
         r.EUt(1800).duration(9000);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #7 (ashvehicle:mh_60m @ helicopter_assembler): ' + e); }
 
     // Mi-28 Attack Helicopter — EV rotary tank-hunter: rotor + a 30mm cannon barrel + a missile weapons station.
@@ -189,7 +189,7 @@ ServerEvents.recipes(event => {
         r.circuit(21);
         r.research('air_mi_28');
         r.EUt(7200).duration(10800);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #8 (superbwarfare:mi_28 @ helicopter_assembler): ' + e); }
 
     // DISABLED (ungated, tier TBD): { entity: 'superbwarfare:m_1a_2',          factory: 'heavy_vehicle_depot', items: [['kubejs:mv_vehicle_frame', 1], ['kubejs:mv_track', 2], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_cannon_barrel', 1]], tags: [['#gtceu:circuits/mv', 16]],circuit: 1, eut: 450, duration: 6000 },
@@ -206,7 +206,7 @@ ServerEvents.recipes(event => {
         r.circuit(2);
         r.research('veh_lav');
         r.EUt(1800).duration(9000);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #9 (superbwarfare:lav_150 @ heavy_vehicle_depot): ' + e); }
 
     // tier=hv, f=1.5 → cable cap64(32*1.5)=48, tag cap64(16*1.5)=24, EUt=1800, duration=9000
@@ -222,7 +222,7 @@ ServerEvents.recipes(event => {
         r.circuit(3);
         r.research('veh_lav_ad');
         r.EUt(1800).duration(9000);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #10 (superbwarfare:lav_ad @ heavy_vehicle_depot): ' + e); }
 
     // DISABLED (ungated, tier TBD): { entity: 'mcsp:t80u_camo',          factory: 'heavy_vehicle_depot', items: [['kubejs:mv_vehicle_frame', 1], ['kubejs:mv_track', 2], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_cannon_barrel', 1]], tags: [['#gtceu:circuits/mv', 16]],circuit: 4, eut: 450, duration: 6000 },
@@ -241,7 +241,7 @@ ServerEvents.recipes(event => {
         r.circuit(11);
         r.research('veh_bradley');
         r.EUt(1800).duration(9000);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #11 (superbwarfare:bradley @ heavy_vehicle_depot): ' + e); }
 
     // DISABLED (ungated, tier TBD): { entity: 'superbwarfare:bmp_2',          factory: 'heavy_vehicle_depot', items: [['kubejs:mv_vehicle_frame', 1], ['kubejs:mv_track', 2], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_cannon_barrel', 1]], tags: [['#gtceu:circuits/mv', 16]],circuit: 7, eut: 450, duration: 6000 },
@@ -260,7 +260,7 @@ ServerEvents.recipes(event => {
         r.circuit(7);
         r.research('veh_humvee_mk19');
         r.EUt(450).duration(500);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #12 (mcsp:humvee_mk19 @ light_ground_vehicle_factory): ' + e); }
 
     // tier=mv, f=1.25 → cable cap64(32*1.25)=40, tag cap64(8*1.25)=10, EUt=450, duration=500
@@ -275,7 +275,7 @@ ServerEvents.recipes(event => {
         r.circuit(8);
         r.research('veh_humvee_mg');
         r.EUt(450).duration(500);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #13 (mcsp:humvee_sand @ light_ground_vehicle_factory): ' + e); }
 
     // tier=mv, f=1.25 → cable cap64(32*1.25)=40, EUt=450, duration=Math.round(6000*1.25)=7500
@@ -291,7 +291,7 @@ ServerEvents.recipes(event => {
         r.circuit(1);
         r.research('air_a_10');
         r.EUt(450).duration(7500);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #14 (superbwarfare:a_10a @ light_plane_assembler): ' + e); }
 
     // AC-130U Spooky II — EV gunship (Hercules airframe + side-firing cannons), research veh air_spooky.
@@ -309,7 +309,7 @@ ServerEvents.recipes(event => {
         r.circuit(11);
         r.research('air_spooky');
         r.EUt(7200).duration(10800);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #15 (ashvehicle:ac130u @ heavy_plane_assembler): ' + e); }
 
     // C-130 Hercules — EV heavy transport, the EV step of the fixed-wing line (research air_hercules).
@@ -326,7 +326,7 @@ ServerEvents.recipes(event => {
         r.circuit(12);
         r.research('air_hercules');
         r.EUt(7200).duration(10800);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #16 (ashvehicle:c130 @ heavy_plane_assembler): ' + e); }
 
     //hv tank
@@ -344,7 +344,7 @@ ServerEvents.recipes(event => {
         r.circuit(2);
         r.research('veh_tank');
         r.EUt(7200).duration(10800);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #17 (superbwarfare:ztz_99a @ heavy_vehicle_depot): ' + e); }
 
     // DISABLED (ungated, tier TBD): { entity: 'ashvehicle:tos',          factory: 'heavy_vehicle_depot', items: [['kubejs:hv_vehicle_frame', 1], ['kubejs:hv_track', 2], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_weapons_system', 1]], tags: [['#gtceu:circuits/hv', 16]],circuit: 3, eut: 450*4, duration: 6000 },
@@ -363,7 +363,7 @@ ServerEvents.recipes(event => {
         r.circuit(4);
         r.research('veh_plz');
         r.EUt(7200).duration(10800);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #18 (superbwarfare:plz_05 @ heavy_vehicle_depot): ' + e); }
 
     // Prism Tank — IV energy MBT extending the ZTZ-99A line (energy weapon => weapons_system, no cannon barrel).
@@ -379,7 +379,7 @@ ServerEvents.recipes(event => {
         r.circuit(12);
         r.research('veh_prism');
         r.EUt(28800).duration(13200);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #19 (superbwarfare:prism_tank @ heavy_vehicle_depot): ' + e); }
 
     // DISABLED (ungated, tier TBD): { entity: 'mcsp:zbd04a_sand',          factory: 'heavy_vehicle_depot', items: [['kubejs:hv_vehicle_frame', 1], ['kubejs:hv_track', 2], ['kubejs:hv_engine', 1], ['gtceu:gold_single_cable', 32], ['kubejs:hv_cannon_barrel', 1]], tags: [['#gtceu:circuits/hv', 16]],circuit: 5, eut: 450*4, duration: 6000 },
@@ -404,6 +404,6 @@ ServerEvents.recipes(event => {
         r.circuit(1);
         r.research('air_b2');
         r.EUt(28800).duration(13200);
-        event.custom(r.build());
+        r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #20 (ashvehicle:b-2 @ heavy_plane_assembler): ' + e); }
 });

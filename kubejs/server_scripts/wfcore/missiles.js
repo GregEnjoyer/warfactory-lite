@@ -59,7 +59,7 @@ ServerEvents.recipes(event => {
         .duration(12000)
         .itemInputs(Item.of(P+'aluminium_plate', 96))
         .itemInputs(Item.of(P+'blue_steel_frame', 8))
-        .itemInputs(Item.of(C_HV, 8))
+        .itemInputs(8 + 'x ' + C_HV)
         .itemInputs(Item.of(ENG, 4))
         .itemInputs(Item.of(FUSE, 1))
         .itemInputs(Item.of(TNT, 85))
@@ -86,7 +86,7 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of(P+'hssg_frame', 4))
         .itemInputs(Item.of(ENG, 12))
         .itemInputs(Item.of(FUSE, 1))
-        .itemInputs(Item.of(C_EV, 8))
+        .itemInputs(8 + 'x ' + C_EV)
         .itemInputs(Item.of(RDX, 48))
         .addCondition(WFResearch.condition('demolition_ordnance'))
 
@@ -102,7 +102,7 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of(RDX, 16))
         .itemInputs(Item.of(P+'double_beryllium_plate', 32))
         .itemInputs(Item.of('gtceu:uranium_235_block', 8))
-        .itemInputs(Item.of(C_IV, 16))
+        .itemInputs(16 + 'x ' + C_IV)
         .addCondition(WFResearch.condition('tactical_nuclear'))
 
     // ── Penetrators (engine-heavy; light airframe; rocket → jet fuel) ────────────────────────────
@@ -118,7 +118,7 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of(P+'ultimet_frame', 8))
         .itemInputs(Item.of(ENG, 16))
         .itemInputs(Item.of(FUSE, 1))
-        .itemInputs(Item.of(C_HV, 10))
+        .itemInputs(10 + 'x ' + C_HV)
         .itemInputs(Item.of(TNT, 64))
         .addCondition(WFResearch.condition('penetrator_missiles'))
 
@@ -132,7 +132,7 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of(P+'hssg_frame', 8))
         .itemInputs(Item.of(ENG, 32))
         .itemInputs(Item.of(FUSE, 1))
-        .itemInputs(Item.of(C_EV, 12))
+        .itemInputs(12 + 'x ' + C_EV)
         .itemInputs(Item.of(TNT, 96))
         .addCondition(WFResearch.condition('penetrator_supersonic'))
 
@@ -146,7 +146,7 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of('gtceu:incoloy_ma_956_frame', 8))
         .itemInputs(Item.of(ENG, 80))
         .itemInputs(Item.of(FUSE, 1))
-        .itemInputs(Item.of(C_IV, 28))
+        .itemInputs(28 + 'x ' + C_IV)
         .itemInputs(Item.of(TNT, 128))
         .addCondition(WFResearch.condition('penetrator_hypersonic'))
 
@@ -160,7 +160,7 @@ ServerEvents.recipes(event => {
         .duration(14000)
         .itemInputs(Item.of(P+'double_stainless_steel_plate', 48))
         .itemInputs(Item.of(P+'stainless_steel_frame', 12))
-        .itemInputs(Item.of(C_HV, 10))
+        .itemInputs(10 + 'x ' + C_HV)
         .itemInputs(Item.of(ENG, 8))
         .itemInputs(Item.of(FUSE, 1))
         .itemInputs(Item.of(TNT, 72))
@@ -175,7 +175,7 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of(P+'double_titanium_plate', 48))
         .itemInputs(Item.of(ENG, 16))
         .itemInputs(Item.of(SRF, 24))
-        .itemInputs(Item.of(C_EV, 10))
+        .itemInputs(10 + 'x ' + C_EV)
         .itemInputs(Item.of(HV_RAM, 2))
         .itemInputs(Item.of(FUSE, 1))
         .itemInputs(Item.of(RDX, 64))
@@ -191,7 +191,7 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of(P+'stainless_steel_plate', 32))
         .itemInputs(Item.of(ENG, 24))
         .itemInputs(Item.of(SRF, 48))
-        .itemInputs(Item.of(C_IV, 10))
+        .itemInputs(10 + 'x ' + C_IV)
         .itemInputs(Item.of(RDX, 100))
         .itemInputs(Item.of(EV_RAM, 3))
         .addCondition(WFResearch.condition('icbm_heavy'))
@@ -208,7 +208,7 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of(P+'blue_steel_plate', 24))
         .itemInputs(Item.of(POW, 48))
         .itemInputs(Item.of(TNT, 48))
-        .itemInputs(Item.of(C_HV, 4))
+        .itemInputs(4 + 'x ' + C_HV)
         .itemInputs(Item.of(FUSE, 1))
         .addCondition(WFResearch.condition('shaped_charges'))
 
@@ -222,7 +222,7 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of(P+'ultimet_plate', 32))
         .itemInputs(Item.of(POW, 56))
         .itemInputs(Item.of(RDX, 32))
-        .itemInputs(Item.of(C_HV, 6))
+        .itemInputs(6 + 'x ' + C_HV)
         .itemInputs(Item.of(FUSE, 1))
         .addCondition(WFResearch.condition('bunker_buster_heavy'))
 
@@ -236,7 +236,7 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of(P+'hsss_plate', 32))
         .itemInputs(Item.of(POW, 64))
         .itemInputs(Item.of(RDX, 64))
-        .itemInputs(Item.of(C_IV, 6))
+        .itemInputs(6 + 'x ' + C_IV)
         .itemInputs(Item.of(FUSE, 1))
         .addCondition(WFResearch.condition('bunker_tunneller'))
 
@@ -307,7 +307,7 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of(P+'stainless_steel_frame', 20))
         .itemInputs(Item.of('gtceu:hsss_round', 96))
         .itemInputs(Item.of(P+'titanium_plate', 48))
-        .itemInputs(Item.of(C_IV, 10))
+        .itemInputs(10 + 'x ' + C_IV)
         .itemInputs(Item.of(POW, 64))
         .itemInputs(Item.of(FUSE, 1))
         .addCondition(WFResearch.condition('skyfall'))
@@ -323,7 +323,7 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of(P+'blue_steel_plate', 40))
         .itemInputs(Item.of(P+'aluminium_plate', 24))
         .itemInputs(Item.of(LAPO_DUST, 8))
-        .itemInputs(Item.of(C_HV, 6))
+        .itemInputs(6 + 'x ' + C_HV)
         .addCondition(WFResearch.condition('emp_warheads'))
 
     // missile_emp_heavy
@@ -335,7 +335,7 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of(P+'blue_steel_plate', 48))
         .itemInputs(Item.of(P+'titanium_plate', 32))
         .itemInputs(Item.of(LAPO, 2, '{"Charge":25000000L}'))
-        .itemInputs(Item.of(C_EV, 8))
+        .itemInputs(8 + 'x ' + C_EV)
         .addCondition(WFResearch.condition('emp_heavy'))
 
     // missile_emp_cluster
@@ -348,7 +348,7 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of(LEAD_ROUND, 48))
         .itemInputs(Item.of(LAPO, 1, '{"Charge":25000000L}'))
         .itemInputs(Item.of(POW, 32))
-        .itemInputs(Item.of(C_EV, 6))
+        .itemInputs(6 + 'x ' + C_EV)
         .addCondition(WFResearch.condition('emp_cluster'))
 
     // missile_emp_lance
@@ -360,7 +360,7 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of(P+'tungsten_plate', 80))
         .itemInputs(Item.of(P+'titanium_plate', 24))
         .itemInputs(Item.of(LAPO, 2, '{"Charge":25000000L}'))
-        .itemInputs(Item.of(C_IV, 8))
+        .itemInputs(8 + 'x ' + C_IV)
         .addCondition(WFResearch.condition('emp_lance'))
 
     // ── Interceptors (the premium class: circuit + RAM heavy; ~1.2–1.4× mainline missile cost) ────
@@ -377,7 +377,7 @@ ServerEvents.recipes(event => {
         .duration(8000)
         .itemInputs(Item.of(P+'aluminium_plate', 64))
         .itemInputs(Item.of(P+'stainless_steel_plate', 16))
-        .itemInputs(Item.of(C_HV, 38))
+        .itemInputs(38 + 'x ' + C_HV)
         .itemInputs(Item.of(MV_RAM, 4))
         .itemInputs(Item.of(ENG, 8))
         .itemInputs(Item.of(TNT, 12))
@@ -391,7 +391,7 @@ ServerEvents.recipes(event => {
         .duration(10000)
         .itemInputs(Item.of(P+'titanium_plate', 64))
         .itemInputs(Item.of(P+'ultimet_plate', 16))
-        .itemInputs(Item.of(C_EV, 32))
+        .itemInputs(32 + 'x ' + C_EV)
         .itemInputs(Item.of(HV_RAM, 4))
         .itemInputs(Item.of(ENG, 16))
         .itemInputs(Item.of(TNT, 16))
@@ -405,7 +405,7 @@ ServerEvents.recipes(event => {
         .duration(12000)
         .itemInputs(Item.of(P+'tungsten_steel_plate', 64))
         .itemInputs(Item.of(P+'titanium_plate', 32))
-        .itemInputs(Item.of(C_IV, 40))
+        .itemInputs(40 + 'x ' + C_IV)
         .itemInputs(Item.of(HV_RAM, 6))
         .itemInputs(Item.of(ENG, 16))
         .itemInputs(Item.of(TNT, 16))
@@ -419,7 +419,7 @@ ServerEvents.recipes(event => {
         .duration(10000)
         .itemInputs(Item.of(P+'titanium_plate', 22))
         .itemInputs(Item.of(P+'aluminium_plate', 14))
-        .itemInputs(Item.of(C_IV, 10))
+        .itemInputs(10 + 'x ' + C_IV)
         .itemInputs(Item.of(HV_RAM, 6))
         .itemInputs(Item.of('gtceu:hsss_round', 32))
         .itemInputs(Item.of(TNT, 12))
@@ -435,7 +435,7 @@ ServerEvents.recipes(event => {
         .duration(6000)
         .itemInputs(Item.of(P+'aluminium_plate', 80))
         .itemInputs(Item.of(ENG, 4))
-        .itemInputs(Item.of(C_HV, 6))
+        .itemInputs(6 + 'x ' + C_HV)
         .itemInputs(Item.of(TNT, 40))
         .itemInputs(Item.of('gtceu:stainless_steel_rotor', 2))
         .addCondition(WFResearch.condition('drone_loitering'))
@@ -449,7 +449,7 @@ ServerEvents.recipes(event => {
         .duration(6000)
         .itemInputs(Item.of(P+'aluminium_plate', 80))
         .itemInputs(Item.of(ENG, 4))
-        .itemInputs(Item.of(C_HV, 6))
+        .itemInputs(6 + 'x ' + C_HV)
         .itemInputs(Item.of('gtceu:stainless_steel_rotor', 2))
         .addCondition(WFResearch.condition('drone_loitering'))
 
@@ -461,7 +461,7 @@ ServerEvents.recipes(event => {
         .duration(6000)
         .itemInputs(Item.of(P+'aluminium_plate', 80))
         .itemInputs(Item.of(ENG, 4))
-        .itemInputs(Item.of(C_HV, 6))
+        .itemInputs(6 + 'x ' + C_HV)
         .itemInputs(Item.of(POW, 16))
         .addCondition(WFResearch.condition('drone_loitering'))
 

@@ -43,15 +43,10 @@ ServerEvents.recipes(event => {
         // BARRELS (FIXED cutter misuse + typo)
         // =========================
 
-        event.remove({ output: 'kubejs:barrel_steel' })
-        event.remove({ output: 'kubejs:barrel_damascus' })
-        event.remove({ output: 'kubejs:heavy_barrel_steel' })
-        event.remove({ output: 'kubejs:heavy_barrel_damascus' })
-
         // steel barrel
         event.recipes.gtceu.cutter("kubejs:barrel_1")
         .itemInputs(Item.of('gtceu:steel_plate', 3))
-        .itemOutputs(Item.of('kubejs:barrel_steel', 2))
+        .itemOutputs(Item.of('kubejs:double_barrel_steel', 2))
         .duration(120)
         .EUt(16)
 
@@ -63,15 +58,15 @@ ServerEvents.recipes(event => {
         .EUt(16)
 
         // heavy steel barrel
-        event.recipes.gtceu.cutter("kubejs:barrel_1_big")
-        .itemInputs(Item.of('gtceu:steel_plate', 6))
+        event.recipes.gtceu.cutter("kubejs:big")
+        .itemInputs(Item.of('gtceu:double_steel_plate', 3))
         .itemOutputs(Item.of('kubejs:heavy_barrel_steel', 1))
         .duration(120)
         .EUt(16)
 
         // ❌ FIXED typo: barrel_2_bug → barrel_2_big
         event.recipes.gtceu.cutter("kubejs:barrel_2_big")
-        .itemInputs(Item.of('gtceu:damascus_steel_plate', 6))
+        .itemInputs(Item.of('gtceu:double_damascus_steel_plate', 3))
         .itemOutputs(Item.of('kubejs:heavy_barrel_damascus', 1))
         .duration(120)
         .EUt(16)

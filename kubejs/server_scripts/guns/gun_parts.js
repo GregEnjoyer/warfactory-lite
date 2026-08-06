@@ -17,21 +17,21 @@ ServerEvents.recipes(event => {
     event.recipes.gtceu.assembler('kubejs:grip_wooden')
     .itemInputs('gtceu:treated_wood_rod', 'gtceu:treated_wood_plate')
     .itemOutputs(Item.of('kubejs:grip_wooden'))
-    .circuit(1)
+    .circuit(23)
     .duration(100)
     .EUt(16);
 
     event.recipes.gtceu.assembler('kubejs:grip_steel')
     .itemInputs('gtceu:steel_plate', 'gtceu:steel_rod')
     .itemOutputs(Item.of('kubejs:grip_steel'))
-    .circuit(2)
+    .circuit(19)
     .duration(200)
     .EUt(30);
 
     event.recipes.gtceu.assembler('kubejs:grip_plastic')
     .itemInputs('gtceu:silicone_rubber_plate', 'gtceu:rubber_ring')
     .itemOutputs(Item.of('kubejs:grip_plastic'))
-    .circuit(3)
+    .circuit(18)
     .duration(200)
     .EUt(30);
 
@@ -57,14 +57,14 @@ ServerEvents.recipes(event => {
     event.recipes.gtceu.assembler('kubejs:stock_steel')
     .itemInputs('gtceu:steel_plate')
     .itemOutputs(Item.of('kubejs:stock_steel'))
-    .circuit(2)
+    .circuit(22)
     .duration(200)
     .EUt(30);
 
     event.recipes.gtceu.assembler('kubejs:stock_plastic')
     .itemInputs('gtceu:silicone_rubber_plate')
     .itemOutputs(Item.of('kubejs:stock_plastic'))
-    .circuit(3)
+    .circuit(23)
     .duration(200)
     .EUt(30);
 

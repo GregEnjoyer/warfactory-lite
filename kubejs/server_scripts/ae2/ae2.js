@@ -380,3 +380,16 @@ ServerEvents.recipes((event) => {
     .duration(200)
     .EUt(30);
 });
+
+
+event.remove("id: ae2:network/blocks/controller");
+greg.assembler("ae_controller")
+.itemInputs(
+  "4x gtceu:aluminium_block",
+  "4x ae2:fluix_crystal",
+  "1x ae2:engineering_processor",
+)
+.itemOutputs("ae2:controller")
+.duration(200)
+.EUt(120)
+;

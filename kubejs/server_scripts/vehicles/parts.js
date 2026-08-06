@@ -46,7 +46,7 @@ ServerEvents.recipes(event => {
         // steel barrel
         event.recipes.gtceu.cutter("kubejs:barrel_1")
         .itemInputs(Item.of('gtceu:steel_plate', 3))
-        .itemOutputs(Item.of('kubejs:double_barrel_steel', 2))
+        .itemOutputs(Item.of('kubejs:barrel_steel', 2))
         .duration(120)
         .EUt(16)
 

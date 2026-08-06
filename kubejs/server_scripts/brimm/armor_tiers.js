@@ -14,21 +14,25 @@ ServerEvents.recipes(event => {
     event.recipes.gtceu.bender('brimm_panel_lv')
         .itemInputs(Item.of('gtceu:steel_plate', 3))
         .itemOutputs(Item.of('kubejs:ballistic_panel_lv', 1))
+        .circuit(14)
         .duration(200).EUt(30)
 
     event.recipes.gtceu.bender('brimm_panel_mv')
         .itemInputs(Item.of('gtceu:aluminium_plate', 3))
         .itemOutputs(Item.of('kubejs:ballistic_panel_mv', 1))
+        .circuit(14)
         .duration(300).EUt(120)
 
     event.recipes.gtceu.bender('brimm_panel_hv')
         .itemInputs(Item.of('gtceu:titanium_plate', 3))
         .itemOutputs(Item.of('kubejs:ballistic_panel_hv', 1))
+        .circuit(14)
         .duration(400).EUt(480)
 
     event.recipes.gtceu.bender('brimm_panel_ev')
         .itemInputs(Item.of('gtceu:tungsten_steel_plate', 3))
         .itemOutputs(Item.of('kubejs:ballistic_panel_ev', 1))
+        .circuit(14)
         .duration(500).EUt(1920)
 
     // ---------- Stage 2: final assembly (Assembler) ----------

@@ -7,6 +7,13 @@ ServerEvents.recipes(event => {
     const g = event.recipes.gtceu
     const LV = 32, MV = 120
 
+
+    g.mixer('kubejs:glowstone_fix')
+    .itemInputs('1x #forge:dusts/redstone', '1x #forge:dusts/gold')
+    .itemOutputs('2x #forge:dusts/glowstone')
+    .EUt(32)
+    .duration(200)
+
     // ---- White phosphorus: centrifuge phosphorus ----------------------------
     // 1 phosphorus dust -> 3 small phosphorus piles + 20% chance of a small
     // white-phosphorus pile. Feeds the white-phosphorus shells (guns/ammo.js).

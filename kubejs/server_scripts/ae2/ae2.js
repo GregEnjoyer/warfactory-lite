@@ -379,8 +379,6 @@ ServerEvents.recipes((event) => {
     .itemOutputs("gtceu:glass_lens", "gtceu:small_glass_dust")
     .duration(200)
     .EUt(30);
-});
-
 
 event.remove("id: ae2:network/blocks/controller");
 greg.assembler("ae_controller")
@@ -393,3 +391,6 @@ greg.assembler("ae_controller")
 .duration(200)
 .EUt(120)
 ;
+});
+
+

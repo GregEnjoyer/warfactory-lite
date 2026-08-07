@@ -687,7 +687,7 @@ ServerEvents.recipes(event => {
         .EUt(128)   // MV — mortar_shell node now gates on he_warheads
         .addCondition(WFResearch.condition('mortar_shell'));
 
-     event.recipes.gtceu.ammo_press('kubejs:ammo_mortar_shell')
+     event.recipes.gtceu.ammo_press('kubejs:ammo_vehicle_mortar_shell')
         .itemInputs('4x gtceu:dynamite', '8x minecraft:gunpowder', '4x gtceu:steel_plate')
         .itemOutputs(Item.of('sbwdroneconfig:anti_vehicle_mortar_payload', 1))
         .duration(80)

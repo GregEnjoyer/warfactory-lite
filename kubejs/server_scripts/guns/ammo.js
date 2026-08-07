@@ -681,9 +681,17 @@ ServerEvents.recipes(event => {
     // =======================================================================
     // HE mortar bomb — LV, no warhead (keeps the LV Mortar emplacement fed). Gated on the LV 'mortar_shell' node.
     event.recipes.gtceu.ammo_press('kubejs:ammo_mortar_shell')
-        .itemInputs('minecraft:gunpowder', 'gtceu:steel_plate')
-        .itemOutputs(Item.of('superbwarfare:mortar_shell', 4))
+        .itemInputs('4x gtceu:dynamite', '8x minecraft:gunpowder', '4x gtceu:steel_plate')
+        .itemOutputs(Item.of('superbwarfare:mortar_shell', 2))
         .duration(80)
+        .EUt(128)   // MV — mortar_shell node now gates on he_warheads
+        .addCondition(WFResearch.condition('mortar_shell'));
+
+     event.recipes.gtceu.ammo_press('kubejs:ammo_mortar_shell')
+        .itemInputs('4x gtceu:dynamite', '8x minecraft:gunpowder', '4x gtceu:steel_plate')
+        .itemOutputs(Item.of('sbwdroneconfig:anti_vehicle_mortar_payload', 1))
+        .duration(80)
+        .circuit(7)
         .EUt(128)   // MV — mortar_shell node now gates on he_warheads
         .addCondition(WFResearch.condition('mortar_shell'));
 

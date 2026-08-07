@@ -9,12 +9,13 @@ limits:
   fullScanIntervalTicks: 600
 rules:
   exact:
-    sbwdroneconfig:lucas_drone: 5.0
+    sbwdroneconfig:lucas_drone: 30.0
     sbwdroneconfig:cubed_fpv_drone: 5.0
     superbwarfare:drone: 5.0
     superbwarfare:claymore_mines: 2.0
-    superbwarfare:mortar_shell: 4.0
-    superbwarfare:mortar_shell_wp: 4.0
+    superbwarfare:mortar_shell: 5.0
+    superbwarfare:mortar_shell_wp: 5.0
+    sbwdroneconfig:anti_vehicle_mortar_payload: 5.0
     superbwarfare:small_rocket: 5.0
     superbwarfare:medium_rocket_ap: 20.0
     superbwarfare:medium_rocket_he: 20.0
@@ -25,7 +26,7 @@ rules:
     superbwarfare:medium_aerial_bomb: 25.0
     ashvehicle:gbu57item: 20.0
     ashvehicle:nuclearbombitem: 70.0
-    superbwarfare:c4_bomb: 3.0
+    superbwarfare:c4_bomb: 4.0
     superbwarfare:tm_62: 5.0
     superbwarfare:ptkm_1r: 5.0
     superbwarfare:grenade_40mm: 0.6

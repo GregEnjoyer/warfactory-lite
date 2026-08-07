@@ -194,7 +194,7 @@ ServerEvents.recipes(event => {
         .itemPerRun(Item.of(POW, 24))
         .itemPerRun(Item.of(TNT, 24))
         .itemTagPerRun('gtceu:circuits/hv', 2)
-        .unlock(M('bunker_buster')).icon(M('bunker_buster'))
+        .unlock(M('bunker_buster')).unlock(M('shitbox_buster')).icon(M('bunker_buster'))
         .register()
 
     // bunker_buster_heavy (EV) — tpr=4500  cwu=4608000

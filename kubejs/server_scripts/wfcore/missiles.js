@@ -197,6 +197,18 @@ ServerEvents.recipes(event => {
         .addCondition(WFResearch.condition('icbm_heavy'))
 
     // ── Bunker busters (shaped charge; explosive-heavy) ──────────────────────────────────────────
+    event.recipes.wfcore.missile_factory('wfcore:missile_shitbox_buster')
+        .inputFluids(Fluid.of('gtceu:diesel', 6000))
+        .itemOutputs(Item.of('wfcore:missile_shitbox_buster'))
+        .EUt(HV)
+        .duration(12000)
+        .itemInputs(Item.of(P+'stainless_steel_plate', 42))
+        .itemInputs(Item.of(P+'blue_steel_plate', 20))
+        .itemInputs(Item.of(POW, 42))
+        .itemInputs(Item.of('wfcore:deep_mining_charge', 48))
+        .itemInputs(6 + 'x ' + C_HV)
+        .itemInputs(Item.of(FUSE, 1))
+        .addCondition(WFResearch.condition('shaped_charges'))
 
     // missile_bunker_buster
     event.recipes.wfcore.missile_factory('wfcore:missile_bunker_buster')

@@ -80,6 +80,7 @@ ServerEvents.recipes(event => {
         .itemOutputs(Item.of(CASING_SMALL, 5))
         .duration(40)
         .EUt(32)
+        .circuit(1)
         .addCondition(WFResearch.condition('infantry_munitions_1'));
 
     event.recipes.gtceu.cutter(CASING_MEDIUM)
@@ -87,6 +88,7 @@ ServerEvents.recipes(event => {
         .itemOutputs(Item.of(CASING_MEDIUM, 5))
         .duration(40)
         .EUt(32)
+        .circuit(2)
         .addCondition(WFResearch.condition('infantry_munitions_1'));
 
     event.recipes.gtceu.cutter(CASING_LARGE)
@@ -94,6 +96,7 @@ ServerEvents.recipes(event => {
         .itemOutputs(Item.of(CASING_LARGE, 5))
         .duration(40)
         .EUt(128)
+         .circuit(3)
         .addCondition(WFResearch.condition('infantry_munitions_3'));
 
     event.recipes.gtceu.cutter(CASING_XL)
@@ -101,6 +104,7 @@ ServerEvents.recipes(event => {
         .itemOutputs(Item.of(CASING_XL, 1))
         .duration(40)
         .EUt(128)
+         .circuit(4)
         .addCondition(WFResearch.condition('large_casings'));
 
     // Steel bullet casing — the dedicated case for small vehicle shells (AP/HE/
@@ -110,7 +114,8 @@ ServerEvents.recipes(event => {
         .itemInputs(Item.of('gtceu:steel_plate', 3))
         .itemOutputs(Item.of(CASING_STEEL, 5))
         .duration(80)
-        .EUt(128)   // MV — large_casings
+        .EUt(128) 
+         .circuit(5)// MV — large_casings
         .addCondition(WFResearch.condition('large_casings'));
 
     // =======================================================================

@@ -35,28 +35,31 @@ const EUT = { lv: 32, mv: 128, hv: 512, ev: 2048, iv: 8192 } // tier voltage (NO
 ServerEvents.recipes(event => {
 
     // ── vehicle_frame ─────────────────────────────────────────────────────────────────────
-    // TIER_COST lv=1.1: sc(6)=7, sc(24)=26, sc(48)=53; scF(32*144)=5069
+    // COST CUT (civilian -50%): this frame is used ONLY by the 3 unarmed civilian LV vehicles, so its
+    // materials are halved from the TIER_COST lv=1.1 baseline (was 7 / 26 / 26 / 26 / 53, tin 5069).
     event.recipes.gtceu.assembler('veh_lv_vehicle_frame')
-        .itemInputs('7x gtceu:steel_block')
-        .itemInputs('26x wfcore:double_galvanized_steel_plate')
-        .itemInputs('26x gtceu:black_steel_frame')
-        .itemInputs('26x gtceu:wrought_iron_plate')
-        .itemInputs('53x gtceu:tin_bolt')
-        .inputFluids(Fluid.of('gtceu:tin', 5069))
+        .itemInputs('4x gtceu:steel_block')
+        .itemInputs('13x wfcore:double_galvanized_steel_plate')
+        .itemInputs('13x gtceu:black_steel_frame')
+        .itemInputs('13x gtceu:wrought_iron_plate')
+        .itemInputs('27x gtceu:tin_bolt')
+        .inputFluids(Fluid.of('gtceu:tin', 2535))
         .itemOutputs('kubejs:lv_vehicle_frame')
         .circuit(23)
         .duration(200)
         .EUt(32)
         .addCondition(WFResearch.condition('veh_comp_lv_vehicle_frame'))
 
-    // TIER_COST mv=1.25: sc(6)=8, sc(24)=30, sc(48)=60; scF(32*144)=5760
+    // COST CUT (armed-low-armor -20%): this frame is used ONLY by the 4 armed-low-armor MV vehicles
+    // (sodayo armed + humvee), so its materials are cut 20% from the TIER_COST mv=1.25 baseline
+    // (was 8 / 30 / 30 / 30 / 60, tin 5760).
     event.recipes.gtceu.assembler('veh_mv_vehicle_frame')
-        .itemInputs('8x gtceu:aluminium_block')
-        .itemInputs('30x gtceu:double_cobalt_brass_plate')
-        .itemInputs('30x gtceu:aluminium_frame')
-        .itemInputs('30x gtceu:magnalium_plate')
-        .itemInputs('60x gtceu:bronze_bolt')
-        .inputFluids(Fluid.of('gtceu:tin', 5760))
+        .itemInputs('6x gtceu:aluminium_block')
+        .itemInputs('24x gtceu:double_cobalt_brass_plate')
+        .itemInputs('24x gtceu:aluminium_frame')
+        .itemInputs('24x gtceu:magnalium_plate')
+        .itemInputs('48x gtceu:bronze_bolt')
+        .inputFluids(Fluid.of('gtceu:tin', 4608))
         .itemOutputs('kubejs:mv_vehicle_frame')
         .circuit(23)
         .duration(200)

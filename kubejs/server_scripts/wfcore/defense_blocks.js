@@ -28,8 +28,9 @@ ServerEvents.recipes(event => {
         .duration(120).EUt(32)
 
     // --- Reinforced Concrete (MV) — survives a portable charge ----------------
+    // Reinforcement simplified to a single steel frame box (was 4x steel_plate + 2x steel_frame).
     g.assembler('wfcore:reinforced_concrete')
-        .itemInputs('4x wfcore:standard_concrete', '4x gtceu:steel_plate', '2x gtceu:steel_frame') // TODO
+        .itemInputs('4x wfcore:standard_concrete', '1x gtceu:steel_frame')
         .itemOutputs('wfcore:reinforced_concrete')
         .duration(200).EUt(120)
 

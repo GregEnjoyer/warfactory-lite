@@ -47,28 +47,28 @@ ServerEvents.recipes(event => {
 
     // --- Light Ground Vehicle Factory ---
     // mv_truck — component-built truck (LV frame + engine from components.js), MV tier
-    // tier=lv, f=1.1 → cable cap64(32*1.1)=35, tag cap64(4*1.1)=4, EUt=112, duration=Math.round(200*1.1)=220
+    // tier=lv, f=1.1; EUt=112, duration=220. COST CUT (civilian -50%): wheels 4->2, cable 35->18, circuits/lv 4->2 (frame recipe also halved).
     try {
         var r = WFVehicles.recipe('kubejs:veh_0', 'superbwarfare:truck', 'light_ground_vehicle_factory');
         r.item('kubejs:lv_vehicle_frame', 1);
-        r.item('superbwarfare:wheel', 4);
+        r.item('superbwarfare:wheel', 2);
         r.item('kubejs:lv_engine', 1);
-        r.item('gtceu:tin_single_cable', 35);
-        r.tag('#gtceu:circuits/lv', 4);
+        r.item('gtceu:tin_single_cable', 18);
+        r.tag('#gtceu:circuits/lv', 2);
         r.circuit(1);
         r.research('veh_truck');
         r.EUt(112).duration(220);
         r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #0 (superbwarfare:truck @ light_ground_vehicle_factory): ' + e); }
 
-    // tier=lv, f=1.1 → cable cap64(32*1.1)=35, tag cap64(4*1.1)=4, EUt=112, duration=220
+    // tier=lv, f=1.1; EUt=112, duration=220. COST CUT (civilian -50%): wheels 4->2, cable 35->18, circuits/lv 4->2 (frame recipe also halved).
     try {
         var r = WFVehicles.recipe('kubejs:veh_1', 'superbwarfare:sodayo_pick_up', 'light_ground_vehicle_factory');
         r.item('kubejs:lv_vehicle_frame', 1);
-        r.item('superbwarfare:wheel', 4);
+        r.item('superbwarfare:wheel', 2);
         r.item('kubejs:lv_engine', 1);
-        r.item('gtceu:tin_single_cable', 35);
-        r.tag('#gtceu:circuits/lv', 4);
+        r.item('gtceu:tin_single_cable', 18);
+        r.tag('#gtceu:circuits/lv', 2);
         r.circuit(2);
         r.research('veh_sodayo');
         r.EUt(112).duration(220);
@@ -77,44 +77,44 @@ ServerEvents.recipes(event => {
 
     // DISABLED (not in progression): { entity: 'mcsp:ural_tricolor', factory: 'light_ground_vehicle_factory', items: [['kubejs:lv_vehicle_frame', 1], ['superbwarfare:wheel', 4], ['kubejs:lv_engine', 1], ['gtceu:tin_single_cable', 32]], tags: [['#gtceu:circuits/lv', 4]], circuit: 3, eut: 70, duration: 200, research: 'veh_logistics' },
 
-    // tier=lv, f=1.1 → cable cap64(32*1.1)=35, tag cap64(4*1.1)=4, EUt=112, duration=220
+    // tier=lv, f=1.1; EUt=112, duration=220. COST CUT (civilian -50%): wheels 4->2, cable 35->18, circuits/lv 4->2 (frame recipe also halved).
     try {
         var r = WFVehicles.recipe('kubejs:veh_2', 'mcsp:ural_green', 'light_ground_vehicle_factory');
         r.item('kubejs:lv_vehicle_frame', 1);
-        r.item('superbwarfare:wheel', 4);
+        r.item('superbwarfare:wheel', 2);
         r.item('kubejs:lv_engine', 1);
-        r.item('gtceu:tin_single_cable', 35);
-        r.tag('#gtceu:circuits/lv', 4);
+        r.item('gtceu:tin_single_cable', 18);
+        r.tag('#gtceu:circuits/lv', 2);
         r.circuit(4);
         r.research('veh_ural');
         r.EUt(112).duration(220);
         r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #2 (mcsp:ural_green @ light_ground_vehicle_factory): ' + e); }
 
-    // tier=mv, f=1.25 → cable cap64(32*1.25)=40, tag cap64(8*1.25)=10, EUt=450, duration=Math.round(400*1.25)=500
+    // tier=mv, f=1.25; EUt=450, duration=500. COST CUT (armed-low-armor -20%): wheels 4->3, cable 40->32, circuits/mv 10->8 (frame recipe also cut 20%).
     try {
         var r = WFVehicles.recipe('kubejs:veh_3', 'superbwarfare:sodayo_pick_up_hmg', 'light_ground_vehicle_factory');
         r.item('kubejs:mv_vehicle_frame', 1);
-        r.item('superbwarfare:wheel', 4);
+        r.item('superbwarfare:wheel', 3);
         r.item('kubejs:mv_engine', 1);
-        r.item('gtceu:copper_single_cable', 40);
+        r.item('gtceu:copper_single_cable', 32);
         r.item('kubejs:mv_cannon_barrel', 1);
-        r.tag('#gtceu:circuits/mv', 10);
+        r.tag('#gtceu:circuits/mv', 8);
         r.circuit(5);
         r.research('veh_sodayo_hmg');
         r.EUt(450).duration(500);
         r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #3 (superbwarfare:sodayo_pick_up_hmg @ light_ground_vehicle_factory): ' + e); }
 
-    // tier=mv, f=1.25 → cable cap64(32*1.25)=40, tag cap64(8*1.25)=10, EUt=450, duration=500
+    // tier=mv, f=1.25; EUt=450, duration=500. COST CUT (armed-low-armor -20%): wheels 4->3, cable 40->32, circuits/mv 10->8 (frame recipe also cut 20%).
     try {
         var r = WFVehicles.recipe('kubejs:veh_4', 'superbwarfare:sodayo_pick_up_rocket', 'light_ground_vehicle_factory');
         r.item('kubejs:mv_vehicle_frame', 1);
-        r.item('superbwarfare:wheel', 4);
+        r.item('superbwarfare:wheel', 3);
         r.item('kubejs:mv_engine', 1);
-        r.item('gtceu:copper_single_cable', 40);
+        r.item('gtceu:copper_single_cable', 32);
         r.item('kubejs:mv_weapons_system', 1);
-        r.tag('#gtceu:circuits/mv', 10);
+        r.tag('#gtceu:circuits/mv', 8);
         r.circuit(9);
         r.research('veh_sodayo_mlrs');
         r.EUt(450).duration(500);
@@ -247,31 +247,31 @@ ServerEvents.recipes(event => {
     // DISABLED (ungated, tier TBD): { entity: 'superbwarfare:bmp_2',          factory: 'heavy_vehicle_depot', items: [['kubejs:mv_vehicle_frame', 1], ['kubejs:mv_track', 2], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_cannon_barrel', 1]], tags: [['#gtceu:circuits/mv', 16]],circuit: 7, eut: 450, duration: 6000 },
     // DISABLED (ungated, tier TBD): { entity: 'superbwarfare:lav_25',          factory: 'heavy_vehicle_depot', items: [['kubejs:mv_vehicle_frame', 1], ['superbwarfare:wheel', 8], ['kubejs:mv_engine', 1], ['gtceu:copper_single_cable', 32], ['kubejs:mv_cannon_barrel', 1], ['kubejs:mv_weapons_system', 1]], tags: [['#gtceu:circuits/mv', 16]],circuit: 8, eut: 450, duration: 6000 },
 
-    // tier=mv, f=1.25 → cable cap64(32*1.25)=40, tag cap64(8*1.25)=10, EUt=450, duration=Math.round(400*1.25)=500
+    // tier=mv, f=1.25; EUt=450, duration=500. COST CUT (armed-low-armor -20%): wheels 4->3, cable 40->32, circuits/mv 10->8 (frame recipe also cut 20%).
     try {
         var r = WFVehicles.recipe('kubejs:veh_12', 'mcsp:humvee_mk19', 'light_ground_vehicle_factory');
         r.item('kubejs:mv_vehicle_frame', 1);
-        r.item('superbwarfare:wheel', 4);
+        r.item('superbwarfare:wheel', 3);
         r.item('kubejs:mv_engine', 1);
-        r.item('gtceu:copper_single_cable', 40);
+        r.item('gtceu:copper_single_cable', 32);
         r.item('kubejs:mv_cannon_barrel', 1);
         r.item('kubejs:mv_weapons_system', 1);
-        r.tag('#gtceu:circuits/mv', 10);
+        r.tag('#gtceu:circuits/mv', 8);
         r.circuit(7);
         r.research('veh_humvee_mk19');
         r.EUt(450).duration(500);
         r.add(event);
     } catch (e) { console.warn('[WF] skipped vehicle recipe #12 (mcsp:humvee_mk19 @ light_ground_vehicle_factory): ' + e); }
 
-    // tier=mv, f=1.25 → cable cap64(32*1.25)=40, tag cap64(8*1.25)=10, EUt=450, duration=500
+    // tier=mv, f=1.25; EUt=450, duration=500. COST CUT (armed-low-armor -20%): wheels 4->3, cable 40->32, circuits/mv 10->8 (frame recipe also cut 20%).
     try {
         var r = WFVehicles.recipe('kubejs:veh_13', 'mcsp:humvee_sand', 'light_ground_vehicle_factory');
         r.item('kubejs:mv_vehicle_frame', 1);
-        r.item('superbwarfare:wheel', 4);
+        r.item('superbwarfare:wheel', 3);
         r.item('kubejs:mv_engine', 1);
-        r.item('gtceu:copper_single_cable', 40);
+        r.item('gtceu:copper_single_cable', 32);
         r.item('kubejs:mv_cannon_barrel', 1);
-        r.tag('#gtceu:circuits/mv', 10);
+        r.tag('#gtceu:circuits/mv', 8);
         r.circuit(8);
         r.research('veh_humvee_mg');
         r.EUt(450).duration(500);
